@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Portfolio - Minimal & Interactive</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- GSAP Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <!-- Iconify Script -->
+  <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
+  <style>
+    :root {
+      --bg-white: #ffffff;
+      --text-darkblue: #001f3f;
+      --accent-darkcyan: #008B8B;
+    }
+    body {
+      background-color: var(--bg-white);
+      color: var(--text-darkblue);
+      scroll-behavior: smooth;
+    }
+    /* Button Styles */
+    .btn-accent {
+      background-color: var(--accent-darkcyan);
+      color: var(--bg-white);
+      padding: 0.75rem 1.5rem;
+      border: 2px solid var(--accent-darkcyan);
+      border-radius: 9999px;
+      font-weight: 600;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-accent:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+    }
+    .btn-accent:active {
+      transform: scale(0.95);
+    }
+    .btn-hero {
+      background-color: var(--bg-white);
+      color: var(--accent-darkcyan);
+      padding: 0.75rem 1.5rem;
+      border: 2px solid var(--accent-darkcyan);
+      border-radius: 9999px;
+      font-weight: 600;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-hero:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+    }
+    .btn-hero:active {
+      transform: scale(0.95);
+    }
+    /* Loading Overlay */
+    #loadingOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .spinner {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid var(--text-darkblue);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    /* Modal Styles */
+    #imageModal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    #imageModal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    #imageModal img {
+      max-width: 90%;
+      max-height: 90%;
+    }
+    /* Project Image Hover Effect */
+    .project-image-container {
+      position: relative;
+      overflow: hidden;
+    }
+    .project-image {
+      transition: transform 0.3s ease;
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .project-image-container::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.1);
+      transform: skewX(-20deg);
+      transition: left 0.5s ease;
+    }
+    .project-image-container:hover::after {
+      left: 100%;
+    }
+    .project-image-container:hover .project-image {
+      transform: scale(1.05);
+    }
+    /* Flip Card for Skills */
+    .flip-card {
+      perspective: 1000px;
+      height: 10rem; /* Agar ketinggian flip card seragam, misalnya ~ h-40 */
+    }
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+    .flip-card:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--accent-darkcyan);
+      border-radius: 0.5rem;
+    }
+    .flip-card-front {
+      background-color: var(--bg-white);
+      color: var(--text-darkblue);
+    }
+    .flip-card-back {
+      background-color: var(--accent-darkcyan);
+      color: var(--bg-white);
+      transform: rotateY(180deg);
+    }
+    /* Slider Container */
+    .slider-container {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .slider-track {
+      display: flex;
+      transition: transform 0.4s ease;
+    }
+    .slider-slide {
+      min-width: 100%;
+      box-sizing: border-box;
+    }
+    /* Slider Controls */
+    .slider-control {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--accent-darkcyan);
+      color: #fff;
+      padding: 0.5rem;
+      border-radius: 9999px;
+      cursor: pointer;
+    }
+    .slider-control:hover {
+      background: #007070;
+    }
+    .slider-control.left {
+      left: 1rem;
+    }
+    .slider-control.right {
+      right: 1rem;
+    }
+    /* Dots */
+    .slider-dots {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+    .slider-dot {
+      width: 12px;
+      height: 12px;
+      background: #ccc;
+      border-radius: 9999px;
+      margin: 0 0.25rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .slider-dot.active {
+      background: var(--accent-darkcyan);
+    }
+    
+    
+.btn-hero {
+  width: 130px;
+  height: 40px;
+  color: #fff;
+  border-radius: 5px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  background: var(--accent-darkcyan);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  border: 2px solid transparent;
+  line-height: 40px;
+  text-align: center;
+  padding: 0;
+  overflow: hidden;
+}
+
+.btn-hero span {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Efek Hover */
+.btn-hero:hover {
+  background: var(--accent-darkcyan); /* Tetap menggunakan warna background */
+  color: white; /* Warna teks putih */
+  border: 2px solid white; /* Border putih */
+  box-shadow: none;
+}
+
+.btn-hero:before,
+.btn-hero:after {
+  position: absolute;
+  content: "";
+  right: 0;
+  top: 0;
+  background: white; /* Border animasi putih */
+  transition: all 0.3s ease;
+}
+
+.btn-hero:before {
+  height: 0%;
+  width: 2px;
+}
+
+.btn-hero:after {
+  width: 0%;
+  height: 2px;
+}
+
+.btn-hero:hover:before {
+  height: 100%;
+}
+
+.btn-hero:hover:after {
+  width: 100%;
+}
+
+.btn-hero span:before,
+.btn-hero span:after {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: 0;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.btn-hero span:before {
+  width: 2px;
+  height: 0%;
+}
+
+.btn-hero span:after {
+  width: 0%;
+  height: 2px;
+}
+
+.btn-hero span:hover:before {
+  height: 100%;
+}
+
+.btn-hero span:hover:after {
+  width: 100%;
+}
+
+
+    .typing {
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid currentColor;
+      width: 0;
+      visibility: hidden;
+      opacity: 1;
+    }
+    .hidden-btn {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+
+      /* Tombol khusus Sample Website */
+    .btn-visit {
+      background-color: var(--bg-white);
+      color: var(--accent-darkcyan);
+      padding: .75rem 1.5rem;
+      border: 2px solid var(--bg-white);
+      border-radius: 9999px;
+      font-weight: 600;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      transition: transform .3s, box-shadow .3s, border-color .3s;
+    }
+    .btn-visit:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 10px rgba(0,0,0,0.25);
+      border-color: var(--bg-white);
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading Animation -->
+  <div id="loadingOverlay">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Modal for Image Zoom -->
+  <div id="imageModal">
+    <button onclick="closeModal()" class="absolute top-4 right-4 text-white text-4xl focus:outline-none">&times;</button>
+    <div class="p-12">
+      <img id="modalImage" src="" alt="Project Detail" />
+    </div>
+  </div>
+
+  <!-- Hero Section (tidak dihilangkan) -->
+  <section id="hero" class="min-h-screen flex flex-col items-center justify-center text-center bg-teal-700 text-white">
+    <h1 id="hero-line1" class="text-5xl font-bold mb-4 typing">Hi!</h1>
+    <p id="hero-line2" class="text-xl mb-8 typing">I'm Misbahudin, Full Stack Developer.</p>
+    <div class="space-x-4">
+      <a href="#about" class="btn-hero hidden-btn 
+
+      "><span> Discover More</span> </a>
+    </div>
+  </section>
+
+<!-- About Me Section -->
+<section id="about" class="py-20 ">
+  <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center ">
+    <div class="md:w-1/3 mb-8 md:mb-0">
+      <img src="https://avatars.githubusercontent.com/u/35445399?v=4" alt="My Photo" class="w-64 h-64 rounded-full shadow-lg transform hover:scale-105 transition duration-300" />
+    </div>
+    <div class="md:w-2/3 md:pl-12 text-left">
+      <h2 id="about-line1" class="text-4xl font-bold mb-4 ">About Me</h2>
+      <p id="about-line2-1" class="text-lg ">I have over 3 years of experience in web development and project management.</p>
+      <p id="about-line2-2" class="text-lg ">I prioritize quality, innovation, and efficiency in every project.</p>
+      <p id="about-line2-3" class="text-lg ">With expertise in various modern web technologies, </p> 
+      <p id="about-line2-4" class="text-lg ">I am ready to deliver the right digital solutions for your needs.</p>
+    </div>
+  </div>
+</section>
+
+  <!-- My Skills Section -->
+  <section id="skills" class="py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold mb-4 text-[var(--text-darkblue)]">My Skills</h2>
+      <p class="text-lg mb-8 text-[var(--text-darkblue)]">
+        I possess expertise in various modern technologies that drive project success.
+      </p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <!-- Flip Card Laravel -->
+        <div class="flip-card h-40"> <!-- h-40 agar flip card seragam -->
+          <div class="flip-card-inner">
+            <div class="flip-card-front flex flex-col items-center justify-center">
+              <span class="iconify text-4xl mb-2" data-icon="simple-icons:laravel"></span>
+              <p class="text-lg font-semibold">Laravel</p>
+            </div>
+            <div class="flip-card-back flex items-center justify-center">
+              <p class="text-lg font-semibold">Intermediate</p>
+            </div>
+          </div>
+        </div>
+        <!-- Flip Card PHP -->
+        <div class="flip-card h-40">
+          <div class="flip-card-inner">
+            <div class="flip-card-front flex flex-col items-center justify-center">
+              <span class="iconify text-4xl mb-2" data-icon="simple-icons:php"></span>
+              <p class="text-lg font-semibold">PHP</p>
+            </div>
+            <div class="flip-card-back flex items-center justify-center">
+              <p class="text-lg font-semibold">Intermediate</p>
+            </div>
+          </div>
+        </div>
+        <!-- Flip Card MySQL -->
+        <div class="flip-card h-40">
+          <div class="flip-card-inner">
+            <div class="flip-card-front flex flex-col items-center justify-center">
+              <span class="iconify text-4xl mb-2" data-icon="simple-icons:mysql"></span>
+              <p class="text-lg font-semibold">MySQL</p>
+            </div>
+            <div class="flip-card-back flex items-center justify-center">
+              <p class="text-lg font-semibold">Intermediate</p>
+            </div>
+          </div>
+        </div>
+        <!-- Flip Card JavaScript -->
+        <div class="flip-card h-40">
+          <div class="flip-card-inner">
+            <div class="flip-card-front flex flex-col items-center justify-center">
+              <span class="iconify text-4xl mb-2" data-icon="simple-icons:javascript"></span>
+              <p class="text-lg font-semibold">JavaScript</p>
+            </div>
+            <div class="flip-card-back flex items-center justify-center">
+              <p class="text-lg font-semibold">Intermediate</p>
+            </div>
+          </div>
+        </div>
+        <!-- Flip Card jQuery -->
+        <div class="flip-card h-40">
+          <div class="flip-card-inner">
+            <div class="flip-card-front flex flex-col items-center justify-center">
+              <span class="iconify text-4xl mb-2" data-icon="simple-icons:jquery"></span>
+              <p class="text-lg font-semibold">jQuery</p>
+            </div>
+            <div class="flip-card-back flex items-center justify-center">
+              <p class="text-lg font-semibold">Intermediate</p>
+            </div>
+          </div>
+        </div>
+        <!-- Flip Card HTML5 -->
+        <div class="flip-card h-40">
+          <div class="flip-card-inner">
+            <div class="flip-card-front flex flex-col items-center justify-center">
+              <span class="iconify text-4xl mb-2" data-icon="simple-icons:html5"></span>
+              <p class="text-lg font-semibold">HTML5</p>
+            </div>
+            <div class="flip-card-back flex items-center justify-center">
+              <p class="text-lg font-semibold">Intermediate</p>
+            </div>
+          </div>
+        </div>
+        <!-- Flip Card Tailwind CSS -->
+        <div class="flip-card h-40">
+          <div class="flip-card-inner">
+            <div class="flip-card-front flex flex-col items-center justify-center">
+              <span class="iconify text-4xl mb-2" data-icon="simple-icons:tailwindcss"></span>
+              <p class="text-lg font-semibold">Tailwind CSS</p>
+            </div>
+            <div class="flip-card-back flex items-center justify-center">
+              <p class="text-lg font-semibold">Intermediate</p>
+            </div>
+          </div>
+        </div>
+        <!-- Flip Card GitFlow -->
+        <div class="flip-card h-40">
+          <div class="flip-card-inner">
+            <div class="flip-card-front flex flex-col items-center justify-center">
+              <span class="iconify text-4xl mb-2" data-icon="simple-icons:git"></span>
+              <p class="text-lg font-semibold">GitFlow</p>
+            </div>
+            <div class="flip-card-back flex items-center justify-center">
+              <p class="text-lg font-semibold">Intermediate</p>
+            </div>
+          </div>
+        </div>
+        <!-- Flip Card Bootstrap -->
+        <div class="flip-card h-40">
+          <div class="flip-card-inner">
+            <div class="flip-card-front flex flex-col items-center justify-center">
+              <span class="iconify text-4xl mb-2" data-icon="simple-icons:bootstrap"></span>
+              <p class="text-lg font-semibold">Bootstrap</p>
+            </div>
+            <div class="flip-card-back flex items-center justify-center">
+              <p class="text-lg font-semibold">Intermediate</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sample Website Section -->
+  <section id="sample-website" class="py-20 bg-[var(--accent-darkcyan)] text-white">
+    <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center">
+      <div class="md:w-1/2 mb-8 md:mb-0">
+        <img src="assets/farm.jpg" alt="Sample Website" class="rounded-lg shadow-lg hover:scale-105 transition duration-300">
+      </div>
+      <div class="md:w-1/2 md:pl-12 text-center md:text-left">
+        <h2 class="text-4xl font-bold mb-4">Sample Website</h2>
+        <p class="text-lg leading-relaxed mb-6">
+          An innovative platform that integrates digital technology in agriculture. Enjoy an interactive dashboard, real-time monitoring, and advanced features to optimize agricultural processes.
+        </p>
+        <a href="https://farm.misbah.live/" target="_blank" class="btn-visit inline-block px-8 py-3 rounded-full transition transform hover:scale-110 duration-300 font-semibold">
+          Visit Website
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- My Projects Section (Slider) -->
+  <section id="projects" class="py-20">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-12">My Projects</h2>
+
+      <!-- Slider Container -->
+      <div class="slider-container relative">
+        <!-- Slider Track -->
+        <div class="slider-track" id="sliderTrack">
+          <!-- Slide 1 -->
+          <div class="slider-slide px-4">
+            <div class="project cursor-pointer rounded-lg shadow-lg hover:shadow-2xl transition" onclick="showModal('assets/ppdb.jpg')">
+              <div class="project-image-container">
+                <img src="assets/ppdb.jpg" alt="Aplikasi PPDB" class="project-image rounded-t-lg">
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-semibold mb-2">Aplikasi PPDB</h3>
+                <p class="text-sm mb-2"><strong>Duration:</strong> July 2024 - January 2025</p>
+                <p class="text-sm">
+                  A platform based on Laravel Passport to automate the PPDB process with multi-user authentication, WhatsApp & Email Gateway integration, and automatic data validation.
+                </p>
+                <p class="text-xs mt-2"><strong>Skills:</strong> Laravel, REST APIs, OAuth, MySQL, Microsoft Excel</p>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 2 -->
+          <div class="slider-slide px-4">
+            <div class="project cursor-pointer rounded-lg shadow-lg hover:shadow-2xl transition" onclick="showModal('assets/sdm1.png')">
+              <div class="project-image-container">
+                <img src="assets/sdm1.png" alt="Aplikasi Kepegawaian Baru" class="project-image rounded-t-lg">
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-semibold mb-2">Aplikasi Kepegawaian Baru</h3>
+                <p class="text-sm mb-2"><strong>Duration:</strong> April 2024 - June 2024</p>
+                <p class="text-sm">
+                  An integrated HR application that combines PPDB integration and a digital student record system (Buku Induk Santri), along with automation for HR forms and employee records.
+                </p>
+                <p class="text-xs mt-2"><strong>Skills:</strong> PHP, jQuery, MySQL, JavaScript, HTML5, Tailwind CSS, Database Administration</p>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 3 -->
+          <div class="slider-slide px-4">
+            <div class="project cursor-pointer rounded-lg shadow-lg hover:shadow-2xl transition" onclick="showModal('assets/santri.png')">
+              <div class="project-image-container">
+                <img src="assets/santri.png" alt="Buku Induk Santri" class="project-image rounded-t-lg">
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-semibold mb-2">Buku Induk Santri</h3>
+                <p class="text-sm mb-2"><strong>Duration:</strong> January 2024 - March 2024</p>
+                <p class="text-sm">
+                  A centralized student record system that digitizes administrative processes and supports over 9,000 student records with advanced search and filter features.
+                </p>
+                <p class="text-xs mt-2"><strong>Skills:</strong> Laravel, REST APIs, OAuth, MySQL, Microsoft Excel</p>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 4 -->
+          <div class="slider-slide px-4">
+            <div class="project cursor-pointer rounded-lg shadow-lg hover:shadow-2xl transition" onclick="showModal('assets/sdm.png')">
+              <div class="project-image-container">
+                <img src="assets/sdm.png" alt="Aplikasi Kepegawaian" class="project-image rounded-t-lg">
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-semibold mb-2">Aplikasi Kepegawaian</h3>
+                <p class="text-sm mb-2"><strong>Duration:</strong> July 2021 - December 2023</p>
+                <p class="text-sm">
+                  A centralized HR system with digital forms for status changes, contracts, leave, study permissions, and terminations, complete with real-time analytics dashboard.
+                </p>
+                <p class="text-xs mt-2"><strong>Skills:</strong> PHP, jQuery, MySQL, JavaScript, HTML5, Tailwind CSS, Database Administration</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slider Controls -->
+        <button id="prevBtn" class="slider-control left">
+          &#10094;
+        </button>
+        <button id="nextBtn" class="slider-control right">
+          &#10095;
+        </button>
+
+        <!-- Slider Dots -->
+        <div class="slider-dots mt-4" id="sliderDots">
+          <!-- Dot akan di-generate melalui JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-4">Contact Me</h2>
+      <p class="text-xl mb-8">
+        Want to discuss or find solutions together? Contact me via email.
+      </p>
+      <a href="mailto:misbahudin@example.com" class="px-8 py-3 btn-accent rounded-full transition">
+        Email Me
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-4">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+      &copy; 2025 My Portfolio. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- GSAP + Slider JS -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Loading overlay fade out
+      gsap.to('#loadingOverlay', {
+        opacity: 0,
+        duration: 1,
+        delay: 1,
+        onComplete: function() {
+          document.getElementById('loadingOverlay').style.display = 'none';
+        }
+      });
+
+      gsap.registerPlugin(ScrollTrigger);
+
+    let heroTimeline, aboutTimeline;
+
+    // Fungsi reset animasi untuk Hero Section
+    function resetHeroAnimation() {
+      gsap.set(["#hero-line1", "#hero-line2"], {
+        visibility: "hidden",
+        width: 0,
+        opacity: 1,
+        borderRight: "3px solid currentColor"
+      });
+      gsap.set(".btn-hero", {
+        opacity: 0,
+        transform: "scale(0.8)"
+      });
+      if (heroTimeline) heroTimeline.kill();
+    }
+
+    // Fungsi jalankan animasi ketik untuk Hero Section
+    function startHeroAnimation() {
+      heroTimeline = gsap.timeline();
+      const heroLine1 = document.getElementById("hero-line1");
+      const heroLine2 = document.getElementById("hero-line2");
+      const line1Width = heroLine1.scrollWidth;
+      const line2Width = heroLine2.scrollWidth;
+      const steps1 = heroLine1.textContent.trim().length;
+      const steps2 = heroLine2.textContent.trim().length;
+
+      heroTimeline
+        .to("#hero-line1", {
+          visibility: "visible",
+          width: line1Width + "px",
+          duration: 1,
+          ease: `steps(${steps1})`
+        })
+        .to("#hero-line1", {
+          borderRight: "0px",
+          delay: 0.3
+        })
+        .to("#hero-line2", {
+          visibility: "visible",
+          width: line2Width + "px",
+          duration: 2,
+          ease: `steps(${steps2})`
+        })
+        .to("#hero-line2", {
+          borderRight: "0px",
+          delay: 0.3
+        })
+        .to(".btn-hero", {
+          opacity: 1,
+          transform: "scale(1)",
+          duration: 0.5,
+          ease: "bounce.out"
+        });
+    }
+
+
+
+
+    // ScrollTrigger untuk Hero Section
+    ScrollTrigger.create({
+      trigger: "#hero",
+      start: "top 70%",
+      onEnter: () => {
+        resetHeroAnimation();
+        startHeroAnimation();
+      },
+      onLeave: () => gsap.to(["#hero-line1", "#hero-line2", ".btn-hero"], {
+        opacity: 0,
+        duration: 0.8,
+        onComplete: resetHeroAnimation
+      }),
+      onEnterBack: () => {
+        resetHeroAnimation();
+        startHeroAnimation();
+      }
+    });
+
+    
+      gsap.from('#about', {
+        scrollTrigger: { trigger: '#about', start: 'top 80%' },
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        ease: 'power2.out'
+      });
+      gsap.from('#skills', {
+        scrollTrigger: { trigger: '#skills', start: 'top 80%' },
+        opacity: 0,
+        y: 100,
+        duration: 1,
+        ease: 'bounce.out'
+      });
+      gsap.from('#projects', {
+        scrollTrigger: { trigger: '#projects', start: 'top 80%' },
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        ease: 'power2.out'
+      });
+      gsap.from('#sample-website', {
+        scrollTrigger: { trigger: '#sample-website', start: 'top 80%' },
+        opacity: 0,
+        scale: 0.8,
+        duration: 1,
+        ease: 'back.out(1.7)'
+      });
+      gsap.from('#contact', {
+        scrollTrigger: { trigger: '#contact', start: 'top 80%' },
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        ease: 'power2.out'
+      });
+
+      // Animasi project cards (tiap slide)
+      gsap.utils.toArray('.project').forEach(project => {
+        gsap.from(project, {
+          scrollTrigger: {
+            trigger: project,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+          },
+          opacity: 0,
+          y: 50,
+          duration: 1,
+          ease: 'power2.out'
+        });
+      });
+
+      // Slider JS
+      const sliderTrack = document.getElementById('sliderTrack');
+      const slides = Array.from(sliderTrack.children);
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const sliderDots = document.getElementById('sliderDots');
+
+      let currentIndex = 0;
+      const totalSlides = slides.length;
+
+      // Generate dots
+      for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('div');
+        dot.classList.add('slider-dot');
+        if (i === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(i));
+        sliderDots.appendChild(dot);
+      }
+
+      function updateDots(index) {
+        const allDots = sliderDots.querySelectorAll('.slider-dot');
+        allDots.forEach(dot => dot.classList.remove('active'));
+        allDots[index].classList.add('active');
+      }
+
+      function goToSlide(index) {
+        currentIndex = index;
+        const offset = -index * 100;
+        sliderTrack.style.transform = `translateX(${offset}%)`;
+        updateDots(index);
+      }
+
+      function goPrev() {
+        currentIndex = (currentIndex === 0) ? totalSlides - 1 : currentIndex - 1;
+        goToSlide(currentIndex);
+      }
+
+      function goNext() {
+        currentIndex = (currentIndex === totalSlides - 1) ? 0 : currentIndex + 1;
+        goToSlide(currentIndex);
+      }
+
+      prevBtn.addEventListener('click', goPrev);
+      nextBtn.addEventListener('click', goNext);
+
+      // Auto slide (opsional)
+      // setInterval(() => {
+      //   goNext();
+      // }, 5000);
+    });
+
+    // Modal Functions with Zoom In Animation
+    function showModal(imgSrc) {
+      const modal = document.getElementById('imageModal');
+      const modalImage = document.getElementById('modalImage');
+      modalImage.src = imgSrc;
+      modal.classList.add('active');
+      gsap.fromTo(modalImage, { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: 'power2.out' });
+    }
+    function closeModal() {
+      const modal = document.getElementById('imageModal');
+      gsap.to('#modalImage', { scale: 0.8, opacity: 0, duration: 0.5, ease: 'power2.in', onComplete: function() {
+        modal.classList.remove('active');
+      }});
+    }
+  </script>
+</body>
+</html>
