@@ -1,851 +1,2025 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>My Portfolio - Minimal & Interactive</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Misbahudin | Full Stack Developer & Data Systems Engineer</title>
+  <meta name="description" content="Portfolio resmi Misbahudin, Full Stack Developer & Data Systems Engineer dengan pengalaman 3,5+ tahun dalam arsitektur Laravel 13, Svelte 5, database MySQL 3NF, dan pipeline ETL migrasi 12.000+ data." />
+  <meta name="keywords" content="Misbahudin, Full Stack Developer, Data Systems Engineer, Laravel 13, Svelte 5, MySQL, ETL Data Migration, PHPUnit, Notaris Irwan Baddu, Yayasan PQTM, Malang, Portfolio" />
+  <meta name="author" content="Misbahudin" />
+
+  <!-- Open Graph / LinkedIn / Facebook -->
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content="Misbahudin | Full Stack Developer & Data Systems Engineer" />
+  <meta property="og:description" content="Portfolio rekayasa perangkat lunak: sistem operasional notaris, manajemen pendidikan yayasan, PPDB terpusat, dan pipeline ETL data berskala besar." />
+  <meta property="og:url" content="https://misbahudin98.netlify.app" />
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/35445399?v=4" />
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Misbahudin | Full Stack Developer & Data Systems Engineer" />
+  <meta name="twitter:description" content="Full Stack Developer berfokus pada rekayasa backend Laravel, Svelte 5, dan integritas data enterprise." />
+  <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/35445399?v=4" />
+
+  <!-- Schema.org JSON-LD (Strict ATS & Machine Readability Invariant) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Misbahudin",
+    "jobTitle": "Full Stack Developer & Data Systems Engineer",
+    "description": "Full Stack Developer dengan pengalaman kerja 3,5+ tahun yang berfokus pada pengembangan backend Laravel (Sanctum/Passport), database MySQL, dan antarmuka modern Svelte 5. Memiliki rekam jejak membangun sistem informasi terpusat >10.000 data, mengeksekusi migrasi 12.000+ data (ETL) dengan zero data loss, dan menulis 250+ automated tests PHPUnit.",
+    "email": "misbah.udin@outlook.co.id",
+    "telephone": "+6282232828065",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Kabupaten Malang",
+      "addressRegion": "Jawa Timur",
+      "postalCode": "65162",
+      "addressCountry": "ID"
+    },
+    "alumniOf": [
+      {
+        "@type": "CollegeOrUniversity",
+        "name": "Politeknik Negeri Malang",
+        "sameAs": "https://www.polinema.ac.id"
+      },
+      {
+        "@type": "EducationalOrganization",
+        "name": "SMKN 2 Singosari"
+      }
+    ],
+    "url": "https://misbahudin98.netlify.app",
+    "sameAs": [
+      "https://github.com/misbahudin98",
+      "https://www.linkedin.com/in/misbahudin98/",
+      "https://misbahudin98.github.io"
+    ],
+    "knowsAbout": [
+      "PHP", "Laravel 13", "Laravel Sanctum", "Laravel Passport", "OAuth 2.0",
+      "Svelte 5", "Runes", "Tailwind CSS v4", "MySQL (3NF)", "ETL Data Migration",
+      "PHPUnit", "Test-Driven Development (TDD)", "RESTful API",
+      "Prompt Engineering", "Antigravity CLI", "Server Optimization (Error 1040)",
+      "LAN Networking", "Computer Hardware Troubleshooting", "Dapodik"
+    ]
+  }
+  </script>
+
+  <!-- LLM Context & Fast Ingestion Standard (llmstxt.org) -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM Context Summary" />
+
+  <!-- Anti-FOUC Theme Script -->
+  <script>
+    if (localStorage.theme === 'light' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+      document.documentElement.classList.remove('dark');
+    } else {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- GSAP Library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <!-- Iconify Script -->
-  <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'Fira Code', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Resource Preloads for Instant FCP & Zero CLS -->
+  <link rel="preload" href="https://avatars.githubusercontent.com/u/35445399?v=4" as="image" />
+
+  <!-- Google Fonts & FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- GSAP & ScrollTrigger CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
   <style>
-    :root {
-      --bg-white: #ffffff;
-      --text-darkblue: #001f3f;
-      --accent-darkcyan: #008B8B;
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 7px;
     }
-    body {
-      background-color: var(--bg-white);
-      color: var(--text-darkblue);
-      scroll-behavior: smooth;
+    ::-webkit-scrollbar-track {
+      background: transparent;
     }
-    /* Button Styles */
-    .btn-accent {
-      background-color: var(--accent-darkcyan);
-      color: var(--bg-white);
-      padding: 0.75rem 1.5rem;
-      border: 2px solid var(--accent-darkcyan);
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
       border-radius: 9999px;
-      font-weight: 600;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      transition: transform 0.2s, box-shadow 0.2s;
     }
-    .btn-accent:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+    .dark ::-webkit-scrollbar-thumb {
+      background: #1e293b;
     }
-    .btn-accent:active {
-      transform: scale(0.95);
+    .dark ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
     }
-    .btn-hero {
-      background-color: var(--bg-white);
-      color: var(--accent-darkcyan);
-      padding: 0.75rem 1.5rem;
-      border: 2px solid var(--accent-darkcyan);
-      border-radius: 9999px;
-      font-weight: 600;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      transition: transform 0.2s, box-shadow 0.2s;
+
+    /* Print Styles (Optimized for ATS & Clean Resume Export) */
+    @media print {
+      body {
+        background-color: #ffffff !important;
+        color: #0f172a !important;
+        font-size: 11pt !important;
+        line-height: 1.4 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .print-card {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+        border: 1px solid #cbd5e1 !important;
+        background-color: #ffffff !important;
+        box-shadow: none !important;
+        margin-bottom: 1rem !important;
+      }
+      a {
+        text-decoration: underline !important;
+        color: #0f172a !important;
+      }
+      .terminal-window {
+        background: #f8fafc !important;
+        color: #0f172a !important;
+        border: 1px solid #cbd5e1 !important;
+      }
+      .terminal-header {
+        display: none !important;
+      }
     }
-    .btn-hero:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+
+    /* Human-Crafted Spotlight Card Effect */
+    .spotlight-card {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+      transform-style: preserve-3d;
     }
-    .btn-hero:active {
-      transform: scale(0.95);
+    .spotlight-card::before {
+      content: '';
+      position: absolute;
+      top: var(--mouse-y, -1000px);
+      left: var(--mouse-x, -1000px);
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, transparent 70%);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1;
     }
-    /* Loading Overlay */
-    #loadingOverlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--bg-white);
+    .spotlight-card:hover::before {
+      opacity: 1;
+    }
+
+    /* Magnetic CTA Button physics */
+    .magnetic-btn {
+      will-change: transform;
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    /* Subtle Architectural Glows */
+    .glow-emerald {
+      box-shadow: 0 0 50px -12px rgba(16, 185, 129, 0.2);
+    }
+
+    /* Code Terminal Styling */
+    .terminal-window {
+      background: #0b1120;
+      border: 1px solid #1e293b;
+      border-radius: 0.875rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .terminal-header {
+      background: #070c18;
+      border-bottom: 1px solid #1e293b;
+      padding: 0.5rem 0.75rem;
       display: flex;
       align-items: center;
-      justify-content: center;
-      z-index: 1000;
+      gap: 0.375rem;
     }
-    .spinner {
-      border: 4px solid #f3f3f3;
-      border-top: 4px solid var(--text-darkblue);
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
+    .terminal-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 9999px;
     }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+
+    /* Ambient Parallax Orbs (GPU Threaded) */
+    .ambient-parallax-layer {
+      position: absolute;
+      border-radius: 9999px;
+      pointer-events: none;
+      filter: blur(85px);
+      will-change: transform;
+      z-index: 0;
     }
-    /* Modal Styles */
-    #imageModal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.9);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 50;
+
+    /* Interactive Project Image Hover & Zoom */
+    .project-image-box {
+      position: relative;
+      overflow: hidden;
+      border-radius: 0.875rem;
+      background-color: #0b1120;
+    }
+    .project-image-box img {
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform;
+    }
+    .project-image-box:hover img {
+      transform: scale(1.03);
+    }
+
+    /* Lightbox Modal */
+    #imageLightboxModal {
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.25s ease;
     }
-    #imageModal.active {
+    #imageLightboxModal.active {
       opacity: 1;
       pointer-events: auto;
     }
-    #imageModal img {
-      max-width: 90%;
-      max-height: 90%;
-    }
-    /* Project Image Hover Effect */
-    .project-image-container {
-      position: relative;
-      overflow: hidden;
-    }
-    .project-image {
-      transition: transform 0.3s ease;
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-    .project-image-container::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.1);
-      transform: skewX(-20deg);
-      transition: left 0.5s ease;
-    }
-    .project-image-container:hover::after {
-      left: 100%;
-    }
-    .project-image-container:hover .project-image {
-      transform: scale(1.05);
-    }
-    /* Flip Card for Skills */
-    .flip-card {
-      perspective: 1000px;
-      height: 10rem; /* Agar ketinggian flip card seragam, misalnya ~ h-40 */
-    }
-    .flip-card-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      text-align: center;
-      transition: transform 0.6s;
-      transform-style: preserve-3d;
-    }
-    .flip-card:hover .flip-card-inner {
-      transform: rotateY(180deg);
-    }
-    .flip-card-front, .flip-card-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      border: 2px solid var(--accent-darkcyan);
-      border-radius: 0.5rem;
-    }
-    .flip-card-front {
-      background-color: var(--bg-white);
-      color: var(--text-darkblue);
-    }
-    .flip-card-back {
-      background-color: var(--accent-darkcyan);
-      color: var(--bg-white);
-      transform: rotateY(180deg);
-    }
-    /* Slider Container */
-    .slider-container {
-      position: relative;
-      overflow: hidden;
-      width: 100%;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .slider-track {
-      display: flex;
-      transition: transform 0.4s ease;
-    }
-    .slider-slide {
-      min-width: 100%;
-      box-sizing: border-box;
-    }
-    /* Slider Controls */
-    .slider-control {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: var(--accent-darkcyan);
-      color: #fff;
-      padding: 0.5rem;
-      border-radius: 9999px;
-      cursor: pointer;
-    }
-    .slider-control:hover {
-      background: #007070;
-    }
-    .slider-control.left {
-      left: 1rem;
-    }
-    .slider-control.right {
-      right: 1rem;
-    }
-    /* Dots */
-    .slider-dots {
-      display: flex;
-      justify-content: center;
-      margin-top: 1rem;
-    }
-    .slider-dot {
-      width: 12px;
-      height: 12px;
-      background: #ccc;
-      border-radius: 9999px;
-      margin: 0 0.25rem;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .slider-dot.active {
-      background: var(--accent-darkcyan);
-    }
-    
-    
-.btn-hero {
-  width: 130px;
-  height: 40px;
-  color: #fff;
-  border-radius: 5px;
-  font-family: 'Lato', sans-serif;
-  font-weight: 500;
-  background: var(--accent-darkcyan);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  display: inline-block;
-  border: 2px solid transparent;
-  line-height: 40px;
-  text-align: center;
-  padding: 0;
-  overflow: hidden;
-}
-
-.btn-hero span {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-/* Efek Hover */
-.btn-hero:hover {
-  background: var(--accent-darkcyan); /* Tetap menggunakan warna background */
-  color: white; /* Warna teks putih */
-  border: 2px solid white; /* Border putih */
-  box-shadow: none;
-}
-
-.btn-hero:before,
-.btn-hero:after {
-  position: absolute;
-  content: "";
-  right: 0;
-  top: 0;
-  background: white; /* Border animasi putih */
-  transition: all 0.3s ease;
-}
-
-.btn-hero:before {
-  height: 0%;
-  width: 2px;
-}
-
-.btn-hero:after {
-  width: 0%;
-  height: 2px;
-}
-
-.btn-hero:hover:before {
-  height: 100%;
-}
-
-.btn-hero:hover:after {
-  width: 100%;
-}
-
-.btn-hero span:before,
-.btn-hero span:after {
-  position: absolute;
-  content: "";
-  left: 0;
-  bottom: 0;
-  background: white;
-  transition: all 0.3s ease;
-}
-
-.btn-hero span:before {
-  width: 2px;
-  height: 0%;
-}
-
-.btn-hero span:after {
-  width: 0%;
-  height: 2px;
-}
-
-.btn-hero span:hover:before {
-  height: 100%;
-}
-
-.btn-hero span:hover:after {
-  width: 100%;
-}
-
-
-    .typing {
-      white-space: nowrap;
-      overflow: hidden;
-      border-right: 3px solid currentColor;
-      width: 0;
-      visibility: hidden;
-      opacity: 1;
-    }
-    .hidden-btn {
-      opacity: 0;
-      transform: scale(0.8);
-    }
-
-      /* Tombol khusus Sample Website */
-    .btn-visit {
-      background-color: var(--bg-white);
-      color: var(--accent-darkcyan);
-      padding: .75rem 1.5rem;
-      border: 2px solid var(--bg-white);
-      border-radius: 9999px;
-      font-weight: 600;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-      transition: transform .3s, box-shadow .3s, border-color .3s;
-    }
-    .btn-visit:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 10px rgba(0,0,0,0.25);
-      border-color: var(--bg-white);
-    }
   </style>
 </head>
-<body>
-  <!-- Loading Animation -->
-  <div id="loadingOverlay">
-    <div class="spinner"></div>
-  </div>
+<body class="bg-slate-50 dark:bg-[#07090e] text-slate-800 dark:text-slate-100 font-sans antialiased selection:bg-emerald-500 selection:text-slate-950 min-h-screen transition-colors duration-200 relative overflow-x-hidden">
 
-  <!-- Modal for Image Zoom -->
-  <div id="imageModal">
-    <button onclick="closeModal()" class="absolute top-4 right-4 text-white text-4xl focus:outline-none">&times;</button>
-    <div class="p-12">
-      <img id="modalImage" src="" alt="Project Detail" />
+  <!-- ============================================================== -->
+  <!-- AMBIENT MULTI-PLANE PARALLAX BACKGROUND (GPU-COMPOSITED)       -->
+  <!-- ============================================================== -->
+  <div class="no-print pointer-events-none fixed inset-0 overflow-hidden z-0" aria-hidden="true">
+    <div 
+      data-parallax-depth="0.12" 
+      class="ambient-parallax-layer -top-32 -left-32 w-[520px] h-[520px] bg-emerald-500/10 dark:bg-emerald-500/15">
+    </div>
+    <div 
+      data-parallax-depth="-0.16" 
+      class="ambient-parallax-layer top-1/3 -right-36 w-[480px] h-[480px] bg-teal-500/10">
+    </div>
+    <div 
+      data-parallax-depth="0.08" 
+      class="ambient-parallax-layer bottom-10 left-1/4 w-[600px] h-[600px] bg-emerald-600/5 dark:bg-emerald-500/10">
     </div>
   </div>
 
-  <!-- Hero Section (tidak dihilangkan) -->
-  <section id="hero" class="min-h-screen flex flex-col items-center justify-center text-center bg-teal-700 text-white">
-    <h1 id="hero-line1" class="text-5xl font-bold mb-4 typing">Hi!</h1>
-    <p id="hero-line2" class="text-xl mb-8 typing">I'm Misbahudin, Full Stack Developer.</p>
-    <div class="space-x-4">
-      <a href="#about" class="btn-hero hidden-btn 
+  <!-- ========================================== -->
+  <!-- GSAP SCROLL PROGRESS INDICATOR             -->
+  <!-- ========================================== -->
+  <div id="scrollProgress" class="no-print fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-400 z-50 origin-left scale-x-0"></div>
 
-      "><span> Discover More</span> </a>
-    </div>
-  </section>
-
-<!-- About Me Section -->
-<section id="about" class="py-20 ">
-  <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center ">
-    <div class="md:w-1/3 mb-8 md:mb-0">
-      <img src="https://avatars.githubusercontent.com/u/35445399?v=4" alt="My Photo" class="w-64 h-64 rounded-full shadow-lg transform hover:scale-105 transition duration-300" />
-    </div>
-    <div class="md:w-2/3 md:pl-12 text-left">
-      <h2 id="about-line1" class="text-4xl font-bold mb-4 ">About Me</h2>
-      <p id="about-line2-1" class="text-lg ">I have over 3 years of experience in web development and project management.</p>
-      <p id="about-line2-2" class="text-lg ">I prioritize quality, innovation, and efficiency in every project.</p>
-      <p id="about-line2-3" class="text-lg ">With expertise in various modern web technologies, </p> 
-      <p id="about-line2-4" class="text-lg ">I am ready to deliver the right digital solutions for your needs.</p>
-    </div>
-  </div>
-</section>
-
-  <!-- My Skills Section -->
-  <section id="skills" class="py-20 bg-white">
-    <div class="max-w-5xl mx-auto px-6 text-center">
-      <h2 class="text-4xl font-bold mb-4 text-[var(--text-darkblue)]">My Skills</h2>
-      <p class="text-lg mb-8 text-[var(--text-darkblue)]">
-        I possess expertise in various modern technologies that drive project success.
-      </p>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-        <!-- Flip Card Laravel -->
-        <div class="flip-card h-40"> <!-- h-40 agar flip card seragam -->
-          <div class="flip-card-inner">
-            <div class="flip-card-front flex flex-col items-center justify-center">
-              <span class="iconify text-4xl mb-2" data-icon="simple-icons:laravel"></span>
-              <p class="text-lg font-semibold">Laravel</p>
-            </div>
-            <div class="flip-card-back flex items-center justify-center">
-              <p class="text-lg font-semibold">Intermediate</p>
-            </div>
-          </div>
+  <!-- ========================================== -->
+  <!-- SINGLE SLEEK TOP HEADER                    -->
+  <!-- ========================================== -->
+  <header id="mainHeader" class="no-print sticky top-0 z-40 backdrop-blur-md bg-white/85 dark:bg-[#07090e]/85 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Identity Logo & Live Status -->
+      <a href="#hero" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 border border-emerald-500/30 flex items-center justify-center font-mono font-bold text-emerald-600 dark:text-emerald-400 text-sm group-hover:scale-105 transition-transform shadow-2xs">
+          MU
         </div>
-        <!-- Flip Card PHP -->
-        <div class="flip-card h-40">
-          <div class="flip-card-inner">
-            <div class="flip-card-front flex flex-col items-center justify-center">
-              <span class="iconify text-4xl mb-2" data-icon="simple-icons:php"></span>
-              <p class="text-lg font-semibold">PHP</p>
-            </div>
-            <div class="flip-card-back flex items-center justify-center">
-              <p class="text-lg font-semibold">Intermediate</p>
-            </div>
-          </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-slate-900 dark:text-white text-sm tracking-tight group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Misbahudin</span>
+          <span class="text-[11px] text-slate-500 dark:text-slate-400 font-mono flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>Available for Hire</span>
+          </span>
         </div>
-        <!-- Flip Card MySQL -->
-        <div class="flip-card h-40">
-          <div class="flip-card-inner">
-            <div class="flip-card-front flex flex-col items-center justify-center">
-              <span class="iconify text-4xl mb-2" data-icon="simple-icons:mysql"></span>
-              <p class="text-lg font-semibold">MySQL</p>
-            </div>
-            <div class="flip-card-back flex items-center justify-center">
-              <p class="text-lg font-semibold">Intermediate</p>
-            </div>
-          </div>
-        </div>
-        <!-- Flip Card JavaScript -->
-        <div class="flip-card h-40">
-          <div class="flip-card-inner">
-            <div class="flip-card-front flex flex-col items-center justify-center">
-              <span class="iconify text-4xl mb-2" data-icon="simple-icons:javascript"></span>
-              <p class="text-lg font-semibold">JavaScript</p>
-            </div>
-            <div class="flip-card-back flex items-center justify-center">
-              <p class="text-lg font-semibold">Intermediate</p>
-            </div>
-          </div>
-        </div>
-        <!-- Flip Card jQuery -->
-        <div class="flip-card h-40">
-          <div class="flip-card-inner">
-            <div class="flip-card-front flex flex-col items-center justify-center">
-              <span class="iconify text-4xl mb-2" data-icon="simple-icons:jquery"></span>
-              <p class="text-lg font-semibold">jQuery</p>
-            </div>
-            <div class="flip-card-back flex items-center justify-center">
-              <p class="text-lg font-semibold">Intermediate</p>
-            </div>
-          </div>
-        </div>
-        <!-- Flip Card HTML5 -->
-        <div class="flip-card h-40">
-          <div class="flip-card-inner">
-            <div class="flip-card-front flex flex-col items-center justify-center">
-              <span class="iconify text-4xl mb-2" data-icon="simple-icons:html5"></span>
-              <p class="text-lg font-semibold">HTML5</p>
-            </div>
-            <div class="flip-card-back flex items-center justify-center">
-              <p class="text-lg font-semibold">Intermediate</p>
-            </div>
-          </div>
-        </div>
-        <!-- Flip Card Tailwind CSS -->
-        <div class="flip-card h-40">
-          <div class="flip-card-inner">
-            <div class="flip-card-front flex flex-col items-center justify-center">
-              <span class="iconify text-4xl mb-2" data-icon="simple-icons:tailwindcss"></span>
-              <p class="text-lg font-semibold">Tailwind CSS</p>
-            </div>
-            <div class="flip-card-back flex items-center justify-center">
-              <p class="text-lg font-semibold">Intermediate</p>
-            </div>
-          </div>
-        </div>
-        <!-- Flip Card GitFlow -->
-        <div class="flip-card h-40">
-          <div class="flip-card-inner">
-            <div class="flip-card-front flex flex-col items-center justify-center">
-              <span class="iconify text-4xl mb-2" data-icon="simple-icons:git"></span>
-              <p class="text-lg font-semibold">GitFlow</p>
-            </div>
-            <div class="flip-card-back flex items-center justify-center">
-              <p class="text-lg font-semibold">Intermediate</p>
-            </div>
-          </div>
-        </div>
-        <!-- Flip Card Bootstrap -->
-        <div class="flip-card h-40">
-          <div class="flip-card-inner">
-            <div class="flip-card-front flex flex-col items-center justify-center">
-              <span class="iconify text-4xl mb-2" data-icon="simple-icons:bootstrap"></span>
-              <p class="text-lg font-semibold">Bootstrap</p>
-            </div>
-            <div class="flip-card-back flex items-center justify-center">
-              <p class="text-lg font-semibold">Intermediate</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Sample Website Section -->
-  <section id="sample-website" class="py-20 bg-[var(--accent-darkcyan)] text-white">
-    <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center">
-      <div class="md:w-1/2 mb-8 md:mb-0">
-        <img src="assets/farm.jpg" alt="Sample Website" class="rounded-lg shadow-lg hover:scale-105 transition duration-300">
-      </div>
-      <div class="md:w-1/2 md:pl-12 text-center md:text-left">
-        <h2 class="text-4xl font-bold mb-4">Sample Website</h2>
-        <p class="text-lg leading-relaxed mb-6">
-          An innovative platform that integrates digital technology in agriculture. Enjoy an interactive dashboard, real-time monitoring, and advanced features to optimize agricultural processes.
-        </p>
-        <a href="https://farm.misbahudin.com" target="_blank" class="btn-visit inline-block px-8 py-3 rounded-full transition transform hover:scale-110 duration-300 font-semibold">
-          Try it
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- My Projects Section (Slider) -->
-  <section id="projects" class="py-20">
-    <div class="max-w-5xl mx-auto px-6 text-center">
-      <h2 class="text-3xl font-bold mb-12">My Projects</h2>
-
-      <!-- Slider Container -->
-      <div class="slider-container relative">
-        <!-- Slider Track -->
-        <div class="slider-track" id="sliderTrack">
-          <!-- Slide 1 -->
-          <div class="slider-slide px-4">
-            <div class="project cursor-pointer rounded-lg shadow-lg hover:shadow-2xl transition" onclick="showModal('assets/ppdb.jpg')">
-              <div class="project-image-container">
-                <img src="assets/ppdb.jpg" alt="Aplikasi PPDB" class="project-image rounded-t-lg">
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-semibold mb-2">Aplikasi PPDB</h3>
-                <p class="text-sm mb-2"><strong>Duration:</strong> July 2024 - January 2025</p>
-                <p class="text-sm">
-                  A platform based on Laravel Passport to automate the PPDB process with multi-user authentication, WhatsApp & Email Gateway integration, and automatic data validation.
-                </p>
-                <p class="text-xs mt-2"><strong>Skills:</strong> Laravel, REST APIs, OAuth, MySQL, Microsoft Excel</p>
-              </div>
-            </div>
-          </div>
-          <!-- Slide 2 -->
-          <div class="slider-slide px-4">
-            <div class="project cursor-pointer rounded-lg shadow-lg hover:shadow-2xl transition" onclick="showModal('assets/sdm1.png')">
-              <div class="project-image-container">
-                <img src="assets/sdm1.png" alt="Aplikasi Kepegawaian Baru" class="project-image rounded-t-lg">
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-semibold mb-2">Aplikasi Kepegawaian Baru</h3>
-                <p class="text-sm mb-2"><strong>Duration:</strong> April 2024 - June 2024</p>
-                <p class="text-sm">
-                  An integrated HR application that combines PPDB integration and a digital student record system (Buku Induk Santri), along with automation for HR forms and employee records.
-                </p>
-                <p class="text-xs mt-2"><strong>Skills:</strong> PHP, jQuery, MySQL, JavaScript, HTML5, Tailwind CSS, Database Administration</p>
-              </div>
-            </div>
-          </div>
-          <!-- Slide 3 -->
-          <div class="slider-slide px-4">
-            <div class="project cursor-pointer rounded-lg shadow-lg hover:shadow-2xl transition" onclick="showModal('assets/santri.png')">
-              <div class="project-image-container">
-                <img src="assets/santri.png" alt="Buku Induk Santri" class="project-image rounded-t-lg">
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-semibold mb-2">Buku Induk Santri</h3>
-                <p class="text-sm mb-2"><strong>Duration:</strong> January 2024 - March 2024</p>
-                <p class="text-sm">
-                  A centralized student record system that digitizes administrative processes and supports over 9,000 student records with advanced search and filter features.
-                </p>
-                <p class="text-xs mt-2"><strong>Skills:</strong> Laravel, REST APIs, OAuth, MySQL, Microsoft Excel</p>
-              </div>
-            </div>
-          </div>
-          <!-- Slide 4 -->
-          <div class="slider-slide px-4">
-            <div class="project cursor-pointer rounded-lg shadow-lg hover:shadow-2xl transition" onclick="showModal('assets/sdm.png')">
-              <div class="project-image-container">
-                <img src="assets/sdm.png" alt="Aplikasi Kepegawaian" class="project-image rounded-t-lg">
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-semibold mb-2">Aplikasi Kepegawaian</h3>
-                <p class="text-sm mb-2"><strong>Duration:</strong> July 2021 - December 2023</p>
-                <p class="text-sm">
-                  A centralized HR system with digital forms for status changes, contracts, leave, study permissions, and terminations, complete with real-time analytics dashboard.
-                </p>
-                <p class="text-xs mt-2"><strong>Skills:</strong> PHP, jQuery, MySQL, JavaScript, HTML5, Tailwind CSS, Database Administration</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Slider Controls -->
-        <button id="prevBtn" class="slider-control left">
-          &#10094;
-        </button>
-        <button id="nextBtn" class="slider-control right">
-          &#10095;
-        </button>
-
-        <!-- Slider Dots -->
-        <div class="slider-dots mt-4" id="sliderDots">
-          <!-- Dot akan di-generate melalui JS -->
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="py-20">
-    <div class="max-w-5xl mx-auto px-6 text-center">
-      <h2 class="text-3xl font-bold mb-4">Contact Me</h2>
-      <p class="text-xl mb-8">
-        Want to discuss or find solutions together? Contact me via email.
-      </p>
-      <a href="mailto:misbahudin@example.com" class="px-8 py-3 btn-accent rounded-full transition">
-        Email Me
       </a>
-    </div>
-  </section>
 
-  <!-- Footer -->
-  <footer class="py-4">
-    <div class="max-w-5xl mx-auto px-6 text-center">
-      &copy; 2025 My Portfolio. All rights reserved.
+      <!-- Desktop Anchor Links (ScrollSpy Synchronized) -->
+      <nav id="desktopNav" class="hidden md:flex items-center gap-1 text-xs font-medium text-slate-600 dark:text-slate-300">
+        <a href="#proyek" class="nav-link px-3 py-1.5 rounded-lg hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors" data-section="proyek">Proyek Pilihan</a>
+        <a href="#pengalaman" class="nav-link px-3 py-1.5 rounded-lg hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors" data-section="pengalaman">Pengalaman</a>
+        <a href="#riset" class="nav-link px-3 py-1.5 rounded-lg hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors" data-section="riset">Publikasi Riset</a>
+        <a href="#keahlian" class="nav-link px-3 py-1.5 rounded-lg hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors" data-section="keahlian">Keahlian & CV</a>
+      </nav>
+
+      <!-- Right Header Actions (Theme Toggle & Download CV CTA) -->
+      <div class="flex items-center gap-2 sm:gap-2.5">
+        
+        <!-- Theme Switcher -->
+        <button id="themeToggleBtn" onclick="toggleTheme()" type="button" aria-label="Ubah Tema Terang / Gelap" class="w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-100/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 flex items-center justify-center text-sm transition-all hover:border-emerald-500/50 hover:text-emerald-600 dark:hover:text-emerald-400 shadow-2xs">
+          <i id="themeIcon" class="fa-solid fa-moon text-xs"></i>
+        </button>
+
+        <!-- Direct Download CV.PDF Link (Sesuai Permintaan) -->
+        <a href="cv.pdf" download="CV-Misbahudin.pdf" class="magnetic-btn flex px-3 py-1.5 rounded-lg border border-emerald-500/40 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 text-xs font-semibold items-center gap-1.5 transition-all shadow-2xs">
+          <i class="fa-solid fa-file-arrow-down text-emerald-600 dark:text-emerald-400 text-xs"></i>
+          <span>Unduh CV (PDF)</span>
+        </a>
+
+        <!-- WhatsApp Direct CTA -->
+        <a href="https://wa.me/6282232828065" target="_blank" rel="noopener noreferrer" class="magnetic-btn px-3.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold flex items-center gap-1.5 transition-all shadow-sm">
+          <i class="fa-brands fa-whatsapp text-sm"></i>
+          <span class="hidden sm:inline">Hubungi</span>
+        </a>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================== -->
+  <!-- MAIN CONTENT CONTAINER (Mobile-First Flow) -->
+  <!-- ========================================== -->
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16 space-y-20 sm:space-y-24 pb-28 md:pb-16 relative z-10">
+
+    <!-- ========================================== -->
+    <!-- 1. HERO SECTION                           -->
+    <!-- ========================================== -->
+    <section id="hero" class="space-y-8 pt-2 sm:pt-4 relative">
+      
+      <!-- Dynamic Interactive Ambient Glow Orb (Desktop Tracking via GSAP) -->
+      <div id="heroGlowOrb" class="no-print pointer-events-none absolute -top-16 -left-16 w-80 h-80 rounded-full bg-emerald-500/10 dark:bg-emerald-500/15 blur-3xl opacity-70 dark:opacity-40 transition-opacity" aria-hidden="true"></div>
+      
+      <!-- Top Status Pill -->
+      <div class="hero-anim flex flex-wrap items-center gap-2">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 dark:text-emerald-400 text-xs font-mono font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>Full Stack &bull; Backend Laravel &bull; Svelte 5</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 text-xs font-mono">
+          <i class="fa-solid fa-location-dot text-rose-500 text-[11px]"></i>
+          <span>Kab. Malang, Jawa Timur</span>
+        </span>
+      </div>
+
+      <!-- Main Headline & Avatar -->
+      <div class="flex flex-col-reverse md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8">
+        
+        <div class="space-y-4 max-w-2xl">
+          <h1 class="hero-anim text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.18]">
+            Membangun sistem informasi terpusat, API terotorisasi, dan pipeline data berintegritas.
+          </h1>
+          <p class="hero-anim text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
+            <strong>Full Stack Developer & Data Systems Engineer</strong> dengan pengalaman kerja <strong>3,5+ tahun</strong> yang berfokus pada rekayasa backend <strong>Laravel (Sanctum/Passport)</strong>, database <strong>MySQL (3NF)</strong>, dan antarmuka modern <strong>Svelte 5 (Runes)</strong>. Memiliki rekam jejak terbukti membangun sistem terpusat melayani <strong>&gt;10.000 data pengguna</strong>, mengeksekusi pipeline <strong>ETL 12.000+ data dengan zero data loss</strong>, serta mengoptimalkan server hemat biaya bebas kendala <em>Too Many Connections (Error 1040)</em> dengan <strong>250+ automated tests PHPUnit</strong>.
+          </p>
+
+          <!-- Quick Action Buttons: Prioritas Direct Download CV.PDF -->
+          <div class="hero-anim flex flex-wrap items-center gap-2.5 sm:gap-3 pt-2">
+            <a href="cv.pdf" download="CV-Misbahudin.pdf" class="magnetic-btn px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs sm:text-sm flex items-center gap-2 transition-all shadow-md">
+              <i class="fa-solid fa-file-arrow-down text-sm"></i>
+              <span>Download CV (PDF)</span>
+            </a>
+            <a href="#proyek" class="magnetic-btn px-4 py-2.5 rounded-xl bg-slate-900 dark:bg-slate-800 hover:bg-slate-800 dark:hover:bg-slate-700 text-white font-medium text-xs sm:text-sm flex items-center gap-2 transition-all border border-slate-700/60 shadow-sm">
+              <span>Lihat Detail Proyek</span>
+              <i class="fa-solid fa-arrow-down text-xs"></i>
+            </a>
+            <a href="https://github.com/misbahudin98" target="_blank" rel="noopener noreferrer" class="magnetic-btn px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-900/60 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium text-xs sm:text-sm flex items-center gap-2 transition-all">
+              <i class="fa-brands fa-github text-sm"></i>
+              <span>GitHub</span>
+            </a>
+            <a href="https://www.linkedin.com/in/misbahudin98/" target="_blank" rel="noopener noreferrer" class="magnetic-btn px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-900/60 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium text-xs sm:text-sm flex items-center gap-2 transition-all">
+              <i class="fa-brands fa-linkedin text-[#0a66c2] text-sm"></i>
+              <span>LinkedIn</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Profile Avatar with 3D Parallax Tilt -->
+        <div id="heroAvatar" class="hero-anim relative shrink-0 self-start sm:self-center md:self-start">
+          <div class="w-28 h-28 sm:w-40 sm:h-40 rounded-3xl overflow-hidden border-2 border-emerald-500/40 p-1 bg-white dark:bg-slate-900 shadow-xl glow-emerald">
+            <img src="https://avatars.githubusercontent.com/u/35445399?v=4" alt="Misbahudin" class="w-full h-full object-cover rounded-2xl" />
+          </div>
+          <div class="absolute -bottom-2 -right-2 px-2.5 py-0.5 rounded-full bg-slate-900 dark:bg-slate-800 border border-slate-700 text-[10px] sm:text-[11px] font-mono text-emerald-400 font-bold shadow-md flex items-center gap-1.5">
+            <i class="fa-solid fa-shield-check"></i>
+            <span>Verified Engineer</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Dynamic Interactive Metrics Strip (Counter via GSAP ScrollTrigger) -->
+      <div id="metricsStrip" class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-slate-200/80 dark:border-slate-800/80">
+        
+        <div class="p-3.5 sm:p-4 rounded-2xl bg-white dark:bg-slate-900/40 border border-slate-200/80 dark:border-slate-800/80 space-y-1 spotlight-card">
+          <div class="flex items-baseline gap-0.5">
+            <span id="counter-data" class="text-xl sm:text-3xl font-extrabold font-mono text-emerald-600 dark:text-emerald-400">0</span>
+            <span class="text-base sm:text-xl font-mono text-emerald-600 dark:text-emerald-400 font-bold">+</span>
+          </div>
+          <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Record Basis Data Dimigrasikan (Zero Loss)</p>
+        </div>
+
+        <div class="p-3.5 sm:p-4 rounded-2xl bg-white dark:bg-slate-900/40 border border-slate-200/80 dark:border-slate-800/80 space-y-1 spotlight-card">
+          <div class="flex items-baseline gap-0.5">
+            <span class="text-sm font-mono text-slate-400 mr-0.5">&gt;</span>
+            <span id="counter-users" class="text-xl sm:text-3xl font-extrabold font-mono text-slate-900 dark:text-white">0</span>
+          </div>
+          <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Pengguna Sistem PPDB & Santri Terkelola</p>
+        </div>
+
+        <div class="p-3.5 sm:p-4 rounded-2xl bg-white dark:bg-slate-900/40 border border-slate-200/80 dark:border-slate-800/80 space-y-1 spotlight-card">
+          <div class="flex items-baseline gap-0.5">
+            <span id="counter-tests" class="text-xl sm:text-3xl font-extrabold font-mono text-emerald-600 dark:text-emerald-400">0</span>
+            <span class="text-base sm:text-xl font-mono text-emerald-600 dark:text-emerald-400 font-bold">+</span>
+          </div>
+          <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Automated Tests PHPUnit (Unit & Feature)</p>
+        </div>
+
+        <div class="p-3.5 sm:p-4 rounded-2xl bg-white dark:bg-slate-900/40 border border-slate-200/80 dark:border-slate-800/80 space-y-1 spotlight-card">
+          <div class="flex items-baseline gap-0.5">
+            <span id="counter-years" class="text-xl sm:text-3xl font-extrabold font-mono text-slate-900 dark:text-white">0.0</span>
+            <span class="text-base sm:text-xl font-mono text-slate-900 dark:text-white font-bold">+ Th</span>
+          </div>
+          <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Pengalaman Rekayasa Perangkat Lunak</p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- 2. PROYEK UNGGULAN (VISUAL-FIRST HRD REVIEW)                  -->
+    <!-- ============================================================== -->
+    <section id="proyek" class="space-y-8 scroll-mt-20 gsap-section">
+      
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200/80 dark:border-slate-800/80 pb-4 section-header relative overflow-hidden">
+        <div>
+          <span class="text-xs font-mono font-semibold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase">// [01/05] Portofolio Proyek Nyata (Visual & Detail)</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-0.5">
+            Proyek Unggulan Skala Produksi
+          </h2>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-sm">
+          Sistem operasional nyata yang dibangun untuk klien institusi, siap diverifikasi visual dan teknis.
+        </p>
+        <div class="section-accent-line absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-emerald-500 via-teal-400 to-transparent origin-left scale-x-0"></div>
+      </div>
+
+      <div class="space-y-10">
+
+        <!-- 1. KANTOR NOTARIS & PPAT (irwan-baddu) -->
+        <article class="spotlight-card p-5 sm:p-8 rounded-3xl bg-white dark:bg-slate-900/50 border border-slate-200/80 dark:border-slate-800/80 hover:border-emerald-500/40 transition-all space-y-6 shadow-sm group print-card">
+          
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800/60 pb-4">
+            <div class="space-y-1">
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-0.5 rounded-md bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-xs font-mono font-bold border border-emerald-500/20">
+                  Live Production System
+                </span>
+                <span class="text-xs text-slate-400 dark:text-slate-500 font-mono">Kantor Notaris & PPAT Irwan Baddu</span>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                Sistem Operasional Kantor Notaris & PPAT (Akta 7 Tahap & Rekening Titipan Pajak)
+              </h3>
+            </div>
+            <div class="flex items-center gap-2 self-start sm:self-center font-mono text-xs text-emerald-600 dark:text-emerald-400 bg-emerald-500/5 px-3 py-1.5 rounded-xl border border-emerald-500/20">
+              <i class="fa-solid fa-stamp text-sm"></i>
+              <span class="font-bold">Laravel 13 &bull; Svelte 5</span>
+            </div>
+          </div>
+
+          <!-- Dual Visual Artefak Images for HRD Quick Inspection (Latest Assets) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 shadow-sm" onclick="openLightbox('assets/irwan-baddu.png', 'Aplikasi Notaris & PPAT Irwan Baddu: Manajemen Berkas & Siklus Akta 7 Tahap')">
+              <img src="assets/irwan-baddu.png" alt="Aplikasi Notaris & PPAT Irwan Baddu" class="w-full h-48 sm:h-56 object-cover object-top" />
+              <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white text-xs font-mono font-bold">
+                <i class="fa-solid fa-magnifying-glass-plus text-base"></i>
+                <span>Lihat Screenshot Antarmuka Akta</span>
+              </div>
+              <div class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-slate-900/80 text-[10px] font-mono text-emerald-400 backdrop-blur-sm">
+                Sistem Siklus Akta 7 Tahap
+              </div>
+            </div>
+
+            <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 shadow-sm" onclick="openLightbox('assets/irwan-baddu1.png', 'Dashboard Operasional Notaris & PPAT Irwan Baddu: Validasi Pajak BPHTB/PPh & NTPN')">
+              <img src="assets/irwan-baddu1.png" alt="Dashboard Notaris & PPAT Irwan Baddu" class="w-full h-48 sm:h-56 object-cover object-top" />
+              <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white text-xs font-mono font-bold">
+                <i class="fa-solid fa-magnifying-glass-plus text-base"></i>
+                <span>Lihat Dashboard Pajak & NTPN</span>
+              </div>
+              <div class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-slate-900/80 text-[10px] font-mono text-emerald-400 backdrop-blur-sm">
+                Rekening Titipan Pajak & NTPN
+              </div>
+            </div>
+          </div>
+
+          <!-- Structured Project Details -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            <div class="space-y-1.5 md:col-span-2">
+              <span class="font-bold text-slate-900 dark:text-white block font-mono text-xs uppercase text-slate-400 dark:text-slate-500">Tantangan & Solusi Rekayasa</span>
+              <p>
+                Membangun platform operasional kantor notaris berbasis <strong>Laravel 13</strong> dan antarmuka modern <strong>Svelte 5 (Runes)</strong>. Merancang otomasi alur akta 7 tahap (berkas masuk, cek sertifikat BPN, pembuatan draf, penandatanganan, validasi pajak dengan kode NTPN, pelaporan repertorium, hingga penyerahan). Mengatasi risiko pencampuran kas kantor dengan rekening titipan pajak negara (PPh & BPHTB) melalui modul pemisahan rekening kas yang diaudit secara terpisah.
+              </p>
+            </div>
+            <div class="space-y-2 p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80">
+              <span class="font-bold text-slate-900 dark:text-white block font-mono text-xs uppercase text-emerald-600 dark:text-emerald-400">Dampak Terukur</span>
+              <ul class="space-y-1 text-xs list-disc list-inside text-slate-600 dark:text-slate-400">
+                <li>Otomasi buku repertorium 100% akurat</li>
+                <li>Audit titipan pajak negara zero-selisih</li>
+                <li>Waktu penyiapan draf akta tereduksi 60%</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-100 dark:border-slate-800/60">
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">Laravel 13</span>
+              <span class="px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-xs font-mono font-bold">Svelte 5 (Runes)</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">Tailwind CSS v4</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">MySQL 3NF</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">NTPN Validation</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="text-xs font-mono text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+                <i class="fa-solid fa-lock text-[11px] text-amber-500"></i>
+                <span>Sistem Internal Notaris (Private Client)</span>
+              </span>
+            </div>
+          </div>
+
+        </article>
+
+        <!-- 2. SISTEM MANAJEMEN PENDIDIKAN YAYASAN (yayasan-pqtm / SIM-PQTM) -->
+        <article class="spotlight-card p-5 sm:p-8 rounded-3xl bg-white dark:bg-slate-900/50 border border-slate-200/80 dark:border-slate-800/80 hover:border-emerald-500/40 transition-all space-y-6 shadow-sm group print-card">
+          
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800/60 pb-4">
+            <div class="space-y-1">
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-0.5 rounded-md bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-xs font-mono font-bold border border-emerald-500/20">
+                  Live Production System
+                </span>
+                <span class="text-xs text-slate-400 dark:text-slate-500 font-mono">Yayasan Pondok Quran Terpadu Malang</span>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                SIM-PQTM: Sistem Informasi Manajemen Yayasan & Rapor Digital Kurikulum Merdeka
+              </h3>
+            </div>
+            <div class="flex items-center gap-2 self-start sm:self-center font-mono text-xs text-emerald-600 dark:text-emerald-400 bg-emerald-500/5 px-3 py-1.5 rounded-xl border border-emerald-500/20">
+              <i class="fa-solid fa-graduation-cap text-sm"></i>
+              <span class="font-bold">Multi-Unit PKBM & Asrama</span>
+            </div>
+          </div>
+
+          <!-- Dual Visual Artefak Images for Yayasan PQTM -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 shadow-sm" onclick="openLightbox('assets/yayasan-pqtm.jpg', 'Aplikasi SIM PQTM: Sistem Informasi Manajemen Yayasan')">
+              <img src="assets/yayasan-pqtm.jpg" alt="Aplikasi SIM PQTM" class="w-full h-48 sm:h-56 object-cover object-center" />
+              <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white text-xs font-mono font-bold">
+                <i class="fa-solid fa-magnifying-glass-plus text-base"></i>
+                <span>Lihat Antarmuka SIM PQTM</span>
+              </div>
+              <div class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-slate-900/80 text-[10px] font-mono text-emerald-400 backdrop-blur-sm">
+                Aplikasi SIM PQTM
+              </div>
+            </div>
+
+            <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 shadow-sm" onclick="openLightbox('assets/yayasan-pesantren.jpg', 'Dashboard SIM PQTM: Modul Presensi Massal & Jurnal Mutabaah')">
+              <img src="assets/yayasan-pesantren.jpg" alt="Dashboard SIM PQTM" class="w-full h-48 sm:h-56 object-cover object-center" />
+              <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white text-xs font-mono font-bold">
+                <i class="fa-solid fa-magnifying-glass-plus text-base"></i>
+                <span>Lihat Dashboard SIM PQTM</span>
+              </div>
+              <div class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-slate-900/80 text-[10px] font-mono text-emerald-400 backdrop-blur-sm">
+                Dashboard SIM PQTM
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            <div class="space-y-1.5 md:col-span-2">
+              <span class="font-bold text-slate-900 dark:text-white block font-mono text-xs uppercase text-slate-400 dark:text-slate-500">Tantangan & Solusi Rekayasa</span>
+              <p>
+                Mengembangkan platform sentralisasi informasi untuk tiga unit operasional yayasan: Asrama Santri, Lembaga Tahfidz Quran (LTQ), dan Sekolah Formal PKBM Kurikulum Merdeka. Membangun fitur pencatatan presensi massal santri harian, jurnal hafalan Al-Quran dengan pelacakan mutaba'ah, kalkulasi nilai berbasis capaian pembelajaran, serta modul cetak rapor digital otomatis berstandar dinas langsung dari peramban tanpa software pihak ketiga.
+              </p>
+            </div>
+            <div class="space-y-2 p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80">
+              <span class="font-bold text-slate-900 dark:text-white block font-mono text-xs uppercase text-emerald-600 dark:text-emerald-400">Dampak Terukur</span>
+              <ul class="space-y-1 text-xs list-disc list-inside text-slate-600 dark:text-slate-400">
+                <li>Pencatatan presensi massal &lt; 2 menit</li>
+                <li>Cetak rapor instan berstandar Kemendikbud</li>
+                <li>Akurasi jurnal hafalan santri real-time</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-100 dark:border-slate-800/60">
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">Laravel</span>
+              <span class="px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-xs font-mono font-bold">Svelte 5</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">MySQL</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">Kurikulum Merdeka</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">PDF Rapor Engine</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="text-xs font-mono text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+                <i class="fa-solid fa-lock text-[11px] text-amber-500"></i>
+                <span>Sistem Internal Yayasan (Private Client)</span>
+              </span>
+            </div>
+          </div>
+
+        </article>
+
+        <!-- 3. EKOSISTEM LAYANAN KESEHATAN INTEGRATIF (twinnie-group) -->
+        <article class="spotlight-card p-5 sm:p-8 rounded-3xl bg-white dark:bg-slate-900/50 border border-slate-200/80 dark:border-slate-800/80 hover:border-emerald-500/40 transition-all space-y-6 shadow-sm group print-card">
+          
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800/60 pb-4">
+            <div class="space-y-1">
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-0.5 rounded-md bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-xs font-mono font-bold border border-emerald-500/20">
+                  Live Production Platform
+                </span>
+                <span class="text-xs text-slate-400 dark:text-slate-500 font-mono">twinniegroup.com</span>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                Twinnie Group: Ekosistem Web Layanan Kesehatan Integratif Keluarga
+              </h3>
+            </div>
+            <div class="flex items-center gap-2 self-start sm:self-center font-mono text-xs text-emerald-600 dark:text-emerald-400 bg-emerald-500/5 px-3 py-1.5 rounded-xl border border-emerald-500/20">
+              <i class="fa-solid fa-heart-pulse text-sm text-rose-500"></i>
+              <span class="font-bold">FCP &lt; 1.0s &bull; Modular JS</span>
+            </div>
+          </div>
+
+          <!-- Wide Visual Artifact Thumbnail with Lightbox click (Aset Terbaru) -->
+          <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 shadow-sm" onclick="openLightbox('assets/twinnie-group.jpg', 'Twinnie Group: Ekosistem Web Layanan Kesehatan Integratif Malang Raya (twinniegroup.com)')">
+            <img src="assets/twinnie-group.jpg" alt="Platform Web Twinnie Group" class="w-full h-52 sm:h-72 object-cover object-top" />
+            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white text-xs font-mono font-bold">
+              <i class="fa-solid fa-magnifying-glass-plus text-base"></i>
+              <span>Klik untuk Perbesar Screenshot Antarmuka Web</span>
+            </div>
+            <div class="absolute bottom-2 left-2 px-2.5 py-0.5 rounded bg-slate-900/80 text-[10px] font-mono text-emerald-400 backdrop-blur-sm">
+              twinniegroup.com &bull; Layanan Kesehatan Holistik Malang Raya
+            </div>
+          </div>
+
+          <!-- Structured Project Details (STAR Formula) -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            <div class="space-y-1.5 md:col-span-2">
+              <span class="font-bold text-slate-900 dark:text-white block font-mono text-xs uppercase text-slate-400 dark:text-slate-500">Tantangan & Solusi Rekayasa</span>
+              <p>
+                Membangun platform layanan kesehatan terpadu (Baby Spa, Terapi Medis Holistik TCM/Akupunktur, Konsultasi Psikologi & Kemitraan Syariah) yang ramah bagi pengguna di daerah pelosok Malang Raya dengan sinyal seluler terbatas. Merancang arsitektur web murni statis tanpa kompilasi server (*zero runtime compiler*) berbasis <strong>Semantic HTML5</strong> dan <strong>Modular Vanilla JavaScript</strong>. Mengintegrasikan kalkulator kemitraan syariah reaktif, formulir reservasi responsif multi-cabang, serta <em>direct deep-linking WhatsApp</em> tanpa kegagalan tersembunyi (*zero silent failure*).
+              </p>
+            </div>
+            <div class="space-y-2 p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80">
+              <span class="font-bold text-slate-900 dark:text-white block font-mono text-xs uppercase text-emerald-600 dark:text-emerald-400">Dampak Terukur</span>
+              <ul class="space-y-1 text-xs list-disc list-inside text-slate-600 dark:text-slate-400">
+                <li>Kecepatan FCP &lt; 1,0 detik pada koneksi 4G</li>
+                <li>Zero silent failure pada booking WhatsApp</li>
+                <li>Standar aksesibilitas W3C WCAG 2.1 AA</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-100 dark:border-slate-800/60">
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">Semantic HTML5</span>
+              <span class="px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-xs font-mono font-bold">Tailwind CSS</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">Modular JavaScript</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">WCAG 2.1 AA</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">Deep-Linking WA</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <a href="https://twinniegroup.com" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-emerald-600 dark:text-emerald-400 hover:underline flex items-center gap-1 font-bold">
+                <span>Kunjungi Web (Live Demo)</span>
+                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+              </a>
+              <a href="https://github.com/misbahudin98/twinnie-group" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-emerald-600 dark:text-emerald-400 hover:underline flex items-center gap-1 font-bold">
+                <span>Repositori GitHub</span>
+                <i class="fa-brands fa-github text-sm"></i>
+              </a>
+            </div>
+          </div>
+
+        </article>
+
+        <!-- 4. SISTEM INFORMASI PPDB TERPUSAT & GATEWAY NOTIFIKASI -->
+        <article class="spotlight-card p-5 sm:p-8 rounded-3xl bg-white dark:bg-slate-900/50 border border-slate-200/80 dark:border-slate-800/80 hover:border-emerald-500/40 transition-all space-y-6 shadow-sm group print-card">
+          
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800/60 pb-4">
+            <div class="space-y-1">
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-0.5 rounded-md bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-xs font-mono font-bold border border-emerald-500/20">
+                  Live Production System
+                </span>
+                <span class="text-xs text-slate-400 dark:text-slate-500 font-mono">Ar-Rohmah Putri Boarding School</span>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                Sistem Informasi PPDB Terpusat & Gateway Notifikasi Otomatis
+              </h3>
+            </div>
+            <div class="flex items-center gap-2 self-start sm:self-center font-mono text-xs text-emerald-600 dark:text-emerald-400 bg-emerald-500/5 px-3 py-1.5 rounded-xl border border-emerald-500/20">
+              <i class="fa-solid fa-users-gear text-sm"></i>
+              <span class="font-bold">&gt;10.000 Akun Calon & Santri</span>
+            </div>
+          </div>
+
+          <!-- Single Wide Image Box with Lightbox -->
+          <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 shadow-sm" onclick="openLightbox('assets/ppdb.jpg', 'Antarmuka Portal PPDB Online Terpusat (Ar-Rohmah Putri)')">
+            <img src="assets/ppdb.jpg" alt="Aplikasi PPDB Online Ar-Rohmah Putri" class="w-full h-52 sm:h-72 object-cover object-top" />
+            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white text-xs font-mono font-bold">
+              <i class="fa-solid fa-magnifying-glass-plus text-base"></i>
+              <span>Klik untuk Perbesar Screenshot Antarmuka</span>
+            </div>
+            <div class="absolute bottom-2 left-2 px-2.5 py-0.5 rounded bg-slate-900/80 text-[10px] font-mono text-emerald-400 backdrop-blur-sm">
+              Dashboard Pendaftaran & Verifikasi Pembayaran PPDB
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            <div class="space-y-1.5 md:col-span-2">
+              <span class="font-bold text-slate-900 dark:text-white block font-mono text-xs uppercase text-slate-400 dark:text-slate-500">Tantangan & Solusi Rekayasa</span>
+              <p>
+                Mengintegrasikan pendaftaran santri baru untuk 5 unit institusi (SMA, SMP, SD, TK, Baby School) yang sebelumnya terisolasi. Merancang arsitektur RESTful API berbasis <strong>Laravel Passport (OAuth 2.0)</strong>, validasi multi-tahap, integrasi <strong>WhatsApp & Email Gateway</strong> otomatis untuk notifikasi status berkas dan mutasi biaya pendaftaran secara real-time, menghentikan pembuatan Virtual Account secara manual.
+              </p>
+            </div>
+            <div class="space-y-2 p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80">
+              <span class="font-bold text-slate-900 dark:text-white block font-mono text-xs uppercase text-emerald-600 dark:text-emerald-400">Dampak Terukur</span>
+              <ul class="space-y-1 text-xs list-disc list-inside text-slate-600 dark:text-slate-400">
+                <li>Reduksi waktu verifikasi berkas hingga 70%</li>
+                <li>Eliminasi antrean manual wali santri 100%</li>
+                <li>Uptime notifikasi otomatis mencapai 99.8%</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-100 dark:border-slate-800/60">
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">Laravel Passport</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">OAuth 2.0</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">MySQL Schema</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">WhatsApp Gateway</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">Email SMTP</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="text-xs font-mono text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+                <i class="fa-solid fa-lock text-[11px] text-amber-500"></i>
+                <span>Sistem Internal Yayasan (Private Client)</span>
+              </span>
+            </div>
+          </div>
+
+        </article>
+
+        <!-- 5. BUKU INDUK SANTRI & PIPELINE MIGRASI 12.117 RECORD -->
+        <article class="spotlight-card p-5 sm:p-8 rounded-3xl bg-white dark:bg-slate-900/50 border border-slate-200/80 dark:border-slate-800/80 hover:border-emerald-500/40 transition-all space-y-6 shadow-sm group print-card">
+          
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800/60 pb-4">
+            <div class="space-y-1">
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-0.5 rounded-md bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-xs font-mono font-bold border border-emerald-500/20">
+                  Data Engineering & ETL
+                </span>
+                <span class="text-xs text-slate-400 dark:text-slate-500 font-mono">Modernisasi Database</span>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                Buku Induk Santri & Pipeline Migrasi 12.117 Record Data (Zero Data Loss)
+              </h3>
+            </div>
+            <div class="flex items-center gap-2 self-start sm:self-center font-mono text-xs text-emerald-600 dark:text-emerald-400 bg-emerald-500/5 px-3 py-1.5 rounded-xl border border-emerald-500/20">
+              <i class="fa-solid fa-database text-sm"></i>
+              <span class="font-bold">12.117 Records &bull; 0 Loss</span>
+            </div>
+          </div>
+
+          <!-- Screenshot Box with Lightbox -->
+          <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 shadow-sm" onclick="openLightbox('assets/santri.png', 'Buku Induk Santri Terpusat (9.312 Santri Lama + 800 Calon Santri)')">
+            <img src="assets/santri.png" alt="Aplikasi Buku Induk Santri" class="w-full h-52 sm:h-72 object-cover object-top" />
+            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white text-xs font-mono font-bold">
+              <i class="fa-solid fa-magnifying-glass-plus text-base"></i>
+              <span>Klik untuk Perbesar Screenshot Antarmuka</span>
+            </div>
+            <div class="absolute bottom-2 left-2 px-2.5 py-0.5 rounded bg-slate-900/80 text-[10px] font-mono text-emerald-400 backdrop-blur-sm">
+              Dashboard Database Santri Terintegrasi NISY
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            <div class="space-y-1.5 md:col-span-2">
+              <span class="font-bold text-slate-900 dark:text-white block font-mono text-xs uppercase text-slate-400 dark:text-slate-500">Tantangan & Solusi Rekayasa</span>
+              <p>
+                Menangani krisis fragmentasi data santri dan pegawai selama bertahun-tahun di berbagai format SQL dan spreadsheet Excel lama yang memiliki masalah data ganda, typo, format tanggal inkonsisten, dan selisih angka antara bagian Humas dan Keuangan. Mengembangkan pipeline ETL otomatis untuk pembersihan anomali (*data cleansing*) dan migrasi 9.312 santri lama, 800 calon santri, serta 2.005 pegawai ke skema relasional 3NF terpusat berbasis Nomor Induk Santri Yayasan (NISY).
+              </p>
+            </div>
+            <div class="space-y-2 p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80">
+              <span class="font-bold text-slate-900 dark:text-white block font-mono text-xs uppercase text-emerald-600 dark:text-emerald-400">Hasil Keandalan</span>
+              <ul class="space-y-1 text-xs list-disc list-inside text-slate-600 dark:text-slate-400">
+                <li>100% data termigrasikan tanpa cacat</li>
+                <li>Selisih data Humas & Keuangan tuntas</li>
+                <li>Pencarian data santri instan (&lt; 50ms)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-100 dark:border-slate-800/60">
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">ETL Scripting</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">Data Cleansing</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">MySQL 3NF Normalization</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">NISY System</span>
+            </div>
+            <span class="text-xs font-mono text-slate-400 flex items-center gap-1.5">
+              <i class="fa-solid fa-circle-check text-emerald-500 text-[11px]"></i>
+              <span>Single Source of Truth Selesai</span>
+            </span>
+          </div>
+
+        </article>
+
+        <!-- 6. APLIKASI KEPEGAWAIAN (SIM-SDM) -->
+        <article class="spotlight-card p-5 sm:p-8 rounded-3xl bg-white dark:bg-slate-900/50 border border-slate-200/80 dark:border-slate-800/80 hover:border-emerald-500/40 transition-all space-y-6 shadow-sm group print-card">
+          
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800/60 pb-4">
+            <div class="space-y-1">
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-0.5 rounded-md bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-xs font-mono font-bold border border-emerald-500/20">
+                  HR Enterprise System
+                </span>
+                <span class="text-xs text-slate-400 dark:text-slate-500 font-mono">Ar-Rohmah Putri</span>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                Aplikasi Kepegawaian & Otomasi Formulir Digital (SIM-SDM)
+              </h3>
+            </div>
+            <div class="flex items-center gap-2 self-start sm:self-center font-mono text-xs text-emerald-600 dark:text-emerald-400 bg-emerald-500/5 px-3 py-1.5 rounded-xl border border-emerald-500/20">
+              <i class="fa-solid fa-id-card-clip text-sm"></i>
+              <span class="font-bold">2.005 Data Pegawai</span>
+            </div>
+          </div>
+
+          <!-- Dual Screenshot Thumbnails with Zoom Lightbox -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 shadow-sm" onclick="openLightbox('assets/sdm1.png', 'Aplikasi Kepegawaian Baru: Modul Formulir Digital Terpadu')">
+              <img src="assets/sdm1.png" alt="Aplikasi Kepegawaian Baru" class="w-full h-44 object-cover object-top" />
+              <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white text-xs font-mono font-bold">
+                <i class="fa-solid fa-magnifying-glass-plus text-base"></i>
+                <span>Lihat Dashboard SDM Baru</span>
+              </div>
+            </div>
+            <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 shadow-sm" onclick="openLightbox('assets/sdm.png', 'Aplikasi Kepegawaian Versi Awal: Manajemen Arsip Pegawai')">
+              <img src="assets/sdm.png" alt="Aplikasi Kepegawaian Arsip" class="w-full h-44 object-cover object-top" />
+              <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white text-xs font-mono font-bold">
+                <i class="fa-solid fa-magnifying-glass-plus text-base"></i>
+                <span>Lihat Arsip SDM Digital</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            <div class="space-y-1.5 md:col-span-2">
+              <span class="font-bold text-slate-900 dark:text-white block font-mono text-xs uppercase text-slate-400 dark:text-slate-500">Tantangan & Solusi Rekayasa</span>
+              <p>
+                Mendigitalkan siklus hidup kepegawaian untuk 2.005 staf institusi. Merancang formulir digital otomatis untuk pengajuan cuti, izin belajar, perubahan status kerja, perpanjangan kontrak, hingga PHK. Menggantikan proses birokrasi berbasis kertas yang lambat dengan validasi persetujuan bertingkat (*multi-level approval*) secara real-time.
+              </p>
+            </div>
+            <div class="space-y-2 p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80">
+              <span class="font-bold text-slate-900 dark:text-white block font-mono text-xs uppercase text-emerald-600 dark:text-emerald-400">Dampak Efisiensi</span>
+              <ul class="space-y-1 text-xs list-disc list-inside text-slate-600 dark:text-slate-400">
+                <li>Paperless administrasi HR hingga 85%</li>
+                <li>Proses approval cuti &lt; 24 jam</li>
+                <li>Zero human error pada pengarsipan</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-100 dark:border-slate-800/60">
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">PHP</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">jQuery</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">MySQL</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">Tailwind CSS</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">Digital Approval</span>
+            </div>
+            <span class="text-xs font-mono text-slate-400 flex items-center gap-1.5">
+              <i class="fa-solid fa-user-check text-emerald-500 text-[11px]"></i>
+              <span>Otomasi Siklus SDM Selesai</span>
+            </span>
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 3. REKAM JEJAK PENGALAMAN KERJA (CV.PDF)   -->
+    <!-- ========================================== -->
+    <section id="pengalaman" class="space-y-8 scroll-mt-20 gsap-section">
+      
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200/80 dark:border-slate-800/80 pb-4 section-header relative overflow-hidden">
+        <div>
+          <span class="text-xs font-mono font-semibold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase">// [02/05] Rekam Jejak Lapangan (CV SSoT)</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-0.5">
+            Pengalaman Kerja & Tanggung Jawab
+          </h2>
+        </div>
+        <span class="text-xs font-mono text-slate-400">Total 3.5+ Tahun Kontribusi Nyata</span>
+        <div class="section-accent-line absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-emerald-500 via-teal-400 to-transparent origin-left scale-x-0"></div>
+      </div>
+
+      <!-- Vertical Timeline Experience with Spotlight Cards -->
+      <div class="space-y-6">
+
+        <!-- Role 1: Full Stack Developer (Freelance) -->
+        <div class="spotlight-card p-5 sm:p-7 rounded-2xl bg-white dark:bg-slate-900/50 border border-slate-200/80 dark:border-slate-800/80 space-y-4 print-card shadow-2xs">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800/60 pb-3">
+            <div>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight">Full Stack Developer (Freelance)</h3>
+              <p class="text-emerald-600 dark:text-emerald-400 text-xs font-mono font-semibold">Remote / Malang, Jawa Timur</p>
+            </div>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-mono w-fit border border-slate-200 dark:border-slate-700">
+              <i class="fa-regular fa-calendar-days text-emerald-600 dark:text-emerald-400 text-[11px]"></i>
+              <span>September 2026 &mdash; Sekarang</span>
+            </span>
+          </div>
+
+          <ul class="space-y-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 list-none">
+            <li class="flex items-start gap-2.5">
+              <i class="fa-solid fa-check text-emerald-500 text-xs mt-1 shrink-0"></i>
+              <span><strong>Aplikasi Notaris & PPAT:</strong> Membangun sistem operasional kantor notaris berbasis <em>Laravel 13</em> dan <em>Svelte 5 (Runes)</em>, mencakup pemrosesan akta 7 tahap, pencatatan otomatis buku repertorium/klapper, serta pemisahan rekening kas kantor dengan uang titipan pajak negara (PPh & BPHTB ber-NTPN).</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <i class="fa-solid fa-check text-emerald-500 text-xs mt-1 shrink-0"></i>
+              <span><strong>Sistem Manajemen Pendidikan (SIM-PQTM):</strong> Mengembangkan sistem informasi yayasan (asrama santri, tahfidz, dan sekolah formal PKBM Kurikulum Merdeka) dengan fitur pencatatan presensi massal, jurnal hafalan, serta perhitungan nilai dan cetak rapor otomatis langsung dari peramban.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <i class="fa-solid fa-check text-emerald-500 text-xs mt-1 shrink-0"></i>
+              <span><strong>Optimasi Server & Kualitas Kode:</strong> Menyelesaikan kendala server sering macet (<em>Too Many Connections / Error 1040</em>) pada shared hosting berbiaya rendah, serta menulis <strong>250+ pengujian otomatis (automated tests)</strong> menggunakan <em>PHPUnit</em> untuk memastikan aplikasi stabil bebas bug.</span>
+            </li>
+          </ul>
+
+          <!-- Visual Artifacts: Proyek Klien Nyata -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+            <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-2xs" onclick="openLightbox('assets/irwan-baddu.png', 'Proyek Klien Notaris: Sistem Operasional Akta & Rekening Titipan')">
+              <img src="assets/irwan-baddu.png" alt="Aplikasi Notaris Irwan Baddu" class="w-full h-32 sm:h-36 object-cover object-top group-hover:scale-105 transition-transform duration-300" />
+              <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-[11px] font-mono font-bold">
+                <i class="fa-solid fa-magnifying-glass-plus text-xs"></i>
+                <span>Pratinjau Aplikasi Notaris</span>
+              </div>
+              <div class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-slate-900/80 text-[10px] font-mono text-emerald-400 backdrop-blur-sm">
+                Kantor Notaris Irwan Baddu
+              </div>
+            </div>
+
+            <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-2xs" onclick="openLightbox('assets/yayasan-pqtm.jpg', 'Proyek Klien Yayasan: SIM-PQTM Presensi Massal & Rapor Digital')">
+              <img src="assets/yayasan-pqtm.jpg" alt="SIM-PQTM Yayasan" class="w-full h-32 sm:h-36 object-cover object-center group-hover:scale-105 transition-transform duration-300" />
+              <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-[11px] font-mono font-bold">
+                <i class="fa-solid fa-magnifying-glass-plus text-xs"></i>
+                <span>Pratinjau SIM-PQTM</span>
+              </div>
+              <div class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-slate-900/80 text-[10px] font-mono text-emerald-400 backdrop-blur-sm">
+                Yayasan PQTM Malang
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-1.5 pt-2">
+            <span class="px-2.5 py-0.5 rounded bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-[11px] font-mono font-bold">Laravel 13</span>
+            <span class="px-2.5 py-0.5 rounded bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-[11px] font-mono font-bold">Svelte 5</span>
+            <span class="px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[11px] font-mono text-slate-700 dark:text-slate-300">PHPUnit (250+ Tests)</span>
+            <span class="px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[11px] font-mono text-slate-700 dark:text-slate-300">Error 1040 Fix</span>
+            <span class="px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[11px] font-mono text-slate-700 dark:text-slate-300">MySQL 3NF</span>
+          </div>
+        </div>
+
+        <!-- Role 2: SMKS Taruna Bhakti -->
+        <div class="spotlight-card p-5 sm:p-7 rounded-2xl bg-white dark:bg-slate-900/50 border border-slate-200/80 dark:border-slate-800/80 space-y-4 print-card shadow-2xs">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800/60 pb-3">
+            <div>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight">TU & Bendahara (IT Support & Operasional Sekolah)</h3>
+              <p class="text-emerald-600 dark:text-emerald-400 text-xs font-mono font-semibold">SMKS Taruna Bhakti, Malang</p>
+            </div>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-mono w-fit border border-slate-200 dark:border-slate-700">
+              <i class="fa-regular fa-calendar-days text-emerald-600 dark:text-emerald-400 text-[11px]"></i>
+              <span>Juli 2025 &mdash; Juli 2026</span>
+            </span>
+          </div>
+
+          <ul class="space-y-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 list-none">
+            <li class="flex items-start gap-2.5">
+              <i class="fa-solid fa-check text-emerald-500 text-xs mt-1 shrink-0"></i>
+              <span><strong>Perbaikan Komputer & Penghematan Biaya:</strong> Mengoptimalkan performa komputer berspesifikasi rendah (Intel Celeron, RAM 4GB) dan memperbaiki komputer lama yang rusak agar bisa digunakan kembali untuk operasional harian sekolah tanpa perlu membeli perangkat baru.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <i class="fa-solid fa-check text-emerald-500 text-xs mt-1 shrink-0"></i>
+              <span><strong>Tata Kelola Keuangan & Ujian Siswa:</strong> Mengelola perbendaharaan kas sekolah (dana BOS, PIP, dan bantuan Prasejahtera) secara tertib dan transparan sesuai aturan Dinas Pendidikan, serta menata sistem ujian agar terhubung langsung dengan proses pembuatan rapor siswa.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <i class="fa-solid fa-check text-emerald-500 text-xs mt-1 shrink-0"></i>
+              <span><strong>Sinkronisasi Data Sekolah ke Dinas:</strong> Menangani verifikasi dan sinkronisasi data sekolah secara rutin ke sistem dinas pendidikan (Dapodik, Datadik, ksp, Siredi, IJOP, e-Ijazah, serta asesmen nasional ANBK, Sulinjar, dan TKA).</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <i class="fa-solid fa-check text-emerald-500 text-xs mt-1 shrink-0"></i>
+              <span><strong>Kelancaran Operasional di Masa Transisi:</strong> Menjaga tim tetap solid dan memastikan seluruh administrasi sekolah selesai tepat waktu saat terjadi pergantian pengurus, meskipun tanpa ada dokumen serah terima dari pengurus lama.</span>
+            </li>
+          </ul>
+
+          <!-- Visual Artifacts: Pembinaan Pengawas, Pelaporan Dana BOS & Pengajaran Siswa -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+            <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-2xs" onclick="openLightbox('assets/smk-taruna-bhakti.jpeg', 'SMKS Taruna Bhakti: Pembinaan dari Pengawas Sekolah')">
+              <img src="assets/smk-taruna-bhakti.jpeg" alt="Pembinaan dari Pengawas Sekolah" class="w-full h-32 sm:h-36 object-cover object-center group-hover:scale-105 transition-transform duration-300" />
+              <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-[11px] font-mono font-bold">
+                <i class="fa-solid fa-magnifying-glass-plus text-xs"></i>
+                <span>Pembinaan Pengawas</span>
+              </div>
+              <div class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-slate-900/80 text-[10px] font-mono text-emerald-400 backdrop-blur-sm">
+                Pembinaan dari Pengawas Sekolah
+              </div>
+            </div>
+
+            <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-2xs" onclick="openLightbox('assets/taruna-bhakti-2.jpeg', 'SMKS Taruna Bhakti: Pelaporan Dana BOS')">
+              <img src="assets/taruna-bhakti-2.jpeg" alt="Pelaporan Dana BOS" class="w-full h-32 sm:h-36 object-cover object-center group-hover:scale-105 transition-transform duration-300" />
+              <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-[11px] font-mono font-bold">
+                <i class="fa-solid fa-magnifying-glass-plus text-xs"></i>
+                <span>Pelaporan Dana BOS</span>
+              </div>
+              <div class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-slate-900/80 text-[10px] font-mono text-emerald-400 backdrop-blur-sm">
+                Pelaporan Dana BOS
+              </div>
+            </div>
+
+            <!-- Video Dokumentasi SMKS Taruna Bhakti: Pengajaran Siswa -->
+            <div 
+              class="project-image-box cursor-pointer group/video border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-2xs relative bg-slate-950 flex flex-col justify-center select-none"
+              onclick="openLightbox('assets/smk-taruna-bhakti.mp4', 'SMKS Taruna Bhakti: Pengajaran Siswa & Praktikum Komputer', true)"
+              tabindex="0"
+              role="button"
+              aria-label="Putar Video Dokumentasi: Pengajaran Siswa SMKS Taruna Bhakti"
+              onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); openLightbox('assets/smk-taruna-bhakti.mp4', 'SMKS Taruna Bhakti: Pengajaran Siswa & Praktikum Komputer', true);}">
+              
+              <!-- Video Poster / Thumbnail dari rekaman asli pengajaran siswa -->
+              <img 
+                src="assets/smk-pengajaran-preview.jpg" 
+                alt="Dokumentasi Pengajaran Siswa SMKS Taruna Bhakti" 
+                class="w-full h-32 sm:h-36 object-cover object-center group-hover/video:scale-105 transition-transform duration-300" />
+              
+              <!-- Ambient Dark Gradient Overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/40 pointer-events-none"></div>
+
+              <!-- Animated Glowing Play Button in Center -->
+              <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div class="relative flex items-center justify-center">
+                  <span class="absolute inline-flex h-12 w-12 rounded-full bg-emerald-400/40 animate-ping"></span>
+                  <div class="relative w-11 h-11 rounded-full bg-emerald-500/95 text-slate-950 flex items-center justify-center shadow-lg group-hover/video:scale-115 group-hover/video:bg-emerald-400 transition-all duration-300">
+                    <i class="fa-solid fa-play ml-0.5 text-xs text-slate-950"></i>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Top Left Badge: Kategori Artefak Video -->
+              <div class="absolute top-2 left-2 px-2 py-0.5 rounded bg-slate-900/85 text-[10px] font-mono text-emerald-400 backdrop-blur-sm pointer-events-none flex items-center gap-1.5 border border-slate-700/60 shadow-xs">
+                <i class="fa-solid fa-circle-play text-[9px] text-emerald-400 animate-pulse"></i>
+                <span>Pengajaran Siswa</span>
+              </div>
+
+              <!-- Bottom Right Badge: Durasi & Resolusi -->
+              <div class="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-slate-900/85 text-[10px] font-mono text-slate-200 backdrop-blur-sm pointer-events-none flex items-center gap-1 border border-slate-700/60 shadow-xs">
+                <i class="fa-solid fa-video text-[9px] text-emerald-400"></i>
+                <span>0:17 HD</span>
+              </div>
+
+              <!-- Interactive Hover Prompt Overlay -->
+              <div class="absolute inset-0 bg-slate-950/60 opacity-0 group-hover/video:opacity-100 transition-opacity duration-200 flex flex-col items-center justify-center gap-1.5 text-white pointer-events-none">
+                <div class="w-10 h-10 rounded-full bg-emerald-400 text-slate-950 flex items-center justify-center shadow-xl scale-95 group-hover/video:scale-105 transition-transform">
+                  <i class="fa-solid fa-play ml-0.5 text-sm text-slate-950"></i>
+                </div>
+                <span class="text-[11px] font-mono font-bold text-emerald-300 drop-shadow-sm">Putar Video Layar Penuh</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-1.5 pt-2">
+            <span class="px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[11px] font-mono text-slate-700 dark:text-slate-300">Hardware Tuning</span>
+            <span class="px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[11px] font-mono text-slate-700 dark:text-slate-300">LAN Printer Sharing</span>
+            <span class="px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[11px] font-mono text-slate-700 dark:text-slate-300">Perbendaharaan BOS/PIP</span>
+            <span class="px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[11px] font-mono text-slate-700 dark:text-slate-300">Dapodik & ANBK</span>
+          </div>
+        </div>
+
+        <!-- Role 3: Ar-Rohmah Putri (Back End Developer & Technical PM) -->
+        <div class="spotlight-card p-5 sm:p-7 rounded-2xl bg-white dark:bg-slate-900/50 border border-slate-200/80 dark:border-slate-800/80 space-y-4 print-card shadow-2xs">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800/60 pb-3">
+            <div>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight">Back End Developer & Technical Project Manager</h3>
+              <p class="text-emerald-600 dark:text-emerald-400 text-xs font-mono font-semibold">Ar-Rohmah Putri Islamic Boarding School</p>
+            </div>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-mono w-fit border border-slate-200 dark:border-slate-700">
+              <i class="fa-regular fa-calendar-days text-emerald-600 dark:text-emerald-400 text-[11px]"></i>
+              <span>Juni 2021 &mdash; Januari 2025</span>
+            </span>
+          </div>
+
+          <ul class="space-y-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 list-none">
+            <li class="flex items-start gap-2.5">
+              <i class="fa-solid fa-check text-emerald-500 text-xs mt-1 shrink-0"></i>
+              <span><strong>Pengembangan Backend & Keamanan Sistem:</strong> Membangun backend sistem PPDB, data Santri, dan Pegawai menggunakan <em>Laravel Passport (OAuth 2.0)</em> dan database <em>MySQL</em> untuk mengelola <strong>&gt;10.000 data pengguna</strong> dengan hak akses yang rapi dan aman.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <i class="fa-solid fa-check text-emerald-500 text-xs mt-1 shrink-0"></i>
+              <span><strong>Pembersihan & Migrasi Data (12.117 Data):</strong> Memigrasikan dan membersihkan <strong>12.117 data</strong> (800 calon santri, 9.312 santri lama, dan 2.005 pegawai) ke sistem baru tanpa ada data yang hilang (<em>zero data loss</em>), serta membereskan masalah selisih data antara bagian Humas dan Keuangan dari file SQL dan Excel lama.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <i class="fa-solid fa-check text-emerald-500 text-xs mt-1 shrink-0"></i>
+              <span><strong>Otomasi Pembayaran & Integrasi 3 Kampus:</strong> Menghubungkan data pendaftaran, tes masuk, dan daftar ulang dari 3 kampus (Baby School, TK, SD, SMP, SMA) langsung ke sistem keuangan, menghentikan pembuatan Virtual Account secara manual, serta memasang notifikasi otomatis via <em>WhatsApp & Email Gateway</em>.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <i class="fa-solid fa-check text-emerald-500 text-xs mt-1 shrink-0"></i>
+              <span><strong>Manajemen Tim & Pengawalan Proyek:</strong> Memimpin tim developer menyelesaikan aplikasi PPDB dalam 3 bulan (+2 bulan penyesuaian di lapangan) dan aplikasi Santri/Pegawai dalam 6 bulan, sekaligus mendampingi staf Keuangan, Humas, dan TU sampai terbiasa menggunakan sistem baru.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <i class="fa-solid fa-check text-emerald-500 text-xs mt-1 shrink-0"></i>
+              <span><strong>Otomasi Formulir Digital:</strong> Membuat formulir digital untuk pengajuan cuti, izin belajar, perubahan status kerja, perpanjangan kontrak, hingga PHK, sehingga proses administrasi lebih cepat dan mengurangi kesalahan input manual.</span>
+            </li>
+          </ul>
+
+          <!-- Visual Artifacts: Pembahasan Konsep Terpusat, Rapat Aplikasi Pegawai & Aula Pembinaan -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+            <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-2xs" onclick="openLightbox('assets/arrohmah.jpeg', 'Ar-Rohmah Putri: Pembahasan Awal Konsep Aplikasi Terpusat dari Data Santri, Data Pegawai dan Data PPDB')">
+              <img src="assets/arrohmah.jpeg" alt="Pembahasan Awal Konsep Aplikasi Terpusat dari Data Santri, Data Pegawai dan Data PPDB" class="w-full h-32 sm:h-36 object-cover object-center group-hover:scale-105 transition-transform duration-300" />
+              <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-[11px] font-mono font-bold">
+                <i class="fa-solid fa-magnifying-glass-plus text-xs"></i>
+                <span>Konsep Aplikasi Terpusat</span>
+              </div>
+              <div class="absolute bottom-2 left-2 right-2 px-2 py-0.5 rounded bg-slate-900/85 text-[10px] leading-tight font-mono text-emerald-400 backdrop-blur-sm">
+                Pembahasan awal konsep aplikasi terpusat dari data santri, data pegawai dan data ppdb
+              </div>
+            </div>
+
+            <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-2xs" onclick="openLightbox('assets/arrohmah1.jpeg', 'Ar-Rohmah Putri: Rapat Pembahasan Awal Aplikasi Pegawai')">
+              <img src="assets/arrohmah1.jpeg" alt="Rapat Pembahasan Awal Aplikasi Pegawai" class="w-full h-32 sm:h-36 object-cover object-center group-hover:scale-105 transition-transform duration-300" />
+              <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-[11px] font-mono font-bold">
+                <i class="fa-solid fa-magnifying-glass-plus text-xs"></i>
+                <span>Rapat Aplikasi Pegawai</span>
+              </div>
+              <div class="absolute bottom-2 left-2 right-2 px-2 py-0.5 rounded bg-slate-900/85 text-[10px] leading-tight font-mono text-emerald-400 backdrop-blur-sm">
+                Rapat pembahasan awal aplikasi pegawai
+              </div>
+            </div>
+
+            <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-2xs" onclick="openLightbox('assets/arrohmah2.jpeg', 'Ar-Rohmah Putri: Aula Agenda Pembinaan Pegawai')">
+              <img src="assets/arrohmah2.jpeg" alt="Aula Agenda Pembinaan Pegawai" class="w-full h-32 sm:h-36 object-cover object-center group-hover:scale-105 transition-transform duration-300" />
+              <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-[11px] font-mono font-bold">
+                <i class="fa-solid fa-magnifying-glass-plus text-xs"></i>
+                <span>Aula Pembinaan Pegawai</span>
+              </div>
+              <div class="absolute bottom-2 left-2 right-2 px-2 py-0.5 rounded bg-slate-900/85 text-[10px] leading-tight font-mono text-emerald-400 backdrop-blur-sm">
+                Aula agenda pembinaan pegawai
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-1.5 pt-2">
+            <span class="px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[11px] font-mono text-slate-700 dark:text-slate-300">Laravel Passport</span>
+            <span class="px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[11px] font-mono text-slate-700 dark:text-slate-300">OAuth 2.0</span>
+            <span class="px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[11px] font-mono text-slate-700 dark:text-slate-300">MySQL Schema</span>
+            <span class="px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[11px] font-mono text-slate-700 dark:text-slate-300">WhatsApp Gateway</span>
+            <span class="px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[11px] font-mono text-slate-700 dark:text-slate-300">ETL 12.117 Records</span>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 3. PUBLIKASI RISET ILMIAH                 -->
+    <!-- ========================================== -->
+    <section id="riset" class="space-y-6 scroll-mt-20 gsap-section">
+      
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200/80 dark:border-slate-800/80 pb-4 section-header relative overflow-hidden">
+        <div>
+          <span class="text-xs font-mono font-semibold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase">// [03/05] Otoritas Ilmiah & Riset</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-0.5">
+            Publikasi Ilmiah Terindeks
+          </h2>
+        </div>
+        <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-xs font-mono font-bold border border-emerald-500/20 w-fit">
+          Peer-Reviewed Journal
+        </span>
+        <div class="section-accent-line absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-emerald-500 via-teal-400 to-transparent origin-left scale-x-0"></div>
+      </div>
+
+      <!-- Journal Card with Spotlight Effect -->
+      <article class="spotlight-card p-5 sm:p-8 rounded-3xl bg-white dark:bg-slate-900/50 border border-slate-200/80 dark:border-slate-800/80 space-y-5 print-card shadow-sm">
+        <div class="space-y-2 border-b border-slate-100 dark:border-slate-800/60 pb-4">
+          <span class="text-[11px] font-mono px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+            Jurnal Informatika Polinema (JIP) &bull; Vol. 7 No. 2 (Februari 2021)
+          </span>
+          <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white tracking-tight leading-snug">
+            Implementasi 360 Degree untuk Membantu Proses Pelaporan Kinerja Dosen (Studi Kasus: JTI Polinema)
+          </h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 font-mono">
+            Penulis: <strong>Misbahudin</strong>, Rudy Ariyanto, S.T., M.Cs., Yoppy Yunhasnawa, S.ST., M.Kom.
+          </p>
+        </div>
+
+        <div class="space-y-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+          <p>
+            <strong>Abstrak Riset:</strong> Evaluasi kinerja pengajar di perguruan tinggi memerlukan keobjektifan dan transparansi multi-arah. Penelitian ini merancang serta mengimplementasikan sistem informasi pelaporan berbasis metode <strong>360-Degree Feedback</strong> yang mengintegrasikan penilaian dari empat perspektif secara deterministik:
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+            <div class="p-3 bg-slate-50 dark:bg-slate-950/60 rounded-xl border border-slate-200/80 dark:border-slate-800/80">
+              <span class="font-bold text-emerald-600 dark:text-emerald-400 block mb-0.5">1. Evaluasi Pimpinan & Atasan</span>
+              <p class="text-xs">Penilaian capaian Tridharma perguruan tinggi sesuai target kuantitatif tahunan.</p>
+            </div>
+            <div class="p-3 bg-slate-50 dark:bg-slate-950/60 rounded-xl border border-slate-200/80 dark:border-slate-800/80">
+              <span class="font-bold text-emerald-600 dark:text-emerald-400 block mb-0.5">2. Penilaian Rekan Sejawat</span>
+              <p class="text-xs">Umpan balik profesionalitas dan kolaborasi pengajaran antardosen.</p>
+            </div>
+            <div class="p-3 bg-slate-50 dark:bg-slate-950/60 rounded-xl border border-slate-200/80 dark:border-slate-800/80">
+              <span class="font-bold text-emerald-600 dark:text-emerald-400 block mb-0.5">3. Evaluasi Diri (Self-Assessment)</span>
+              <p class="text-xs">Refleksi mandiri dosen atas efektivitas metode instruksional.</p>
+            </div>
+            <div class="p-3 bg-slate-50 dark:bg-slate-950/60 rounded-xl border border-slate-200/80 dark:border-slate-800/80">
+              <span class="font-bold text-emerald-600 dark:text-emerald-400 block mb-0.5">4. Feedback Mahasiswa</span>
+              <p class="text-xs">Kuesioner evaluasi kejelasan materi dan interaktivitas kelas.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-1.5 pt-2 border-t border-slate-100 dark:border-slate-800/60">
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">360-Degree Feedback</span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Evaluasi Kinerja Dosen</span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">JTI Polinema</span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Sistem Informasi Akademik</span>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 6. KEAHLIAN TEKNIS & PENDIDIKAN FORMAL    -->
+    <!-- ========================================== -->
+    <section id="keahlian" class="space-y-6 scroll-mt-20 gsap-section">
+      
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200/80 dark:border-slate-800/80 pb-4 section-header relative overflow-hidden">
+        <div>
+          <span class="text-xs font-mono font-semibold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase">// [04/05] Kualifikasi & Kompetensi (CV SSoT)</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-0.5">
+            Pendidikan Formal & Matriks Keahlian
+          </h2>
+        </div>
+        <!-- Tombol Download CV Langsung (Sesuai Permintaan) -->
+        <a href="cv.pdf" download="CV-Misbahudin.pdf" class="magnetic-btn px-3.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold flex items-center gap-1.5 transition-all w-fit shadow-sm">
+          <i class="fa-solid fa-file-arrow-down"></i>
+          <span>Unduh CV Resmi (PDF)</span>
+        </a>
+        <div class="section-accent-line absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-emerald-500 via-teal-400 to-transparent origin-left scale-x-0"></div>
+      </div>
+
+      <!-- Formal Education Dual Cards (Polinema D4 & SMKN 2 Singosari) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        
+        <!-- Polinema D4 -->
+        <div class="spotlight-card p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900/50 border border-slate-200/80 dark:border-slate-800/80 flex items-start justify-between gap-4 shadow-sm print-card">
+          <div class="flex items-start gap-3.5">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400 text-xl shrink-0">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white tracking-tight">D4 - Teknik Informatika</h3>
+              <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm">Politeknik Negeri Malang (POLINEMA)</p>
+              <p class="text-slate-500 dark:text-slate-400 text-xs font-mono mt-0.5">Periode: 2016 &mdash; 2020</p>
+            </div>
+          </div>
+          <div class="text-right shrink-0">
+            <span class="text-[11px] text-slate-500 dark:text-slate-400 block font-mono">IPK</span>
+            <span class="text-xl font-bold font-mono text-emerald-600 dark:text-emerald-400">3.32 <span class="text-xs text-slate-400 font-normal">/ 4.00</span></span>
+          </div>
+        </div>
+
+        <!-- SMKN 2 Singosari TKJ -->
+        <div class="spotlight-card p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900/50 border border-slate-200/80 dark:border-slate-800/80 flex items-start justify-between gap-4 shadow-sm print-card">
+          <div class="flex items-start gap-3.5">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400 text-xl shrink-0">
+              <i class="fa-solid fa-school"></i>
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white tracking-tight">Teknik Komputer dan Jaringan</h3>
+              <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm">SMKN 2 Singosari, Malang</p>
+              <p class="text-slate-500 dark:text-slate-400 text-xs font-mono mt-0.5">Periode: 2013 &mdash; 2016</p>
+            </div>
+          </div>
+          <div class="text-right shrink-0">
+            <span class="text-[11px] text-slate-500 dark:text-slate-400 block font-mono">Fokus</span>
+            <span class="text-xs font-bold font-mono text-emerald-600 dark:text-emerald-400">Hardware & LAN</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 5 Matriks Keahlian Terstruktur Sesuai CV.PDF -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+        <!-- 1. Backend & Database -->
+        <div class="spotlight-card p-5 rounded-2xl bg-white dark:bg-slate-900/40 border border-slate-200/80 dark:border-slate-800/80 space-y-3 print-card">
+          <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-mono text-xs font-bold uppercase">
+            <i class="fa-solid fa-server"></i>
+            <span>Backend & Database</span>
+          </div>
+          <div class="flex flex-wrap gap-1.5 skill-pills">
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-emerald-500/10 text-xs font-mono text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30">PHP 8.x</span>
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-emerald-500/10 text-xs font-mono text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30">Laravel 13</span>
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Laravel Sanctum</span>
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Laravel Passport</span>
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">OAuth 2.0</span>
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">RESTful API</span>
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-emerald-500/10 text-xs font-mono text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30">MySQL (3NF)</span>
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Migrasi Data (ETL)</span>
+          </div>
+        </div>
+
+        <!-- 2. Frontend & Tampilan -->
+        <div class="spotlight-card p-5 rounded-2xl bg-white dark:bg-slate-900/40 border border-slate-200/80 dark:border-slate-800/80 space-y-3 print-card">
+          <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-mono text-xs font-bold uppercase">
+            <i class="fa-solid fa-laptop-code"></i>
+            <span>Frontend & Tampilan</span>
+          </div>
+          <div class="flex flex-wrap gap-1.5 skill-pills">
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-emerald-500/10 text-xs font-mono text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30">Svelte 5 (Runes)</span>
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-emerald-500/10 text-xs font-mono text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30">Tailwind CSS (v4)</span>
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">JavaScript (ES6+)</span>
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">GSAP (ScrollTrigger)</span>
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">HTML5 Semantic DOM</span>
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">CSS3 Animations</span>
+          </div>
+        </div>
+
+        <!-- 3. Workflow AI & Tools Modern -->
+        <div class="spotlight-card p-5 rounded-2xl bg-white dark:bg-slate-900/40 border border-slate-200/80 dark:border-slate-800/80 space-y-3 print-card">
+          <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-mono text-xs font-bold uppercase">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <span>Workflow AI & Tooling</span>
+          </div>
+          <div class="flex flex-wrap gap-1.5 skill-pills">
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-emerald-500/10 text-xs font-mono text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30">Prompt Engineering (XML)</span>
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Antigravity CLI</span>
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">LLM Context (llms.txt)</span>
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Git & GitHub</span>
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Vite & Composer</span>
+          </div>
+        </div>
+
+        <!-- 4. Pengujian & Kualitas Perangkat Lunak -->
+        <div class="spotlight-card p-5 rounded-2xl bg-white dark:bg-slate-900/40 border border-slate-200/80 dark:border-slate-800/80 space-y-3 print-card">
+          <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-mono text-xs font-bold uppercase">
+            <i class="fa-solid fa-vial-circle-check"></i>
+            <span>Pengujian & Kualitas (TDD)</span>
+          </div>
+          <div class="flex flex-wrap gap-1.5 skill-pills">
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-emerald-500/10 text-xs font-mono text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30">PHPUnit (250+ Tests)</span>
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Automated Unit Testing</span>
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Feature Integration Tests</span>
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Test-Driven Dev (TDD)</span>
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Code Quality & PSR-12</span>
+          </div>
+        </div>
+
+        <!-- 5. Server & IT Support -->
+        <div class="spotlight-card p-5 rounded-2xl bg-white dark:bg-slate-900/40 border border-slate-200/80 dark:border-slate-800/80 space-y-3 print-card md:col-span-2 lg:col-span-2">
+          <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-mono text-xs font-bold uppercase">
+            <i class="fa-solid fa-network-wired"></i>
+            <span>Server, Infrastruktur & IT Support</span>
+          </div>
+          <div class="flex flex-wrap gap-1.5 skill-pills">
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-emerald-500/10 text-xs font-mono text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30">Optimasi Server Rendah</span>
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Shared Hosting Tuning (Error 1040 Fix)</span>
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Troubleshooting Hardware PC</span>
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Jaringan LAN & Printer Sharing</span>
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Dapodik & Asesmen Nasional (ANBK)</span>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 7. CONTACT & COLLABORATION                -->
+    <!-- ========================================== -->
+    <section id="kontak" class="space-y-6 scroll-mt-20 gsap-section">
+      
+      <div class="spotlight-card p-6 sm:p-12 rounded-3xl bg-gradient-to-br from-emerald-500/10 via-slate-100 to-white dark:from-emerald-950/30 dark:via-slate-900 dark:to-slate-950 border border-emerald-500/30 text-center space-y-6 shadow-lg">
+        
+        <div class="max-w-xl mx-auto space-y-3">
+          <div class="flex flex-col items-center gap-1">
+            <span class="text-[11px] font-mono font-semibold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase">// [05/05] Kolaborasi & Saluran Kontak</span>
+            <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-xs font-mono font-bold">
+              <i class="fa-solid fa-handshake"></i>
+              <span>Mari Berkolaborasi</span>
+            </span>
+          </div>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Siap Berkontribusi untuk Tim & Proyek Anda
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            Terbuka untuk posisi <strong>Full-Time Software Engineer</strong>, <strong>Back-End Developer</strong>, atau konsultasi rekayasa sistem data & infrastruktur IT. Jangan ragu menghubungi saya:
+          </p>
+        </div>
+
+        <div class="flex flex-wrap justify-center items-center gap-3">
+          <a href="https://wa.me/6282232828065" target="_blank" rel="noopener noreferrer" class="magnetic-btn px-6 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs sm:text-sm flex items-center gap-2 transition-all shadow-md">
+            <i class="fa-brands fa-whatsapp text-base"></i>
+            <span>WhatsApp (+62 822-3282-8065)</span>
+          </a>
+          <a href="mailto:misbah.udin@outlook.co.id" class="magnetic-btn px-6 py-3.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs sm:text-sm flex items-center gap-2 transition-all shadow-2xs">
+            <i class="fa-regular fa-envelope text-base text-emerald-600 dark:text-emerald-400"></i>
+            <span>misbah.udin@outlook.co.id</span>
+          </a>
+          <!-- Direct Download CV Button -->
+          <a href="cv.pdf" download="CV-Misbahudin.pdf" class="magnetic-btn px-6 py-3.5 rounded-xl border border-emerald-500/40 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 font-semibold text-xs sm:text-sm flex items-center gap-2 transition-all">
+            <i class="fa-solid fa-file-arrow-down"></i>
+            <span>Download CV (PDF)</span>
+          </a>
+        </div>
+
+        <div class="pt-4 flex flex-wrap justify-center items-center gap-4 text-xs font-mono text-slate-500 dark:text-slate-400">
+          <span><i class="fa-solid fa-location-dot text-rose-500 mr-1.5"></i>Kab. Malang, Jawa Timur, 65162</span>
+          <span>&bull;</span>
+          <a href="https://github.com/misbahudin98" target="_blank" class="hover:underline hover:text-emerald-500">GitHub Profile</a>
+          <span>&bull;</span>
+          <a href="https://www.linkedin.com/in/misbahudin98/" target="_blank" class="hover:underline hover:text-emerald-500">LinkedIn Profile</a>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ========================================== -->
+  <!-- FOOTER & LEGAL METADATA                   -->
+  <!-- ========================================== -->
+  <footer class="no-print border-t border-slate-200/80 dark:border-slate-800/80 py-10 bg-white/50 dark:bg-[#07090e]/50 backdrop-blur-sm text-center text-xs text-slate-500 space-y-2 relative z-10">
+    <div class="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2 font-mono">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+        <span>Misbahudin &copy; 2026 &bull; Full Stack Developer & Data Systems</span>
+      </div>
+      <div class="flex items-center gap-4 text-slate-400 font-mono text-[11px]">
+        <span>WCAG 2.2 AA Certified</span>
+        <span>GSAP 3.12 Compositor</span>
+        <a href="#hero" class="hover:text-emerald-400 transition-colors">Kembali ke Atas &uarr;</a>
+      </div>
     </div>
   </footer>
 
-  <!-- GSAP + Slider JS -->
+  <!-- ============================================================== -->
+  <!-- INTERACTIVE MEDIA LIGHTBOX MODAL WITH ZOOM & VIDEO SUPPORT      -->
+  <!-- ============================================================== -->
+  <div id="imageLightboxModal" class="no-print fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/85 backdrop-blur-md" onclick="closeLightbox(event)" aria-modal="true" role="dialog">
+    <div class="relative max-w-4xl w-full bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl flex flex-col" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between px-5 py-3.5 border-b border-slate-800 bg-slate-950/60">
+        <div class="flex items-center gap-2 text-xs font-mono text-emerald-400">
+          <i id="lightboxIcon" class="fa-solid fa-image"></i>
+          <span id="lightboxCaption">Artefak Produksi</span>
+        </div>
+        <button onclick="closeLightbox()" type="button" aria-label="Tutup Pratinjau" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center text-sm transition-colors cursor-pointer">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="p-2 sm:p-4 bg-black flex items-center justify-center max-h-[75vh] overflow-hidden">
+        <img id="lightboxImage" src="" alt="Screenshot Proyek" class="max-w-full max-h-[70vh] object-contain rounded-xl shadow-lg" />
+        <video id="lightboxVideo" src="" class="max-w-full max-h-[70vh] object-contain rounded-xl shadow-lg hidden" controls playsinline></video>
+      </div>
+      <div class="px-5 py-2.5 border-t border-slate-800 bg-slate-950/60 text-right">
+        <span class="text-[11px] font-mono text-slate-400">Tekan [ESC] atau klik di luar untuk menutup</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- FLOATING QUICK-ACTION / BACK TO TOP (GSAP) -->
+  <!-- ========================================== -->
+  <button 
+    id="backToTopBtn" 
+    onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+    aria-label="Kembali ke Bagian Atas Halaman" 
+    class="no-print fixed bottom-20 md:bottom-6 right-4 sm:right-6 z-40 w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-emerald-400 shadow-xl backdrop-blur-md flex items-center justify-center opacity-0 pointer-events-none hover:border-emerald-500/50 hover:scale-105 active:scale-95 transition-all group">
+    <i class="fa-solid fa-arrow-up text-xs group-hover:-translate-y-0.5 transition-transform"></i>
+  </button>
+
+  <!-- ========================================== -->
+  <!-- MOBILE BOTTOM THUMB DOCK (ERGONOMIC UX)    -->
+  <!-- ========================================== -->
+  <div id="mobileThumbDock" class="no-print md:hidden fixed bottom-4 left-4 right-4 z-40 bg-slate-900/90 dark:bg-[#0c1017]/90 backdrop-blur-lg border border-slate-800 rounded-2xl p-2 flex items-center justify-around shadow-xl text-slate-400 text-xs">
+    <a href="#proyek" class="mobile-nav-link flex flex-col items-center gap-0.5 p-1 hover:text-emerald-400" data-section="proyek">
+      <i class="fa-solid fa-diagram-project text-sm"></i>
+      <span class="text-[10px]">Proyek</span>
+    </a>
+    <a href="#pengalaman" class="mobile-nav-link flex flex-col items-center gap-0.5 p-1 hover:text-emerald-400" data-section="pengalaman">
+      <i class="fa-solid fa-briefcase text-sm"></i>
+      <span class="text-[10px]">Kerja</span>
+    </a>
+    <a href="#riset" class="mobile-nav-link flex flex-col items-center gap-0.5 p-1 hover:text-emerald-400" data-section="riset">
+      <i class="fa-solid fa-book-bookmark text-sm"></i>
+      <span class="text-[10px]">Riset</span>
+    </a>
+    <a href="#keahlian" class="mobile-nav-link flex flex-col items-center gap-0.5 p-1 hover:text-emerald-400" data-section="keahlian">
+      <i class="fa-solid fa-code text-sm"></i>
+      <span class="text-[10px]">Keahlian</span>
+    </a>
+    <a href="#kontak" class="mobile-nav-link flex flex-col items-center gap-0.5 p-1 hover:text-emerald-400" data-section="kontak">
+      <i class="fa-solid fa-paper-plane text-sm"></i>
+      <span class="text-[10px]">Kontak</span>
+    </a>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- GSAP & MOTION CHOREOGRAPHY SCRIPTS         -->
+  <!-- ========================================== -->
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Loading overlay fade out
-      gsap.to('#loadingOverlay', {
-        opacity: 0,
-        duration: 1,
-        delay: 1,
-        onComplete: function() {
-          document.getElementById('loadingOverlay').style.display = 'none';
+    // Theme Switcher Logic
+    function toggleTheme() {
+      const html = document.documentElement;
+      if (html.classList.contains('dark')) {
+        html.classList.remove('dark');
+        localStorage.theme = 'light';
+      } else {
+        html.classList.add('dark');
+        localStorage.theme = 'dark';
+      }
+      updateThemeIcon();
+    }
+
+    function updateThemeIcon() {
+      const icon = document.getElementById('themeIcon');
+      if (document.documentElement.classList.contains('dark')) {
+        icon.className = 'fa-solid fa-sun text-amber-400 text-xs';
+      } else {
+        icon.className = 'fa-solid fa-moon text-slate-700 text-xs';
+      }
+    }
+
+    // Interactive Lightbox Functions (Image & Video Media Support)
+    function openLightbox(mediaSrc, caption, isVideo = false) {
+      const modal = document.getElementById('imageLightboxModal');
+      const dialog = modal.querySelector('.relative');
+      const img = document.getElementById('lightboxImage');
+      const video = document.getElementById('lightboxVideo');
+      const cap = document.getElementById('lightboxCaption');
+      const icon = document.getElementById('lightboxIcon');
+
+      const isVideoMedia = isVideo || mediaSrc.endsWith('.mp4') || mediaSrc.endsWith('.webm');
+      cap.textContent = caption || (isVideoMedia ? 'Video Dokumentasi' : 'Pratinjau Artefak Proyek');
+
+      if (isVideoMedia) {
+        img.classList.add('hidden');
+        img.src = '';
+        if (video) {
+          video.classList.remove('hidden');
+          video.src = mediaSrc;
+          video.currentTime = 0;
+          video.play().catch(() => {});
         }
-      });
+        if (icon) icon.className = 'fa-solid fa-video';
+      } else {
+        if (video) {
+          video.pause();
+          video.src = '';
+          video.classList.add('hidden');
+        }
+        img.classList.remove('hidden');
+        img.src = mediaSrc;
+        if (icon) icon.className = 'fa-solid fa-image';
+      }
 
-      gsap.registerPlugin(ScrollTrigger);
+      modal.classList.add('active');
 
-    let heroTimeline, aboutTimeline;
-
-    // Fungsi reset animasi untuk Hero Section
-    function resetHeroAnimation() {
-      gsap.set(["#hero-line1", "#hero-line2"], {
-        visibility: "hidden",
-        width: 0,
-        opacity: 1,
-        borderRight: "3px solid currentColor"
-      });
-      gsap.set(".btn-hero", {
-        opacity: 0,
-        transform: "scale(0.8)"
-      });
-      if (heroTimeline) heroTimeline.kill();
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (typeof gsap !== 'undefined' && !prefersReduced) {
+        if (dialog) {
+          gsap.fromTo(dialog, 
+            { scale: 0.92, opacity: 0, y: 15 }, 
+            { scale: 1, opacity: 1, y: 0, duration: 0.35, ease: 'back.out(1.4)', overwrite: 'auto' }
+          );
+        }
+        const targetEl = isVideoMedia ? video : img;
+        if (targetEl) {
+          gsap.fromTo(targetEl, 
+            { opacity: 0 }, 
+            { opacity: 1, duration: 0.25, delay: 0.05, overwrite: 'auto' }
+          );
+        }
+      }
     }
 
-    // Fungsi jalankan animasi ketik untuk Hero Section
-    function startHeroAnimation() {
-      heroTimeline = gsap.timeline();
-      const heroLine1 = document.getElementById("hero-line1");
-      const heroLine2 = document.getElementById("hero-line2");
-      const line1Width = heroLine1.scrollWidth;
-      const line2Width = heroLine2.scrollWidth;
-      const steps1 = heroLine1.textContent.trim().length;
-      const steps2 = heroLine2.textContent.trim().length;
-
-      heroTimeline
-        .to("#hero-line1", {
-          visibility: "visible",
-          width: line1Width + "px",
-          duration: 1,
-          ease: `steps(${steps1})`
-        })
-        .to("#hero-line1", {
-          borderRight: "0px",
-          delay: 0.3
-        })
-        .to("#hero-line2", {
-          visibility: "visible",
-          width: line2Width + "px",
-          duration: 2,
-          ease: `steps(${steps2})`
-        })
-        .to("#hero-line2", {
-          borderRight: "0px",
-          delay: 0.3
-        })
-        .to(".btn-hero", {
-          opacity: 1,
-          transform: "scale(1)",
-          duration: 0.5,
-          ease: "bounce.out"
+    function closeLightbox(event) {
+      if (event && event.target && event.target.closest('#imageLightboxModal .relative')) return;
+      const modal = document.getElementById('imageLightboxModal');
+      const dialog = modal.querySelector('.relative');
+      const video = document.getElementById('lightboxVideo');
+      
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (typeof gsap !== 'undefined' && !prefersReduced && dialog && modal.classList.contains('active')) {
+        gsap.to(dialog, {
+          scale: 0.95,
+          opacity: 0,
+          y: 10,
+          duration: 0.18,
+          ease: 'power2.in',
+          onComplete: () => {
+            if (video) {
+              video.pause();
+              video.src = '';
+            }
+            modal.classList.remove('active');
+          }
         });
+      } else {
+        if (video) {
+          video.pause();
+          video.src = '';
+        }
+        modal.classList.remove('active');
+      }
     }
 
-
-
-
-    // ScrollTrigger untuk Hero Section
-    ScrollTrigger.create({
-      trigger: "#hero",
-      start: "top 70%",
-      onEnter: () => {
-        resetHeroAnimation();
-        startHeroAnimation();
-      },
-      onLeave: () => gsap.to(["#hero-line1", "#hero-line2", ".btn-hero"], {
-        opacity: 0,
-        duration: 0.8,
-        onComplete: resetHeroAnimation
-      }),
-      onEnterBack: () => {
-        resetHeroAnimation();
-        startHeroAnimation();
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeLightbox();
       }
     });
 
-    
-      gsap.from('#about', {
-        scrollTrigger: { trigger: '#about', start: 'top 80%' },
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        ease: 'power2.out'
+    // Spotlight Hover Card Logic with 3D Tilt Micro-Parallax
+    function initSpotlightCards() {
+      document.querySelectorAll('.spotlight-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect();
+          const mouseX = e.clientX - rect.left;
+          const mouseY = e.clientY - rect.top;
+          card.style.setProperty('--mouse-x', `${mouseX}px`);
+          card.style.setProperty('--mouse-y', `${mouseY}px`);
+
+          // Subtle 3D Tilt Micro-Parallax on Desktop only
+          if (window.innerWidth >= 768) {
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const tiltX = (centerY - mouseY) / centerY * 2.2;
+            const tiltY = (mouseX - centerX) / centerX * 2.2;
+            card.style.transform = `perspective(1000px) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg) translateY(-2px)`;
+          }
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+        });
       });
-      gsap.from('#skills', {
-        scrollTrigger: { trigger: '#skills', start: 'top 80%' },
-        opacity: 0,
-        y: 100,
-        duration: 1,
-        ease: 'bounce.out'
+    }
+
+    // Magnetic CTA Button Physics (Desktop Only)
+    function initMagneticButtons() {
+      if (window.innerWidth < 768) return;
+      document.querySelectorAll('.magnetic-btn').forEach(btn => {
+        btn.addEventListener('mousemove', e => {
+          const rect = btn.getBoundingClientRect();
+          const x = (e.clientX - rect.left - rect.width / 2) * 0.25;
+          const y = (e.clientY - rect.top - rect.height / 2) * 0.25;
+          gsap.to(btn, { x, y, duration: 0.25, ease: 'power2.out' });
+        });
+        btn.addEventListener('mouseleave', () => {
+          gsap.to(btn, { x: 0, y: 0, duration: 0.45, ease: 'elastic.out(1, 0.4)' });
+        });
       });
-      gsap.from('#projects', {
-        scrollTrigger: { trigger: '#projects', start: 'top 80%' },
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        ease: 'power2.out'
-      });
-      gsap.from('#sample-website', {
-        scrollTrigger: { trigger: '#sample-website', start: 'top 80%' },
-        opacity: 0,
-        scale: 0.8,
-        duration: 1,
-        ease: 'back.out(1.7)'
-      });
-      gsap.from('#contact', {
-        scrollTrigger: { trigger: '#contact', start: 'top 80%' },
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        ease: 'power2.out'
+    }
+
+    // Subtle Mouse Tracking 3D Parallax on Hero Avatar & Ambient Glow Orb (Desktop Only)
+    function initHeroParallax() {
+      if (window.innerWidth < 768) return;
+      const heroSec = document.getElementById('hero');
+      const avatar = document.getElementById('heroAvatar');
+      const glowOrb = document.getElementById('heroGlowOrb');
+      if (!heroSec) return;
+
+      heroSec.addEventListener('mousemove', e => {
+        const rect = heroSec.getBoundingClientRect();
+        const x = (e.clientX - rect.left - rect.width / 2);
+        const y = (e.clientY - rect.top - rect.height / 2);
+        if (avatar) {
+          gsap.to(avatar, { x: x * 0.025, y: y * 0.025, duration: 0.5, ease: 'power1.out', overwrite: 'auto' });
+        }
+        if (glowOrb) {
+          gsap.to(glowOrb, { x: x * 0.05, y: y * 0.05, duration: 1.2, ease: 'power2.out', overwrite: 'auto' });
+        }
       });
 
-      // Animasi project cards (tiap slide)
-      gsap.utils.toArray('.project').forEach(project => {
-        gsap.from(project, {
+      heroSec.addEventListener('mouseleave', () => {
+        if (avatar) {
+          gsap.to(avatar, { x: 0, y: 0, duration: 0.6, ease: 'power2.out', overwrite: 'auto' });
+        }
+        if (glowOrb) {
+          gsap.to(glowOrb, { x: 0, y: 0, duration: 1.0, ease: 'power2.out', overwrite: 'auto' });
+        }
+      });
+    }
+
+    // Parallax Atmosphere Background Scrubbing
+    function initParallaxAtmosphere() {
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced || window.innerWidth < 768) return;
+
+      gsap.utils.toArray('[data-parallax-depth]').forEach(layer => {
+        const depth = parseFloat(layer.getAttribute('data-parallax-depth')) || 0.15;
+        gsap.to(layer, {
+          y: () => -1 * (ScrollTrigger.maxScroll(window) * depth * 0.15),
+          ease: 'none',
           scrollTrigger: {
-            trigger: project,
+            trigger: document.body,
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: 0.4,
+            invalidateOnRefresh: true
+          }
+        });
+      });
+    }
+
+    // GSAP Motion Choreography
+    function initGSAPAnimations() {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReducedMotion) {
+        document.getElementById('counter-data').textContent = '12.117';
+        document.getElementById('counter-users').textContent = '10.000';
+        document.getElementById('counter-tests').textContent = '250';
+        document.getElementById('counter-years').textContent = '3.5';
+        return;
+      }
+
+      if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+      gsap.registerPlugin(ScrollTrigger);
+
+      // A. Scroll Progress Bar
+      gsap.to('#scrollProgress', {
+        scaleX: 1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: document.body,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 0.15
+        }
+      });
+
+      // B. Hero Entrance Choreography
+      const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+      heroTl.from('#mainHeader', {
+        y: -16,
+        opacity: 0,
+        duration: 0.4
+      })
+      .from('.hero-anim', {
+        y: 18,
+        opacity: 0,
+        duration: 0.5,
+        stagger: 0.07
+      }, '-=0.2')
+      .from('#heroAvatar', {
+        scale: 0.88,
+        opacity: 0,
+        duration: 0.55,
+        ease: 'back.out(1.5)'
+      }, '-=0.35')
+      .from('#heroGlowOrb', {
+        scale: 0.6,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power2.out'
+      }, '-=0.5');
+
+      // Subtle breathing float for avatar
+      gsap.to('#heroAvatar', {
+        y: -5,
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut'
+      });
+
+      // C. Dynamic Numerical Counters via ScrollTrigger with Micro-Celebration Pop
+      const metricsTrigger = {
+        trigger: '#metricsStrip',
+        start: 'top 85%',
+        once: true
+      };
+
+      // 12.117+ Data Counter
+      const dataObj = { val: 0 };
+      gsap.to(dataObj, {
+        val: 12117,
+        duration: 1.6,
+        ease: 'power2.out',
+        scrollTrigger: metricsTrigger,
+        onUpdate: () => {
+          const el = document.getElementById('counter-data');
+          if (el) el.textContent = Math.floor(dataObj.val).toLocaleString('id-ID');
+        },
+        onComplete: () => {
+          const el = document.getElementById('counter-data');
+          if (el) gsap.fromTo(el, { scale: 1.15 }, { scale: 1, duration: 0.35, ease: 'back.out(2)' });
+        }
+      });
+
+      // 10.000+ Users Counter
+      const usersObj = { val: 0 };
+      gsap.to(usersObj, {
+        val: 10000,
+        duration: 1.6,
+        ease: 'power2.out',
+        scrollTrigger: metricsTrigger,
+        onUpdate: () => {
+          const el = document.getElementById('counter-users');
+          if (el) el.textContent = Math.floor(usersObj.val).toLocaleString('id-ID');
+        },
+        onComplete: () => {
+          const el = document.getElementById('counter-users');
+          if (el) gsap.fromTo(el, { scale: 1.15 }, { scale: 1, duration: 0.35, ease: 'back.out(2)' });
+        }
+      });
+
+      // 250+ Tests Counter
+      const testsObj = { val: 0 };
+      gsap.to(testsObj, {
+        val: 250,
+        duration: 1.4,
+        ease: 'power2.out',
+        scrollTrigger: metricsTrigger,
+        onUpdate: () => {
+          const el = document.getElementById('counter-tests');
+          if (el) el.textContent = Math.floor(testsObj.val).toString();
+        },
+        onComplete: () => {
+          const el = document.getElementById('counter-tests');
+          if (el) gsap.fromTo(el, { scale: 1.15 }, { scale: 1, duration: 0.35, ease: 'back.out(2)' });
+        }
+      });
+
+      // 3.5+ Years Counter
+      const yearsObj = { val: 0 };
+      gsap.to(yearsObj, {
+        val: 3.5,
+        duration: 1.4,
+        ease: 'power2.out',
+        scrollTrigger: metricsTrigger,
+        onUpdate: () => {
+          const el = document.getElementById('counter-years');
+          if (el) el.textContent = yearsObj.val.toFixed(1);
+        },
+        onComplete: () => {
+          const el = document.getElementById('counter-years');
+          if (el) gsap.fromTo(el, { scale: 1.15 }, { scale: 1, duration: 0.35, ease: 'back.out(2)' });
+        }
+      });
+
+      // D. Terminal Window Line Stagger
+      gsap.utils.toArray('.terminal-window').forEach(term => {
+        const lines = term.querySelectorAll('.terminal-line');
+        if (lines.length > 0) {
+          gsap.from(lines, {
+            scrollTrigger: {
+              trigger: term,
+              start: 'top 85%',
+              once: true
+            },
+            x: -8,
+            opacity: 0,
+            duration: 0.35,
+            stagger: 0.1,
+            ease: 'power1.out'
+          });
+        }
+      });
+
+      // E. Skill Pills Micro-Pop Stagger
+      gsap.from('.skill-pill', {
+        scrollTrigger: {
+          trigger: '#keahlian',
+          start: 'top 80%',
+          once: true
+        },
+        scale: 0.9,
+        opacity: 0,
+        duration: 0.3,
+        stagger: 0.02,
+        ease: 'back.out(1.8)'
+      });
+
+      // F. Section Scroll Parallax & Card Stagger
+      gsap.utils.toArray('.gsap-section').forEach(section => {
+        gsap.from(section.querySelectorAll('.spotlight-card, article'), {
+          scrollTrigger: {
+            trigger: section,
             start: 'top 80%',
-            toggleActions: 'play none none reverse'
+            toggleActions: 'play none none none'
           },
+          y: 24,
           opacity: 0,
-          y: 50,
-          duration: 1,
+          duration: 0.45,
+          stagger: 0.08,
           ease: 'power2.out'
         });
       });
 
-      // Slider JS
-      const sliderTrack = document.getElementById('sliderTrack');
-      const slides = Array.from(sliderTrack.children);
-      const prevBtn = document.getElementById('prevBtn');
-      const nextBtn = document.getElementById('nextBtn');
-      const sliderDots = document.getElementById('sliderDots');
+      // G. Section Header Accent Lines Animated Draw-In
+      gsap.utils.toArray('.section-accent-line').forEach(line => {
+        gsap.to(line, {
+          scaleX: 1,
+          duration: 0.85,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: line,
+            start: 'top 88%',
+            once: true
+          }
+        });
+      });
 
-      let currentIndex = 0;
-      const totalSlides = slides.length;
+      // H. Main Header Glassmorphism Scroll Elevation
+      ScrollTrigger.create({
+        start: 'top -20',
+        onUpdate: self => {
+          const header = document.getElementById('mainHeader');
+          if (!header) return;
+          if (self.scroll() > 20) {
+            header.classList.add('shadow-md', 'dark:shadow-slate-950/40');
+          } else {
+            header.classList.remove('shadow-md', 'dark:shadow-slate-950/40');
+          }
+        }
+      });
 
-      // Generate dots
-      for (let i = 0; i < totalSlides; i++) {
-        const dot = document.createElement('div');
-        dot.classList.add('slider-dot');
-        if (i === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => goToSlide(i));
-        sliderDots.appendChild(dot);
+      // I. Floating Back to Top Button Reactivity
+      const backToTop = document.getElementById('backToTopBtn');
+      if (backToTop) {
+        ScrollTrigger.create({
+          start: 'top -350',
+          onUpdate: self => {
+            if (self.scroll() > 350) {
+              gsap.to(backToTop, { opacity: 1, y: 0, duration: 0.25, pointerEvents: 'auto', overwrite: 'auto' });
+            } else {
+              gsap.to(backToTop, { opacity: 0, y: 10, duration: 0.2, pointerEvents: 'none', overwrite: 'auto' });
+            }
+          }
+        });
       }
 
-      function updateDots(index) {
-        const allDots = sliderDots.querySelectorAll('.slider-dot');
-        allDots.forEach(dot => dot.classList.remove('active'));
-        allDots[index].classList.add('active');
-      }
+      // J. ScrollSpy Active Section Sync
+      const sections = ['hero', 'proyek', 'pengalaman', 'riset', 'keahlian', 'kontak'];
+      sections.forEach(secId => {
+        const secEl = document.getElementById(secId);
+        if (secEl) {
+          ScrollTrigger.create({
+            trigger: secEl,
+            start: 'top center',
+            end: 'bottom center',
+            onToggle: self => {
+              if (self.isActive) {
+                document.querySelectorAll('#desktopNav .nav-link').forEach(link => {
+                  if (link.getAttribute('data-section') === secId) {
+                    link.classList.add('text-emerald-600', 'dark:text-emerald-400', 'font-bold');
+                  } else {
+                    link.classList.remove('text-emerald-600', 'dark:text-emerald-400', 'font-bold');
+                  }
+                });
 
-      function goToSlide(index) {
-        currentIndex = index;
-        const offset = -index * 100;
-        sliderTrack.style.transform = `translateX(${offset}%)`;
-        updateDots(index);
-      }
+                document.querySelectorAll('#mobileThumbDock .mobile-nav-link').forEach(link => {
+                  if (link.getAttribute('data-section') === secId) {
+                    link.classList.add('text-emerald-400', 'font-bold');
+                    link.classList.remove('text-slate-400');
+                  } else {
+                    link.classList.remove('text-emerald-400', 'font-bold');
+                    link.classList.add('text-slate-400');
+                  }
+                });
+              }
+            }
+          });
+        }
+      });
+    }
 
-      function goPrev() {
-        currentIndex = (currentIndex === 0) ? totalSlides - 1 : currentIndex - 1;
-        goToSlide(currentIndex);
-      }
-
-      function goNext() {
-        currentIndex = (currentIndex === totalSlides - 1) ? 0 : currentIndex + 1;
-        goToSlide(currentIndex);
-      }
-
-      prevBtn.addEventListener('click', goPrev);
-      nextBtn.addEventListener('click', goNext);
-
-      // Auto slide (opsional)
-      // setInterval(() => {
-      //   goNext();
-      // }, 5000);
+    // Initialize on DOM Ready
+    document.addEventListener('DOMContentLoaded', () => {
+      updateThemeIcon();
+      initSpotlightCards();
+      initMagneticButtons();
+      initHeroParallax();
+      initParallaxAtmosphere();
+      initGSAPAnimations();
     });
-
-    // Modal Functions with Zoom In Animation
-    function showModal(imgSrc) {
-      const modal = document.getElementById('imageModal');
-      const modalImage = document.getElementById('modalImage');
-      modalImage.src = imgSrc;
-      modal.classList.add('active');
-      gsap.fromTo(modalImage, { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: 'power2.out' });
-    }
-    function closeModal() {
-      const modal = document.getElementById('imageModal');
-      gsap.to('#modalImage', { scale: 0.8, opacity: 0, duration: 0.5, ease: 'power2.in', onComplete: function() {
-        modal.classList.remove('active');
-      }});
-    }
   </script>
+
 </body>
 </html>

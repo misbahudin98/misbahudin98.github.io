@@ -1,0 +1,111 @@
+# Misbahudin - Developer Portfolio & Agent Architecture
+> Executive context file formatted under the standard llms.txt specification. Designed for LLMs, AI coding agents, and automated evaluators to ingest developer identity, technical stack, key projects, and agent skill governance without parsing raw DOM or running headless browsers.
+
+## 👤 Developer Profile & Identity (SSoT)
+- **Full Name:** Misbahudin
+- **Professional Title:** Full Stack Developer & Data Systems Engineer
+- **Experience:** 3.5+ years of production experience in relational databases, backend APIs, modern Svelte 5 interfaces, and enterprise data migration.
+- **Location:** Kab. Malang, Jawa Timur, Indonesia (65162)
+- **Education:**
+  - Politeknik Negeri Malang (D4 Teknik Informatika | IPK 3.32 | 2016 - 2020)
+  - SMKN 2 Singosari (Teknik Komputer dan Jaringan | 2013 - 2016)
+- **Availability:** Open for Hire / Available for Full-Time Software Engineer & High-Impact Contract Roles
+- **Phone / WhatsApp:** [+62 822-3282-8065](https://wa.me/6282232828065)
+- **Email:** [misbah.udin@outlook.co.id](mailto:misbah.udin@outlook.co.id)
+- **LinkedIn:** [linkedin.com/in/misbahudin98](https://www.linkedin.com/in/misbahudin98/)
+- **GitHub:** [github.com/misbahudin98](https://github.com/misbahudin98)
+- **Direct Resume Download:** [cv.pdf](cv.pdf)
+- **Live Portfolio:** [misbahudin98.netlify.app](https://misbahudin98.netlify.app) / [misbahudin.com](https://misbahudin.com)
+
+---
+
+## 🛠️ Core Technology Stack (CV SSoT)
+- **Backend & Database:** PHP 8.x, Laravel 13, Laravel Sanctum, Laravel Passport (OAuth 2.0), RESTful API, MySQL (3NF Normalization, Foreign Key Constraints, Indexing), Data Migration (ETL Pipeline 12,000+ records).
+- **Frontend & UI:** Svelte 5 (Runes), Tailwind CSS (v4), JavaScript (ES6+), GSAP 3.12 (ScrollTrigger 60fps compositor-only parallax), HTML5 Semantic DOM, CSS3, Accessible UI (WCAG 2.2 AA / AAA).
+- **Workflow AI & Tooling:** Prompt Engineering Terstruktur (XML/Anthropic System Standards), AI Pair-Programming (Antigravity CLI), Optimasi Konteks LLM (llms.txt), Git/GitHub, Vite, Composer.
+- **Testing & Quality:** PHPUnit (Automated Unit & Feature Testing, 250+ automated tests), Test-Driven Development (TDD), PSR-12 / PER Coding Style 2.0.
+- **Server, Infrastructure & IT Support:** Server Optimization (Resolving Error 1040 / Too Many Connections on low-cost shared hosting), PC Hardware Troubleshooting (Intel Celeron / low-spec tuning), LAN Networking & Printer Sharing, Dapodik & Asesmen Nasional (ANBK/Sulinjar/TKA).
+
+---
+
+## 🏆 Signature Projects & Impact (STAR Formula)
+
+### 1. Aplikasi Operasional Kantor Notaris & PPAT (irwan-baddu)
+- **Context:** Core operational system for Notary & PPAT Irwan Baddu handling 7-stage deed processing, automatic reporting, and escrow tax compliance.
+- **Action:** Engineered architecture using Laravel 13 and Svelte 5 (Runes), automated the 7-stage deed lifecycle, integrated automatic bookkeeping for Repertorium and Klapper books, and enforced financial segregation between office operational cash accounts and state tax escrow accounts (PPh & BPHTB with validated NTPN codes).
+- **Impact:** 100% elimination of double data entry; zero discrepancy in tax escrow auditing; 60% reduction in draft deed preparation cycle time.
+- **Stack:** Laravel 13, Svelte 5 (Runes), Tailwind CSS v4, MySQL 3NF, NTPN Validation, PHPUnit.
+- **Repository:** Private Client System (Internal Production Architecture)
+
+### 2. SIM-PQTM: Sistem Manajemen Pendidikan Yayasan & Rapor Digital (yayasan-pqtm)
+- **Context:** Centralized institutional management platform for Yayasan Pondok Quran Terpadu Malang across 3 educational units (Santri Boarding, LTQ, and PKBM Kurikulum Merdeka).
+- **Action:** Built web system with bulk daily student attendance logging, Quran memorization mutaba'ah tracking, automated grade calculation based on learning outcomes, and in-browser official report card printing.
+- **Impact:** Daily mass attendance logging reduced to <2 minutes; instant report card printing compliant with Kemendikbud standards; zero external PDF licensing cost.
+- **Stack:** Laravel, Svelte 5, MySQL, Kurikulum Merdeka Standards, Browser Print Engine.
+- **Repository:** Private Client System (Internal Production Architecture)
+
+### 3. Twinnie Group: Ekosistem Web Layanan Kesehatan Integratif (twinnie-group)
+- **Context:** High-performance web platform for integrative family healthcare in Malang Raya (Baby Spa, Traditional Chinese Medicine/Acupuncture, Psychology, and Sharia Partnership).
+- **Action:** Developed purely static, high-performance web architecture without heavy runtime server compilers, achieving sub-second load times (<1.0s), full WCAG 2.1 AA accessibility, and reactive WhatsApp booking deep-linking.
+- **Impact:** Sub-second First Contentful Paint (<1.0s) on mobile 4G networks; 100% zero silent failure booking flow; scalable static hosting with zero server licensing overhead.
+- **Stack:** Semantic HTML5, Modular Vanilla JS, Tailwind CSS, WCAG 2.1 AA, JSON-LD Schema.
+- **Live Platform:** [twinniegroup.com](https://twinniegroup.com) | **Repository:** [github.com/misbahudin98/twinnie-group](https://github.com/misbahudin98/twinnie-group)
+
+### 4. Sistem Informasi PPDB Terpusat & Multi-Campus Notification Gateway
+- **Context:** Centralized new student admission platform spanning 5 educational tiers (Baby School, TK, SD, SMP, SMA) at Ar-Rohmah Putri.
+- **Action:** Built secure RESTful API backend powered by Laravel Passport (OAuth 2.0) and MySQL; designed automated WhatsApp & Email notification gateways for multi-stage verification and payment confirmation.
+- **Impact:** Scaled to manage >10,000 registered applicant & student accounts; 70% reduction in document verification latency; 99.8% notification gateway uptime.
+- **Stack:** Laravel Passport, OAuth 2.0, MySQL Schema, WhatsApp Gateway, SMTP Email.
+
+### 5. Buku Induk Santri & Pipeline Migrasi 12.117 Record (Zero Data Loss)
+- **Context:** Database modernization eliminating years of fragmented and conflicting student/staff records from legacy SQL and Excel dumps.
+- **Action:** Formulated automated ETL extraction, deduplication, and anomaly cleansing pipeline into a normalized 3NF MySQL schema based on NIS Yayasan (NISY).
+- **Impact:** 12,117 records (9,312 historical students, 800 applicants, 2,005 staff) migrated with 100% integrity (zero data loss); resolved all historical accounting and public relations record discrepancies.
+- **Stack:** ETL Scripting, Data Cleansing, MySQL 3NF, NISY Architecture.
+
+### 6. Aplikasi Kepegawaian & Digital Workflow Automation (SIM-SDM)
+- **Context:** Institutional HR lifecycle management digitizing paper-based bureaucracy for 2,005 active employees.
+- **Action:** Developed centralized web interface with digital forms and multi-level approval workflows for leave, study permits, status changes, contract renewals, and terminations.
+- **Impact:** 85% paperless HR operations; leave approval turnaround reduced to <24 hours.
+- **Stack:** PHP, jQuery, MySQL, Tailwind CSS, Digital Approval Engine.
+
+---
+
+## 🤖 AI Agent Architecture & Skill Governance (`.agents/`)
+This workspace incorporates an international-standard agentic pair-programming system based on **Anthropic Research** (*Building Effective Agents*, Dec 2024), **Google DeepMind Progressive Disclosure**, and **McKinsey MECE Partitioning**.
+
+### 1. Active Skills Registry
+- [`portfolio-architect`](.agents/skills/portfolio-architect/SKILL.md):
+  - **Trigger Tags:** `@portfolio`, `@portfolio-architect`, `#portfolio`
+  - **Domain Scope:** Developer portfolio audits, ATS Schema validation, 60fps GSAP motion recipes, STAR case-study templates, and Web3/Motion defensive UI/UX.
+  - **Key Invariants:** [`.agents/rules/portfolio_invariants.md`](.agents/rules/portfolio_invariants.md)
+  - **CLI Helper:** `powershell -ExecutionPolicy Bypass -File ".agents/skills/portfolio-architect/scripts/audit-portfolio.ps1"`
+
+- [`prompt-architect`](.agents/skills/prompt-architect/SKILL.md):
+  - **Trigger Tags:** `@prompt`, `@pa`, `@prompt-architect`, `#prompt`
+  - **Domain Scope:** Enterprise prompt engineering, Anthropic XML-delimited prompt synthesis, prompt smell audits (anti-slop), and agent customization governance.
+  - **Key Invariants:** [`.agents/rules/skill_governance.md`](.agents/rules/skill_governance.md)
+  - **CLI Helper:** `powershell -ExecutionPolicy Bypass -File ".agents/skills/prompt-architect/scripts/audit-skills.ps1"`
+
+---
+
+## ⚡ Quick CLI Verification Commands
+```powershell
+# Run Skill Governance & MECE Anti-Collision Audit
+powershell -ExecutionPolicy Bypass -File ".agents/skills/prompt-architect/scripts/audit-skills.ps1"
+
+# Run Developer Portfolio ATS, Motion, & Usability Audit
+powershell -ExecutionPolicy Bypass -File ".agents/skills/portfolio-architect/scripts/audit-portfolio.ps1"
+```
+
+---
+
+## 📂 Key File Manifest
+- [`index.html`](index.html): Main portfolio production markup, JSON-LD Schema, GSAP parallax engine, and styling.
+- [`cv.pdf`](cv.pdf): Verified human ATS curriculum vitae available for direct download.
+- [`README.md`](README.md): Comprehensive human documentation and system runbook.
+- [`llms.txt`](llms.txt): This AI-accelerated index and executive summary file.
+- [`assets/`](assets/): Production screenshot & video artifacts (`irwan-baddu.png`, `irwan-baddu1.png`, `yayasan-pqtm.jpg`, `yayasan-pesantren.jpg`, `ppdb.jpg`, `santri.png`, `sdm1.png`, `smk-taruna-bhakti.jpeg`, `smk-taruna-bhakti.mp4`, `taruna-bhakti-2.jpeg`, `arrohmah.jpeg`, `arrohmah1.jpeg`, `arrohmah2.jpeg`, `twinnie-group.jpg`).
+- [`netlify.toml`](netlify.toml): Security headers, cache policies, and Netlify deployment configuration.
+- [`.agents/rules/portfolio_invariants.md`](.agents/rules/portfolio_invariants.md): Hard invariants for web portfolio (ATS, GSAP, Parallax, WCAG 2.2 AA).
+- [`.agents/rules/skill_governance.md`](.agents/rules/skill_governance.md): Absolute constitution governing skill boundaries and zero collision.

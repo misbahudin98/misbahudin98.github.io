@@ -1,0 +1,11 @@
+# Deployment & Secrets
+deploy_netlify.py
+site.zip
+portofolio.zip
+
+# Environment & OS
+.env
+.env.*
+Thumbs.db
+.DS_Store
+*.tmp
