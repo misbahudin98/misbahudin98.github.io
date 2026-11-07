@@ -405,12 +405,12 @@
         </div>
 
         <!-- Profile Avatar with 3D Parallax Tilt & Independent Floating Wrapper -->
-        <div id="heroAvatar" class="hero-anim relative shrink-0 self-start sm:self-center md:self-start">
-          <div id="heroAvatarInner" class="w-28 h-28 sm:w-40 sm:h-40 rounded-3xl overflow-hidden border-2 border-emerald-500/40 p-1 bg-white dark:bg-slate-900 shadow-xl glow-emerald">
-            <img src="https://avatars.githubusercontent.com/u/35445399?v=4" alt="Misbahudin" class="w-full h-full object-cover rounded-2xl" />
+        <div id="heroAvatar" class="hero-anim relative shrink-0 self-center sm:self-center md:self-start my-1 sm:my-0">
+          <div id="heroAvatarInner" class="w-32 h-32 sm:w-40 sm:h-40 rounded-3xl overflow-hidden border-2 border-emerald-500/40 p-1 bg-white dark:bg-slate-900 shadow-xl glow-emerald cursor-pointer group" onclick="openLightbox('https://avatars.githubusercontent.com/u/35445399?v=4', 'Misbahudin, S.Kom. &bull; Full Stack Developer & Data Systems Engineer')">
+            <img src="https://avatars.githubusercontent.com/u/35445399?v=4" alt="Misbahudin" class="w-full h-full object-cover object-top rounded-2xl group-hover:scale-105 transition-transform duration-300" loading="eager" fetchpriority="high" />
           </div>
-          <div class="absolute -bottom-2 -right-2 px-2.5 py-0.5 rounded-full bg-slate-900 dark:bg-slate-800 border border-slate-700 text-[10px] sm:text-[11px] font-mono text-emerald-400 font-bold shadow-md flex items-center gap-1.5">
-            <i class="fa-solid fa-shield-check"></i>
+          <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-slate-900/95 dark:bg-slate-800/95 border border-slate-700/80 text-[10px] sm:text-[11px] font-mono text-emerald-400 font-bold shadow-md flex items-center gap-1.5 whitespace-nowrap z-10 backdrop-blur-sm pointer-events-none">
+            <i class="fa-solid fa-shield-check text-[10px] text-emerald-400"></i>
             <span>Verified Engineer</span>
           </div>
         </div>
@@ -977,7 +977,7 @@
           <!-- Visual Artifacts: Proyek Klien Nyata -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
             <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-2xs" onclick="openLightbox('assets/irwan-baddu.png', 'Proyek Klien Notaris: Sistem Operasional Akta & Rekening Titipan')">
-              <img src="assets/irwan-baddu.png" alt="Aplikasi Notaris Irwan Baddu" class="w-full h-32 sm:h-36 object-cover object-top group-hover:scale-105 transition-transform duration-300" />
+              <img src="assets/irwan-baddu.png" alt="Aplikasi Notaris Irwan Baddu" class="w-full aspect-[16/10] sm:aspect-video object-cover object-top group-hover:scale-105 transition-transform duration-300" />
               <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-[11px] font-mono font-bold">
                 <i class="fa-solid fa-magnifying-glass-plus text-xs"></i>
                 <span>Pratinjau Aplikasi Notaris</span>
@@ -988,7 +988,7 @@
             </div>
 
             <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-2xs" onclick="openLightbox('assets/yayasan-pqtm.jpg', 'Proyek Klien Yayasan: SIM-PQTM Presensi Massal & Rapor Digital')">
-              <img src="assets/yayasan-pqtm.jpg" alt="SIM-PQTM Yayasan" class="w-full h-32 sm:h-36 object-cover object-center group-hover:scale-105 transition-transform duration-300" />
+              <img src="assets/yayasan-pqtm.jpg" alt="SIM-PQTM Yayasan" class="w-full aspect-[16/10] sm:aspect-video object-cover object-center group-hover:scale-105 transition-transform duration-300" />
               <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-[11px] font-mono font-bold">
                 <i class="fa-solid fa-magnifying-glass-plus text-xs"></i>
                 <span>Pratinjau SIM-PQTM</span>
@@ -1043,7 +1043,7 @@
           <!-- Visual Artifacts: Pembinaan Pengawas, Pelaporan Dana BOS & Pengajaran Siswa -->
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
             <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-2xs" onclick="openLightbox('assets/smk-taruna-bhakti.jpeg', 'SMKS Taruna Bhakti: Pembinaan dari Pengawas Sekolah')">
-              <img src="assets/smk-taruna-bhakti.jpeg" alt="Pembinaan dari Pengawas Sekolah" class="w-full h-44 sm:h-48 object-cover object-top group-hover:scale-105 transition-transform duration-300" />
+              <img src="assets/smk-taruna-bhakti.jpeg" alt="Pembinaan dari Pengawas Sekolah" class="w-full aspect-[4/3] sm:aspect-[3/4] md:aspect-video object-cover object-top group-hover:scale-105 transition-transform duration-300" />
               <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-[11px] font-mono font-bold">
                 <i class="fa-solid fa-magnifying-glass-plus text-xs"></i>
                 <span>Pembinaan Pengawas</span>
@@ -1054,7 +1054,7 @@
             </div>
 
             <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-2xs" onclick="openLightbox('assets/taruna-bhakti-2.jpeg', 'SMKS Taruna Bhakti: Pelaporan Dana BOS')">
-              <img src="assets/taruna-bhakti-2.jpeg" alt="Pelaporan Dana BOS" class="w-full h-44 sm:h-48 object-cover object-top group-hover:scale-105 transition-transform duration-300" />
+              <img src="assets/taruna-bhakti-2.jpeg" alt="Pelaporan Dana BOS" class="w-full aspect-[4/3] sm:aspect-[3/4] md:aspect-video object-cover object-top group-hover:scale-105 transition-transform duration-300" />
               <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-[11px] font-mono font-bold">
                 <i class="fa-solid fa-magnifying-glass-plus text-xs"></i>
                 <span>Pelaporan Dana BOS</span>
@@ -1077,7 +1077,7 @@
               <img 
                 src="assets/smk-pengajaran-preview.jpg" 
                 alt="Dokumentasi Pengajaran Siswa SMKS Taruna Bhakti" 
-                class="w-full h-44 sm:h-48 object-cover object-center group-hover/video:scale-105 transition-transform duration-300" />
+                class="w-full aspect-[4/3] sm:aspect-[3/4] md:aspect-video object-cover object-center group-hover/video:scale-105 transition-transform duration-300" />
               
               <!-- Ambient Dark Gradient Overlay -->
               <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/40 pointer-events-none"></div>
@@ -1161,7 +1161,7 @@
           <!-- Visual Artifacts: Pembahasan Konsep Terpusat, Rapat Aplikasi Pegawai & Aula Pembinaan -->
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
             <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-2xs" onclick="openLightbox('assets/arrohmah.jpeg', 'Ar-Rohmah Putri: Pembahasan Awal Konsep Aplikasi Terpusat dari Data Santri, Data Pegawai dan Data PPDB')">
-              <img src="assets/arrohmah.jpeg" alt="Pembahasan Awal Konsep Aplikasi Terpusat dari Data Santri, Data Pegawai dan Data PPDB" class="w-full h-44 sm:h-48 object-cover object-center group-hover:scale-105 transition-transform duration-300" />
+              <img src="assets/arrohmah.jpeg" alt="Pembahasan Awal Konsep Aplikasi Terpusat dari Data Santri, Data Pegawai dan Data PPDB" class="w-full aspect-[16/10] sm:aspect-video object-cover object-center group-hover:scale-105 transition-transform duration-300" />
               <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-[11px] font-mono font-bold">
                 <i class="fa-solid fa-magnifying-glass-plus text-xs"></i>
                 <span>Konsep Aplikasi Terpusat</span>
@@ -1172,7 +1172,7 @@
             </div>
 
             <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-2xs" onclick="openLightbox('assets/arrohmah1.jpeg', 'Ar-Rohmah Putri: Rapat Pembahasan Awal Aplikasi Pegawai')">
-              <img src="assets/arrohmah1.jpeg" alt="Rapat Pembahasan Awal Aplikasi Pegawai" class="w-full h-44 sm:h-48 object-cover object-center group-hover:scale-105 transition-transform duration-300" />
+              <img src="assets/arrohmah1.jpeg" alt="Rapat Pembahasan Awal Aplikasi Pegawai" class="w-full aspect-[16/10] sm:aspect-video object-cover object-center group-hover:scale-105 transition-transform duration-300" />
               <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-[11px] font-mono font-bold">
                 <i class="fa-solid fa-magnifying-glass-plus text-xs"></i>
                 <span>Rapat Aplikasi Pegawai</span>
@@ -1183,7 +1183,7 @@
             </div>
 
             <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-2xs" onclick="openLightbox('assets/arrohmah2.jpeg', 'Ar-Rohmah Putri: Aula Agenda Pembinaan Pegawai')">
-              <img src="assets/arrohmah2.jpeg" alt="Aula Agenda Pembinaan Pegawai" class="w-full h-44 sm:h-48 object-cover object-center group-hover:scale-105 transition-transform duration-300" />
+              <img src="assets/arrohmah2.jpeg" alt="Aula Agenda Pembinaan Pegawai" class="w-full aspect-[16/10] sm:aspect-video object-cover object-center group-hover:scale-105 transition-transform duration-300" />
               <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-[11px] font-mono font-bold">
                 <i class="fa-solid fa-magnifying-glass-plus text-xs"></i>
                 <span>Aula Pembinaan Pegawai</span>
