@@ -13,13 +13,13 @@
   <meta property="og:title" content="Misbahudin | Full Stack Developer & Data Systems Engineer" />
   <meta property="og:description" content="Portfolio rekayasa perangkat lunak: sistem operasional notaris, manajemen pendidikan yayasan, PPDB terpusat, dan pipeline ETL data berskala besar." />
   <meta property="og:url" content="https://misbahudin98.netlify.app" />
-  <meta property="og:image" content="https://avatars.githubusercontent.com/u/35445399?v=4" />
+  <meta property="og:image" content="https://misbahudin98.netlify.app/assets/avatar.jpg" />
 
   <!-- Twitter Meta -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Misbahudin | Full Stack Developer & Data Systems Engineer" />
   <meta name="twitter:description" content="Full Stack Developer berfokus pada rekayasa backend Laravel, Svelte 5, dan integritas data enterprise." />
-  <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/35445399?v=4" />
+  <meta name="twitter:image" content="https://misbahudin98.netlify.app/assets/avatar.jpg" />
 
   <!-- Schema.org JSON-LD (Strict ATS & Machine Readability Invariant) -->
   <script type="application/ld+json">
@@ -111,7 +111,7 @@
   </script>
 
   <!-- Resource Preloads for Instant FCP & Zero CLS -->
-  <link rel="preload" href="https://avatars.githubusercontent.com/u/35445399?v=4" as="image" />
+  <link rel="preload" href="assets/avatar.jpg" as="image" />
 
   <!-- Google Fonts & FontAwesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -404,14 +404,16 @@
           </div>
         </div>
 
-        <!-- Profile Avatar with 3D Parallax Tilt & Independent Floating Wrapper -->
-        <div id="heroAvatar" class="hero-anim relative shrink-0 self-center sm:self-center md:self-start my-1 sm:my-0">
-          <div id="heroAvatarInner" class="w-32 h-32 sm:w-40 sm:h-40 rounded-3xl overflow-hidden border-2 border-emerald-500/40 p-1 bg-white dark:bg-slate-900 shadow-xl glow-emerald cursor-pointer group" onclick="openLightbox('https://avatars.githubusercontent.com/u/35445399?v=4', 'Misbahudin, S.Kom. &bull; Full Stack Developer & Data Systems Engineer')">
-            <img src="https://avatars.githubusercontent.com/u/35445399?v=4" alt="Misbahudin" class="w-full h-full object-cover object-top rounded-2xl group-hover:scale-105 transition-transform duration-300" loading="eager" fetchpriority="high" />
-          </div>
-          <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-slate-900/95 dark:bg-slate-800/95 border border-slate-700/80 text-[10px] sm:text-[11px] font-mono text-emerald-400 font-bold shadow-md flex items-center gap-1.5 whitespace-nowrap z-10 backdrop-blur-sm pointer-events-none">
-            <i class="fa-solid fa-shield-check text-[10px] text-emerald-400"></i>
-            <span>Verified Engineer</span>
+        <!-- Profile Avatar with 3D Parallax Tilt & Cohesive Floating Wrapper -->
+        <div id="heroAvatar" class="relative shrink-0 self-center sm:self-center md:self-start my-2 md:my-0">
+          <div id="heroAvatarInner" class="relative cursor-pointer group" onclick="openLightbox('assets/avatar.jpg', 'Misbahudin, S.Kom. &bull; Full Stack Developer & Data Systems Engineer')">
+            <div class="w-32 h-32 sm:w-40 sm:h-40 aspect-square rounded-full overflow-hidden border-2 border-emerald-500/50 p-1 bg-white dark:bg-slate-900 shadow-xl glow-emerald">
+              <img src="assets/avatar.jpg" alt="Misbahudin, S.Kom." class="w-full h-full aspect-square object-cover object-top rounded-full group-hover:scale-105 transition-transform duration-300" loading="eager" fetchpriority="high" />
+            </div>
+            <div class="absolute -bottom-2.5 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-slate-900/95 dark:bg-slate-900/95 border border-emerald-500/40 text-[10px] sm:text-[11px] font-mono text-emerald-400 font-bold shadow-md flex items-center gap-1.5 whitespace-nowrap z-10 backdrop-blur-sm pointer-events-none">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>Verified Engineer</span>
+            </div>
           </div>
         </div>
 
