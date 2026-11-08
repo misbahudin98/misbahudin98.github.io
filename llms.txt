@@ -89,6 +89,20 @@ This workspace incorporates an international-standard agentic pair-programming s
 
 ---
 
+## 🔄 Data Architecture & ETL Codex: Data Engineering vs Data Analysis
+- **Mental Model:** *"Data Engineer builds the pipeline and water treatment infrastructure; Data Analyst formulates the nutrition and serves the drink for business consumption."*
+- **Data Engineering Perspective (Pipeline, Scale, & Reliability):**
+  - **Extract:** Memory-safe chunk streaming (`Chunking 500 rows`, continuous RAM consumption $\le 32\text{MB}$), Change Data Capture (CDC), zero-lock ingestion.
+  - **Transform:** Third Normal Form (3NF) relational normalization, formula injection mitigation (CWE-1236), strict schema casting.
+  - **Load:** Transactional atomic inserts wrapped in `DB::transaction()` with automatic rollback, Slowly Changing Dimensions (SCD Type 1/2), and SHA-256 dual-checksum reconciliation (12,117 / 12,117 records verified with 100% match and zero data loss).
+- **Data Analysis Perspective (Business Semantics, Metrics, & Delivery):**
+  - **Extract / Discovery:** Single Source of Truth (SSoT) audit, eliminating semantic discrepancies between operational departments (e.g. Humas vs Finance).
+  - **Transform / Modeling:** Dimensional Star Schema (`dim_santri`, `dim_waktu`, `fact_pembayaran`), formal metric calculations (MoM, YoY, cohort retention), and business logic data cleansing.
+  - **Load / BI Delivery:** Aggregated data mart generation for sub-2-second executive dashboards, high data-to-ink ratio visualization, and actionable strategic insights.
+- **Full Architecture Specification:** Documented in [`docs/etl_data_engineering_vs_data_analysis.md`](docs/etl_data_engineering_vs_data_analysis.md).
+
+---
+
 ## ⚡ Quick CLI Verification Commands
 ```powershell
 # Run Skill Governance & MECE Anti-Collision Audit
@@ -107,5 +121,6 @@ powershell -ExecutionPolicy Bypass -File ".agents/skills/portfolio-architect/scr
 - [`llms.txt`](llms.txt): This AI-accelerated index and executive summary file.
 - [`assets/`](assets/): Production screenshot & video artifacts (`irwan-baddu.png`, `irwan-baddu1.png`, `yayasan-pqtm.jpg`, `yayasan-pesantren.jpg`, `ppdb.jpg`, `santri.png`, `sdm1.png`, `smk-taruna-bhakti.jpeg`, `smk-taruna-bhakti.mp4`, `taruna-bhakti-2.jpeg`, `arrohmah.jpeg`, `arrohmah1.jpeg`, `arrohmah2.jpeg`, `twinnie-group.jpg`).
 - [`netlify.toml`](netlify.toml): Security headers, cache policies, and Netlify deployment configuration.
+- [`docs/etl_data_engineering_vs_data_analysis.md`](docs/etl_data_engineering_vs_data_analysis.md): Master architectural whitepaper on ETL dual-perspective: Data Engineering vs Data Analysis.
 - [`.agents/rules/portfolio_invariants.md`](.agents/rules/portfolio_invariants.md): Hard invariants for web portfolio (ATS, GSAP, Parallax, WCAG 2.2 AA).
 - [`.agents/rules/skill_governance.md`](.agents/rules/skill_governance.md): Absolute constitution governing skill boundaries and zero collision.
