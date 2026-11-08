@@ -353,49 +353,51 @@
       backdrop-filter: blur(20px) saturate(180%);
       -webkit-backdrop-filter: blur(20px) saturate(180%);
       border: 1px solid rgba(51, 65, 85, 0.65);
-      box-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.35), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+      box-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.35), inset 0 1px 0 0 rgba(255, 255, 255, 0.12), inset 0 0 24px 0 rgba(16, 185, 129, 0.02);
       position: relative;
-      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
     }
     html:not(.dark) .tactical-glass {
-      background: rgba(255, 255, 255, 0.84);
+      background: rgba(255, 255, 255, 0.86);
       backdrop-filter: blur(20px) saturate(180%);
       -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border: 1px solid rgba(226, 232, 240, 0.95);
-      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(203, 213, 225, 0.95);
+      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), inset 0 1px 0 0 #ffffff;
     }
     .tactical-glass:hover {
-      border-color: rgba(16, 185, 129, 0.4);
-      box-shadow: 0 8px 32px -4px rgba(16, 185, 129, 0.12), inset 0 1px 0 0 rgba(255, 255, 255, 0.18);
+      border-color: rgba(16, 185, 129, 0.45);
+      box-shadow: 0 12px 36px -4px rgba(0, 0, 0, 0.45), 0 0 20px -2px rgba(16, 185, 129, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.22);
     }
     html:not(.dark) .tactical-glass:hover {
       border-color: rgba(16, 185, 129, 0.45);
-      box-shadow: 0 8px 30px -4px rgba(16, 185, 129, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 1);
+      box-shadow: 0 12px 32px -4px rgba(16, 185, 129, 0.12), inset 0 1px 0 0 #ffffff;
     }
 
     /* Sub-Surface Micro Glass for Embedded Cards */
     .tactical-subglass {
-      background: rgba(15, 23, 42, 0.55);
+      background: rgba(15, 23, 42, 0.58);
       backdrop-filter: blur(14px) saturate(160%);
       -webkit-backdrop-filter: blur(14px) saturate(160%);
-      border: 1px solid rgba(51, 65, 85, 0.5);
-      box-shadow: 0 2px 10px -1px rgba(0, 0, 0, 0.25), inset 0 1px 0 0 rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(51, 65, 85, 0.55);
+      box-shadow: 0 2px 12px -1px rgba(0, 0, 0, 0.3), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
       transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
     }
     html:not(.dark) .tactical-subglass {
-      background: rgba(248, 250, 252, 0.85);
+      background: rgba(248, 250, 252, 0.88);
       backdrop-filter: blur(14px) saturate(160%);
       -webkit-backdrop-filter: blur(14px) saturate(160%);
-      border: 1px solid rgba(226, 232, 240, 0.9);
-      box-shadow: 0 2px 10px -1px rgba(15, 23, 42, 0.03), inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(226, 232, 240, 0.95);
+      box-shadow: 0 2px 10px -1px rgba(15, 23, 42, 0.04), inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
     }
     .tactical-subglass:hover {
-      border-color: rgba(16, 185, 129, 0.35);
-      background: rgba(15, 23, 42, 0.7);
+      border-color: rgba(16, 185, 129, 0.45);
+      background: rgba(15, 23, 42, 0.75);
+      transform: translateY(-1.5px);
     }
     html:not(.dark) .tactical-subglass:hover {
-      border-color: rgba(16, 185, 129, 0.4);
-      background: rgba(255, 255, 255, 0.95);
+      border-color: rgba(16, 185, 129, 0.45);
+      background: rgba(255, 255, 255, 0.98);
+      transform: translateY(-1.5px);
     }
 
     /* Laser Decryption Scanning Shimmer on Cards */
@@ -405,7 +407,8 @@
       left: 0;
       width: 100%;
       height: 2px;
-      background: linear-gradient(90deg, transparent 0%, rgba(52, 211, 153, 0.9) 50%, transparent 100%);
+      background: linear-gradient(90deg, transparent 0%, rgba(52, 211, 153, 0.95) 50%, transparent 100%);
+      box-shadow: 0 0 12px 1.5px rgba(52, 211, 153, 0.6);
       opacity: 0;
       pointer-events: none;
       z-index: 10;
@@ -653,7 +656,8 @@
       <!-- Player Vitals & Quantitative Metrics Strip (GSAP Telemetry Counter) -->
       <div id="metricsStrip" class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-slate-200/80 dark:border-slate-800/80">
         
-        <div class="p-3.5 sm:p-4 rounded-2xl tactical-glass space-y-1 spotlight-card tactical-reticle overflow-hidden">
+        <div class="p-3.5 sm:p-4 rounded-2xl tactical-glass space-y-1 spotlight-card tactical-reticle overflow-hidden relative">
+          <div class="laser-scan-shimmer"></div>
           <div class="text-[10px] font-mono font-bold text-emerald-600 dark:text-emerald-400 flex items-center justify-between">
             <span>[ DATA_INTEGRITY ]</span>
             <span class="text-[9px] bg-emerald-500/10 px-1 rounded">0-LOSS</span>
@@ -665,7 +669,8 @@
           <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Record Basis Data Dimigrasikan (Zero Loss)</p>
         </div>
 
-        <div class="p-3.5 sm:p-4 rounded-2xl tactical-glass space-y-1 spotlight-card tactical-reticle overflow-hidden">
+        <div class="p-3.5 sm:p-4 rounded-2xl tactical-glass space-y-1 spotlight-card tactical-reticle overflow-hidden relative">
+          <div class="laser-scan-shimmer"></div>
           <div class="text-[10px] font-mono font-bold text-cyan-600 dark:text-cyan-400 flex items-center justify-between">
             <span>[ ACTIVE_SCALE ]</span>
             <span class="text-[9px] bg-cyan-500/10 px-1 rounded">STABLE</span>
@@ -677,7 +682,8 @@
           <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Pengguna Sistem PPDB &amp; Santri Terkelola</p>
         </div>
 
-        <div class="p-3.5 sm:p-4 rounded-2xl tactical-glass space-y-1 spotlight-card tactical-reticle overflow-hidden">
+        <div class="p-3.5 sm:p-4 rounded-2xl tactical-glass space-y-1 spotlight-card tactical-reticle overflow-hidden relative">
+          <div class="laser-scan-shimmer"></div>
           <div class="text-[10px] font-mono font-bold text-cyan-600 dark:text-cyan-400 flex items-center justify-between">
             <span>[ TEST_MANA ]</span>
             <span class="text-[9px] bg-cyan-500/10 px-1 rounded">TDD 100%</span>
@@ -689,7 +695,8 @@
           <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Automated Tests PHPUnit (Unit &amp; Feature)</p>
         </div>
 
-        <div class="p-3.5 sm:p-4 rounded-2xl tactical-glass space-y-1 spotlight-card tactical-reticle overflow-hidden">
+        <div class="p-3.5 sm:p-4 rounded-2xl tactical-glass space-y-1 spotlight-card tactical-reticle overflow-hidden relative">
+          <div class="laser-scan-shimmer"></div>
           <div class="text-[10px] font-mono font-bold text-amber-600 dark:text-amber-400 flex items-center justify-between">
             <span>[ EXP_LEVEL ]</span>
             <span class="text-[9px] bg-amber-500/10 px-1 rounded">PRO</span>
@@ -1720,7 +1727,8 @@
       </div>
 
       <!-- Playable Developer Console & Automated CLI Diagnostics -->
-      <div class="terminal-window tactical-reticle tactical-glass overflow-hidden shadow-lg border border-slate-200 dark:border-slate-800">
+      <div class="terminal-window tactical-reticle tactical-glass overflow-hidden shadow-lg border border-slate-200 dark:border-slate-800 relative">
+        <div class="laser-scan-shimmer"></div>
         <div class="terminal-header flex flex-wrap items-center justify-between gap-2 px-4 py-2.5 bg-slate-100/90 dark:bg-slate-900/90 border-b border-slate-200 dark:border-slate-800 text-xs font-mono text-slate-500">
           <div class="flex items-center gap-2">
             <span class="terminal-dot bg-rose-500/80"></span>
@@ -3293,112 +3301,218 @@
         }
       });
 
-      // D. Terminal Window Line Stagger
+      // D. Terminal Window Story Motion with Laser Sweep & Bi-Directional Re-Activation
       gsap.utils.toArray('.terminal-window').forEach(term => {
+        const shimmer = term.querySelector('.laser-scan-shimmer');
         const lines = term.querySelectorAll('.terminal-line');
-        if (lines.length > 0) {
-          gsap.from(lines, {
-            scrollTrigger: {
-              trigger: term,
-              start: 'top 85%',
-              once: true
-            },
-            x: -8,
-            opacity: 0,
-            duration: 0.35,
-            stagger: 0.1,
-            ease: 'power1.out'
-          });
+        const chips = term.querySelectorAll('button');
+
+        const termTl = gsap.timeline({ paused: true, defaults: { ease: 'power2.out' } });
+
+        termTl.fromTo(term, { y: 16, opacity: 0.2 }, { y: 0, opacity: 1, duration: 0.4 }, 0);
+        if (shimmer) {
+          termTl.fromTo(shimmer, 
+            { xPercent: -100, opacity: 0 }, 
+            { xPercent: 100, opacity: 1, duration: 0.8, ease: 'power2.inOut' }, 
+            0.05
+          );
+          termTl.to(shimmer, { opacity: 0, duration: 0.2 }, 0.75);
         }
+        if (lines.length > 0) {
+          termTl.fromTo(lines, { x: -8, opacity: 0 }, { x: 0, opacity: 1, duration: 0.3, stagger: 0.06 }, 0.15);
+        }
+        if (chips.length > 0) {
+          termTl.fromTo(chips, { scale: 0.94, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.25, stagger: 0.03, ease: 'back.out(1.5)' }, 0.25);
+        }
+
+        ScrollTrigger.create({
+          trigger: term,
+          start: 'top 86%',
+          end: 'bottom top',
+          onEnter: () => termTl.timeScale(1).play(),
+          onEnterBack: () => termTl.timeScale(1.2).restart(),
+          onLeave: () => termTl.pause(0),
+          onLeaveBack: () => termTl.pause(0)
+        });
       });
 
-      // E. Skill Pills Micro-Pop Stagger
-      gsap.from('.skill-pill', {
-        scrollTrigger: {
+      // E. Skill Pills Micro-Pop Stagger with Smooth Bi-Directional Re-Activation
+      const skillPills = gsap.utils.toArray('.skill-pill');
+      if (skillPills.length > 0) {
+        const skillTl = gsap.timeline({ paused: true, defaults: { ease: 'back.out(1.8)' } });
+        skillTl.fromTo(skillPills, 
+          { scale: 0.9, opacity: 0 }, 
+          { scale: 1, opacity: 1, duration: 0.3, stagger: 0.018 }
+        );
+
+        ScrollTrigger.create({
           trigger: '#keahlian',
           start: 'top 80%',
-          once: true
-        },
-        scale: 0.9,
-        opacity: 0,
-        duration: 0.3,
-        stagger: 0.02,
-        ease: 'back.out(1.8)'
-      });
+          end: 'bottom top',
+          onEnter: () => skillTl.timeScale(1).play(),
+          onEnterBack: () => skillTl.timeScale(1.2).restart(),
+          onLeave: () => skillTl.pause(0),
+          onLeaveBack: () => skillTl.pause(0)
+        });
+      }
 
-      // F. Spotlight Card Individual Scroll Entrance
+      // F. Master Spotlight Cards Story Motion with Calibrated Delay & Bi-Directional Re-Activation
       gsap.utils.toArray('.spotlight-card').forEach(card => {
-        gsap.from(card, {
-          scrollTrigger: {
+        // Handle #metricsStrip cards separately to preserve telemetry counters
+        if (card.closest('#metricsStrip')) {
+          const shimmer = card.querySelector('.laser-scan-shimmer');
+          const vitalsTl = gsap.timeline({ paused: true, defaults: { ease: 'power2.out' } });
+          vitalsTl.fromTo(card, { y: 16, opacity: 0.2 }, { y: 0, opacity: 1, duration: 0.4 }, 0);
+          if (shimmer) {
+            vitalsTl.fromTo(shimmer, { xPercent: -100, opacity: 0 }, { xPercent: 100, opacity: 1, duration: 0.75, ease: 'power2.inOut' }, 0.05);
+            vitalsTl.to(shimmer, { opacity: 0, duration: 0.2 }, 0.7);
+          }
+          ScrollTrigger.create({
             trigger: card,
             start: 'top 88%',
-            toggleActions: 'play none none none'
-          },
-          y: 20,
-          opacity: 0,
-          duration: 0.4,
-          ease: 'power2.out'
-        });
+            end: 'bottom top',
+            onEnter: () => vitalsTl.timeScale(1).play(),
+            onEnterBack: () => {
+              vitalsTl.timeScale(1.2).restart();
+              gsap.fromTo(card, { y: -3 }, { y: 0, duration: 0.35, ease: 'back.out(2)' });
+            },
+            onLeave: () => vitalsTl.pause(0),
+            onLeaveBack: () => vitalsTl.pause(0)
+          });
+          return;
+        }
 
-        // Laser Decryption Beam Sweep upon card initialization
+        // Dedicated narrative timeline for project, education, and career cards
+        const cardTl = gsap.timeline({ paused: true, defaults: { ease: 'power2.out' } });
+
+        // 1. Macro Card Container Elevation (0.00s)
+        cardTl.fromTo(card, 
+          { y: 22, opacity: 0.15 }, 
+          { y: 0, opacity: 1, duration: 0.42, ease: 'power3.out' }, 
+          0
+        );
+
+        // 2. Laser Scanline Shimmer Beam Sweep (0.05s)
         const shimmer = card.querySelector('.laser-scan-shimmer');
         if (shimmer) {
-          gsap.fromTo(shimmer, 
-            { xPercent: -100, opacity: 0 },
-            {
-              xPercent: 100,
-              opacity: 1,
-              duration: 0.85,
-              ease: 'power2.inOut',
-              scrollTrigger: {
-                trigger: card,
-                start: 'top 86%',
-                once: true
-              },
-              onComplete: () => {
-                gsap.to(shimmer, { opacity: 0, duration: 0.25 });
-              }
-            }
+          cardTl.fromTo(shimmer, 
+            { xPercent: -100, opacity: 0 }, 
+            { xPercent: 100, opacity: 1, duration: 0.75, ease: 'power2.inOut' }, 
+            0.05
+          );
+          cardTl.to(shimmer, { opacity: 0, duration: 0.2 }, 0.70);
+        }
+
+        // 3. Mission Header Badges & Category Metadata (0.08s)
+        const headerBadges = card.querySelectorAll('.border-b span, .border-b .rounded-md');
+        if (headerBadges.length > 0) {
+          cardTl.fromTo(headerBadges, 
+            { x: -12, opacity: 0 }, 
+            { x: 0, opacity: 1, duration: 0.32, stagger: 0.035, ease: 'power2.out' }, 
+            0.08
           );
         }
 
-        // Micro-stagger for nested tactical-subglass panels
+        // 4. Mission Heading h3 Reveal (0.12s)
+        const heading = card.querySelector('h3');
+        if (heading) {
+          cardTl.fromTo(heading, 
+            { y: 10, opacity: 0 }, 
+            { y: 0, opacity: 1, duration: 0.35, ease: 'power2.out' }, 
+            0.12
+          );
+        }
+
+        // 5. Visual Artifact Media Container Focus (0.16s)
+        const mediaBox = card.querySelector('.media-container, .overflow-hidden.rounded-2xl');
+        if (mediaBox) {
+          cardTl.fromTo(mediaBox, 
+            { scale: 0.97, opacity: 0.5 }, 
+            { scale: 1, opacity: 1, duration: 0.38, ease: 'power2.out' }, 
+            0.16
+          );
+        }
+
+        // 6. Narrative Challenge & STAR Paragraphs (0.18s)
+        const paragraphs = card.querySelectorAll('p:not(.text-slate-400), .text-xs.font-mono.leading-relaxed');
+        if (paragraphs.length > 0) {
+          cardTl.fromTo(paragraphs, 
+            { y: 8, opacity: 0 }, 
+            { y: 0, opacity: 1, duration: 0.32, stagger: 0.035, ease: 'power2.out' }, 
+            0.18
+          );
+        }
+
+        // 7. Tactical Subglass Micro-Cards Wave Cascade (0.24s)
         const subglasses = card.querySelectorAll('.tactical-subglass');
         if (subglasses.length > 0) {
-          gsap.from(subglasses, {
-            scrollTrigger: {
-              trigger: card,
-              start: 'top 84%',
-              once: true
-            },
-            y: 8,
-            opacity: 0.4,
-            duration: 0.35,
-            stagger: 0.04,
-            ease: 'power2.out'
-          });
+          cardTl.fromTo(subglasses, 
+            { y: 12, opacity: 0, scale: 0.98 }, 
+            { y: 0, opacity: 1, scale: 1, duration: 0.38, stagger: 0.045, ease: 'power2.out' }, 
+            0.24
+          );
         }
 
-        // Micro-stagger for tech badges inside cards
-        const badges = card.querySelectorAll('.flex-wrap > span');
-        if (badges.length > 0) {
-          gsap.from(badges, {
-            scrollTrigger: {
-              trigger: card,
-              start: 'top 85%',
-              once: true
-            },
-            scale: 0.94,
-            opacity: 0,
-            duration: 0.3,
-            stagger: 0.025,
-            ease: 'back.out(1.5)',
-            delay: 0.08
-          });
+        // 8. Technology Pills Micro-Pop Stagger (0.30s)
+        const techPills = card.querySelectorAll('.flex-wrap > span, .tech-pill');
+        if (techPills.length > 0) {
+          cardTl.fromTo(techPills, 
+            { scale: 0.92, opacity: 0 }, 
+            { scale: 1, opacity: 1, duration: 0.28, stagger: 0.02, ease: 'back.out(1.6)' }, 
+            0.30
+          );
         }
+
+        // Bi-Directional Flicker-Free ScrollTrigger Controller
+        ScrollTrigger.create({
+          trigger: card,
+          start: 'top 88%',
+          end: 'bottom top',
+          onEnter: () => cardTl.timeScale(1).play(),
+          onEnterBack: () => cardTl.timeScale(1.18).restart(),
+          onLeave: () => cardTl.pause(0),
+          onLeaveBack: () => cardTl.pause(0)
+        });
       });
 
-      // G. Experience Timeline Spine Line Scrubbing (Desktop Only)
+      // G. Section Header Orchestration with Ghost Number & Accent Line
+      gsap.utils.toArray('.section-header').forEach(header => {
+        const badge = header.querySelector('span.font-mono');
+        const h2 = header.querySelector('h2');
+        const p = header.querySelector('p');
+        const line = header.querySelector('.section-accent-line');
+        const ghostNum = header.querySelector('.section-ghost-num');
+
+        const headerTl = gsap.timeline({ paused: true, defaults: { ease: 'power2.out' } });
+
+        if (badge) {
+          headerTl.fromTo(badge, { x: -16, opacity: 0 }, { x: 0, opacity: 1, duration: 0.35 }, 0);
+        }
+        if (h2) {
+          headerTl.fromTo(h2, { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.38 }, 0.05);
+        }
+        if (p) {
+          headerTl.fromTo(p, { y: 8, opacity: 0 }, { y: 0, opacity: 1, duration: 0.32 }, 0.1);
+        }
+        if (line) {
+          headerTl.fromTo(line, { scaleX: 0 }, { scaleX: 1, duration: 0.75, ease: 'power3.out' }, 0.12);
+        }
+        if (ghostNum) {
+          headerTl.fromTo(ghostNum, { opacity: 0, x: 25 }, { opacity: 0.45, x: 0, duration: 0.5 }, 0.15);
+        }
+
+        ScrollTrigger.create({
+          trigger: header,
+          start: 'top 88%',
+          end: 'bottom top',
+          onEnter: () => headerTl.timeScale(1).play(),
+          onEnterBack: () => headerTl.timeScale(1.2).restart(),
+          onLeave: () => headerTl.pause(0),
+          onLeaveBack: () => headerTl.pause(0)
+        });
+      });
+
+      // H. Experience Timeline Spine Line Scrubbing (Desktop Only)
       const timelineSpine = document.getElementById('timelineProgressSpine');
       const timelineContainer = document.getElementById('experienceTimelineContainer');
       if (timelineSpine && timelineContainer) {
@@ -3413,7 +3527,7 @@
           }
         });
 
-        // Pulse & illuminate milestone nodes as user reaches each experience step
+        // Pulse & illuminate milestone nodes bi-directionally on scroll enter and return
         document.querySelectorAll('.timeline-node').forEach(node => {
           ScrollTrigger.create({
             trigger: node,
@@ -3423,12 +3537,18 @@
                 { scale: 1.35, borderColor: '#10b981' }, 
                 { scale: 1, borderColor: '#10b981', duration: 0.4, ease: 'back.out(2)' }
               );
+            },
+            onEnterBack: () => {
+              gsap.fromTo(node, 
+                { scale: 1.25, borderColor: '#f59e0b' }, 
+                { scale: 1, borderColor: '#10b981', duration: 0.35, ease: 'back.out(2)' }
+              );
             }
           });
         });
       }
 
-      // H. Architectural Ghost Section Numbers Scrub Parallax (Desktop Only)
+      // I. Architectural Ghost Section Numbers Scrub Parallax (Desktop Only)
       if (window.innerWidth >= 768) {
         gsap.utils.toArray('.section-ghost-num').forEach(num => {
           gsap.fromTo(num, 
@@ -3447,20 +3567,6 @@
           );
         });
       }
-
-      // I. Section Header Accent Lines Animated Draw-In
-      gsap.utils.toArray('.section-accent-line').forEach(line => {
-        gsap.to(line, {
-          scaleX: 1,
-          duration: 0.85,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: line,
-            start: 'top 88%',
-            once: true
-          }
-        });
-      });
 
       // J. Main Header Glassmorphism Scroll Elevation
       ScrollTrigger.create({
