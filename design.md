@@ -76,18 +76,42 @@ Portofolio mengadopsi standar ruang warna terukur untuk kenyamanan mata dan akse
 /* 10% AKSEN FUNGSIONAL PEMANTIK AKSI */
 --accent-phosphor: #10b981; /* Emerald-500 (Status Aktif, Integritas Data) */
 --accent-tactical: #f59e0b; /* Amber-500 (Warning, Work in Progress) */
---accent-pulse:    #06b6d4; /* Cyan-500 (Sinyal REPL, Telemetri) */
---accent-mana:     #a855f7; /* Purple-500 (Node Keahlian & TDD) */
+--accent-pulse:    #0ea5e9; /* Cyan-500 (Sinyal REPL, Telemetri, TDD) */
 ```
 
-### Kepatuhan Kontras:
-- **Teks Utama (`text-slate-900` / `text-white`):** Memenuhi rasio kontras WCAG AAA **≥ 14:1** dan APCA $L_c \ge 75$.
-- **Teks Sekunder (`text-slate-600` / `text-slate-400`):** Memenuhi rasio kontras WCAG AA **≥ 5.5:1** dan APCA $L_c \ge 60$.
-- **Border & Reticles:** Memenuhi WCAG SC 1.4.11 **≥ 3:1**.
+### Mekanisme Spatial Glassmorphism (`.tactical-glass`):
+Portofolio menerapkan mekanisme **Apple Spatial Materials & Specular Edge Chamfer**:
+- **Opacity Pelindung Kontras:** Semi-opak terukur (78% di Dark Mode `rgba(15, 23, 42, 0.78)` dan 88% di Daylight `rgba(255, 255, 255, 0.88)`) menjamin keterbacaan teks mutlak (APCA $L_c \ge 75$) tanpa efek kabur.
+- **Dynamic Vibrancy & Depth:** Menggunakan `backdrop-filter: blur(16px) saturate(160%)` yang membiaskan kanvas latar secara optis.
+- **1px Specular Edge Chamfer:** Menggunakan `inset 0 1px 0 0 rgba(255, 255, 255, 0.08)` untuk mensimulasikan refraksi tepi kaca tebal berkarakter mewah.
+- **Penerapan Elemen:** Bilah Navigasi Atas (`#mainHeader`), Kartu Vitals Hero (`#metricsStrip`), 4 Kartu Engineering Codex, Konsol CLI, dan Floating Thumb Dock.
 
 ---
 
-## 5. SISTEM TIPOGRAFI 2-FONT STANDAR INTERNASIONAL
+## 5. EMPAT STANDAR TEKNIS & PROTOKOL REKAYASA (GAMIFIED CODEX)
+
+Di dalam Act 02 (Trees & Codex), disajikan 4 protokol rekayasa berstandar industri dengan atribut gamifikasi dan inspeksi interaktif CLI:
+
+1. **MySQL 3NF (Third Normal Form) Normalization Shield:**
+   - *1NF:* Atribut bernilai tunggal, nol array/JSON liar di tabel inti.
+   - *2NF:* Ketergantungan fungsional penuh pada Primary Key.
+   - *3NF:* Eliminasi dependensi transitif ($X \to Y, Y \to Z$) ke tabel master independen ber-FK `ON DELETE RESTRICT`.
+   - *Dampak:* 0 anomali mutasi pada 12.000+ data santri & 2.100 berkas notaris.
+2. **High-Throughput Zero-Loss ETL Pipeline Engine:**
+   - *Extract:* Memory-safe chunk streaming (< 32MB RAM usage).
+   - *Transform:* Sanitasi CWE-1236 formula injection, pembersihan karakter mojibake.
+   - *Load:* Transaksional atomic batch insert dengan dual SHA-256 checksum reconciliation (12.117 dari 12.117 catatan 100% matched).
+3. **Automated Testing Suite PHPUnit (250+ Tests / 812 Assertions):**
+   - *AAA Pattern:* Struktur pengujian terisolasi (*Arrange - Act - Assert*).
+   - *Policy & Concurrency:* Pengujian proteksi BOLA, status escrow pajak NTPN, dan in-memory SQLite WAL (< 400ms runtime).
+4. **W3C WCAG 2.1 AA / 2.2 AAA Accessibility Sentinel:**
+   - *Perceivable:* Rasio kontras APCA $L_c \ge 75$ dan rasio WCAG 14.8:1.
+   - *Operable:* Keyboard focus ring tegas (`focus-visible:ring-2`), touch target $\ge 44\text{px}$.
+   - *Robust:* Deteksi otomatis `prefers-reduced-motion` untuk keselamatan vestibular.
+
+---
+
+## 6. SISTEM TIPOGRAFI 2-FONT STANDAR INTERNASIONAL
 
 1. **Display & Heading Font (`Plus Jakarta Sans` / `Geist Sans`):**
    - Digunakan untuk: Judul babak (`H1`–`H3`), kartu proyek, dan metrik dampak kuantitatif.
