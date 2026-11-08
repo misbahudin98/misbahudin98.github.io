@@ -166,6 +166,12 @@ Di dalam Act 02 (Trees & Codex), disajikan 4 protokol rekayasa berstandar indust
      - `onEnterBack`: `cardTl.timeScale(1.25).restart()` saat pengguna menggulir ke atas kembali ke kartu dengan akselerasi halus yang responsif.
      - `onLeave` & `onLeaveBack`: `cardTl.pause(0)` dijalankan hanya ketika kartu telah **100% berada di luar viewport**, menjamin animasi tereset tanpa pernah menghilang mendadak saat sedang dibaca pengunjung.
    - Diimplementasikan secara konsisten pada seluruh Kartu Proyek (`.spotlight-card`), Terminal Konsol (`.terminal-window`), Tajuk Babak (`.section-header`), Strip Telemetri Vitals (`#metricsStrip`), dan Simpul Linimasa (`.timeline-node`).
+7. **Animasi Gradasi Warna Interaktif Kursor (*Interactive Chromatic Gradient Hover Aura*):**
+   - **Spotlight Cards (`.spotlight-card` & `.tactical-glass`):** Saat kursor menyentuh permukaan kartu, memicu animasi rotasi spektrum gradasi dinamis `@keyframes chromaticAuraShift` (Emerald ➔ Cyan ➔ Indigo) serta sirkulasi garis batas chamfer `@keyframes chromaticBorderFlow` dan `@keyframes chromaticSubBorderFlow` yang hidup dan responsif.
+   - **Interaksi Aksi & Tag (`.magnetic-btn` & `.skill-pill`):** Efek gradasi warna berkilau (*chromatic sheen glow*) dan elevasi mikro berbayang saat disentuh kursor.
+8. **Suspense Delays Metrik Kuantitatif & Transisi Babak (*Section Switching Pacing*):**
+   - **Metrik Terukur (`#metricsStrip`):** Menerapkan jeda kognitif terukur (+0.42s delay suspensi) sebelum angka mulai berputar, disusul kaskade sekuensial (Data +0.42s, Users +0.68s, Tests +0.92s, Years +1.16s) dan *micro-celebration pop* (`scale: 1.15`, `back.out(2.5)`).
+   - **Pergantian Babak Section:** Sekuens jeda transisi (+0.25s s/d +0.76s) saat memasuki babak baru, didukung navigasi halus (*smooth programmatic scrolling*) dan aksen *chromatic pulse highlight* (`.section-switching-highlight`) yang menandai kedatangan di babak tujuan.
 
 ---
 

@@ -185,34 +185,98 @@
       }
     }
 
-    /* Human-Crafted Spotlight Card Effect (Transforms orchestrated cleanly by GSAP) */
+    /* Human-Crafted Spotlight Card Effect with Animated Chromatic Gradient Aura */
+    @keyframes chromaticAuraShift {
+      0% {
+        background: radial-gradient(circle, rgba(16, 185, 129, 0.22) 0%, rgba(6, 182, 212, 0.14) 38%, rgba(99, 102, 241, 0.08) 60%, transparent 75%);
+        filter: hue-rotate(0deg);
+      }
+      50% {
+        background: radial-gradient(circle, rgba(6, 182, 212, 0.24) 0%, rgba(99, 102, 241, 0.15) 38%, rgba(16, 185, 129, 0.12) 60%, transparent 75%);
+        filter: hue-rotate(40deg);
+      }
+      100% {
+        background: radial-gradient(circle, rgba(16, 185, 129, 0.22) 0%, rgba(6, 182, 212, 0.14) 38%, rgba(99, 102, 241, 0.08) 60%, transparent 75%);
+        filter: hue-rotate(0deg);
+      }
+    }
+
+    @keyframes chromaticBorderFlow {
+      0% {
+        border-color: rgba(16, 185, 129, 0.55);
+        box-shadow: 0 16px 44px -6px rgba(0, 0, 0, 0.55), 0 0 26px -2px rgba(16, 185, 129, 0.28), inset 0 1px 2px 0 rgba(255, 255, 255, 0.26);
+      }
+      33% {
+        border-color: rgba(6, 182, 212, 0.62);
+        box-shadow: 0 16px 44px -6px rgba(0, 0, 0, 0.55), 0 0 30px -2px rgba(6, 182, 212, 0.32), inset 0 1px 2px 0 rgba(255, 255, 255, 0.26);
+      }
+      66% {
+        border-color: rgba(99, 102, 241, 0.58);
+        box-shadow: 0 16px 44px -6px rgba(0, 0, 0, 0.55), 0 0 26px -2px rgba(99, 102, 241, 0.28), inset 0 1px 2px 0 rgba(255, 255, 255, 0.26);
+      }
+      100% {
+        border-color: rgba(16, 185, 129, 0.55);
+        box-shadow: 0 16px 44px -6px rgba(0, 0, 0, 0.55), 0 0 26px -2px rgba(16, 185, 129, 0.28), inset 0 1px 2px 0 rgba(255, 255, 255, 0.26);
+      }
+    }
+
+    @keyframes chromaticSubBorderFlow {
+      0% {
+        border-color: rgba(16, 185, 129, 0.5);
+        box-shadow: 0 6px 20px -2px rgba(0, 0, 0, 0.45), 0 0 16px -1px rgba(16, 185, 129, 0.22);
+      }
+      50% {
+        border-color: rgba(6, 182, 212, 0.55);
+        box-shadow: 0 6px 20px -2px rgba(0, 0, 0, 0.45), 0 0 18px -1px rgba(6, 182, 212, 0.25);
+      }
+      100% {
+        border-color: rgba(16, 185, 129, 0.5);
+        box-shadow: 0 6px 20px -2px rgba(0, 0, 0, 0.45), 0 0 16px -1px rgba(16, 185, 129, 0.22);
+      }
+    }
+
     .spotlight-card {
       position: relative;
       overflow: hidden;
-      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+      transition: border-color 0.28s ease, box-shadow 0.28s ease;
     }
     .spotlight-card::before {
       content: '';
       position: absolute;
       top: var(--mouse-y, -1000px);
       left: var(--mouse-x, -1000px);
-      width: 420px;
-      height: 420px;
-      background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, transparent 70%);
+      width: 440px;
+      height: 440px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.18) 0%, rgba(6, 182, 212, 0.12) 38%, rgba(99, 102, 241, 0.08) 60%, transparent 75%);
       transform: translate(-50%, -50%);
       pointer-events: none;
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.32s ease;
       z-index: 1;
     }
     .spotlight-card:hover::before {
       opacity: 1;
+      animation: chromaticAuraShift 4s ease-in-out infinite;
     }
 
-    /* Magnetic CTA Button physics (Transforms handled by GSAP) */
+    /* Magnetic CTA Button physics with Chromatic Sheen */
     .magnetic-btn {
       will-change: transform;
-      transition: box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+      transition: box-shadow 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+    }
+    .magnetic-btn:hover {
+      box-shadow: 0 10px 28px -4px rgba(16, 185, 129, 0.35), 0 0 18px -2px rgba(6, 182, 212, 0.25);
+    }
+
+    /* Skill Pill Chromatic Gradient Hover Interaction */
+    .skill-pill {
+      transition: transform 0.22s ease, border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+    .skill-pill:hover {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.18) 0%, rgba(6, 182, 212, 0.18) 50%, rgba(99, 102, 241, 0.14) 100%) !important;
+      border-color: rgba(52, 211, 153, 0.6) !important;
+      box-shadow: 0 0 14px -2px rgba(16, 185, 129, 0.38), 0 0 6px rgba(6, 182, 212, 0.22) !important;
+      transform: translateY(-2px) scale(1.05);
     }
 
     /* Subtle Architectural Glows */
@@ -365,12 +429,11 @@
       box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.06), inset 0 1px 2px 0 #ffffff, inset 0 -1px 1px 0 rgba(148, 163, 184, 0.2);
     }
     .tactical-glass:hover {
-      border-color: rgba(16, 185, 129, 0.5);
-      box-shadow: 0 16px 44px -6px rgba(0, 0, 0, 0.55), 0 0 28px -2px rgba(16, 185, 129, 0.2), inset 0 1px 2px 0 rgba(255, 255, 255, 0.26), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.4);
+      animation: chromaticBorderFlow 4s ease-in-out infinite;
     }
     html:not(.dark) .tactical-glass:hover {
-      border-color: rgba(16, 185, 129, 0.5);
-      box-shadow: 0 16px 36px -6px rgba(16, 185, 129, 0.16), inset 0 1px 2px 0 #ffffff;
+      border-color: rgba(16, 185, 129, 0.6);
+      box-shadow: 0 16px 36px -6px rgba(16, 185, 129, 0.2), 0 0 22px -2px rgba(6, 182, 212, 0.18), inset 0 1px 2px 0 #ffffff;
     }
 
     /* Sub-Surface Micro Glass for Embedded Cards */
@@ -390,16 +453,36 @@
       box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.05), inset 0 1px 2px 0 #ffffff;
     }
     .tactical-subglass:hover {
-      border-color: rgba(16, 185, 129, 0.45);
-      background: linear-gradient(135deg, rgba(30, 41, 59, 0.82) 0%, rgba(15, 23, 42, 0.88) 100%);
+      animation: chromaticSubBorderFlow 3.5s ease-in-out infinite;
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px -2px rgba(0, 0, 0, 0.45), 0 0 14px -1px rgba(16, 185, 129, 0.15), inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
     }
     html:not(.dark) .tactical-subglass:hover {
-      border-color: rgba(16, 185, 129, 0.45);
+      border-color: rgba(16, 185, 129, 0.5);
       background: linear-gradient(135deg, #ffffff 0%, rgba(248, 250, 252, 0.98) 100%);
       transform: translateY(-2px);
-      box-shadow: 0 6px 18px -2px rgba(16, 185, 129, 0.12), inset 0 1px 2px 0 #ffffff;
+      box-shadow: 0 6px 18px -2px rgba(16, 185, 129, 0.16), 0 0 14px rgba(6, 182, 212, 0.12), inset 0 1px 2px 0 #ffffff;
+    }
+
+    /* Section Switching Pulse Chromatic Highlight */
+    .section-switching-highlight {
+      animation: sectionPulseChromatic 1.25s ease-out forwards;
+    }
+    @keyframes sectionPulseChromatic {
+      0% {
+        outline: 2px solid rgba(16, 185, 129, 0.7);
+        outline-offset: 6px;
+        box-shadow: 0 0 35px 8px rgba(16, 185, 129, 0.35);
+      }
+      50% {
+        outline: 2px solid rgba(6, 182, 212, 0.7);
+        outline-offset: 12px;
+        box-shadow: 0 0 45px 12px rgba(6, 182, 212, 0.32);
+      }
+      100% {
+        outline: 2px solid transparent;
+        outline-offset: 16px;
+        box-shadow: 0 0 0 0 transparent;
+      }
     }
 
     /* Laser Decryption Scanning Shimmer on Cards */
@@ -3228,80 +3311,95 @@
         ease: 'sine.inOut'
       });
 
-      // C. Dynamic Numerical Counters via ScrollTrigger with Micro-Celebration Pop
-      const metricsTrigger = {
-        trigger: '#metricsStrip',
-        start: 'top 85%',
-        once: true
-      };
+      // C. Dynamic Numerical Counters with Calibrated Suspense Delays & Bi-Directional Re-Activation
+      const metricsStrip = document.getElementById('metricsStrip');
+      if (metricsStrip) {
+        const dataObj = { val: 0 };
+        const usersObj = { val: 0 };
+        const testsObj = { val: 0 };
+        const yearsObj = { val: 0 };
 
-      // 12.117+ Data Counter
-      const dataObj = { val: 0 };
-      gsap.to(dataObj, {
-        val: 12117,
-        duration: 1.6,
-        ease: 'power2.out',
-        scrollTrigger: metricsTrigger,
-        onUpdate: () => {
-          const el = document.getElementById('counter-data');
-          if (el) el.textContent = Math.floor(dataObj.val).toLocaleString('id-ID');
-        },
-        onComplete: () => {
-          const el = document.getElementById('counter-data');
-          if (el) gsap.fromTo(el, { scale: 1.08 }, { scale: 1, duration: 0.35, ease: 'back.out(2)' });
-        }
-      });
+        const elData = document.getElementById('counter-data');
+        const elUsers = document.getElementById('counter-users');
+        const elTests = document.getElementById('counter-tests');
+        const elYears = document.getElementById('counter-years');
 
-      // 10.000+ Users Counter
-      const usersObj = { val: 0 };
-      gsap.to(usersObj, {
-        val: 10000,
-        duration: 1.6,
-        ease: 'power2.out',
-        scrollTrigger: metricsTrigger,
-        onUpdate: () => {
-          const el = document.getElementById('counter-users');
-          if (el) el.textContent = Math.floor(usersObj.val).toLocaleString('id-ID');
-        },
-        onComplete: () => {
-          const el = document.getElementById('counter-users');
-          if (el) gsap.fromTo(el, { scale: 1.08 }, { scale: 1, duration: 0.35, ease: 'back.out(2)' });
-        }
-      });
+        const metricsTl = gsap.timeline({ paused: true, defaults: { ease: 'power2.out' } });
 
-      // 250+ Tests Counter
-      const testsObj = { val: 0 };
-      gsap.to(testsObj, {
-        val: 250,
-        duration: 1.4,
-        ease: 'power2.out',
-        scrollTrigger: metricsTrigger,
-        onUpdate: () => {
-          const el = document.getElementById('counter-tests');
-          if (el) el.textContent = Math.floor(testsObj.val).toString();
-        },
-        onComplete: () => {
-          const el = document.getElementById('counter-tests');
-          if (el) gsap.fromTo(el, { scale: 1.08 }, { scale: 1, duration: 0.35, ease: 'back.out(2)' });
-        }
-      });
+        // Calibrated Suspense Delays: cards settle first, then sequential countdown cascade
+        // 1. Metrik 1 (12.117+ Data): delay +0.42s
+        metricsTl.to(dataObj, {
+          val: 12117,
+          duration: 1.5,
+          onUpdate: () => {
+            if (elData) elData.textContent = Math.floor(dataObj.val).toLocaleString('id-ID');
+          },
+          onComplete: () => {
+            if (elData) gsap.fromTo(elData, { scale: 1.15, color: '#34d399' }, { scale: 1, color: '', duration: 0.42, ease: 'back.out(2.5)' });
+          }
+        }, 0.42);
 
-      // 3.5+ Years Counter
-      const yearsObj = { val: 0 };
-      gsap.to(yearsObj, {
-        val: 3.5,
-        duration: 1.4,
-        ease: 'power2.out',
-        scrollTrigger: metricsTrigger,
-        onUpdate: () => {
-          const el = document.getElementById('counter-years');
-          if (el) el.textContent = yearsObj.val.toFixed(1);
-        },
-        onComplete: () => {
-          const el = document.getElementById('counter-years');
-          if (el) gsap.fromTo(el, { scale: 1.08 }, { scale: 1, duration: 0.35, ease: 'back.out(2)' });
-        }
-      });
+        // 2. Metrik 2 (10.000+ Users): staggered delay +0.68s
+        metricsTl.to(usersObj, {
+          val: 10000,
+          duration: 1.5,
+          onUpdate: () => {
+            if (elUsers) elUsers.textContent = Math.floor(usersObj.val).toLocaleString('id-ID');
+          },
+          onComplete: () => {
+            if (elUsers) gsap.fromTo(elUsers, { scale: 1.15, color: '#34d399' }, { scale: 1, color: '', duration: 0.42, ease: 'back.out(2.5)' });
+          }
+        }, 0.68);
+
+        // 3. Metrik 3 (250+ Tests): staggered delay +0.92s
+        metricsTl.to(testsObj, {
+          val: 250,
+          duration: 1.35,
+          onUpdate: () => {
+            if (elTests) elTests.textContent = Math.floor(testsObj.val).toString();
+          },
+          onComplete: () => {
+            if (elTests) gsap.fromTo(elTests, { scale: 1.15, color: '#34d399' }, { scale: 1, color: '', duration: 0.42, ease: 'back.out(2.5)' });
+          }
+        }, 0.92);
+
+        // 4. Metrik 4 (3.5+ Years): staggered delay +1.16s
+        metricsTl.to(yearsObj, {
+          val: 3.5,
+          duration: 1.3,
+          onUpdate: () => {
+            if (elYears) elYears.textContent = yearsObj.val.toFixed(1);
+          },
+          onComplete: () => {
+            if (elYears) gsap.fromTo(elYears, { scale: 1.15, color: '#34d399' }, { scale: 1, color: '', duration: 0.42, ease: 'back.out(2.5)' });
+          }
+        }, 1.16);
+
+        // Bi-Directional ScrollTrigger Controller for Metrics Strip
+        ScrollTrigger.create({
+          trigger: metricsStrip,
+          start: 'top 85%',
+          end: 'bottom top',
+          onEnter: () => metricsTl.timeScale(1).play(),
+          onEnterBack: () => metricsTl.timeScale(1.25).restart(),
+          onLeave: () => {
+            metricsTl.pause(0);
+            dataObj.val = 0; usersObj.val = 0; testsObj.val = 0; yearsObj.val = 0;
+            if (elData) elData.textContent = '0';
+            if (elUsers) elUsers.textContent = '0';
+            if (elTests) elTests.textContent = '0';
+            if (elYears) elYears.textContent = '0.0';
+          },
+          onLeaveBack: () => {
+            metricsTl.pause(0);
+            dataObj.val = 0; usersObj.val = 0; testsObj.val = 0; yearsObj.val = 0;
+            if (elData) elData.textContent = '0';
+            if (elUsers) elUsers.textContent = '0';
+            if (elTests) elTests.textContent = '0';
+            if (elYears) elYears.textContent = '0.0';
+          }
+        });
+      }
 
       // D. Terminal Window Story Motion with Laser Sweep & Bi-Directional Re-Activation
       gsap.utils.toArray('.terminal-window').forEach(term => {
@@ -3491,7 +3589,7 @@
         });
       });
 
-      // G. Section Header Orchestration with Ghost Number & Accent Line
+      // G. Section Header Orchestration with Calibrated Section-Transition Delay & Accent Line
       gsap.utils.toArray('.section-header').forEach(header => {
         const badge = header.querySelector('span.font-mono');
         const h2 = header.querySelector('h2');
@@ -3499,22 +3597,23 @@
         const line = header.querySelector('.section-accent-line');
         const ghostNum = header.querySelector('.section-ghost-num');
 
+        // Calibrated Section Switching Delay (+0.25s) before chapter elements unfold
         const headerTl = gsap.timeline({ paused: true, defaults: { ease: 'power2.out' } });
 
+        if (ghostNum) {
+          headerTl.fromTo(ghostNum, { opacity: 0, x: 32 }, { opacity: 0.45, x: 0, duration: 0.6 }, 0.15);
+        }
         if (badge) {
-          headerTl.fromTo(badge, { x: -18, opacity: 0 }, { x: 0, opacity: 1, duration: 0.42 }, 0);
+          headerTl.fromTo(badge, { x: -18, opacity: 0 }, { x: 0, opacity: 1, duration: 0.44 }, 0.28);
         }
         if (h2) {
-          headerTl.fromTo(h2, { y: 14, opacity: 0 }, { y: 0, opacity: 1, duration: 0.46 }, 0.20);
+          headerTl.fromTo(h2, { y: 14, opacity: 0 }, { y: 0, opacity: 1, duration: 0.48 }, 0.46);
         }
         if (p) {
-          headerTl.fromTo(p, { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.42 }, 0.36);
+          headerTl.fromTo(p, { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.44 }, 0.62);
         }
         if (line) {
-          headerTl.fromTo(line, { scaleX: 0 }, { scaleX: 1, duration: 0.85, ease: 'power3.out' }, 0.52);
-        }
-        if (ghostNum) {
-          headerTl.fromTo(ghostNum, { opacity: 0, x: 30 }, { opacity: 0.45, x: 0, duration: 0.6 }, 0.64);
+          headerTl.fromTo(line, { scaleX: 0 }, { scaleX: 1, duration: 0.88, ease: 'power3.out' }, 0.76);
         }
 
         ScrollTrigger.create({
@@ -3525,6 +3624,28 @@
           onEnterBack: () => headerTl.timeScale(1.25).restart(),
           onLeave: () => headerTl.pause(0),
           onLeaveBack: () => headerTl.pause(0)
+        });
+      });
+
+      // Smooth Calibrated Section Switching Navigation with Momentary Highlight
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', e => {
+          const targetId = anchor.getAttribute('href');
+          if (!targetId || targetId === '#' || targetId === '#main') return;
+          const targetEl = document.querySelector(targetId);
+          if (targetEl) {
+            e.preventDefault();
+            const headerOffset = 76;
+            const targetPos = targetId === '#hero' ? 0 : targetEl.getBoundingClientRect().top + window.scrollY - headerOffset;
+            window.scrollTo({ top: targetPos, behavior: 'smooth' });
+
+            // Apply momentary chromatic pulse highlight when section arrives
+            setTimeout(() => {
+              const header = targetEl.querySelector('.section-header') || targetEl;
+              header.classList.add('section-switching-highlight');
+              setTimeout(() => header.classList.remove('section-switching-highlight'), 1300);
+            }, 450);
+          }
         });
       });
 
