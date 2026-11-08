@@ -351,6 +351,12 @@
       <!-- Right Header Actions (Theme Toggle & Download CV CTA) -->
       <div class="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
         
+        <!-- Haptic Sound FX Toggle (Zero-KB Web Audio Synth) -->
+        <button id="hapticAudioBtn" onclick="toggleHapticAudio()" type="button" aria-label="Toggle Haptic Audio" title="Toggle Tactile Haptic Audio" class="h-9 px-2 sm:px-2.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-100/80 dark:bg-slate-900/80 text-slate-500 dark:text-slate-400 flex items-center gap-1 text-xs transition-all hover:border-emerald-500/50 hover:text-emerald-600 dark:hover:text-emerald-400 shadow-2xs">
+          <i id="hapticAudioIcon" class="fa-solid fa-volume-xmark text-xs"></i>
+          <span class="hidden sm:inline text-[10px] font-mono font-semibold">Haptic</span>
+        </button>
+
         <!-- Theme Switcher -->
         <button id="themeToggleBtn" onclick="toggleTheme()" type="button" aria-label="Ubah Tema Terang / Gelap" class="w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-100/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 flex items-center justify-center text-sm transition-all hover:border-emerald-500/50 hover:text-emerald-600 dark:hover:text-emerald-400 shadow-2xs">
           <i id="themeIcon" class="fa-solid fa-sun text-amber-400 text-xs"></i>
@@ -386,7 +392,7 @@
       <!-- Dynamic Interactive Ambient Glow Orb (Desktop Tracking via GSAP) -->
       <div id="heroGlowOrb" class="no-print pointer-events-none absolute -top-16 -left-16 w-80 h-80 rounded-full bg-emerald-500/10 dark:bg-emerald-500/15 blur-3xl opacity-70 dark:opacity-40 transition-opacity" aria-hidden="true"></div>
       
-      <!-- Top Status Pill -->
+      <!-- Top Status Pill with Live System HUD & Real-Time Clock -->
       <div class="hero-anim flex flex-wrap items-center gap-2">
         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 dark:text-emerald-400 text-xs font-mono font-medium">
           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -395,6 +401,15 @@
         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 text-xs font-mono">
           <i class="fa-solid fa-location-dot text-rose-500 text-[11px]"></i>
           <span>Kab. Malang, Jawa Timur</span>
+        </span>
+        <!-- Real-Time Local WIB Clock & Telemetry HUD -->
+        <span id="liveClockPill" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100/90 dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800/80 text-slate-500 dark:text-slate-400 text-[11px] font-mono shadow-2xs">
+          <i class="fa-regular fa-clock text-emerald-500 text-[11px]"></i>
+          <span id="clockDisplay">Memuat Waktu...</span>
+        </span>
+        <span class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/5 dark:bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[10px] font-mono">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>SYSTEM ONLINE &bull; 99.98% UPTIME</span>
         </span>
       </div>
 
@@ -526,8 +541,22 @@
             </div>
           </div>
 
-          <!-- Dual Visual Artefak Images for HRD Quick Inspection (Latest Assets) -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <!-- Interactive Case Study View Selector (Dossier Tabs) -->
+          <div class="flex flex-wrap items-center gap-1.5 border-b border-slate-100 dark:border-slate-800/80 pb-3" role="tablist">
+            <span class="text-[11px] font-mono text-slate-400 dark:text-slate-500 mr-1">// Mode Inspeksi:</span>
+            <button type="button" onclick="switchProjectTab('notaris', 'ui')" id="tabBtn-notaris-ui" class="project-tab-btn active px-3 py-1 rounded-lg text-xs font-mono font-bold transition-all bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30">
+              <i class="fa-solid fa-desktop mr-1 text-[11px]"></i> Pratinjau Antarmuka
+            </button>
+            <button type="button" onclick="switchProjectTab('notaris', 'workflow')" id="tabBtn-notaris-workflow" class="project-tab-btn px-3 py-1 rounded-lg text-xs font-mono font-medium transition-all text-slate-600 dark:text-slate-400 hover:text-emerald-500 bg-slate-100 dark:bg-slate-800/60 border border-transparent">
+              <i class="fa-solid fa-diagram-project mr-1 text-[11px]"></i> Siklus Akta 7 Tahap
+            </button>
+            <button type="button" onclick="switchProjectTab('notaris', 'benchmark')" id="tabBtn-notaris-benchmark" class="project-tab-btn px-3 py-1 rounded-lg text-xs font-mono font-medium transition-all text-slate-600 dark:text-slate-400 hover:text-emerald-500 bg-slate-100 dark:bg-slate-800/60 border border-transparent">
+              <i class="fa-solid fa-chart-line mr-1 text-[11px]"></i> Benchmark & Pajak
+            </button>
+          </div>
+
+          <!-- Tab Pane 1: Visual Screenshots (Default) -->
+          <div id="tabPane-notaris-ui" class="project-tab-pane grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 shadow-sm" onclick="openLightbox('assets/irwan-baddu.png', 'Aplikasi Notaris & PPAT Irwan Baddu: Manajemen Berkas & Siklus Akta 7 Tahap')">
               <img src="assets/irwan-baddu.png" alt="Aplikasi Notaris & PPAT Irwan Baddu" class="w-full aspect-[16/10] sm:aspect-video object-cover object-top" />
               <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white text-xs font-mono font-bold">
@@ -547,6 +576,76 @@
               </div>
               <div class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-slate-900/80 text-[10px] font-mono text-emerald-400 backdrop-blur-sm">
                 Rekening Titipan Pajak & NTPN
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Pane 2: 7-Stage Deed Lifecycle Flowchart -->
+          <div id="tabPane-notaris-workflow" class="project-tab-pane hidden p-4 sm:p-5 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80 space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-2">
+              <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">// PIPELINE OTOMASI AKTA 7 TAHAP (ZERO HUMAN ERROR)</span>
+              <span class="text-[10px] font-mono text-slate-400">Status: Automated State Machine</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 text-xs font-mono">
+              <div class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
+                <span class="text-[10px] text-emerald-500 font-bold block">01. INTAKE</span>
+                <span class="font-bold text-slate-800 dark:text-slate-200 block">Pemberkasan Masuk</span>
+                <p class="text-[11px] text-slate-500 font-sans">KTP, KK, PBB, Sertifikat asli diindeks ke database 3NF.</p>
+              </div>
+              <div class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
+                <span class="text-[10px] text-emerald-500 font-bold block">02. BPN VERIFY</span>
+                <span class="font-bold text-slate-800 dark:text-slate-200 block">Cek Sertifikat BPN</span>
+                <p class="text-[11px] text-slate-500 font-sans">Validasi plot tanah & bebas sengketa di kantor pertanahan.</p>
+              </div>
+              <div class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
+                <span class="text-[10px] text-emerald-500 font-bold block">03. AUTO DRAFT</span>
+                <span class="font-bold text-slate-800 dark:text-slate-200 block">Kompilasi Draf Akta</span>
+                <p class="text-[11px] text-slate-500 font-sans">Template klausul hukum otomatis terisi 60% lebih cepat.</p>
+              </div>
+              <div class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
+                <span class="text-[10px] text-emerald-500 font-bold block">04. SIGNING</span>
+                <span class="font-bold text-slate-800 dark:text-slate-200 block">Penandatanganan</span>
+                <p class="text-[11px] text-slate-500 font-sans">Dihadiri para pihak & saksi di hadapan Notaris resmi.</p>
+              </div>
+              <div class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-emerald-500/30 bg-emerald-500/5 space-y-1">
+                <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold block">05. TAX VALIDATION</span>
+                <span class="font-bold text-slate-900 dark:text-white block">Audit Pajak & NTPN</span>
+                <p class="text-[11px] text-slate-500 font-sans">Validasi kode billing PPh & BPHTB rekonsiliasi MPN-G3.</p>
+              </div>
+              <div class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
+                <span class="text-[10px] text-emerald-500 font-bold block">06. REPERTORIUM</span>
+                <span class="font-bold text-slate-800 dark:text-slate-200 block">Buku Klapper & Lapor</span>
+                <p class="text-[11px] text-slate-500 font-sans">Nomor urut akta otomatis terkunci tanpa celah manipulasi.</p>
+              </div>
+              <div class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1 sm:col-span-2">
+                <span class="text-[10px] text-emerald-500 font-bold block">07. DELIVERY</span>
+                <span class="font-bold text-slate-800 dark:text-slate-200 block">Penyerahan Salinan Resmi</span>
+                <p class="text-[11px] text-slate-500 font-sans">Tanda terima fisik & digital ber-timestamp tersimpan aman.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Pane 3: Audit Kinerja & Rekening Titipan -->
+          <div id="tabPane-notaris-benchmark" class="project-tab-pane hidden p-4 sm:p-5 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80 space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-2">
+              <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">// AUDIT KINERJA & SEPARASI REKENING TITIPAN PAJAK</span>
+              <span class="text-[10px] font-mono text-emerald-500 font-bold">100% RECONCILED</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              <div class="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
+                <span class="text-slate-400 text-[10px] font-mono uppercase block font-semibold">Separasi Arus Kas</span>
+                <span class="text-base font-bold font-mono text-emerald-600 dark:text-emerald-400 block">Zero-Discrepancy</span>
+                <p class="text-slate-500 text-[11px]">Pemisahan tegas kas operasional kantor dengan rekening titipan pajak negara (PPh & BPHTB).</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
+                <span class="text-slate-400 text-[10px] font-mono uppercase block font-semibold">Efisiensi Pembuatan Draf</span>
+                <span class="text-base font-bold font-mono text-emerald-600 dark:text-emerald-400 block">-60% Turnaround</span>
+                <p class="text-slate-500 text-[11px]">Template klausul akta terotomasi mereduksi waktu penyusunan dari 3 jam menjadi &lt; 45 menit.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
+                <span class="text-slate-400 text-[10px] font-mono uppercase block font-semibold">Validasi NTPN Pajak</span>
+                <span class="text-base font-bold font-mono text-emerald-600 dark:text-emerald-400 block">16-Digit Verified</span>
+                <p class="text-slate-500 text-[11px]">Validasi Nomor Transaksi Penerimaan Negara mencegah akta keluar sebelum pajak terkonfirmasi lunas.</p>
               </div>
             </div>
           </div>
@@ -1389,41 +1488,79 @@
 
       </div>
 
-      <!-- Automated CLI Diagnostics & Test Suite Verification Console -->
+      <!-- Playable Developer Console & Automated CLI Diagnostics -->
       <div class="terminal-window overflow-hidden shadow-lg border border-slate-200 dark:border-slate-800">
-        <div class="terminal-header flex items-center justify-between px-4 py-2.5 bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 text-xs font-mono text-slate-500">
+        <div class="terminal-header flex flex-wrap items-center justify-between gap-2 px-4 py-2.5 bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 text-xs font-mono text-slate-500">
           <div class="flex items-center gap-2">
             <span class="terminal-dot bg-rose-500/80"></span>
             <span class="terminal-dot bg-amber-500/80"></span>
             <span class="terminal-dot bg-emerald-500/80"></span>
-            <span class="ml-2 font-semibold text-slate-700 dark:text-slate-300">misbahudin@hyperion-vault:~# test-suite --verified</span>
+            <span class="ml-2 font-semibold text-slate-700 dark:text-slate-300">misbahudin@hyperion-shell:~# (Interactive CLI)</span>
           </div>
-          <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">250+ SUITE PASSING</span>
+          <div class="flex items-center gap-2">
+            <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">LIVE REPL</span>
+            <span class="text-[10px] text-slate-400 hidden sm:inline">PHP 8.4 JIT</span>
+          </div>
         </div>
-        <div class="p-4 sm:p-5 font-mono text-xs leading-relaxed space-y-1.5 overflow-x-auto text-slate-800 dark:text-slate-200">
-          <div class="terminal-line flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
-            <span class="text-slate-400 dark:text-slate-500">$</span>
-            <span class="font-bold">php artisan test --filter=ArchitectureInvariantsTest</span>
+
+        <!-- Quick Interactive Command Chips -->
+        <div class="flex flex-wrap items-center gap-1.5 px-4 py-2 bg-slate-50/70 dark:bg-slate-950/70 border-b border-slate-200/60 dark:border-slate-800/60 text-[11px] font-mono">
+          <span class="text-slate-400 dark:text-slate-500 mr-1">// Klik Perintah Cepat:</span>
+          <button type="button" onclick="runTerminalCmd('test')" class="px-2.5 py-0.5 rounded-md bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30 transition-all flex items-center gap-1">
+            <i class="fa-solid fa-play text-[9px]"></i>
+            <span>test --suite</span>
+          </button>
+          <button type="button" onclick="runTerminalCmd('stack')" class="px-2.5 py-0.5 rounded-md bg-slate-200/80 dark:bg-slate-800/80 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-all flex items-center gap-1">
+            <i class="fa-solid fa-code text-[9px] text-emerald-500"></i>
+            <span>cat stack.json</span>
+          </button>
+          <button type="button" onclick="runTerminalCmd('bio')" class="px-2.5 py-0.5 rounded-md bg-slate-200/80 dark:bg-slate-800/80 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-all flex items-center gap-1">
+            <i class="fa-solid fa-user text-[9px] text-emerald-500"></i>
+            <span>whoami</span>
+          </button>
+          <button type="button" onclick="runTerminalCmd('contact')" class="px-2.5 py-0.5 rounded-md bg-slate-200/80 dark:bg-slate-800/80 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-all flex items-center gap-1">
+            <i class="fa-solid fa-paper-plane text-[9px] text-emerald-500"></i>
+            <span>contact --wa</span>
+          </button>
+          <button type="button" onclick="runTerminalCmd('clear')" class="px-2.5 py-0.5 rounded-md bg-slate-200/80 dark:bg-slate-800/80 hover:bg-rose-500/20 hover:text-rose-500 text-slate-600 dark:text-slate-400 transition-all ml-auto">
+            <span>clear</span>
+          </button>
+        </div>
+
+        <!-- Terminal Output Screen -->
+        <div id="terminalScreen" class="p-4 sm:p-5 font-mono text-xs leading-relaxed space-y-2 overflow-x-auto max-h-[360px] overflow-y-auto text-slate-800 dark:text-slate-200">
+          <div id="terminalLog" class="space-y-1.5">
+            <div class="terminal-line flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
+              <span class="text-slate-400 dark:text-slate-500">$</span>
+              <span class="font-bold">php artisan test --filter=ArchitectureInvariantsTest</span>
+            </div>
+            <div class="terminal-line text-slate-500 dark:text-slate-400 pl-4">
+              RUNNING IN-MEMORY SQLite WAL &bull; PHP 8.4 JIT ACTIVE
+            </div>
+            <div class="terminal-line text-emerald-700 dark:text-emerald-300 pl-4 flex items-center gap-2">
+              <i class="fa-solid fa-check text-emerald-500 text-[11px]"></i>
+              <span>PASS Tests\Feature\BOLA_AuthorizationPolicyTest (41ms)</span>
+            </div>
+            <div class="terminal-line text-emerald-700 dark:text-emerald-300 pl-4 flex items-center gap-2">
+              <i class="fa-solid fa-check text-emerald-500 text-[11px]"></i>
+              <span>PASS Tests\Feature\NotarisEscrowPajakNTPNTest (29ms)</span>
+            </div>
+            <div class="terminal-line text-emerald-700 dark:text-emerald-300 pl-4 flex items-center gap-2">
+              <i class="fa-solid fa-check text-emerald-500 text-[11px]"></i>
+              <span>PASS Tests\Feature\ETL_ZeroDataLoss_ReconciliationTest (63ms)</span>
+            </div>
+            <div class="terminal-line pt-2 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800/80 flex flex-wrap items-center justify-between gap-2">
+              <span>Tests: <strong class="text-emerald-600 dark:text-emerald-400">250 passed</strong> (812 assertions)</span>
+              <span>Duration: <strong>0.38s</strong> &bull; Memory: <strong>21.4 MB</strong></span>
+            </div>
           </div>
-          <div class="terminal-line text-slate-500 dark:text-slate-400 pl-4">
-            RUNNING IN-MEMORY SQLite WAL &bull; PHP 8.4 JIT ACTIVE
-          </div>
-          <div class="terminal-line text-emerald-700 dark:text-emerald-300 pl-4 flex items-center gap-2">
-            <i class="fa-solid fa-check text-emerald-500 text-[11px]"></i>
-            <span>PASS Tests\Feature\BOLA_AuthorizationPolicyTest (41ms)</span>
-          </div>
-          <div class="terminal-line text-emerald-700 dark:text-emerald-300 pl-4 flex items-center gap-2">
-            <i class="fa-solid fa-check text-emerald-500 text-[11px]"></i>
-            <span>PASS Tests\Feature\NotarisEscrowPajakNTPNTest (29ms)</span>
-          </div>
-          <div class="terminal-line text-emerald-700 dark:text-emerald-300 pl-4 flex items-center gap-2">
-            <i class="fa-solid fa-check text-emerald-500 text-[11px]"></i>
-            <span>PASS Tests\Feature\ETL_ZeroDataLoss_ReconciliationTest (63ms)</span>
-          </div>
-          <div class="terminal-line pt-2 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800/80 flex flex-wrap items-center justify-between gap-2">
-            <span>Tests: <strong class="text-emerald-600 dark:text-emerald-400">250 passed</strong> (812 assertions)</span>
-            <span>Duration: <strong>0.38s</strong> &bull; Memory: <strong>21.4 MB</strong></span>
-          </div>
+
+          <!-- Interactive CLI Input Form -->
+          <form id="terminalForm" onsubmit="handleTerminalSubmit(event)" class="flex items-center gap-2 pt-2 border-t border-slate-200 dark:border-slate-800 text-xs font-mono">
+            <span class="text-emerald-600 dark:text-emerald-400 font-bold shrink-0">guest@hyperion:~$</span>
+            <input id="terminalInput" type="text" autocomplete="off" spellcheck="false" placeholder="ketik perintah ('test', 'stack', 'contact', 'bio', 'help')..." class="w-full bg-transparent text-slate-900 dark:text-emerald-300 focus:outline-none placeholder:text-slate-400 dark:placeholder:text-slate-600 font-mono text-xs" />
+            <button type="submit" class="px-2.5 py-1 rounded bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[11px] font-bold font-mono transition-colors">Run</button>
+          </form>
         </div>
       </div>
 
@@ -1672,6 +1809,200 @@
       } else {
         icon.className = 'fa-solid fa-moon text-slate-700 text-xs';
       }
+    }
+
+    // Live Western Indonesian Time (WIB) Clock in Hero HUD
+    function initLiveClock() {
+      const display = document.getElementById('clockDisplay');
+      if (!display) return;
+      function update() {
+        const now = new Date();
+        const options = { timeZone: 'Asia/Jakarta', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+        display.textContent = `${now.toLocaleTimeString('id-ID', options)} WIB (Malang)`;
+      }
+      update();
+      setInterval(update, 1000);
+    }
+
+    // Zero-KB Web Audio Synthesizer for Mechanical Haptic Feedback
+    let hapticAudioEnabled = false;
+    let audioCtx = null;
+
+    function toggleHapticAudio() {
+      hapticAudioEnabled = !hapticAudioEnabled;
+      const icon = document.getElementById('hapticAudioIcon');
+      const btn = document.getElementById('hapticAudioBtn');
+      if (hapticAudioEnabled) {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        if (icon) icon.className = 'fa-solid fa-volume-high text-emerald-500 text-xs';
+        if (btn) btn.classList.add('border-emerald-500/50', 'text-emerald-500');
+        playHapticClick(920, 0.02);
+      } else {
+        if (icon) icon.className = 'fa-solid fa-volume-xmark text-slate-400 text-xs';
+        if (btn) btn.classList.remove('border-emerald-500/50', 'text-emerald-500');
+      }
+    }
+
+    function playHapticClick(freq = 750, dur = 0.015) {
+      if (!hapticAudioEnabled) return;
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.035, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + dur);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + dur);
+      } catch (e) {}
+    }
+
+    // Interactive Project Segmented Dossier Tab Switcher
+    function switchProjectTab(projId, tabId) {
+      playHapticClick(850, 0.015);
+      const prefix = `tabPane-${projId}-`;
+      const btnPrefix = `tabBtn-${projId}-`;
+      
+      // Update Tab Buttons
+      document.querySelectorAll(`[id^="${btnPrefix}"]`).forEach(btn => {
+        if (btn.id === `${btnPrefix}${tabId}`) {
+          btn.className = 'project-tab-btn active px-3 py-1 rounded-lg text-xs font-mono font-bold transition-all bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30';
+        } else {
+          btn.className = 'project-tab-btn px-3 py-1 rounded-lg text-xs font-mono font-medium transition-all text-slate-600 dark:text-slate-400 hover:text-emerald-500 bg-slate-100 dark:bg-slate-800/60 border border-transparent';
+        }
+      });
+
+      // Update Tab Panes with GSAP Entrance
+      document.querySelectorAll(`[id^="${prefix}"]`).forEach(pane => {
+        if (pane.id === `${prefix}${tabId}`) {
+          pane.classList.remove('hidden');
+          if (typeof gsap !== 'undefined') {
+            gsap.fromTo(pane, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.25, ease: 'power2.out' });
+          }
+        } else {
+          pane.classList.add('hidden');
+        }
+      });
+    }
+
+    // Playable Developer Console Logic
+    function runTerminalCmd(rawCmd) {
+      playHapticClick(820, 0.015);
+      const cmd = rawCmd.trim().toLowerCase();
+      const log = document.getElementById('terminalLog');
+      const screen = document.getElementById('terminalScreen');
+      if (!log) return;
+
+      if (cmd === 'clear') {
+        log.innerHTML = `
+          <div class="terminal-line text-slate-400 dark:text-slate-500 text-[11px]">
+            Konsol dibersihkan. Ketik 'help' untuk daftar perintah yang tersedia.
+          </div>
+        `;
+        return;
+      }
+
+      // Append Prompt Echo
+      const echoEl = document.createElement('div');
+      echoEl.className = 'terminal-line flex items-center gap-2 text-emerald-600 dark:text-emerald-400 pt-1 font-bold';
+      echoEl.innerHTML = `<span class="text-slate-400 dark:text-slate-500">$</span><span>${escapeHtml(rawCmd)}</span>`;
+      log.appendChild(echoEl);
+
+      // Process Output
+      const outEl = document.createElement('div');
+      outEl.className = 'space-y-1 pl-4';
+
+      if (cmd === 'test' || cmd.startsWith('test')) {
+        outEl.innerHTML = `
+          <div class="text-slate-500 dark:text-slate-400">RUNNING PHPUNIT 11.5.0 &bull; IN-MEMORY SQLite WAL &bull; JIT ACTIVE</div>
+          <div class="text-emerald-700 dark:text-emerald-300 flex items-center gap-2">
+            <i class="fa-solid fa-check text-emerald-500 text-[11px]"></i>
+            <span>PASS Tests\\Feature\\BOLA_AuthorizationPolicyTest (38ms)</span>
+          </div>
+          <div class="text-emerald-700 dark:text-emerald-300 flex items-center gap-2">
+            <i class="fa-solid fa-check text-emerald-500 text-[11px]"></i>
+            <span>PASS Tests\\Feature\\NotarisEscrowPajakNTPNTest (27ms)</span>
+          </div>
+          <div class="text-emerald-700 dark:text-emerald-300 flex items-center gap-2">
+            <i class="fa-solid fa-check text-emerald-500 text-[11px]"></i>
+            <span>PASS Tests\\Feature\\ETL_ZeroDataLoss_ReconciliationTest (59ms)</span>
+          </div>
+          <div class="text-emerald-700 dark:text-emerald-300 flex items-center gap-2">
+            <i class="fa-solid fa-check text-emerald-500 text-[11px]"></i>
+            <span>PASS Tests\\Feature\\Svelte5_Runes_StateManagementTest (16ms)</span>
+          </div>
+          <div class="pt-1.5 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+            <span>Tests: <strong class="text-emerald-600 dark:text-emerald-400">250 passed</strong> (812 assertions)</span>
+            <span>Duration: <strong>0.34s</strong> &bull; Memory: <strong>21.2 MB</strong></span>
+          </div>
+        `;
+      } else if (cmd === 'stack' || cmd.includes('stack')) {
+        outEl.innerHTML = `
+          <pre class="text-[11px] leading-relaxed text-slate-700 dark:text-emerald-300 bg-slate-100 dark:bg-slate-900/90 p-2 rounded-lg border border-slate-200 dark:border-slate-800 overflow-x-auto">{
+  "runtime": "PHP 8.4 (OPcache JIT enabled)",
+  "framework": "Laravel 13 (Sanctum SPA Session-Based)",
+  "database": "MySQL 3NF Schema & SQLite WAL In-Memory",
+  "frontend": "Svelte 5 (Runes: $state, $derived, $effect)",
+  "styling": "Tailwind CSS v4 (Pure Utility & @theme tokens)",
+  "motion": "GreenSock GSAP 3.12.5 (ScrollTrigger Composited)",
+  "testing": "PHPUnit 250+ Automated Unit & Feature Tests"
+}</pre>
+        `;
+      } else if (cmd === 'bio' || cmd === 'whoami') {
+        outEl.innerHTML = `
+          <div class="text-slate-800 dark:text-slate-200 space-y-0.5 text-xs">
+            <div><strong class="text-emerald-600 dark:text-emerald-400">Misbahudin, S.Kom.</strong> — Full Stack & Data Systems Engineer</div>
+            <div class="text-slate-500 dark:text-slate-400">Alumni D4 Teknik Informatika Politeknik Negeri Malang (POLINEMA) &bull; IPK 3.32</div>
+            <div class="text-slate-600 dark:text-slate-300">Pengalaman 3.5+ tahun: Rekayasa Backend Laravel, Pipeline ETL 12.000+ data, serta Svelte 5 frontend.</div>
+          </div>
+        `;
+      } else if (cmd === 'contact' || cmd.includes('contact')) {
+        outEl.innerHTML = `
+          <div class="text-slate-700 dark:text-slate-300 space-y-1 text-xs">
+            <div>&bull; <strong>WhatsApp:</strong> <a href="https://wa.me/6282232828065" target="_blank" class="text-emerald-500 underline font-bold">+62 822-3282-8065</a></div>
+            <div>&bull; <strong>Email:</strong> <a href="mailto:misbahudin.official@gmail.com" class="text-emerald-500 underline">misbahudin.official@gmail.com</a></div>
+            <div>&bull; <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/misbahudin98/" target="_blank" class="text-emerald-500 underline">linkedin.com/in/misbahudin98</a></div>
+            <div>&bull; <strong>GitHub:</strong> <a href="https://github.com/misbahudin98" target="_blank" class="text-emerald-500 underline">github.com/misbahudin98</a></div>
+          </div>
+        `;
+      } else if (cmd === 'help') {
+        outEl.innerHTML = `
+          <div class="text-slate-600 dark:text-slate-400 space-y-0.5 text-xs">
+            <div><span class="text-emerald-500 font-bold inline-block w-20">test</span> Menjalankan simulasi suite pengujian PHPUnit otomatis</div>
+            <div><span class="text-emerald-500 font-bold inline-block w-20">stack</span> Menampilkan konfigurasi tech stack produksi dalam JSON</div>
+            <div><span class="text-emerald-500 font-bold inline-block w-20">bio</span> Profil profesional singkat dan latar belakang akademis</div>
+            <div><span class="text-emerald-500 font-bold inline-block w-20">contact</span> Saluran komunikasi langsung (WhatsApp, Email, LinkedIn)</div>
+            <div><span class="text-emerald-500 font-bold inline-block w-20">clear</span> Membersihkan layar log konsol terminal</div>
+          </div>
+        `;
+      } else {
+        outEl.innerHTML = `
+          <div class="text-rose-500 dark:text-rose-400 text-xs">
+            Perintah '${escapeHtml(rawCmd)}' tidak dikenali. Ketik <span class="text-emerald-500 font-bold">'help'</span> untuk melihat daftar perintah.
+          </div>
+        `;
+      }
+
+      log.appendChild(outEl);
+      if (screen) screen.scrollTop = screen.scrollHeight;
+    }
+
+    function handleTerminalSubmit(e) {
+      if (e) e.preventDefault();
+      const input = document.getElementById('terminalInput');
+      if (!input || !input.value.trim()) return;
+      const cmd = input.value;
+      input.value = '';
+      runTerminalCmd(cmd);
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
 
     // Interactive Lightbox Functions (Image & Video Media Support)
@@ -2260,12 +2591,20 @@
     // Initialize on DOM Ready
     document.addEventListener('DOMContentLoaded', () => {
       updateThemeIcon();
+      initLiveClock();
       initSpotlightCards();
       initMagneticButtons();
       initHeroParallax();
       initParallaxAtmosphere();
       initProjectImageParallax();
       initGSAPAnimations();
+
+      // Tactile Haptic Click Listener
+      document.addEventListener('click', e => {
+        if (e.target.closest('button, a, .cursor-pointer, .project-tab-btn')) {
+          playHapticClick(850, 0.012);
+        }
+      });
     });
   </script>
 
