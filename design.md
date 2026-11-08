@@ -79,12 +79,22 @@ Portofolio mengadopsi standar ruang warna terukur untuk kenyamanan mata dan akse
 --accent-pulse:    #0ea5e9; /* Cyan-500 (Sinyal REPL, Telemetri, TDD) */
 ```
 
-### Mekanisme Spatial Glassmorphism (`.tactical-glass`):
+### Mekanisme Spatial Glassmorphism (`.tactical-glass` & `.tactical-subglass`):
 Portofolio menerapkan mekanisme **Apple Spatial Materials & Specular Edge Chamfer**:
-- **Opacity Pelindung Kontras:** Semi-opak terukur (78% di Dark Mode `rgba(15, 23, 42, 0.78)` dan 88% di Daylight `rgba(255, 255, 255, 0.88)`) menjamin keterbacaan teks mutlak (APCA $L_c \ge 75$) tanpa efek kabur.
-- **Dynamic Vibrancy & Depth:** Menggunakan `backdrop-filter: blur(16px) saturate(160%)` yang membiaskan kanvas latar secara optis.
-- **1px Specular Edge Chamfer:** Menggunakan `inset 0 1px 0 0 rgba(255, 255, 255, 0.08)` untuk mensimulasikan refraksi tepi kaca tebal berkarakter mewah.
-- **Penerapan Elemen:** Bilah Navigasi Atas (`#mainHeader`), Kartu Vitals Hero (`#metricsStrip`), 4 Kartu Engineering Codex, Konsol CLI, dan Floating Thumb Dock.
+- **Opacity Pelindung Kontras:** Semi-opak terukur (74% di Dark Mode `rgba(15, 23, 42, 0.74)` dan 84% di Daylight `rgba(255, 255, 255, 0.84)`) menjamin keterbacaan teks mutlak (APCA $L_c \ge 75$) tanpa efek kabur.
+- **Dynamic Vibrancy & Depth:** Menggunakan `backdrop-filter: blur(20px) saturate(180%)` yang membiaskan kanvas latar secara optis.
+- **1px Specular Edge Chamfer:** Menggunakan `inset 0 1px 0 0 rgba(255, 255, 255, 0.12)` untuk mensimulasikan refraksi tepi kaca tebal berkarakter mewah.
+- **Elevasi Taktil Hover:** Transisi halus pada hover (`border-color: rgba(16, 185, 129, 0.4)`, `box-shadow: 0 8px 32px -4px rgba(16, 185, 129, 0.12)`).
+- **Penerapan Penuh ke Seluruh Entitas Utama:** Bilah Navigasi Atas (`#mainHeader`), Kartu Avatar Hero (`#heroAvatarInner`), Kartu Vitals Hero (`#metricsStrip`), seluruh Kartu Proyek Skala Produksi (Act 01), Kartu Edukasi & Pilar Keahlian (Act 02), 4 Kartu Engineering Codex (Act 02), seluruh Kartu Riwayat Karir (Act 03), Kartu Riset Ilmiah (Act 04), Kartu Kolaborasi Kontak (Act 05), serta Mobile Thumb Dock.
+
+### Kanvas Atmosfer Gradasi Warna Latar Multi-Zona (`#bgAtmosphereCanvas`):
+Untuk memberikan kedalaman optis refraksi kaca (*refractive depth*) tanpa klise AI slop, situs dilengkapi kanvas gradasi atmosfer tetap yang tersinkronisasi dengan babak cerita:
+1. **Act 00 (Spawn):** Aura primer *Emerald Phosphor Core Beacon* (`rgba(16, 185, 129, 0.12)`).
+2. **Act 01 (Raids):** Sapuan taktis *Engineering Cyan Wash* (`rgba(14, 165, 233, 0.10)`).
+3. **Act 02 (Trees):** Denyut matriks ganda *Emerald & Cyan*.
+4. **Act 03 (Logs):** Pendar hangat *Warm Amber Chronicle Glow* (`rgba(245, 158, 11, 0.08)`).
+5. **Act 04 & 05 (Codex & Co-Op):** Sinyal ekstraksi *Emerald Signal Beacon* (`rgba(16, 185, 129, 0.11)`).
+- Seluruh suar pencahayaan atmosferik diorkestrasi secara pasif oleh **GSAP ScrollTrigger** menggunakan properti GPU-only (`scale` & `opacity`), menjamin performa tetap stabil di **60 FPS** dan mematuhi aturan vestibular `prefers-reduced-motion`.
 
 ---
 

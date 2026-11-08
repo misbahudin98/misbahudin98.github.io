@@ -153,6 +153,16 @@
       .no-print {
         display: none !important;
       }
+      #bgAtmosphereCanvas {
+        display: none !important;
+      }
+      .tactical-glass, .tactical-subglass {
+        background: #ffffff !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        box-shadow: none !important;
+        border: 1px solid #cbd5e1 !important;
+      }
       .print-card {
         break-inside: avoid !important;
         page-break-inside: avoid !important;
@@ -262,22 +272,36 @@
     }
 
     /* Subtle Architectural Blueprint Dot-Grid & Atmospheric Vignette */
+    /* Subtle Architectural Blueprint Dot-Grid & Atmospheric Vignette */
     body {
       background-color: #07090e;
-      background-image: 
-        radial-gradient(ellipse 90% 60% at 50% -10%, rgba(16, 185, 129, 0.12), transparent 70%),
-        radial-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px);
-      background-size: 100% 100%, 28px 28px;
       background-attachment: fixed;
     }
     html:not(.dark) body {
       background-color: #f8fafc;
-      background-image: 
-        radial-gradient(ellipse 90% 60% at 50% -10%, rgba(16, 185, 129, 0.08), transparent 70%),
-        radial-gradient(rgba(15, 23, 42, 0.045) 1px, transparent 1px);
-      background-size: 100% 100%, 28px 28px;
       background-attachment: fixed;
     }
+
+    /* Ambient Atmosphere Chromatic Canvas */
+    #bgAtmosphereCanvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+      contain: strict;
+    }
+    .ambient-beacon {
+      position: absolute;
+      border-radius: 9999px;
+      pointer-events: none;
+      filter: blur(120px);
+      -webkit-filter: blur(120px);
+      transform: translate3d(0, 0, 0);
+      will-change: transform, opacity;
+      transition: opacity 0.8s ease;
+    }
+
     /* Tactical Reticles & Sci-Fi Corner Brackets */
     .tactical-reticle {
       position: relative;
@@ -324,25 +348,67 @@
       pointer-events: none;
     }
 
-    /* Apple Spatial Neo-Enterprise Glassmorphism (High-Contrast & Specular Edge Chamfer) */
+    /* Apple Spatial Neo-Enterprise Glassmorphism (High-Contrast, Refractive Depth & Specular Edge Chamfer) */
     .tactical-glass {
-      background: rgba(15, 23, 42, 0.78);
-      backdrop-filter: blur(16px) saturate(160%);
-      -webkit-backdrop-filter: blur(16px) saturate(160%);
-      border: 1px solid rgba(51, 65, 85, 0.6);
-      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+      background: rgba(15, 23, 42, 0.74);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(51, 65, 85, 0.65);
+      box-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.35), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
       position: relative;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
     }
     html:not(.dark) .tactical-glass {
-      background: rgba(255, 255, 255, 0.88);
-      backdrop-filter: blur(16px) saturate(160%);
-      -webkit-backdrop-filter: blur(16px) saturate(160%);
-      border: 1px solid rgba(226, 232, 240, 0.9);
-      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.84);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(226, 232, 240, 0.95);
+      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
+    }
+    .tactical-glass:hover {
+      border-color: rgba(16, 185, 129, 0.4);
+      box-shadow: 0 8px 32px -4px rgba(16, 185, 129, 0.12), inset 0 1px 0 0 rgba(255, 255, 255, 0.18);
+    }
+    html:not(.dark) .tactical-glass:hover {
+      border-color: rgba(16, 185, 129, 0.45);
+      box-shadow: 0 8px 30px -4px rgba(16, 185, 129, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 1);
+    }
+
+    /* Sub-Surface Micro Glass for Embedded Cards */
+    .tactical-subglass {
+      background: rgba(15, 23, 42, 0.55);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(51, 65, 85, 0.5);
+      box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+    }
+    html:not(.dark) .tactical-subglass {
+      background: rgba(248, 250, 252, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(226, 232, 240, 0.85);
+      box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
     }
   </style>
 </head>
 <body class="bg-slate-50 dark:bg-[#07090e] text-slate-800 dark:text-slate-100 font-sans antialiased selection:bg-emerald-500 selection:text-slate-950 min-h-screen transition-colors duration-200 relative overflow-x-hidden">
+
+  <!-- ============================================================== -->
+  <!-- MULTI-ZONE ATMOSPHERIC CHROMATIC GRADIENT BACKGROUND CANVAS   -->
+  <!-- Refractive Depth for Apple Spatial Glassmorphism & Story Loop  -->
+  <!-- ============================================================== -->
+  <div id="bgAtmosphereCanvas" class="no-print pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden="true">
+    <!-- Chapter 00: Emerald Phosphor Core Beacon (Top-Left) -->
+    <div id="ambientBeaconPrimary" class="ambient-beacon -top-[8%] left-[10%] w-[680px] h-[680px] bg-emerald-500/16 dark:bg-emerald-500/12"></div>
+    <!-- Chapter 01 & 02: Tactical Engineering Cyan Wash (Center-Right) -->
+    <div id="ambientBeaconSecondary" class="ambient-beacon top-[32%] -right-[8%] w-[620px] h-[620px] bg-cyan-500/14 dark:bg-cyan-500/10"></div>
+    <!-- Chapter 03: Warm Amber Chronicle Glow (Mid-Left) -->
+    <div id="ambientBeaconTertiary" class="ambient-beacon top-[62%] -left-[10%] w-[560px] h-[560px] bg-amber-500/12 dark:bg-amber-500/8"></div>
+    <!-- Chapter 04 & 05: Extraction Emerald Signal Beacon (Bottom-Right) -->
+    <div id="ambientBeaconQuaternary" class="ambient-beacon -bottom-[5%] right-[15%] w-[640px] h-[580px] bg-emerald-500/15 dark:bg-emerald-500/11"></div>
+    <!-- Architectural Micro-Grid Blueprint Overlay (Subtle dot matrix) -->
+    <div class="absolute inset-0 bg-[radial-gradient(rgba(148,163,184,0.06)_1px,transparent_1px)] dark:bg-[radial-gradient(rgba(148,163,184,0.07)_1px,transparent_1px)] [background-size:28px_28px] opacity-75"></div>
+  </div>
 
   <!-- ========================================== -->
   <!-- GSAP SCROLL PROGRESS INDICATOR             -->
@@ -494,7 +560,7 @@
 
         <!-- Architectural Engineer Dossier Card (55:45 Golden Ratio Equilibrium) -->
         <div id="heroAvatar" class="relative shrink-0 self-center md:self-start my-2 md:my-0 w-full sm:w-auto md:w-80">
-          <div id="heroAvatarInner" class="p-4 sm:p-5 rounded-3xl bg-white/90 dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800/80 shadow-md backdrop-blur-sm space-y-4">
+          <div id="heroAvatarInner" class="p-4 sm:p-5 rounded-3xl tactical-glass tactical-reticle shadow-md space-y-4">
             
             <!-- Top Card Header: Status Bar -->
             <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800/80 pb-3">
@@ -640,7 +706,7 @@
       <div class="space-y-10">
 
         <!-- 1. KANTOR NOTARIS & PPAT (irwan-baddu) -->
-        <article class="spotlight-card p-4 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 hover:border-emerald-500/40 transition-all space-y-6 shadow-sm group print-card">
+        <article class="spotlight-card tactical-glass tactical-reticle p-4 sm:p-8 rounded-3xl hover:border-emerald-500/40 transition-all space-y-6 shadow-sm group print-card">
           
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800/60 pb-4">
             <div class="space-y-1">
@@ -821,7 +887,7 @@
         </article>
 
         <!-- 2. SISTEM MANAJEMEN PENDIDIKAN YAYASAN (yayasan-pqtm / SIM-PQTM) -->
-        <article class="spotlight-card p-4 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 hover:border-emerald-500/40 transition-all space-y-6 shadow-sm group print-card">
+        <article class="spotlight-card tactical-glass tactical-reticle p-4 sm:p-8 rounded-3xl hover:border-emerald-500/40 transition-all space-y-6 shadow-sm group print-card">
           
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800/60 pb-4">
             <div class="space-y-1">
@@ -992,7 +1058,7 @@
         </article>
 
         <!-- 3. EKOSISTEM LAYANAN KESEHATAN INTEGRATIF (twinnie-group) -->
-        <article class="spotlight-card p-4 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 hover:border-emerald-500/40 transition-all space-y-6 shadow-sm group print-card">
+        <article class="spotlight-card tactical-glass tactical-reticle p-4 sm:p-8 rounded-3xl hover:border-emerald-500/40 transition-all space-y-6 shadow-sm group print-card">
           
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800/60 pb-4">
             <div class="space-y-1">
@@ -1065,7 +1131,7 @@
         </article>
 
         <!-- 4. SISTEM INFORMASI PPDB TERPUSAT & GATEWAY NOTIFIKASI -->
-        <article class="spotlight-card p-4 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 hover:border-emerald-500/40 transition-all space-y-6 shadow-sm group print-card">
+        <article class="spotlight-card tactical-glass tactical-reticle p-4 sm:p-8 rounded-3xl hover:border-emerald-500/40 transition-all space-y-6 shadow-sm group print-card">
           
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800/60 pb-4">
             <div class="space-y-1">
@@ -1133,7 +1199,7 @@
         </article>
 
         <!-- 5. BUKU INDUK SANTRI & PIPELINE MIGRASI 12.117 RECORD -->
-        <article class="spotlight-card p-4 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 hover:border-emerald-500/40 transition-all space-y-6 shadow-sm group print-card">
+        <article class="spotlight-card tactical-glass tactical-reticle p-4 sm:p-8 rounded-3xl hover:border-emerald-500/40 transition-all space-y-6 shadow-sm group print-card">
           
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800/60 pb-4">
             <div class="space-y-1">
@@ -1198,7 +1264,7 @@
         </article>
 
         <!-- 6. APLIKASI KEPEGAWAIAN (SIM-SDM) -->
-        <article class="spotlight-card p-4 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 hover:border-emerald-500/40 transition-all space-y-6 shadow-sm group print-card">
+        <article class="spotlight-card tactical-glass tactical-reticle p-4 sm:p-8 rounded-3xl hover:border-emerald-500/40 transition-all space-y-6 shadow-sm group print-card">
           
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800/60 pb-4">
             <div class="space-y-1">
@@ -1304,7 +1370,7 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         
         <!-- Polinema D4 -->
-        <div class="spotlight-card tactical-reticle p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex items-start justify-between gap-4 shadow-sm print-card">
+        <div class="spotlight-card tactical-reticle tactical-glass p-5 sm:p-6 rounded-2xl flex items-start justify-between gap-4 shadow-sm print-card">
           <div class="flex items-start gap-3.5">
             <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400 text-xl shrink-0">
               <i class="fa-solid fa-graduation-cap"></i>
@@ -1326,7 +1392,7 @@
         </div>
 
         <!-- SMKN 2 Singosari TKJ -->
-        <div class="spotlight-card tactical-reticle p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex items-start justify-between gap-4 shadow-sm print-card">
+        <div class="spotlight-card tactical-reticle tactical-glass p-5 sm:p-6 rounded-2xl flex items-start justify-between gap-4 shadow-sm print-card">
           <div class="flex items-start gap-3.5">
             <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400 text-xl shrink-0">
               <i class="fa-solid fa-school"></i>
@@ -1362,7 +1428,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
 
           <!-- Pillar 1: Backend Core & Auth Matrix -->
-          <div class="spotlight-card tactical-reticle p-5 rounded-2xl bg-white dark:bg-slate-900 border border-emerald-500/30 space-y-4 shadow-sm print-card">
+          <div class="spotlight-card tactical-reticle tactical-glass p-5 rounded-2xl border-emerald-500/30 space-y-4 shadow-sm print-card">
             <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
               <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-mono text-xs font-bold">
                 <i class="fa-solid fa-server"></i>
@@ -1395,7 +1461,7 @@
           </div>
 
           <!-- Pillar 2: Concurrency & Data Architecture -->
-          <div class="spotlight-card tactical-reticle p-5 rounded-2xl bg-white dark:bg-slate-900 border border-cyan-500/30 space-y-4 shadow-sm print-card">
+          <div class="spotlight-card tactical-reticle tactical-glass p-5 rounded-2xl border-cyan-500/30 space-y-4 shadow-sm print-card">
             <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
               <div class="flex items-center gap-2 text-cyan-600 dark:text-cyan-400 font-mono text-xs font-bold">
                 <i class="fa-solid fa-database"></i>
@@ -1426,7 +1492,7 @@
           </div>
 
           <!-- Pillar 3: Reactive Frontend & TDD Rigor -->
-          <div class="spotlight-card tactical-reticle p-5 rounded-2xl bg-white dark:bg-slate-900 border border-cyan-500/30 space-y-4 shadow-sm print-card">
+          <div class="spotlight-card tactical-reticle tactical-glass p-5 rounded-2xl border-cyan-500/30 space-y-4 shadow-sm print-card">
             <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
               <div class="flex items-center gap-2 text-cyan-600 dark:text-cyan-400 font-mono text-xs font-bold">
                 <i class="fa-solid fa-laptop-code"></i>
@@ -1466,7 +1532,7 @@
         </div>
 
         <!-- Auxiliary Modules Deck: Workflow AI, Tooling & IT Support -->
-        <div class="spotlight-card tactical-reticle p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 space-y-2.5 print-card">
+        <div class="spotlight-card tactical-reticle tactical-glass p-4 rounded-2xl space-y-2.5 print-card">
           <div class="flex items-center justify-between text-xs font-mono text-slate-500">
             <span class="font-bold flex items-center gap-1.5 text-slate-700 dark:text-slate-300">
               <i class="fa-solid fa-toolbox text-amber-500"></i>
@@ -1747,7 +1813,7 @@
           <div class="hidden sm:flex absolute -left-[26px] top-6 w-3.5 h-3.5 rounded-full bg-white dark:bg-slate-900 border-2 border-emerald-500 items-center justify-center shadow-xs z-10 timeline-node">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
           </div>
-          <div class="spotlight-card p-5 sm:p-7 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 space-y-4 print-card shadow-2xs">
+          <div class="spotlight-card tactical-reticle tactical-glass p-5 sm:p-7 rounded-2xl space-y-4 print-card shadow-2xs">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800/60 pb-3">
             <div>
               <div class="flex items-center gap-2 mb-0.5">
@@ -1837,7 +1903,7 @@
         <div class="hidden sm:flex absolute -left-[26px] top-6 w-3.5 h-3.5 rounded-full bg-white dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-700 items-center justify-center shadow-xs z-10 timeline-node">
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-500/80"></span>
         </div>
-        <div class="spotlight-card p-5 sm:p-7 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 space-y-4 print-card shadow-2xs">
+        <div class="spotlight-card tactical-reticle tactical-glass p-5 sm:p-7 rounded-2xl space-y-4 print-card shadow-2xs">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800/60 pb-3">
             <div>
               <div class="flex items-center gap-2 mb-0.5">
@@ -1963,7 +2029,7 @@
         <div class="hidden sm:flex absolute -left-[26px] top-6 w-3.5 h-3.5 rounded-full bg-white dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-700 items-center justify-center shadow-xs z-10 timeline-node">
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-500/80"></span>
         </div>
-        <div class="spotlight-card p-5 sm:p-7 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 space-y-4 print-card shadow-2xs">
+        <div class="spotlight-card tactical-reticle tactical-glass p-5 sm:p-7 rounded-2xl space-y-4 print-card shadow-2xs">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800/60 pb-3">
             <div>
               <div class="flex items-center gap-2 mb-0.5">
@@ -2074,7 +2140,7 @@
       </div>
 
       <!-- Journal Card with Spotlight Effect -->
-      <article class="spotlight-card p-5 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 hover:border-cyan-500/40 space-y-5 print-card shadow-sm">
+      <article class="spotlight-card tactical-reticle tactical-glass p-5 sm:p-8 rounded-3xl hover:border-cyan-500/40 space-y-5 print-card shadow-sm">
         <div class="space-y-2 border-b border-slate-100 dark:border-slate-800/60 pb-4">
           <span class="text-[11px] font-mono px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
             Jurnal Informatika Polinema (JIP) &bull; Vol. 7 No. 2 (Februari 2021)
@@ -2126,7 +2192,7 @@
     <!-- ============================================================== -->
     <section id="kontak" class="space-y-6 scroll-mt-20 gsap-section">
       
-      <div class="spotlight-card tactical-reticle p-6 sm:p-12 rounded-3xl bg-white dark:bg-slate-900 border border-emerald-500/30 text-center space-y-6 shadow-sm relative overflow-hidden">
+      <div class="spotlight-card tactical-reticle tactical-glass p-6 sm:p-12 rounded-3xl border-emerald-500/30 text-center space-y-6 shadow-sm relative overflow-hidden">
         
         <span class="section-ghost-num hidden md:block absolute right-4 -bottom-4 text-7xl font-black font-mono text-slate-300/40 dark:text-slate-800/40 select-none pointer-events-none" aria-hidden="true">05</span>
         
@@ -2668,9 +2734,57 @@
             </div>
           </div>
         `;
+      } else if (cmd === 'act0' || cmd === 'spawn') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        outEl.innerHTML = `
+          <div class="text-emerald-600 dark:text-emerald-400 font-mono text-xs">
+            [SYS_DISPATCH] Navigasi ke <strong>ACT 00: SPAWN // CHARACTER INITIALIZATION &amp; HUD</strong>
+          </div>
+        `;
+      } else if (cmd === 'act1' || cmd === 'raids' || cmd === 'proyek' || cmd === 'projects') {
+        const el = document.getElementById('proyek');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+        outEl.innerHTML = `
+          <div class="text-cyan-600 dark:text-cyan-400 font-mono text-xs">
+            [SYS_DISPATCH] Navigasi ke <strong>ACT 01: RAIDS // PRODUCTION CAMPAIGNS &amp; ARCHITECTURAL BLUEPRINTS</strong>
+          </div>
+        `;
+      } else if (cmd === 'act2' || cmd === 'trees' || cmd === 'keahlian' || cmd === 'skills') {
+        const el = document.getElementById('keahlian');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+        outEl.innerHTML = `
+          <div class="text-emerald-600 dark:text-emerald-400 font-mono text-xs">
+            [SYS_DISPATCH] Navigasi ke <strong>ACT 02: TREES // TALENT TREE &amp; CORE ENGINEERING CODEX</strong>
+          </div>
+        `;
+      } else if (cmd === 'act3' || cmd === 'logs' || cmd === 'pengalaman' || cmd === 'experience') {
+        const el = document.getElementById('pengalaman');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+        outEl.innerHTML = `
+          <div class="text-amber-600 dark:text-amber-400 font-mono text-xs">
+            [SYS_DISPATCH] Navigasi ke <strong>ACT 03: LOGS // CAREER CHRONICLES &amp; INSTITUTIONAL LEDGER</strong>
+          </div>
+        `;
+      } else if (cmd === 'act4' || cmd === 'codex' || cmd === 'riset' || cmd === 'research') {
+        const el = document.getElementById('riset');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+        outEl.innerHTML = `
+          <div class="text-cyan-600 dark:text-cyan-400 font-mono text-xs">
+            [SYS_DISPATCH] Navigasi ke <strong>ACT 04: CODEX // THEORETICAL RIGOR &amp; PEER-REVIEWED RESEARCH</strong>
+          </div>
+        `;
+      } else if (cmd === 'act5' || cmd === 'coop' || cmd === 'co-op') {
+        const el = document.getElementById('kontak');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+        outEl.innerHTML = `
+          <div class="text-emerald-600 dark:text-emerald-400 font-mono text-xs">
+            [SYS_DISPATCH] Navigasi ke <strong>ACT 05: CO-OP // INITIATE MULTIPLAYER &amp; DIRECT TRANSMISSION</strong>
+          </div>
+        `;
       } else if (cmd === 'help') {
         outEl.innerHTML = `
           <div class="text-slate-600 dark:text-slate-400 space-y-0.5 text-xs">
+            <div><span class="text-emerald-500 font-bold inline-block w-24">act0..act5</span> Navigasi instan babak cerita Story Motion (spawn, raids, trees, logs, codex, coop)</div>
             <div><span class="text-emerald-500 font-bold inline-block w-24">quests</span> Menampilkan daftar campaign misi produksi yang telah diselesaikan (5/5 Cleared)</div>
             <div><span class="text-cyan-500 font-bold inline-block w-24">stats</span> Menampilkan atribut karakter RPG & telemetri engineer</div>
             <div><span class="text-cyan-500 font-bold inline-block w-24">inventory</span> Menampilkan persenjataan tech stack & arsitektur aktif</div>
@@ -3331,6 +3445,87 @@
           start: 'top 75%',
           once: true,
           onEnter: () => triggerTerminalAutoType()
+        });
+      }
+
+      // N. Atmospheric Background Chromatic Gradient Lighting Orchestration per Act Milestone
+      const bPrimary = document.getElementById('ambientBeaconPrimary');
+      const bSecondary = document.getElementById('ambientBeaconSecondary');
+      const bTertiary = document.getElementById('ambientBeaconTertiary');
+      const bQuaternary = document.getElementById('ambientBeaconQuaternary');
+
+      if (bPrimary && bSecondary && bTertiary && bQuaternary) {
+        // Act 00: Spawn
+        ScrollTrigger.create({
+          trigger: '#hero',
+          start: 'top 50%',
+          end: 'bottom 40%',
+          onEnter: () => {
+            gsap.to(bPrimary, { scale: 1.15, opacity: 1, duration: 1.2, ease: 'power2.out', overwrite: 'auto' });
+          }
+        });
+
+        // Act 01: Raids (Cyan tactical glow)
+        ScrollTrigger.create({
+          trigger: '#proyek',
+          start: 'top 60%',
+          end: 'bottom 40%',
+          onEnter: () => {
+            gsap.to(bSecondary, { scale: 1.25, opacity: 1, duration: 1.2, ease: 'power2.out', overwrite: 'auto' });
+            gsap.to(bPrimary, { scale: 0.95, opacity: 0.65, duration: 1.2, overwrite: 'auto' });
+          },
+          onLeaveBack: () => {
+            gsap.to(bPrimary, { scale: 1.15, opacity: 1, duration: 1.2, ease: 'power2.out', overwrite: 'auto' });
+            gsap.to(bSecondary, { scale: 1, opacity: 0.7, duration: 1.2, overwrite: 'auto' });
+          }
+        });
+
+        // Act 02: Trees & Codex (Dual Emerald & Cyan matrix)
+        ScrollTrigger.create({
+          trigger: '#keahlian',
+          start: 'top 60%',
+          end: 'bottom 40%',
+          onEnter: () => {
+            gsap.to(bPrimary, { scale: 1.1, opacity: 0.85, duration: 1.2, ease: 'power2.out', overwrite: 'auto' });
+            gsap.to(bSecondary, { scale: 1.15, opacity: 0.9, duration: 1.2, overwrite: 'auto' });
+          }
+        });
+
+        // Act 03: Logs (Warm Amber chronicle illumination)
+        ScrollTrigger.create({
+          trigger: '#pengalaman',
+          start: 'top 60%',
+          end: 'bottom 40%',
+          onEnter: () => {
+            gsap.to(bTertiary, { scale: 1.3, opacity: 1, duration: 1.2, ease: 'power2.out', overwrite: 'auto' });
+            gsap.to(bSecondary, { opacity: 0.45, duration: 1.2, overwrite: 'auto' });
+          },
+          onLeaveBack: () => {
+            gsap.to(bTertiary, { scale: 1, opacity: 0.6, duration: 1.2, overwrite: 'auto' });
+            gsap.to(bSecondary, { opacity: 0.9, duration: 1.2, overwrite: 'auto' });
+          }
+        });
+
+        // Act 04: Codex (Scholarly Cyan/Slate)
+        ScrollTrigger.create({
+          trigger: '#riset',
+          start: 'top 65%',
+          end: 'bottom 40%',
+          onEnter: () => {
+            gsap.to(bSecondary, { scale: 1.2, opacity: 0.95, duration: 1.2, ease: 'power2.out', overwrite: 'auto' });
+          }
+        });
+
+        // Act 05: Co-Op (Extraction Signal Emerald Beacon)
+        ScrollTrigger.create({
+          trigger: '#kontak',
+          start: 'top 70%',
+          onEnter: () => {
+            gsap.to(bQuaternary, { scale: 1.35, opacity: 1, duration: 1.2, ease: 'power2.out', overwrite: 'auto' });
+          },
+          onLeaveBack: () => {
+            gsap.to(bQuaternary, { scale: 1, opacity: 0.6, duration: 1.2, overwrite: 'auto' });
+          }
         });
       }
     }
