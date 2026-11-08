@@ -288,6 +288,54 @@
       background-size: 100% 100%, 28px 28px;
       background-attachment: fixed;
     }
+    /* Tactical Reticles & Sci-Fi Corner Brackets */
+    .tactical-reticle {
+      position: relative;
+    }
+    .tactical-reticle::before,
+    .tactical-reticle::after {
+      content: '';
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      pointer-events: none;
+      transition: border-color 0.2s ease;
+      z-index: 2;
+    }
+    .tactical-reticle::before {
+      top: -1px;
+      left: -1px;
+      border-top: 1.5px solid rgba(16, 185, 129, 0.5);
+      border-left: 1.5px solid rgba(16, 185, 129, 0.5);
+    }
+    .tactical-reticle::after {
+      bottom: -1px;
+      right: -1px;
+      border-bottom: 1.5px solid rgba(16, 185, 129, 0.5);
+      border-right: 1.5px solid rgba(16, 185, 129, 0.5);
+    }
+    .tactical-reticle:hover::before,
+    .tactical-reticle:hover::after {
+      border-color: rgba(52, 211, 153, 0.9);
+    }
+
+    /* Executive Mode Clean Styling Overrides */
+    body.executive-mode .game-only-badge {
+      display: none !important;
+    }
+    body.executive-mode .ambient-parallax-layer {
+      opacity: 0.1 !important;
+    }
+    body.executive-mode .hud-scrubber-btn {
+      font-family: inherit !important;
+    }
+
+    /* Skill Tree Connecting Lines */
+    .tree-connector-line {
+      position: absolute;
+      background: linear-gradient(to right, rgba(16, 185, 129, 0.3), rgba(6, 182, 212, 0.3));
+      pointer-events: none;
+    }
   </style>
 </head>
 <body class="bg-slate-50 dark:bg-[#07090e] text-slate-800 dark:text-slate-100 font-sans antialiased selection:bg-emerald-500 selection:text-slate-950 min-h-screen transition-colors duration-200 relative overflow-x-hidden">
@@ -353,17 +401,37 @@
         </div>
       </a>
 
-      <!-- Desktop Anchor Links (ScrollSpy Synchronized) -->
-      <nav id="desktopNav" class="hidden md:flex items-center gap-1 text-xs font-medium text-slate-600 dark:text-slate-300">
-        <a href="#proyek" class="nav-link px-3 py-1.5 rounded-lg hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors" data-section="proyek">Proyek Pilihan</a>
-        <a href="#pengalaman" class="nav-link px-3 py-1.5 rounded-lg hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors" data-section="pengalaman">Pengalaman</a>
-        <a href="#riset" class="nav-link px-3 py-1.5 rounded-lg hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors" data-section="riset">Publikasi Riset</a>
-        <a href="#keahlian" class="nav-link px-3 py-1.5 rounded-lg hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors" data-section="keahlian">Keahlian & CV</a>
+      <!-- Desktop Tactical Mission Scrubber HUD (ScrollSpy Synchronized) -->
+      <nav id="desktopNav" class="hidden lg:flex items-center gap-1 text-[11px] font-mono font-bold">
+        <a href="#hero" class="hud-scrubber-btn nav-link px-2.5 py-1 rounded-lg text-slate-500 dark:text-slate-400 hover:text-emerald-500 transition-all border border-transparent flex items-center gap-1" data-section="hero">
+          <span class="text-emerald-500">00</span><span>SPAWN</span>
+        </a>
+        <a href="#proyek" class="hud-scrubber-btn nav-link px-2.5 py-1 rounded-lg text-slate-500 dark:text-slate-400 hover:text-emerald-500 transition-all border border-transparent flex items-center gap-1" data-section="proyek">
+          <span class="text-cyan-500">01</span><span>RAIDS</span>
+        </a>
+        <a href="#keahlian" class="hud-scrubber-btn nav-link px-2.5 py-1 rounded-lg text-slate-500 dark:text-slate-400 hover:text-emerald-500 transition-all border border-transparent flex items-center gap-1" data-section="keahlian">
+          <span class="text-purple-500">02</span><span>TREES</span>
+        </a>
+        <a href="#pengalaman" class="hud-scrubber-btn nav-link px-2.5 py-1 rounded-lg text-slate-500 dark:text-slate-400 hover:text-emerald-500 transition-all border border-transparent flex items-center gap-1" data-section="pengalaman">
+          <span class="text-amber-500">03</span><span>LOGS</span>
+        </a>
+        <a href="#riset" class="hud-scrubber-btn nav-link px-2.5 py-1 rounded-lg text-slate-500 dark:text-slate-400 hover:text-emerald-500 transition-all border border-transparent flex items-center gap-1" data-section="riset">
+          <span class="text-violet-500">04</span><span>CODEX</span>
+        </a>
+        <a href="#kontak" class="hud-scrubber-btn nav-link px-2.5 py-1 rounded-lg text-slate-500 dark:text-slate-400 hover:text-emerald-500 transition-all border border-transparent flex items-center gap-1" data-section="kontak">
+          <span class="text-emerald-500">05</span><span>CO-OP</span>
+        </a>
       </nav>
 
-      <!-- Right Header Actions (Theme Toggle & Download CV CTA) -->
-      <div class="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+      <!-- Right Header Actions (Theme Toggle, Mode Switch, Haptic & Download CV) -->
+      <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
         
+        <!-- Persona Mode Switcher: Dev Quest vs Executive ATS -->
+        <button id="modeToggleBtn" onclick="togglePortfolioMode()" type="button" aria-label="Toggle Mode Portofolio" title="Ganti Mode: Dev Quest (Game) vs Executive ATS (Formal)" class="h-9 px-2 sm:px-2.5 rounded-lg border border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 flex items-center gap-1.5 text-xs font-mono font-bold transition-all hover:bg-emerald-500/20 shadow-2xs">
+          <i id="modeToggleIcon" class="fa-solid fa-gamepad text-xs"></i>
+          <span id="modeToggleLabel" class="hidden sm:inline text-[10px]">QUEST</span>
+        </button>
+
         <!-- Haptic Sound FX Toggle (Zero-KB Web Audio Synth) -->
         <button id="hapticAudioBtn" onclick="toggleHapticAudio()" type="button" aria-label="Toggle Haptic Audio" title="Toggle Tactile Haptic Audio" class="h-9 px-2 sm:px-2.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-100/80 dark:bg-slate-900/80 text-slate-500 dark:text-slate-400 flex items-center gap-1 text-xs transition-all hover:border-emerald-500/50 hover:text-emerald-600 dark:hover:text-emerald-400 shadow-2xs">
           <i id="hapticAudioIcon" class="fa-solid fa-volume-xmark text-xs"></i>
@@ -529,10 +597,14 @@
 
       </div>
 
-      <!-- Dynamic Interactive Metrics Strip (Counter via GSAP ScrollTrigger) -->
+      <!-- Player Vitals & Quantitative Metrics Strip (GSAP Telemetry Counter) -->
       <div id="metricsStrip" class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-slate-200/80 dark:border-slate-800/80">
         
-        <div class="p-3.5 sm:p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 space-y-1 spotlight-card overflow-hidden">
+        <div class="p-3.5 sm:p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 space-y-1 spotlight-card tactical-reticle overflow-hidden">
+          <div class="text-[10px] font-mono font-bold text-emerald-600 dark:text-emerald-400 flex items-center justify-between">
+            <span>[ DATA_INTEGRITY ]</span>
+            <span class="text-[9px] bg-emerald-500/10 px-1 rounded">0-LOSS</span>
+          </div>
           <div class="flex items-baseline gap-0.5 overflow-hidden">
             <span id="counter-data" class="text-xl sm:text-3xl font-extrabold font-mono text-emerald-600 dark:text-emerald-400 inline-block">0</span>
             <span class="text-base sm:text-xl font-mono text-emerald-600 dark:text-emerald-400 font-bold">+</span>
@@ -540,23 +612,35 @@
           <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Record Basis Data Dimigrasikan (Zero Loss)</p>
         </div>
 
-        <div class="p-3.5 sm:p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 space-y-1 spotlight-card overflow-hidden">
+        <div class="p-3.5 sm:p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 space-y-1 spotlight-card tactical-reticle overflow-hidden">
+          <div class="text-[10px] font-mono font-bold text-cyan-600 dark:text-cyan-400 flex items-center justify-between">
+            <span>[ ACTIVE_SCALE ]</span>
+            <span class="text-[9px] bg-cyan-500/10 px-1 rounded">STABLE</span>
+          </div>
           <div class="flex items-baseline gap-0.5 overflow-hidden">
             <span class="text-sm font-mono text-slate-400 mr-0.5">&gt;</span>
             <span id="counter-users" class="text-xl sm:text-3xl font-extrabold font-mono text-slate-900 dark:text-white inline-block">0</span>
           </div>
-          <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Pengguna Sistem PPDB & Santri Terkelola</p>
+          <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Pengguna Sistem PPDB &amp; Santri Terkelola</p>
         </div>
 
-        <div class="p-3.5 sm:p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 space-y-1 spotlight-card overflow-hidden">
+        <div class="p-3.5 sm:p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 space-y-1 spotlight-card tactical-reticle overflow-hidden">
+          <div class="text-[10px] font-mono font-bold text-purple-600 dark:text-purple-400 flex items-center justify-between">
+            <span>[ TEST_MANA ]</span>
+            <span class="text-[9px] bg-purple-500/10 px-1 rounded">TDD 100%</span>
+          </div>
           <div class="flex items-baseline gap-0.5 overflow-hidden">
             <span id="counter-tests" class="text-xl sm:text-3xl font-extrabold font-mono text-emerald-600 dark:text-emerald-400 inline-block">0</span>
             <span class="text-base sm:text-xl font-mono text-emerald-600 dark:text-emerald-400 font-bold">+</span>
           </div>
-          <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Automated Tests PHPUnit (Unit & Feature)</p>
+          <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Automated Tests PHPUnit (Unit &amp; Feature)</p>
         </div>
 
-        <div class="p-3.5 sm:p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 space-y-1 spotlight-card overflow-hidden">
+        <div class="p-3.5 sm:p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 space-y-1 spotlight-card tactical-reticle overflow-hidden">
+          <div class="text-[10px] font-mono font-bold text-amber-600 dark:text-amber-400 flex items-center justify-between">
+            <span>[ EXP_LEVEL ]</span>
+            <span class="text-[9px] bg-amber-500/10 px-1 rounded">PRO</span>
+          </div>
           <div class="flex items-baseline gap-0.5 overflow-hidden">
             <span id="counter-years" class="text-xl sm:text-3xl font-extrabold font-mono text-slate-900 dark:text-white inline-block">0.0</span>
             <span class="text-base sm:text-xl font-mono text-slate-900 dark:text-white font-bold">+ Th</span>
@@ -1229,6 +1313,300 @@
 
     </section>
 
+    <!-- ============================================================== -->
+    <!-- ACT 02: TREES // INTERACTIVE TALENT TREE & COMMAND DECK        -->
+    <!-- ============================================================== -->
+    <section id="keahlian" class="space-y-8 scroll-mt-20 gsap-section">
+      
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200/80 dark:border-slate-800/80 pb-4 section-header relative overflow-hidden">
+        <div>
+          <span class="text-xs font-mono font-semibold text-purple-600 dark:text-purple-400 tracking-wider uppercase">// ACT 02: TREES // INTERACTIVE TALENT TREE &amp; COMMAND DECK</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-0.5">
+            Pohon Keahlian Arsitektur &amp; Command Deck
+          </h2>
+        </div>
+        <!-- Tombol Download CV Langsung (Sesuai Permintaan & Standar ATS) -->
+        <a href="cv.pdf" download="CV-Misbahudin.pdf" class="magnetic-btn px-3.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold flex items-center gap-1.5 transition-all w-fit shadow-sm">
+          <i class="fa-solid fa-file-arrow-down"></i>
+          <span>Unduh CV Resmi (PDF)</span>
+        </a>
+        <span class="section-ghost-num hidden md:block absolute right-2 -bottom-3 text-6xl font-black font-mono text-purple-500/10 dark:text-purple-500/15 select-none pointer-events-none" aria-hidden="true">02</span>
+        <div class="section-accent-line absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-purple-500 via-emerald-400 to-transparent origin-left scale-x-0"></div>
+      </div>
+
+      <!-- Formal Education Dual Cards (Polinema D4 & SMKN 2 Singosari) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        
+        <!-- Polinema D4 -->
+        <div class="spotlight-card tactical-reticle p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex items-start justify-between gap-4 shadow-sm print-card">
+          <div class="flex items-start gap-3.5">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400 text-xl shrink-0">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <div>
+              <div class="flex items-center gap-2 mb-0.5">
+                <span class="text-[10px] font-mono font-bold text-slate-400 uppercase">// ACADEMIC_CODEX</span>
+                <span class="text-[9px] font-mono font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-1 rounded">TERAKREDITASI</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white tracking-tight">D4 - Teknik Informatika</h3>
+              <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm">Politeknik Negeri Malang (POLINEMA)</p>
+              <p class="text-slate-500 dark:text-slate-400 text-xs font-mono mt-0.5">Periode: 2016 &mdash; 2020</p>
+            </div>
+          </div>
+          <div class="text-right shrink-0">
+            <span class="text-[11px] text-slate-500 dark:text-slate-400 block font-mono">IPK</span>
+            <span class="text-xl font-bold font-mono text-emerald-600 dark:text-emerald-400">3.32 <span class="text-xs text-slate-400 font-normal">/ 4.00</span></span>
+          </div>
+        </div>
+
+        <!-- SMKN 2 Singosari TKJ -->
+        <div class="spotlight-card tactical-reticle p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex items-start justify-between gap-4 shadow-sm print-card">
+          <div class="flex items-start gap-3.5">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400 text-xl shrink-0">
+              <i class="fa-solid fa-school"></i>
+            </div>
+            <div>
+              <div class="flex items-center gap-2 mb-0.5">
+                <span class="text-[10px] font-mono font-bold text-slate-400 uppercase">// VOCATIONAL_BASE</span>
+                <span class="text-[9px] font-mono font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-1 rounded">INFRASTRUCTURE</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white tracking-tight">Teknik Komputer dan Jaringan</h3>
+              <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm">SMKN 2 Singosari, Malang</p>
+              <p class="text-slate-500 dark:text-slate-400 text-xs font-mono mt-0.5">Periode: 2013 &mdash; 2016</p>
+            </div>
+          </div>
+          <div class="text-right shrink-0">
+            <span class="text-[11px] text-slate-500 dark:text-slate-400 block font-mono">Fokus</span>
+            <span class="text-xs font-bold font-mono text-emerald-600 dark:text-emerald-400">Hardware &amp; LAN</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- INTERACTIVE RPG TALENT TREE: 3 ARCHITECTURAL PILLARS -->
+      <div class="space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-1">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>
+            <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">// TALENT TREE: 3 ARCHITECTURAL PILLARS (INTERACTIVE NODES)</span>
+          </div>
+          <span class="text-[11px] font-mono text-slate-500 dark:text-slate-400">Klik / sorot node untuk telemetri konsol &uarr;</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+
+          <!-- Pillar 1: Backend Core & Auth Matrix -->
+          <div class="spotlight-card tactical-reticle p-5 rounded-2xl bg-white dark:bg-slate-900 border border-emerald-500/30 space-y-4 shadow-sm print-card">
+            <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+              <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-mono text-xs font-bold">
+                <i class="fa-solid fa-server"></i>
+                <span>PILLAR 01: BACKEND CORE</span>
+              </div>
+              <span class="text-[10px] font-mono font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">RANK: V (ARCHITECT)</span>
+            </div>
+
+            <!-- Root Node -->
+            <div class="p-3 rounded-xl bg-emerald-500/5 dark:bg-emerald-500/10 border border-emerald-500/30 space-y-1">
+              <div class="flex items-center justify-between text-[11px] font-mono">
+                <strong class="text-emerald-700 dark:text-emerald-300">[ROOT CORE] PHP 8.4 JIT</strong>
+                <span class="text-emerald-600 dark:text-emerald-400 font-bold">Zend OPcache</span>
+              </div>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400">Fondasi komputasi backend berkinerja tinggi dengan determinisme tipe ketat.</p>
+            </div>
+
+            <!-- Branch Connecting Nodes -->
+            <div class="space-y-1.5 skill-pills">
+              <div class="text-[10px] font-mono text-slate-400 uppercase tracking-wider">// CONNECTED TALENT NODES:</div>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="skill-pill px-2.5 py-1 rounded-lg bg-emerald-500/10 text-xs font-mono text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30">PHP 8.x</span>
+                <span class="skill-pill px-2.5 py-1 rounded-lg bg-emerald-500/10 text-xs font-mono text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30">Laravel 13</span>
+                <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Laravel Sanctum</span>
+                <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Laravel Passport</span>
+                <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">OAuth 2.0</span>
+                <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">RESTful API</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pillar 2: Concurrency & Data Architecture -->
+          <div class="spotlight-card tactical-reticle p-5 rounded-2xl bg-white dark:bg-slate-900 border border-cyan-500/30 space-y-4 shadow-sm print-card">
+            <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+              <div class="flex items-center gap-2 text-cyan-600 dark:text-cyan-400 font-mono text-xs font-bold">
+                <i class="fa-solid fa-database"></i>
+                <span>PILLAR 02: DATA ENGINE</span>
+              </div>
+              <span class="text-[10px] font-mono font-bold text-cyan-600 dark:text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20">RANK: V (GUARDIAN)</span>
+            </div>
+
+            <!-- Root Node -->
+            <div class="p-3 rounded-xl bg-cyan-500/5 dark:bg-cyan-500/10 border border-cyan-500/30 space-y-1">
+              <div class="flex items-center justify-between text-[11px] font-mono">
+                <strong class="text-cyan-700 dark:text-cyan-300">[ROOT CORE] MySQL 3NF Normalization</strong>
+                <span class="text-cyan-600 dark:text-cyan-400 font-bold">Zero N+1</span>
+              </div>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400">Skema relasional 3NF terisolasi, locking concurrency, dan integritas FK.</p>
+            </div>
+
+            <!-- Branch Connecting Nodes -->
+            <div class="space-y-1.5 skill-pills">
+              <div class="text-[10px] font-mono text-slate-400 uppercase tracking-wider">// CONNECTED TALENT NODES:</div>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="skill-pill px-2.5 py-1 rounded-lg bg-emerald-500/10 text-xs font-mono text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30">MySQL (3NF)</span>
+                <span class="skill-pill px-2.5 py-1 rounded-lg bg-cyan-500/10 text-xs font-mono text-cyan-700 dark:text-cyan-400 font-bold border border-cyan-500/30">Migrasi Data (ETL)</span>
+                <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Optimasi Server Rendah</span>
+                <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Shared Hosting Tuning (Error 1040 Fix)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pillar 3: Reactive Frontend & TDD Rigor -->
+          <div class="spotlight-card tactical-reticle p-5 rounded-2xl bg-white dark:bg-slate-900 border border-purple-500/30 space-y-4 shadow-sm print-card">
+            <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+              <div class="flex items-center gap-2 text-purple-600 dark:text-purple-400 font-mono text-xs font-bold">
+                <i class="fa-solid fa-laptop-code"></i>
+                <span>PILLAR 03: REACTIVE UI &amp; TDD</span>
+              </div>
+              <span class="text-[10px] font-mono font-bold text-purple-600 dark:text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded border border-purple-500/20">RANK: V (VANGUARD)</span>
+            </div>
+
+            <!-- Root Node -->
+            <div class="p-3 rounded-xl bg-purple-500/5 dark:bg-purple-500/10 border border-purple-500/30 space-y-1">
+              <div class="flex items-center justify-between text-[11px] font-mono">
+                <strong class="text-purple-700 dark:text-purple-300">[ROOT CORE] Svelte 5 Runes &amp; PHPUnit</strong>
+                <span class="text-purple-600 dark:text-purple-400 font-bold">250+ Tests</span>
+              </div>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400">Reaktivitas state mutlak, composited kinetic motion GSAP, dan TDD suite.</p>
+            </div>
+
+            <!-- Branch Connecting Nodes -->
+            <div class="space-y-1.5 skill-pills">
+              <div class="text-[10px] font-mono text-slate-400 uppercase tracking-wider">// CONNECTED TALENT NODES:</div>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="skill-pill px-2.5 py-1 rounded-lg bg-emerald-500/10 text-xs font-mono text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30">Svelte 5 (Runes)</span>
+                <span class="skill-pill px-2.5 py-1 rounded-lg bg-emerald-500/10 text-xs font-mono text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30">Tailwind CSS (v4)</span>
+                <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">JavaScript (ES6+)</span>
+                <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">GSAP (ScrollTrigger)</span>
+                <span class="skill-pill px-2.5 py-1 rounded-lg bg-emerald-500/10 text-xs font-mono text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30">PHPUnit (250+ Tests)</span>
+                <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Automated Unit Testing</span>
+                <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Feature Integration Tests</span>
+                <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Test-Driven Dev (TDD)</span>
+                <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">HTML5 Semantic DOM</span>
+                <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">CSS3 Animations</span>
+                <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Code Quality &amp; PSR-12</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Auxiliary Modules Deck: Workflow AI, Tooling & IT Support -->
+        <div class="spotlight-card tactical-reticle p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 space-y-2.5 print-card">
+          <div class="flex items-center justify-between text-xs font-mono text-slate-500">
+            <span class="font-bold flex items-center gap-1.5 text-slate-700 dark:text-slate-300">
+              <i class="fa-solid fa-toolbox text-amber-500"></i>
+              <span>AUXILIARY SYSTEM MODULES (WORKFLOW AI, TOOLING &amp; IT INFRASTRUCTURE)</span>
+            </span>
+            <span class="text-[10px] uppercase font-bold text-emerald-600 dark:text-emerald-400">ACTIVE SUPPORT</span>
+          </div>
+          <div class="flex flex-wrap gap-1.5 skill-pills">
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-emerald-500/10 text-xs font-mono text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30">Prompt Engineering (XML)</span>
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Antigravity CLI</span>
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">LLM Context (llms.txt)</span>
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Git &amp; GitHub</span>
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Vite &amp; Composer</span>
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Troubleshooting Hardware PC</span>
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Jaringan LAN &amp; Printer Sharing</span>
+            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Dapodik &amp; Asesmen Nasional (ANBK)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Playable Developer Console & Automated CLI Diagnostics -->
+      <div class="terminal-window tactical-reticle overflow-hidden shadow-lg border border-slate-200 dark:border-slate-800">
+        <div class="terminal-header flex flex-wrap items-center justify-between gap-2 px-4 py-2.5 bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 text-xs font-mono text-slate-500">
+          <div class="flex items-center gap-2">
+            <span class="terminal-dot bg-rose-500/80"></span>
+            <span class="terminal-dot bg-amber-500/80"></span>
+            <span class="terminal-dot bg-emerald-500/80"></span>
+            <span class="ml-2 font-semibold text-slate-700 dark:text-slate-300">misbahudin@hyperion-shell:~# (Playable Command Deck)</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">LIVE REPL</span>
+            <span class="text-[10px] text-slate-400 hidden sm:inline">PHP 8.4 JIT</span>
+          </div>
+        </div>
+
+        <!-- Quick Interactive Command Chips -->
+        <div class="flex flex-wrap items-center gap-1.5 px-4 py-2 bg-slate-50/70 dark:bg-slate-950/70 border-b border-slate-200/60 dark:border-slate-800/60 text-[11px] font-mono">
+          <span class="text-slate-400 dark:text-slate-500 mr-1">// Game CLI Menu:</span>
+          <button type="button" onclick="runTerminalCmd('quests')" class="px-2.5 py-0.5 rounded-md bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30 transition-all flex items-center gap-1">
+            <i class="fa-solid fa-trophy text-[9px]"></i>
+            <span>quests</span>
+          </button>
+          <button type="button" onclick="runTerminalCmd('stats')" class="px-2.5 py-0.5 rounded-md bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-700 dark:text-cyan-400 font-bold border border-cyan-500/30 transition-all flex items-center gap-1">
+            <i class="fa-solid fa-shield-halved text-[9px]"></i>
+            <span>stats</span>
+          </button>
+          <button type="button" onclick="runTerminalCmd('inventory')" class="px-2.5 py-0.5 rounded-md bg-purple-500/10 hover:bg-purple-500/20 text-purple-700 dark:text-purple-400 font-bold border border-purple-500/30 transition-all flex items-center gap-1">
+            <i class="fa-solid fa-box-archive text-[9px]"></i>
+            <span>inventory</span>
+          </button>
+          <button type="button" onclick="runTerminalCmd('test')" class="px-2.5 py-0.5 rounded-md bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30 transition-all flex items-center gap-1">
+            <i class="fa-solid fa-play text-[9px]"></i>
+            <span>test --suite</span>
+          </button>
+          <button type="button" onclick="runTerminalCmd('whoami')" class="px-2.5 py-0.5 rounded-md bg-slate-200/80 dark:bg-slate-800/80 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-all flex items-center gap-1">
+            <i class="fa-solid fa-user text-[9px] text-emerald-500"></i>
+            <span>whoami</span>
+          </button>
+          <button type="button" onclick="runTerminalCmd('contact')" class="px-2.5 py-0.5 rounded-md bg-slate-200/80 dark:bg-slate-800/80 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-all flex items-center gap-1">
+            <i class="fa-solid fa-paper-plane text-[9px] text-emerald-500"></i>
+            <span>contact</span>
+          </button>
+          <button type="button" onclick="runTerminalCmd('clear')" class="px-2.5 py-0.5 rounded-md bg-slate-200/80 dark:bg-slate-800/80 hover:bg-rose-500/20 hover:text-rose-500 text-slate-600 dark:text-slate-400 transition-all ml-auto">
+            <span>clear</span>
+          </button>
+        </div>
+
+        <!-- Terminal Output Screen -->
+        <div id="terminalScreen" class="p-4 sm:p-5 font-mono text-xs leading-relaxed space-y-2 overflow-x-auto max-h-[360px] overflow-y-auto text-slate-800 dark:text-slate-200">
+          <div id="terminalLog" class="space-y-1.5">
+            <div class="terminal-line flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
+              <span class="text-slate-400 dark:text-slate-500">$</span>
+              <span class="font-bold">php artisan test --filter=ArchitectureInvariantsTest</span>
+            </div>
+            <div class="terminal-line text-slate-500 dark:text-slate-400 pl-4">
+              RUNNING IN-MEMORY SQLite WAL &bull; PHP 8.4 JIT ACTIVE
+            </div>
+            <div class="terminal-line text-emerald-700 dark:text-emerald-300 pl-4 flex items-center gap-2">
+              <i class="fa-solid fa-check text-emerald-500 text-[11px]"></i>
+              <span>PASS Tests\Feature\BOLA_AuthorizationPolicyTest (41ms)</span>
+            </div>
+            <div class="terminal-line text-emerald-700 dark:text-emerald-300 pl-4 flex items-center gap-2">
+              <i class="fa-solid fa-check text-emerald-500 text-[11px]"></i>
+              <span>PASS Tests\Feature\NotarisEscrowPajakNTPNTest (29ms)</span>
+            </div>
+            <div class="terminal-line text-emerald-700 dark:text-emerald-300 pl-4 flex items-center gap-2">
+              <i class="fa-solid fa-check text-emerald-500 text-[11px]"></i>
+              <span>PASS Tests\Feature\ETL_ZeroDataLoss_ReconciliationTest (63ms)</span>
+            </div>
+            <div class="terminal-line pt-2 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800/80 flex flex-wrap items-center justify-between gap-2">
+              <span>Tests: <strong class="text-emerald-600 dark:text-emerald-400">250 passed</strong> (812 assertions)</span>
+              <span>Duration: <strong>0.38s</strong> &bull; Memory: <strong>21.4 MB</strong></span>
+            </div>
+          </div>
+
+          <!-- Interactive CLI Input Form -->
+          <form id="terminalForm" onsubmit="handleTerminalSubmit(event)" class="flex items-center gap-2 pt-2 border-t border-slate-200 dark:border-slate-800 text-xs font-mono">
+            <span class="text-emerald-600 dark:text-emerald-400 font-bold shrink-0">guest@hyperion:~$</span>
+            <input id="terminalInput" type="text" autocomplete="off" spellcheck="false" placeholder="ketik perintah ('quests', 'stats', 'inventory', 'test', 'help')..." class="w-full bg-transparent text-slate-900 dark:text-emerald-300 focus:outline-none placeholder:text-slate-400 dark:placeholder:text-slate-600 font-mono text-xs" />
+            <button type="submit" class="px-2.5 py-1 rounded bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[11px] font-bold font-mono transition-colors">Run</button>
+          </form>
+        </div>
+      </div>
+
+    </section>
+
     <!-- ========================================== -->
     <!-- 3. REKAM JEJAK PENGALAMAN KERJA (CV.PDF)   -->
     <!-- ========================================== -->
@@ -1236,13 +1614,13 @@
       
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200/80 dark:border-slate-800/80 pb-4 section-header relative overflow-hidden">
         <div>
-          <span class="text-xs font-mono font-semibold text-amber-600 dark:text-amber-400 tracking-wider uppercase">// ACT 02: CAREER CHRONICLES &amp; INSTITUTIONAL LEDGER</span>
+          <span class="text-xs font-mono font-semibold text-amber-600 dark:text-amber-400 tracking-wider uppercase">// ACT 03: LOGS // CAREER CHRONICLES &amp; INSTITUTIONAL LEDGER</span>
           <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-0.5">
             Logbook Rekam Jejak &amp; Kepemimpinan Rekayasa
           </h2>
         </div>
         <span class="text-xs font-mono text-slate-400">Total 3.5+ Tahun Kontribusi Nyata</span>
-        <span class="section-ghost-num hidden md:block absolute right-2 -bottom-3 text-6xl font-black font-mono text-amber-500/10 dark:text-amber-500/15 select-none pointer-events-none" aria-hidden="true">02</span>
+        <span class="section-ghost-num hidden md:block absolute right-2 -bottom-3 text-6xl font-black font-mono text-amber-500/10 dark:text-amber-500/15 select-none pointer-events-none" aria-hidden="true">03</span>
         <div class="section-accent-line absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-amber-500 via-emerald-400 to-transparent origin-left scale-x-0"></div>
       </div>
 
@@ -1576,7 +1954,7 @@
       
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200/80 dark:border-slate-800/80 pb-4 section-header relative overflow-hidden">
         <div>
-          <span class="text-xs font-mono font-semibold text-violet-600 dark:text-violet-400 tracking-wider uppercase">// ACT 03: SCHOLARLY CODEX &amp; PEER-REVIEWED RIGOR</span>
+          <span class="text-xs font-mono font-semibold text-violet-600 dark:text-violet-400 tracking-wider uppercase">// ACT 04: CODEX // THEORETICAL RIGOR &amp; PEER-REVIEWED RESEARCH</span>
           <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-0.5">
             Publikasi Ilmiah Terindeks
           </h2>
@@ -1584,7 +1962,7 @@
         <span class="px-3 py-1 rounded-full bg-violet-500/10 text-violet-700 dark:text-violet-400 text-xs font-mono font-bold border border-violet-500/20 w-fit">
           Peer-Reviewed Journal
         </span>
-        <span class="section-ghost-num hidden md:block absolute right-2 -bottom-3 text-6xl font-black font-mono text-violet-500/10 dark:text-violet-500/15 select-none pointer-events-none" aria-hidden="true">03</span>
+        <span class="section-ghost-num hidden md:block absolute right-2 -bottom-3 text-6xl font-black font-mono text-violet-500/10 dark:text-violet-500/15 select-none pointer-events-none" aria-hidden="true">04</span>
         <div class="section-accent-line absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-violet-500 via-indigo-400 to-transparent origin-left scale-x-0"></div>
       </div>
 
@@ -1636,261 +2014,18 @@
 
     </section>
 
-    <!-- ========================================== -->
-    <!-- 6. KEAHLIAN TEKNIS & PENDIDIKAN FORMAL    -->
-    <!-- ========================================== -->
-    <section id="keahlian" class="space-y-6 scroll-mt-20 gsap-section">
-      
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200/80 dark:border-slate-800/80 pb-4 section-header relative overflow-hidden">
-        <div>
-          <span class="text-xs font-mono font-semibold text-cyan-600 dark:text-cyan-400 tracking-wider uppercase">// ACT 04: DEVELOPER COMMAND DECK &amp; PLAYABLE CLI</span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-0.5">
-            Pendidikan Formal &amp; Matriks Keahlian
-          </h2>
-        </div>
-        <!-- Tombol Download CV Langsung (Sesuai Permintaan) -->
-        <a href="cv.pdf" download="CV-Misbahudin.pdf" class="magnetic-btn px-3.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold flex items-center gap-1.5 transition-all w-fit shadow-sm">
-          <i class="fa-solid fa-file-arrow-down"></i>
-          <span>Unduh CV Resmi (PDF)</span>
-        </a>
-        <span class="section-ghost-num hidden md:block absolute right-2 -bottom-3 text-6xl font-black font-mono text-cyan-500/10 dark:text-cyan-500/15 select-none pointer-events-none" aria-hidden="true">04</span>
-        <div class="section-accent-line absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-cyan-500 via-emerald-400 to-transparent origin-left scale-x-0"></div>
-      </div>
-
-      <!-- Formal Education Dual Cards (Polinema D4 & SMKN 2 Singosari) -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        
-        <!-- Polinema D4 -->
-        <div class="spotlight-card p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex items-start justify-between gap-4 shadow-sm print-card">
-          <div class="flex items-start gap-3.5">
-            <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400 text-xl shrink-0">
-              <i class="fa-solid fa-graduation-cap"></i>
-            </div>
-            <div>
-              <h3 class="text-base font-bold text-slate-900 dark:text-white tracking-tight">D4 - Teknik Informatika</h3>
-              <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm">Politeknik Negeri Malang (POLINEMA)</p>
-              <p class="text-slate-500 dark:text-slate-400 text-xs font-mono mt-0.5">Periode: 2016 &mdash; 2020</p>
-            </div>
-          </div>
-          <div class="text-right shrink-0">
-            <span class="text-[11px] text-slate-500 dark:text-slate-400 block font-mono">IPK</span>
-            <span class="text-xl font-bold font-mono text-emerald-600 dark:text-emerald-400">3.32 <span class="text-xs text-slate-400 font-normal">/ 4.00</span></span>
-          </div>
-        </div>
-
-        <!-- SMKN 2 Singosari TKJ -->
-        <div class="spotlight-card p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex items-start justify-between gap-4 shadow-sm print-card">
-          <div class="flex items-start gap-3.5">
-            <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400 text-xl shrink-0">
-              <i class="fa-solid fa-school"></i>
-            </div>
-            <div>
-              <h3 class="text-base font-bold text-slate-900 dark:text-white tracking-tight">Teknik Komputer dan Jaringan</h3>
-              <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm">SMKN 2 Singosari, Malang</p>
-              <p class="text-slate-500 dark:text-slate-400 text-xs font-mono mt-0.5">Periode: 2013 &mdash; 2016</p>
-            </div>
-          </div>
-          <div class="text-right shrink-0">
-            <span class="text-[11px] text-slate-500 dark:text-slate-400 block font-mono">Fokus</span>
-            <span class="text-xs font-bold font-mono text-emerald-600 dark:text-emerald-400">Hardware & LAN</span>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Playable Developer Console & Automated CLI Diagnostics -->
-      <div class="terminal-window overflow-hidden shadow-lg border border-slate-200 dark:border-slate-800">
-        <div class="terminal-header flex flex-wrap items-center justify-between gap-2 px-4 py-2.5 bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 text-xs font-mono text-slate-500">
-          <div class="flex items-center gap-2">
-            <span class="terminal-dot bg-rose-500/80"></span>
-            <span class="terminal-dot bg-amber-500/80"></span>
-            <span class="terminal-dot bg-emerald-500/80"></span>
-            <span class="ml-2 font-semibold text-slate-700 dark:text-slate-300">misbahudin@hyperion-shell:~# (Interactive CLI)</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">LIVE REPL</span>
-            <span class="text-[10px] text-slate-400 hidden sm:inline">PHP 8.4 JIT</span>
-          </div>
-        </div>
-
-        <!-- Quick Interactive Command Chips -->
-        <div class="flex flex-wrap items-center gap-1.5 px-4 py-2 bg-slate-50/70 dark:bg-slate-950/70 border-b border-slate-200/60 dark:border-slate-800/60 text-[11px] font-mono">
-          <span class="text-slate-400 dark:text-slate-500 mr-1">// Game CLI Menu:</span>
-          <button type="button" onclick="runTerminalCmd('quests')" class="px-2.5 py-0.5 rounded-md bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30 transition-all flex items-center gap-1">
-            <i class="fa-solid fa-trophy text-[9px]"></i>
-            <span>quests</span>
-          </button>
-          <button type="button" onclick="runTerminalCmd('stats')" class="px-2.5 py-0.5 rounded-md bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-700 dark:text-cyan-400 font-bold border border-cyan-500/30 transition-all flex items-center gap-1">
-            <i class="fa-solid fa-shield-halved text-[9px]"></i>
-            <span>stats</span>
-          </button>
-          <button type="button" onclick="runTerminalCmd('inventory')" class="px-2.5 py-0.5 rounded-md bg-purple-500/10 hover:bg-purple-500/20 text-purple-700 dark:text-purple-400 font-bold border border-purple-500/30 transition-all flex items-center gap-1">
-            <i class="fa-solid fa-box-archive text-[9px]"></i>
-            <span>inventory</span>
-          </button>
-          <button type="button" onclick="runTerminalCmd('test')" class="px-2.5 py-0.5 rounded-md bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30 transition-all flex items-center gap-1">
-            <i class="fa-solid fa-play text-[9px]"></i>
-            <span>test --suite</span>
-          </button>
-          <button type="button" onclick="runTerminalCmd('whoami')" class="px-2.5 py-0.5 rounded-md bg-slate-200/80 dark:bg-slate-800/80 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-all flex items-center gap-1">
-            <i class="fa-solid fa-user text-[9px] text-emerald-500"></i>
-            <span>whoami</span>
-          </button>
-          <button type="button" onclick="runTerminalCmd('contact')" class="px-2.5 py-0.5 rounded-md bg-slate-200/80 dark:bg-slate-800/80 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-all flex items-center gap-1">
-            <i class="fa-solid fa-paper-plane text-[9px] text-emerald-500"></i>
-            <span>contact</span>
-          </button>
-          <button type="button" onclick="runTerminalCmd('clear')" class="px-2.5 py-0.5 rounded-md bg-slate-200/80 dark:bg-slate-800/80 hover:bg-rose-500/20 hover:text-rose-500 text-slate-600 dark:text-slate-400 transition-all ml-auto">
-            <span>clear</span>
-          </button>
-        </div>
-
-        <!-- Terminal Output Screen -->
-        <div id="terminalScreen" class="p-4 sm:p-5 font-mono text-xs leading-relaxed space-y-2 overflow-x-auto max-h-[360px] overflow-y-auto text-slate-800 dark:text-slate-200">
-          <div id="terminalLog" class="space-y-1.5">
-            <div class="terminal-line flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
-              <span class="text-slate-400 dark:text-slate-500">$</span>
-              <span class="font-bold">php artisan test --filter=ArchitectureInvariantsTest</span>
-            </div>
-            <div class="terminal-line text-slate-500 dark:text-slate-400 pl-4">
-              RUNNING IN-MEMORY SQLite WAL &bull; PHP 8.4 JIT ACTIVE
-            </div>
-            <div class="terminal-line text-emerald-700 dark:text-emerald-300 pl-4 flex items-center gap-2">
-              <i class="fa-solid fa-check text-emerald-500 text-[11px]"></i>
-              <span>PASS Tests\Feature\BOLA_AuthorizationPolicyTest (41ms)</span>
-            </div>
-            <div class="terminal-line text-emerald-700 dark:text-emerald-300 pl-4 flex items-center gap-2">
-              <i class="fa-solid fa-check text-emerald-500 text-[11px]"></i>
-              <span>PASS Tests\Feature\NotarisEscrowPajakNTPNTest (29ms)</span>
-            </div>
-            <div class="terminal-line text-emerald-700 dark:text-emerald-300 pl-4 flex items-center gap-2">
-              <i class="fa-solid fa-check text-emerald-500 text-[11px]"></i>
-              <span>PASS Tests\Feature\ETL_ZeroDataLoss_ReconciliationTest (63ms)</span>
-            </div>
-            <div class="terminal-line pt-2 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800/80 flex flex-wrap items-center justify-between gap-2">
-              <span>Tests: <strong class="text-emerald-600 dark:text-emerald-400">250 passed</strong> (812 assertions)</span>
-              <span>Duration: <strong>0.38s</strong> &bull; Memory: <strong>21.4 MB</strong></span>
-            </div>
-          </div>
-
-          <!-- Interactive CLI Input Form -->
-          <form id="terminalForm" onsubmit="handleTerminalSubmit(event)" class="flex items-center gap-2 pt-2 border-t border-slate-200 dark:border-slate-800 text-xs font-mono">
-            <span class="text-emerald-600 dark:text-emerald-400 font-bold shrink-0">guest@hyperion:~$</span>
-            <input id="terminalInput" type="text" autocomplete="off" spellcheck="false" placeholder="ketik perintah ('test', 'stack', 'contact', 'bio', 'help')..." class="w-full bg-transparent text-slate-900 dark:text-emerald-300 focus:outline-none placeholder:text-slate-400 dark:placeholder:text-slate-600 font-mono text-xs" />
-            <button type="submit" class="px-2.5 py-1 rounded bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[11px] font-bold font-mono transition-colors">Run</button>
-          </form>
-        </div>
-      </div>
-
-      <!-- Interactive Skill Telemetry Banner -->
-      <div class="flex items-center justify-between gap-2 px-3.5 py-2 rounded-xl bg-emerald-500/5 dark:bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400 font-mono text-[11px]">
-        <div class="flex items-center gap-1.5">
-          <i class="fa-solid fa-terminal text-xs"></i>
-          <span class="font-bold">Live Skill Telemetry:</span>
-          <span class="hidden sm:inline text-slate-600 dark:text-slate-300">Klik / sorot badge keahlian di bawah untuk verifikasi telemetri perintah di konsol terminal</span>
-          <span class="sm:hidden text-slate-600 dark:text-slate-300">Klik keahlian untuk uji di terminal ↗</span>
-        </div>
-        <span class="text-[10px] uppercase font-bold text-emerald-600 dark:text-emerald-400 shrink-0">Interactive</span>
-      </div>
-
-      <!-- 5 Matriks Keahlian Terstruktur Sesuai CV.PDF -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-
-        <!-- 1. Backend & Database -->
-        <div class="spotlight-card p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 space-y-3 print-card">
-          <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-mono text-xs font-bold uppercase">
-            <i class="fa-solid fa-server"></i>
-            <span>Backend & Database</span>
-          </div>
-          <div class="flex flex-wrap gap-1.5 skill-pills">
-            <span class="skill-pill px-2.5 py-1 rounded-lg bg-emerald-500/10 text-xs font-mono text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30">PHP 8.x</span>
-            <span class="skill-pill px-2.5 py-1 rounded-lg bg-emerald-500/10 text-xs font-mono text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30">Laravel 13</span>
-            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Laravel Sanctum</span>
-            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Laravel Passport</span>
-            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">OAuth 2.0</span>
-            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">RESTful API</span>
-            <span class="skill-pill px-2.5 py-1 rounded-lg bg-emerald-500/10 text-xs font-mono text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30">MySQL (3NF)</span>
-            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Migrasi Data (ETL)</span>
-          </div>
-        </div>
-
-        <!-- 2. Frontend & Tampilan -->
-        <div class="spotlight-card p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 space-y-3 print-card">
-          <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-mono text-xs font-bold uppercase">
-            <i class="fa-solid fa-laptop-code"></i>
-            <span>Frontend & Tampilan</span>
-          </div>
-          <div class="flex flex-wrap gap-1.5 skill-pills">
-            <span class="skill-pill px-2.5 py-1 rounded-lg bg-emerald-500/10 text-xs font-mono text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30">Svelte 5 (Runes)</span>
-            <span class="skill-pill px-2.5 py-1 rounded-lg bg-emerald-500/10 text-xs font-mono text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30">Tailwind CSS (v4)</span>
-            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">JavaScript (ES6+)</span>
-            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">GSAP (ScrollTrigger)</span>
-            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">HTML5 Semantic DOM</span>
-            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">CSS3 Animations</span>
-          </div>
-        </div>
-
-        <!-- 3. Workflow AI & Tools Modern -->
-        <div class="spotlight-card p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 space-y-3 print-card">
-          <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-mono text-xs font-bold uppercase">
-            <i class="fa-solid fa-wand-magic-sparkles"></i>
-            <span>Workflow AI & Tooling</span>
-          </div>
-          <div class="flex flex-wrap gap-1.5 skill-pills">
-            <span class="skill-pill px-2.5 py-1 rounded-lg bg-emerald-500/10 text-xs font-mono text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30">Prompt Engineering (XML)</span>
-            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Antigravity CLI</span>
-            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">LLM Context (llms.txt)</span>
-            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Git & GitHub</span>
-            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Vite & Composer</span>
-          </div>
-        </div>
-
-        <!-- 4. Pengujian & Kualitas Perangkat Lunak -->
-        <div class="spotlight-card p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 space-y-3 print-card">
-          <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-mono text-xs font-bold uppercase">
-            <i class="fa-solid fa-vial-circle-check"></i>
-            <span>Pengujian & Kualitas (TDD)</span>
-          </div>
-          <div class="flex flex-wrap gap-1.5 skill-pills">
-            <span class="skill-pill px-2.5 py-1 rounded-lg bg-emerald-500/10 text-xs font-mono text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30">PHPUnit (250+ Tests)</span>
-            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Automated Unit Testing</span>
-            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Feature Integration Tests</span>
-            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Test-Driven Dev (TDD)</span>
-            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Code Quality & PSR-12</span>
-          </div>
-        </div>
-
-        <!-- 5. Server & IT Support -->
-        <div class="spotlight-card p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 space-y-3 print-card md:col-span-2 lg:col-span-2">
-          <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-mono text-xs font-bold uppercase">
-            <i class="fa-solid fa-network-wired"></i>
-            <span>Server, Infrastruktur & IT Support</span>
-          </div>
-          <div class="flex flex-wrap gap-1.5 skill-pills">
-            <span class="skill-pill px-2.5 py-1 rounded-lg bg-emerald-500/10 text-xs font-mono text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30">Optimasi Server Rendah</span>
-            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Shared Hosting Tuning (Error 1040 Fix)</span>
-            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Troubleshooting Hardware PC</span>
-            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Jaringan LAN & Printer Sharing</span>
-            <span class="skill-pill px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-200">Dapodik & Asesmen Nasional (ANBK)</span>
-          </div>
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- ========================================== -->
-    <!-- 7. CONTACT & COLLABORATION                -->
-    <!-- ========================================== -->
+    <!-- ============================================================== -->
+    <!-- ACT 05: CO-OP // INITIATE MULTIPLAYER & DIRECT TRANSMISSION    -->
+    <!-- ============================================================== -->
     <section id="kontak" class="space-y-6 scroll-mt-20 gsap-section">
       
-      <div class="spotlight-card p-6 sm:p-12 rounded-3xl bg-gradient-to-br from-emerald-500/10 via-slate-100 to-white dark:from-emerald-950/30 dark:via-slate-900 dark:to-slate-950 border border-emerald-500/30 text-center space-y-6 shadow-lg relative overflow-hidden">
+      <div class="spotlight-card tactical-reticle p-6 sm:p-12 rounded-3xl bg-gradient-to-br from-emerald-500/10 via-slate-100 to-white dark:from-emerald-950/30 dark:via-slate-900 dark:to-slate-950 border border-emerald-500/30 text-center space-y-6 shadow-lg relative overflow-hidden">
         
         <span class="section-ghost-num hidden md:block absolute right-4 -bottom-4 text-7xl font-black font-mono text-emerald-500/10 dark:text-emerald-500/20 select-none pointer-events-none" aria-hidden="true">05</span>
         
         <div class="max-w-xl mx-auto space-y-3">
           <div class="flex flex-col items-center gap-1">
-            <span class="text-[11px] font-mono font-semibold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase">// ACT 05: EXTRACTION ZONE &amp; DIRECT TRANSMISSION</span>
+            <span class="text-[11px] font-mono font-semibold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase">// ACT 05: CO-OP // INITIATE MULTIPLAYER &amp; DIRECT TRANSMISSION</span>
             <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-xs font-mono font-bold">
               <i class="fa-solid fa-handshake"></i>
               <span>Mari Berkolaborasi</span>
@@ -1994,23 +2129,23 @@
   <div id="mobileThumbDock" class="no-print md:hidden fixed bottom-3 left-3 right-3 z-40 bg-slate-900/90 dark:bg-[#0c1017]/90 backdrop-blur-lg border border-slate-800 rounded-2xl p-1.5 flex items-center justify-around shadow-xl text-slate-400 text-xs" style="bottom: max(0.75rem, env(safe-area-inset-bottom, 0.75rem));">
     <a href="#proyek" class="mobile-nav-link flex flex-col items-center gap-0.5 p-1 hover:text-emerald-400" data-section="proyek">
       <i class="fa-solid fa-diagram-project text-sm"></i>
-      <span class="text-[10px]">Proyek</span>
+      <span class="text-[10px]">01 Raids</span>
+    </a>
+    <a href="#keahlian" class="mobile-nav-link flex flex-col items-center gap-0.5 p-1 hover:text-emerald-400" data-section="keahlian">
+      <i class="fa-solid fa-network-wired text-sm"></i>
+      <span class="text-[10px]">02 Trees</span>
     </a>
     <a href="#pengalaman" class="mobile-nav-link flex flex-col items-center gap-0.5 p-1 hover:text-emerald-400" data-section="pengalaman">
       <i class="fa-solid fa-briefcase text-sm"></i>
-      <span class="text-[10px]">Kerja</span>
+      <span class="text-[10px]">03 Logs</span>
     </a>
     <a href="#riset" class="mobile-nav-link flex flex-col items-center gap-0.5 p-1 hover:text-emerald-400" data-section="riset">
       <i class="fa-solid fa-book-bookmark text-sm"></i>
-      <span class="text-[10px]">Riset</span>
-    </a>
-    <a href="#keahlian" class="mobile-nav-link flex flex-col items-center gap-0.5 p-1 hover:text-emerald-400" data-section="keahlian">
-      <i class="fa-solid fa-code text-sm"></i>
-      <span class="text-[10px]">Keahlian</span>
+      <span class="text-[10px]">04 Codex</span>
     </a>
     <a href="#kontak" class="mobile-nav-link flex flex-col items-center gap-0.5 p-1 hover:text-emerald-400" data-section="kontak">
       <i class="fa-solid fa-paper-plane text-sm"></i>
-      <span class="text-[10px]">Kontak</span>
+      <span class="text-[10px]">05 Co-Op</span>
     </a>
   </div>
 
@@ -2038,6 +2173,69 @@
       } else {
         icon.className = 'fa-solid fa-moon text-slate-700 text-xs';
       }
+    }
+
+    // Dual-Persona Switcher: Dev Quest (Game Story) vs Executive ATS (Corporate Resume)
+    let currentPortfolioMode = localStorage.getItem('portfolioMode') || 'quest';
+
+    function applyPortfolioMode(mode) {
+      currentPortfolioMode = mode;
+      localStorage.setItem('portfolioMode', mode);
+      const btn = document.getElementById('modeToggleBtn');
+      const icon = document.getElementById('modeToggleIcon');
+      const label = document.getElementById('modeToggleLabel');
+      
+      if (mode === 'executive') {
+        document.body.classList.add('executive-mode');
+        if (btn) btn.className = 'h-9 px-2 sm:px-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 flex items-center gap-1.5 text-xs font-mono font-bold transition-all shadow-2xs';
+        if (icon) icon.className = 'fa-solid fa-file-lines text-xs text-emerald-600 dark:text-emerald-400';
+        if (label) label.textContent = 'ATS';
+      } else {
+        document.body.classList.remove('executive-mode');
+        if (btn) btn.className = 'h-9 px-2 sm:px-2.5 rounded-lg border border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 flex items-center gap-1.5 text-xs font-mono font-bold transition-all hover:bg-emerald-500/20 shadow-2xs';
+        if (icon) icon.className = 'fa-solid fa-gamepad text-xs';
+        if (label) label.textContent = 'QUEST';
+      }
+      if (typeof ScrollTrigger !== 'undefined') {
+        ScrollTrigger.refresh();
+      }
+    }
+
+    function togglePortfolioMode() {
+      playHapticClick(900, 0.02);
+      const nextMode = currentPortfolioMode === 'quest' ? 'executive' : 'quest';
+      applyPortfolioMode(nextMode);
+    }
+
+    // Auto-Typing Telemetry Engine for Playable Developer Terminal
+    let terminalAutoTyped = false;
+    function triggerTerminalAutoType() {
+      if (terminalAutoTyped) return;
+      terminalAutoTyped = true;
+      const log = document.getElementById('terminalLog');
+      if (!log) return;
+      
+      const introLines = [
+        { text: '[SYS_INIT] Initializing telemetry for agent: Misbahudin, S.Kom...', cls: 'text-cyan-600 dark:text-cyan-400 font-bold' },
+        { text: '[OK] Runtime: PHP 8.4 JIT Engine &amp; Node 22 LTS verified.', cls: 'text-emerald-600 dark:text-emerald-400' },
+        { text: '[OK] Framework: Laravel 13 (Sanctum SPA) &amp; Svelte 5 (Runes) active.', cls: 'text-emerald-600 dark:text-emerald-400' },
+        { text: '[OK] Data Integrity: 12.117 Records Reconciled (0 Data Loss) &amp; 250+ Tests passed.', cls: 'text-emerald-600 dark:text-emerald-400' },
+        { text: 'Ketik <strong class="text-emerald-500">\'quests\'</strong>, <strong class="text-cyan-500">\'stats\'</strong>, atau <strong class="text-purple-500">\'inventory\'</strong> untuk inspeksi detail agent.', cls: 'text-slate-500 dark:text-slate-400 italic' }
+      ];
+      
+      let delay = 300;
+      introLines.forEach(item => {
+        setTimeout(() => {
+          const line = document.createElement('div');
+          line.className = `terminal-line text-xs pl-4 font-mono ${item.cls}`;
+          line.innerHTML = item.text;
+          log.appendChild(line);
+          const screen = document.getElementById('terminalScreen');
+          if (screen) screen.scrollTop = screen.scrollHeight;
+          playHapticClick(860, 0.012);
+        }, delay);
+        delay += 240;
+      });
     }
 
     // Live Western Indonesian Time (WIB) Clock in Hero HUD
@@ -2956,22 +3154,24 @@
         });
       }
 
-      // L. ScrollSpy Active Section Sync
-      const sections = ['hero', 'proyek', 'pengalaman', 'riset', 'keahlian', 'kontak'];
+      // L. Tactical Mission Scrubber HUD & ScrollSpy Active Sync
+      const sections = ['hero', 'proyek', 'keahlian', 'pengalaman', 'riset', 'kontak'];
       sections.forEach(secId => {
         const secEl = document.getElementById(secId);
         if (secEl) {
           ScrollTrigger.create({
             trigger: secEl,
-            start: 'top center',
-            end: 'bottom center',
+            start: 'top 45%',
+            end: 'bottom 45%',
             onToggle: self => {
               if (self.isActive) {
-                document.querySelectorAll('#desktopNav .nav-link').forEach(link => {
+                document.querySelectorAll('#desktopNav .hud-scrubber-btn').forEach(link => {
                   if (link.getAttribute('data-section') === secId) {
-                    link.classList.add('text-emerald-600', 'dark:text-emerald-400', 'font-bold');
+                    link.classList.add('bg-emerald-500/15', 'text-emerald-700', 'dark:text-emerald-300', 'border-emerald-500/30', 'shadow-2xs');
+                    link.classList.remove('text-slate-500', 'dark:text-slate-400', 'border-transparent');
                   } else {
-                    link.classList.remove('text-emerald-600', 'dark:text-emerald-400', 'font-bold');
+                    link.classList.remove('bg-emerald-500/15', 'text-emerald-700', 'dark:text-emerald-300', 'border-emerald-500/30', 'shadow-2xs');
+                    link.classList.add('text-slate-500', 'dark:text-slate-400', 'border-transparent');
                   }
                 });
 
@@ -2989,10 +3189,22 @@
           });
         }
       });
+
+      // M. Terminal Auto-Typing ScrollTrigger Trigger
+      const terminalEl = document.getElementById('keahlian') || document.querySelector('.terminal-window');
+      if (terminalEl) {
+        ScrollTrigger.create({
+          trigger: terminalEl,
+          start: 'top 75%',
+          once: true,
+          onEnter: () => triggerTerminalAutoType()
+        });
+      }
     }
 
     // Initialize on DOM Ready
     document.addEventListener('DOMContentLoaded', () => {
+      applyPortfolioMode(localStorage.getItem('portfolioMode') || 'quest');
       updateThemeIcon();
       initLiveClock();
       initSpotlightCards();
