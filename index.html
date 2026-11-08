@@ -293,42 +293,37 @@
 <body class="bg-slate-50 dark:bg-[#07090e] text-slate-800 dark:text-slate-100 font-sans antialiased selection:bg-emerald-500 selection:text-slate-950 min-h-screen transition-colors duration-200 relative overflow-x-hidden">
 
   <!-- ============================================================== -->
-  <!-- AMBIENT MULTI-PLANE PARALLAX BACKGROUND (GPU-COMPOSITED)       -->
+  <!-- AMBIENT MULTI-PLANE PARALLAX COLOR GRADIENTS (GPU-COMPOSITED)  -->
   <!-- ============================================================== -->
   <div class="no-print pointer-events-none fixed inset-0 overflow-hidden z-0" aria-hidden="true">
+    <!-- Zone 0: Hero Emerald / Teal Atmosphere -->
+    <div 
+      data-parallax-depth="0.14" 
+      class="ambient-parallax-layer -top-36 -left-36 w-[560px] h-[560px] bg-gradient-to-br from-emerald-500/15 via-teal-500/10 to-transparent dark:from-emerald-500/20 dark:via-teal-600/10">
+    </div>
+    
+    <!-- Zone 1: Proyek Tactical Indigo Glow -->
+    <div 
+      data-parallax-depth="-0.18" 
+      class="ambient-parallax-layer top-1/4 -right-40 w-[520px] h-[520px] bg-gradient-to-bl from-indigo-500/12 via-slate-500/8 to-transparent dark:from-indigo-600/15 dark:via-cyan-600/10">
+    </div>
+
+    <!-- Zone 2: Pengalaman Warm Amber Chronicle Halo -->
     <div 
       data-parallax-depth="0.12" 
-      class="ambient-parallax-layer -top-32 -left-32 w-[520px] h-[520px] bg-emerald-500/10 dark:bg-emerald-500/15">
-    </div>
-    <div 
-      data-parallax-depth="-0.16" 
-      class="ambient-parallax-layer top-1/3 -right-36 w-[480px] h-[480px] bg-teal-500/10">
-    </div>
-    <div 
-      data-parallax-depth="0.08" 
-      class="ambient-parallax-layer bottom-10 left-1/4 w-[600px] h-[600px] bg-emerald-600/5 dark:bg-emerald-500/10">
+      class="ambient-parallax-layer top-[48%] -left-32 w-[540px] h-[540px] bg-gradient-to-tr from-amber-500/10 via-emerald-500/6 to-transparent dark:from-amber-600/12 dark:via-slate-800/10">
     </div>
 
-    <!-- Floating Engineering Telemetry Nodes (Scrubbed with Differential Parallax on Desktop) -->
+    <!-- Zone 3: Riset Violet Codex Aura -->
     <div 
-      data-parallax-depth="0.25"
-      class="hidden lg:flex items-center gap-2 absolute top-[28%] left-8 px-3 py-1 rounded-full bg-slate-200/50 dark:bg-slate-900/60 border border-slate-300/50 dark:border-slate-800/60 backdrop-blur-xs font-mono text-[11px] text-slate-500 dark:text-emerald-400/70 select-none shadow-2xs">
-      <span class="w-1.5 h-1.5 rounded-full bg-emerald-500/80 animate-pulse"></span>
-      <span>SYSTEM: HYPERION_KERNEL // 200_OK</span>
+      data-parallax-depth="-0.15" 
+      class="ambient-parallax-layer top-[70%] -right-32 w-[500px] h-[500px] bg-gradient-to-l from-violet-500/10 via-indigo-500/6 to-transparent dark:from-violet-600/12 dark:via-indigo-900/10">
     </div>
 
+    <!-- Zone 4: Command Deck Emerald Cyber Horizon -->
     <div 
-      data-parallax-depth="-0.22"
-      class="hidden lg:flex items-center gap-2 absolute top-[58%] right-8 px-3 py-1 rounded-full bg-slate-200/50 dark:bg-slate-900/60 border border-slate-300/50 dark:border-slate-800/60 backdrop-blur-xs font-mono text-[11px] text-slate-500 dark:text-teal-400/70 select-none shadow-2xs">
-      <i class="fa-solid fa-database text-[10px] text-emerald-500/80"></i>
-      <span>ETL_STREAM: 12,117_RECORDS // ZERO_LOSS</span>
-    </div>
-
-    <div 
-      data-parallax-depth="0.18"
-      class="hidden lg:flex items-center gap-2 absolute top-[82%] left-12 px-3 py-1 rounded-full bg-slate-200/50 dark:bg-slate-900/60 border border-slate-300/50 dark:border-slate-800/60 backdrop-blur-xs font-mono text-[11px] text-slate-500 dark:text-emerald-400/70 select-none shadow-2xs">
-      <i class="fa-solid fa-microchip text-[10px] text-emerald-500/80"></i>
-      <span>PHP 8.4 JIT &bull; SVELTE 5 RUNES &bull; TDD 250+</span>
+      data-parallax-depth="0.09" 
+      class="ambient-parallax-layer -bottom-36 left-1/4 w-[640px] h-[640px] bg-gradient-to-t from-emerald-500/12 via-teal-500/8 to-transparent dark:from-emerald-600/15 dark:via-slate-900/10">
     </div>
   </div>
 
@@ -414,7 +409,7 @@
       <div class="hero-anim flex flex-wrap items-center gap-2">
         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 dark:text-emerald-400 text-xs font-mono font-medium">
           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span>// PROLOGUE: THE ENGINEER'S DOSSIER</span>
+          <span>// ACT 00: THE SYSTEMS ENGINEER AWAKENING</span>
         </span>
         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 text-xs font-mono">
           <i class="fa-solid fa-location-dot text-rose-500 text-[11px]"></i>
@@ -580,7 +575,7 @@
       
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200/80 dark:border-slate-800/80 pb-4 section-header relative overflow-hidden">
         <div>
-          <span class="text-xs font-mono font-semibold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase">// CHAPTER 01: PRODUCTION BLUEPRINTS &amp; ARCHITECTURAL SYSTEMS</span>
+          <span class="text-xs font-mono font-semibold text-indigo-600 dark:text-cyan-400 tracking-wider uppercase">// ACT 01: PRODUCTION MISSIONS &amp; ARCHITECTURAL BLUEPRINTS</span>
           <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-0.5">
             Proyek Unggulan Skala Produksi
           </h2>
@@ -588,8 +583,8 @@
         <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-sm">
           Sistem operasional nyata yang dibangun untuk klien institusi, siap diverifikasi visual dan teknis.
         </p>
-        <span class="section-ghost-num hidden md:block absolute right-2 -bottom-3 text-6xl font-black font-mono text-slate-200/40 dark:text-slate-800/30 select-none pointer-events-none" aria-hidden="true">01</span>
-        <div class="section-accent-line absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-emerald-500 via-teal-400 to-transparent origin-left scale-x-0"></div>
+        <span class="section-ghost-num hidden md:block absolute right-2 -bottom-3 text-6xl font-black font-mono text-indigo-500/10 dark:text-cyan-500/15 select-none pointer-events-none" aria-hidden="true">01</span>
+        <div class="section-accent-line absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-indigo-500 via-cyan-400 to-transparent origin-left scale-x-0"></div>
       </div>
 
       <div class="space-y-10">
@@ -787,7 +782,7 @@
                 <span class="text-[11px] sm:text-xs text-slate-400 dark:text-slate-500 font-mono">Yayasan Pondok Quran Terpadu Malang</span>
               </div>
               <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
-                SIM-PQTM: Sistem Informasi Terpadu (Presensi Massal &lt; 2 Menit, Rapor Kemendikbud &amp; Dashboard Tahfidz/Tasmi')
+                SIM-PQTM: Sistem Informasi Manajemen Santri, Verifikasi Berkas &amp; Dashboard Tahfidz-Tasmi'
               </h3>
             </div>
             <div class="flex items-center gap-2 self-start sm:self-center font-mono text-xs text-emerald-600 dark:text-emerald-400 bg-emerald-500/5 px-3 py-1.5 rounded-xl border border-emerald-500/20 shrink-0">
@@ -802,11 +797,11 @@
             <button type="button" onclick="switchProjectTab('pqtm', 'ui')" id="tabBtn-pqtm-ui" class="project-tab-btn active px-3 py-1 rounded-lg text-xs font-mono font-bold transition-all bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30">
               <i class="fa-solid fa-desktop mr-1 text-[11px]"></i> Pratinjau Antarmuka SIM-PQTM
             </button>
-            <button type="button" onclick="switchProjectTab('pqtm', 'presensi')" id="tabBtn-pqtm-presensi" class="project-tab-btn px-3 py-1 rounded-lg text-xs font-mono font-medium transition-all text-slate-600 dark:text-slate-400 hover:text-emerald-500 bg-slate-100 dark:bg-slate-800/60 border border-transparent">
-              <i class="fa-solid fa-clipboard-check mr-1 text-[11px]"></i> Presensi Massal &amp; Rapor Kemendikbud
-            </button>
             <button type="button" onclick="switchProjectTab('pqtm', 'tahfidz')" id="tabBtn-pqtm-tahfidz" class="project-tab-btn px-3 py-1 rounded-lg text-xs font-mono font-medium transition-all text-slate-600 dark:text-slate-400 hover:text-emerald-500 bg-slate-100 dark:bg-slate-800/60 border border-transparent">
-              <i class="fa-solid fa-book-quran mr-1 text-[11px]"></i> Dashboard Tahfidz &amp; Tasmi' Santri
+              <i class="fa-solid fa-book-quran mr-1 text-[11px]"></i> Dashboard Tahfidz &amp; Tasmi' (100% Akurat)
+            </button>
+            <button type="button" onclick="switchProjectTab('pqtm', 'berkas')" id="tabBtn-pqtm-berkas" class="project-tab-btn px-3 py-1 rounded-lg text-xs font-mono font-medium transition-all text-slate-600 dark:text-slate-400 hover:text-emerald-500 bg-slate-100 dark:bg-slate-800/60 border border-transparent">
+              <i class="fa-solid fa-id-card-clip mr-1 text-[11px]"></i> Verifikasi Berkas &amp; Detail Santri
             </button>
           </div>
 
@@ -823,74 +818,74 @@
               </div>
             </div>
 
-            <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 shadow-sm" onclick="openLightbox('assets/yayasan-pesantren.jpg', 'Dashboard SIM PQTM: Modul Presensi Massal & Jurnal Mutabaah Santri')">
+            <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 shadow-sm" onclick="openLightbox('assets/yayasan-pesantren.jpg', 'Dashboard SIM PQTM: Dashboard Tahfidz &amp; Tasmi\' Santri (100% Akurat)')">
               <img src="assets/yayasan-pesantren.jpg" alt="Dashboard SIM PQTM" class="w-full aspect-[16/10] sm:aspect-video object-cover object-center" />
               <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white text-xs font-mono font-bold">
                 <i class="fa-solid fa-magnifying-glass-plus text-base"></i>
                 <span>Lihat Dashboard SIM PQTM</span>
               </div>
               <div class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-slate-900/80 text-[10px] font-mono text-emerald-400 backdrop-blur-sm">
-                Dashboard Presensi &amp; Mutaba'ah
+                Dashboard Tahfidz &amp; Mutaba'ah
               </div>
             </div>
           </div>
 
-          <!-- Tab Pane 2: Presensi Massal & Rapor Kemendikbud -->
-          <div id="tabPane-pqtm-presensi" class="project-tab-pane hidden p-4 sm:p-5 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80 space-y-4">
-            <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-2">
-              <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">// PIPELINE PRESENSI MASSAL (&lt; 2 MENIT) &amp; ENGINE RAPOR KEMENDIKBUD</span>
-              <span class="text-[10px] font-mono text-emerald-500 font-bold">TURNAROUND &lt; 2 MENIT</span>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 text-xs font-mono">
-              <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
-                <span class="text-[10px] text-emerald-500 font-bold block">01. BATCH MATRIX</span>
-                <span class="font-bold text-slate-800 dark:text-slate-200 block">Presensi Massal &lt; 2 Menit</span>
-                <p class="text-[11px] text-slate-500 font-sans">Formulir grid santri per asrama otomatis diset 'Hadir'. Guru hanya menandai santri yang berhalangan.</p>
-              </div>
-              <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
-                <span class="text-[10px] text-emerald-500 font-bold block">02. ATOMIC SYNC</span>
-                <span class="font-bold text-slate-800 dark:text-slate-200 block">Bulk Mutation DB</span>
-                <p class="text-[11px] text-slate-500 font-sans">Penyimpanan 300+ record presensi santri via transaksi DB atomic dalam waktu kurang dari 1,2 detik.</p>
-              </div>
-              <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
-                <span class="text-[10px] text-emerald-500 font-bold block">03. AUTO DESKRIPSI</span>
-                <span class="font-bold text-slate-800 dark:text-slate-200 block">Kalkulasi Capaian CP/TP</span>
-                <p class="text-[11px] text-slate-500 font-sans">Mengonversi nilai formatif &amp; sumatif menjadi narasi capaian Kurikulum Merdeka otomatis tanpa ketik manual.</p>
-              </div>
-              <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-emerald-500/30 bg-emerald-500/5 space-y-1">
-                <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold block">04. INSTANT PDF</span>
-                <span class="font-bold text-slate-900 dark:text-white block">Cetak Rapor Kemendikbud</span>
-                <p class="text-[11px] text-slate-500 font-sans">Kompilasi rapor PDF A4 resmi dinas langsung dari browser 1-klik, siap bagi dan bebas revisi dinas.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Tab Pane 3: Dashboard Tahfidz & Tasmi' Santri -->
+          <!-- Tab Pane 2: Dashboard Tahfidz & Tasmi' Santri (100% Akurat) -->
           <div id="tabPane-pqtm-tahfidz" class="project-tab-pane hidden p-4 sm:p-5 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80 space-y-4">
             <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-2">
               <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">// DASHBOARD MUTABA'AH TAHFIDZ &amp; UJIAN TASMI' BIL-GHAIB SANTRI</span>
-              <span class="text-[10px] font-mono text-emerald-500 font-bold">100% TERVALIDASI</span>
+              <span class="text-[10px] font-mono text-emerald-500 font-bold">100% AKURAT &bull; ZERO DATA DISCREPANCY</span>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 text-xs font-mono">
               <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
                 <span class="text-[10px] text-emerald-500 font-bold block">01. JURNAL SETORAN</span>
-                <span class="font-bold text-slate-800 dark:text-slate-200 block">Ziyadah &amp; Muraja'ah Harian</span>
-                <p class="text-[11px] text-slate-500 font-sans">Pencatatan surat, rentang ayat, kelancaran tajwid, makharijul huruf, dan predikat (Mumtaz/Jayyid).</p>
+                <span class="font-bold text-slate-800 dark:text-slate-200 block">Ziyadah &amp; Muraja'ah</span>
+                <p class="text-[11px] text-slate-500 font-sans">Pencatatan surat, rentang ayat, evaluasi kelancaran tajwid, makharijul huruf, dan predikat nilai harian.</p>
               </div>
               <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
                 <span class="text-[10px] text-emerald-500 font-bold block">02. TRACKING JUZ</span>
-                <span class="font-bold text-slate-800 dark:text-slate-200 block">Kemajuan Akumulasi Real-Time</span>
-                <p class="text-[11px] text-slate-500 font-sans">Bar progres hafalan santri (Juz 1 s/d 30) terpantau langsung oleh pengasuh asrama dan wali santri.</p>
+                <span class="font-bold text-slate-800 dark:text-slate-200 block">Akumulasi Real-Time</span>
+                <p class="text-[11px] text-slate-500 font-sans">Pemantauan progres kemajuan hafalan santri Juz 1 s/d 30 secara presisi tanpa ada catatan manual tercecer.</p>
               </div>
               <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
                 <span class="text-[10px] text-emerald-500 font-bold block">03. TASMI' BIL-GHAIB</span>
                 <span class="font-bold text-slate-800 dark:text-slate-200 block">Ujian Sekali Duduk</span>
-                <p class="text-[11px] text-slate-500 font-sans">Manajemen ujian tasmi' 1 Juz, 5 Juz, 10 Juz s/d 30 Juz di hadapan majelis asatidz dengan counter kesalahan.</p>
+                <p class="text-[11px] text-slate-500 font-sans">Pencatatan ujian hafalan 1 Juz, 5 Juz, 10 Juz s/d 30 Juz di hadapan majelis asatidz dengan counter kesalahan terukur.</p>
               </div>
               <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-emerald-500/30 bg-emerald-500/5 space-y-1">
                 <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold block">04. SYAHADAH DIGITAL</span>
-                <span class="font-bold text-slate-900 dark:text-white block">Sertifikat &amp; Rapor Tahfidz</span>
-                <p class="text-[11px] text-slate-500 font-sans">Penerbitan syahadah tasmi' ber-timestamp dan buku mutaba'ah digital berkala untuk laporan wali santri.</p>
+                <span class="font-bold text-slate-900 dark:text-white block">Sertifikasi &amp; Histori</span>
+                <p class="text-[11px] text-slate-500 font-sans">Penerbitan syahadah kelulusan juz ber-timestamp dan buku mutaba'ah digital berkala untuk wali santri.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Pane 3: Verifikasi Berkas & Detail Santri -->
+          <div id="tabPane-pqtm-berkas" class="project-tab-pane hidden p-4 sm:p-5 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80 space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-2">
+              <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">// VERIFIKASI BERKAS DIGITAL &amp; MANAJEMEN DETAIL SANTRI TERPUSAT</span>
+              <span class="text-[10px] font-mono text-emerald-500 font-bold">TERVERIFIKASI TERSENTRAL</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 text-xs font-mono">
+              <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
+                <span class="text-[10px] text-emerald-500 font-bold block">01. INTAKE DIGITAL</span>
+                <span class="font-bold text-slate-800 dark:text-slate-200 block">Arsip Berkas Masuk</span>
+                <p class="text-[11px] text-slate-500 font-sans">Digitalisasi dokumen penting santri: KTP orang tua, Akta Kelahiran, Kartu Keluarga, dan Ijazah/NISN.</p>
+              </div>
+              <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
+                <span class="text-[10px] text-emerald-500 font-bold block">02. AUDIT CHECKLIST</span>
+                <span class="font-bold text-slate-800 dark:text-slate-200 block">Validasi Berjenjang</span>
+                <p class="text-[11px] text-slate-500 font-sans">Checklist verifikasi administrasi status dokumen (Valid, Pending, Perlu Revisi) oleh staf kesantrian.</p>
+              </div>
+              <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
+                <span class="text-[10px] text-emerald-500 font-bold block">03. BIODATA DETAIL</span>
+                <span class="font-bold text-slate-800 dark:text-slate-200 block">Kamar &amp; Histori Medis</span>
+                <p class="text-[11px] text-slate-500 font-sans">Penyimpanan terpusat data penempatan kamar asrama, rekam medis santri, serta nomor darurat wali.</p>
+              </div>
+              <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-emerald-500/30 bg-emerald-500/5 space-y-1">
+                <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold block">04. SINGLE TRUTH</span>
+                <span class="font-bold text-slate-900 dark:text-white block">Sinkronisasi Multi-Unit</span>
+                <p class="text-[11px] text-slate-500 font-sans">Penyatuan data santri aktif lintas unit tahfidz dan asrama ke dalam satu database relasional terpusat.</p>
               </div>
             </div>
           </div>
@@ -903,7 +898,7 @@
                 <span>Babak 1: The Crisis</span>
               </div>
               <p class="text-slate-600 dark:text-slate-400 text-[11px] leading-relaxed">
-                Ratusan santri tersebar di 3 unit terpisah (Asrama, Tahfidz, PKBM) dengan pembukuan kertas manual. Presensi harian memakan &gt;30 menit per sesi, kalkulasi nilai Kurikulum Merdeka manual memakan waktu berminggu-minggu dengan risiko salah hitung dinas, dan progres hafalan Al-Quran santri tidak termonitor real-time oleh wali santri.
+                Data ratusan santri dan setoran hafalan dicatat di buku fisik terpisah antara kantor asrama dan halaqah tahfidz. Pencatatan manual rawan hilang atau tertukar, dan berkas pendaftaran santri sering tercecer saat dibutuhkan untuk pelaporan institusi.
               </p>
             </div>
             <div class="p-3.5 sm:p-4 rounded-2xl bg-slate-50/80 dark:bg-slate-950/50 border border-slate-200/80 dark:border-slate-800/80 space-y-1.5 transition-all hover:border-emerald-500/40">
@@ -912,7 +907,7 @@
                 <span>Babak 2: The Blueprint</span>
               </div>
               <p class="text-slate-600 dark:text-slate-400 text-[11px] leading-relaxed">
-                Membangun platform sentralisasi terpadu <em>Laravel 13 &bull; Svelte 5</em>: modul presensi massal batch 1-klik, engine otomatis kompilasi rapor Kurikulum Merdeka berstandar Kemendikbud langsung di peramban, serta dashboard pelacakan mutaba'ah harian dan ujian tasmi' bil-ghaib santri.
+                Membangun platform sentralisasi terpadu <em>Laravel 13 &bull; Svelte 5</em>: modul verifikasi kelengkapan berkas santri masuk secara digital serta dashboard pelacakan mutaba'ah tahfidz dan ujian tasmi' bil-ghaib yang presisi.
               </p>
             </div>
             <div class="p-3.5 sm:p-4 rounded-2xl bg-emerald-500/5 dark:bg-emerald-500/10 border border-emerald-500/30 space-y-1.5 transition-all hover:border-emerald-500/60">
@@ -921,9 +916,9 @@
                 <span>Babak 3: The Triumph</span>
               </div>
               <ul class="space-y-1 text-[11px] text-slate-700 dark:text-slate-300">
-                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i><span>Pencatatan presensi massal <strong>&lt; 2 menit</strong></span></li>
-                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i><span>Cetak rapor instan berstandar <strong>Kemendikbud</strong></span></li>
                 <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i><span>Dashboard tahfidz &amp; tasmi' <strong>100% akurat</strong></span></li>
+                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i><span>Verifikasi berkas &amp; santri <strong>tersentralisasi</strong></span></li>
+                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i><span>Monitoring kemajuan santri <strong>real-time</strong></span></li>
               </ul>
             </div>
           </div>
@@ -932,10 +927,9 @@
             <div class="flex flex-wrap gap-1.5">
               <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">Laravel 13</span>
               <span class="px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-xs font-mono font-bold">Svelte 5 (Runes)</span>
-              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">Presensi Massal &lt; 2m</span>
-              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">Rapor Kemendikbud</span>
-              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">Dashboard Tahfidz &amp; Tasmi'</span>
-              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">PDF Rapor Engine</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">Dashboard Tahfidz &amp; Tasmi' (100% Akurat)</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">Verifikasi Berkas Santri</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">MySQL Relational</span>
             </div>
             <div class="flex items-center gap-3">
               <span class="text-xs font-mono text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
@@ -1242,14 +1236,14 @@
       
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200/80 dark:border-slate-800/80 pb-4 section-header relative overflow-hidden">
         <div>
-          <span class="text-xs font-mono font-semibold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase">// CHAPTER 02: VERIFIED CAREER LEDGER &amp; INSTITUTIONAL IMPACT</span>
+          <span class="text-xs font-mono font-semibold text-amber-600 dark:text-amber-400 tracking-wider uppercase">// ACT 02: CAREER CHRONICLES &amp; INSTITUTIONAL LEDGER</span>
           <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-0.5">
             Logbook Rekam Jejak &amp; Kepemimpinan Rekayasa
           </h2>
         </div>
         <span class="text-xs font-mono text-slate-400">Total 3.5+ Tahun Kontribusi Nyata</span>
-        <span class="section-ghost-num hidden md:block absolute right-2 -bottom-3 text-6xl font-black font-mono text-slate-200/40 dark:text-slate-800/30 select-none pointer-events-none" aria-hidden="true">02</span>
-        <div class="section-accent-line absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-emerald-500 via-teal-400 to-transparent origin-left scale-x-0"></div>
+        <span class="section-ghost-num hidden md:block absolute right-2 -bottom-3 text-6xl font-black font-mono text-amber-500/10 dark:text-amber-500/15 select-none pointer-events-none" aria-hidden="true">02</span>
+        <div class="section-accent-line absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-amber-500 via-emerald-400 to-transparent origin-left scale-x-0"></div>
       </div>
 
       <!-- Vertical Timeline Experience with Architectural Spine Line -->
@@ -1257,8 +1251,8 @@
 
         <!-- Continuous Architectural Timeline Spine with Traveling Beacon Head (Scrubbed by GSAP on Desktop) -->
         <div class="hidden sm:block absolute left-2 top-4 bottom-8 w-[2px] bg-slate-200/80 dark:border-slate-800/80 rounded-full" aria-hidden="true">
-          <div id="timelineProgressSpine" class="w-full h-full bg-gradient-to-b from-emerald-500 via-teal-400 to-emerald-600 origin-top scale-y-0 rounded-full relative overflow-hidden">
-            <div class="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-emerald-200 dark:from-emerald-300 to-transparent"></div>
+          <div id="timelineProgressSpine" class="w-full h-full bg-gradient-to-b from-amber-500 via-emerald-400 to-amber-600 origin-top scale-y-0 rounded-full relative overflow-hidden">
+            <div class="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-amber-200 dark:from-amber-300 to-transparent"></div>
           </div>
         </div>
 
@@ -1291,7 +1285,7 @@
             </li>
             <li class="flex items-start gap-2.5">
               <i class="fa-solid fa-check text-emerald-500 text-xs mt-1 shrink-0"></i>
-              <span><strong>Sistem Manajemen Pendidikan (SIM-PQTM):</strong> Mengembangkan sistem informasi yayasan (asrama santri, tahfidz, dan sekolah formal PKBM Kurikulum Merdeka) dengan fitur pencatatan presensi massal, jurnal hafalan, serta perhitungan nilai dan cetak rapor otomatis langsung dari peramban.</span>
+              <span><strong>Sistem Informasi Santri (SIM-PQTM):</strong> Mengembangkan sistem informasi terpusat mencakup verifikasi berkas santri baru, integrasi biodata asrama, serta dashboard perkembangan hafalan tahfidz dan ujian tasmi' bil-ghaib secara 100% akurat.</span>
             </li>
             <li class="flex items-start gap-2.5">
               <i class="fa-solid fa-check text-emerald-500 text-xs mt-1 shrink-0"></i>
@@ -1325,7 +1319,7 @@
 
               <div 
                 class="cursor-pointer group flex items-center justify-between p-2.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500/40 transition-colors shadow-2xs"
-                onclick="openLightbox('assets/yayasan-pqtm.jpg', 'Deliverable Klien Yayasan: SIM-PQTM Presensi Massal &amp; Rapor Kurikulum Merdeka')"
+                onclick="openLightbox('assets/yayasan-pqtm.jpg', 'Deliverable Klien Yayasan: SIM-PQTM Dashboard Tahfidz &amp; Verifikasi Berkas')"
                 role="button"
                 tabindex="0">
                 <div class="flex items-center gap-2.5 min-w-0">
@@ -1334,7 +1328,7 @@
                   </div>
                   <div class="min-w-0">
                     <span class="font-bold text-slate-900 dark:text-white block truncate text-[11px]">Yayasan Pondok Quran Terpadu</span>
-                    <span class="text-[10px] text-slate-400 font-mono block truncate">Presensi &lt; 2m &bull; Rapor Kemendikbud &bull; Tahfidz</span>
+                    <span class="text-[10px] text-slate-400 font-mono block truncate">Dashboard Tahfidz 100% Akurat &bull; Verifikasi Berkas Santri</span>
                   </div>
                 </div>
                 <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400 group-hover:text-emerald-500 transition-colors ml-2 shrink-0"></i>
@@ -1380,7 +1374,7 @@
             </li>
             <li class="flex items-start gap-2.5">
               <i class="fa-solid fa-check text-emerald-500 text-xs mt-1 shrink-0"></i>
-              <span><strong>Tata Kelola Keuangan &amp; Ujian Siswa:</strong> Mengelola perbendaharaan kas sekolah (dana BOS, PIP, dan bantuan Prasejahtera) secara tertib dan transparan sesuai aturan Dinas Pendidikan, serta menata sistem ujian agar terhubung langsung dengan proses pembuatan rapor siswa.</span>
+              <span><strong>Tata Kelola Keuangan &amp; Ujian Siswa:</strong> Mengelola perbendaharaan kas sekolah (dana BOS, PIP, dan bantuan Prasejahtera) secara tertib dan transparan sesuai aturan Dinas Pendidikan, serta menata sistem ujian agar terhubung langsung dengan proses rekapitulasi penilaian belajar siswa.</span>
             </li>
             <li class="flex items-start gap-2.5">
               <i class="fa-solid fa-check text-emerald-500 text-xs mt-1 shrink-0"></i>
@@ -1582,20 +1576,20 @@
       
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200/80 dark:border-slate-800/80 pb-4 section-header relative overflow-hidden">
         <div>
-          <span class="text-xs font-mono font-semibold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase">// CHAPTER 03: THEORETICAL RIGOR &amp; PEER-REVIEWED RESEARCH</span>
+          <span class="text-xs font-mono font-semibold text-violet-600 dark:text-violet-400 tracking-wider uppercase">// ACT 03: SCHOLARLY CODEX &amp; PEER-REVIEWED RIGOR</span>
           <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-0.5">
             Publikasi Ilmiah Terindeks
           </h2>
         </div>
-        <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-xs font-mono font-bold border border-emerald-500/20 w-fit">
+        <span class="px-3 py-1 rounded-full bg-violet-500/10 text-violet-700 dark:text-violet-400 text-xs font-mono font-bold border border-violet-500/20 w-fit">
           Peer-Reviewed Journal
         </span>
-        <span class="section-ghost-num hidden md:block absolute right-2 -bottom-3 text-6xl font-black font-mono text-slate-200/40 dark:text-slate-800/30 select-none pointer-events-none" aria-hidden="true">03</span>
-        <div class="section-accent-line absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-emerald-500 via-teal-400 to-transparent origin-left scale-x-0"></div>
+        <span class="section-ghost-num hidden md:block absolute right-2 -bottom-3 text-6xl font-black font-mono text-violet-500/10 dark:text-violet-500/15 select-none pointer-events-none" aria-hidden="true">03</span>
+        <div class="section-accent-line absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-violet-500 via-indigo-400 to-transparent origin-left scale-x-0"></div>
       </div>
 
       <!-- Journal Card with Spotlight Effect -->
-      <article class="spotlight-card p-5 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 space-y-5 print-card shadow-sm">
+      <article class="spotlight-card p-5 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 hover:border-violet-500/40 space-y-5 print-card shadow-sm">
         <div class="space-y-2 border-b border-slate-100 dark:border-slate-800/60 pb-4">
           <span class="text-[11px] font-mono px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
             Jurnal Informatika Polinema (JIP) &bull; Vol. 7 No. 2 (Februari 2021)
@@ -1649,7 +1643,7 @@
       
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200/80 dark:border-slate-800/80 pb-4 section-header relative overflow-hidden">
         <div>
-          <span class="text-xs font-mono font-semibold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase">// CHAPTER 04: THE DEVELOPER WORKSTATION &amp; TELEMETRY DECK</span>
+          <span class="text-xs font-mono font-semibold text-cyan-600 dark:text-cyan-400 tracking-wider uppercase">// ACT 04: DEVELOPER COMMAND DECK &amp; PLAYABLE CLI</span>
           <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-0.5">
             Pendidikan Formal &amp; Matriks Keahlian
           </h2>
@@ -1659,8 +1653,8 @@
           <i class="fa-solid fa-file-arrow-down"></i>
           <span>Unduh CV Resmi (PDF)</span>
         </a>
-        <span class="section-ghost-num hidden md:block absolute right-2 -bottom-3 text-6xl font-black font-mono text-slate-200/40 dark:text-slate-800/30 select-none pointer-events-none" aria-hidden="true">04</span>
-        <div class="section-accent-line absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-emerald-500 via-teal-400 to-transparent origin-left scale-x-0"></div>
+        <span class="section-ghost-num hidden md:block absolute right-2 -bottom-3 text-6xl font-black font-mono text-cyan-500/10 dark:text-cyan-500/15 select-none pointer-events-none" aria-hidden="true">04</span>
+        <div class="section-accent-line absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-cyan-500 via-emerald-400 to-transparent origin-left scale-x-0"></div>
       </div>
 
       <!-- Formal Education Dual Cards (Polinema D4 & SMKN 2 Singosari) -->
@@ -1721,22 +1715,30 @@
 
         <!-- Quick Interactive Command Chips -->
         <div class="flex flex-wrap items-center gap-1.5 px-4 py-2 bg-slate-50/70 dark:bg-slate-950/70 border-b border-slate-200/60 dark:border-slate-800/60 text-[11px] font-mono">
-          <span class="text-slate-400 dark:text-slate-500 mr-1">// Klik Perintah Cepat:</span>
+          <span class="text-slate-400 dark:text-slate-500 mr-1">// Game CLI Menu:</span>
+          <button type="button" onclick="runTerminalCmd('quests')" class="px-2.5 py-0.5 rounded-md bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30 transition-all flex items-center gap-1">
+            <i class="fa-solid fa-trophy text-[9px]"></i>
+            <span>quests</span>
+          </button>
+          <button type="button" onclick="runTerminalCmd('stats')" class="px-2.5 py-0.5 rounded-md bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-700 dark:text-cyan-400 font-bold border border-cyan-500/30 transition-all flex items-center gap-1">
+            <i class="fa-solid fa-shield-halved text-[9px]"></i>
+            <span>stats</span>
+          </button>
+          <button type="button" onclick="runTerminalCmd('inventory')" class="px-2.5 py-0.5 rounded-md bg-purple-500/10 hover:bg-purple-500/20 text-purple-700 dark:text-purple-400 font-bold border border-purple-500/30 transition-all flex items-center gap-1">
+            <i class="fa-solid fa-box-archive text-[9px]"></i>
+            <span>inventory</span>
+          </button>
           <button type="button" onclick="runTerminalCmd('test')" class="px-2.5 py-0.5 rounded-md bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30 transition-all flex items-center gap-1">
             <i class="fa-solid fa-play text-[9px]"></i>
             <span>test --suite</span>
           </button>
-          <button type="button" onclick="runTerminalCmd('stack')" class="px-2.5 py-0.5 rounded-md bg-slate-200/80 dark:bg-slate-800/80 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-all flex items-center gap-1">
-            <i class="fa-solid fa-code text-[9px] text-emerald-500"></i>
-            <span>cat stack.json</span>
-          </button>
-          <button type="button" onclick="runTerminalCmd('bio')" class="px-2.5 py-0.5 rounded-md bg-slate-200/80 dark:bg-slate-800/80 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-all flex items-center gap-1">
+          <button type="button" onclick="runTerminalCmd('whoami')" class="px-2.5 py-0.5 rounded-md bg-slate-200/80 dark:bg-slate-800/80 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-all flex items-center gap-1">
             <i class="fa-solid fa-user text-[9px] text-emerald-500"></i>
             <span>whoami</span>
           </button>
           <button type="button" onclick="runTerminalCmd('contact')" class="px-2.5 py-0.5 rounded-md bg-slate-200/80 dark:bg-slate-800/80 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-all flex items-center gap-1">
             <i class="fa-solid fa-paper-plane text-[9px] text-emerald-500"></i>
-            <span>contact --wa</span>
+            <span>contact</span>
           </button>
           <button type="button" onclick="runTerminalCmd('clear')" class="px-2.5 py-0.5 rounded-md bg-slate-200/80 dark:bg-slate-800/80 hover:bg-rose-500/20 hover:text-rose-500 text-slate-600 dark:text-slate-400 transition-all ml-auto">
             <span>clear</span>
@@ -1884,11 +1886,11 @@
       
       <div class="spotlight-card p-6 sm:p-12 rounded-3xl bg-gradient-to-br from-emerald-500/10 via-slate-100 to-white dark:from-emerald-950/30 dark:via-slate-900 dark:to-slate-950 border border-emerald-500/30 text-center space-y-6 shadow-lg relative overflow-hidden">
         
-        <span class="section-ghost-num hidden md:block absolute right-4 -bottom-4 text-7xl font-black font-mono text-slate-200/40 dark:text-slate-800/30 select-none pointer-events-none" aria-hidden="true">05</span>
+        <span class="section-ghost-num hidden md:block absolute right-4 -bottom-4 text-7xl font-black font-mono text-emerald-500/10 dark:text-emerald-500/20 select-none pointer-events-none" aria-hidden="true">05</span>
         
         <div class="max-w-xl mx-auto space-y-3">
           <div class="flex flex-col items-center gap-1">
-            <span class="text-[11px] font-mono font-semibold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase">// EPILOGUE: DISPATCH &amp; DIRECT COMM CHANNELS</span>
+            <span class="text-[11px] font-mono font-semibold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase">// ACT 05: EXTRACTION ZONE &amp; DIRECT TRANSMISSION</span>
             <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-xs font-mono font-bold">
               <i class="fa-solid fa-handshake"></i>
               <span>Mari Berkolaborasi</span>
@@ -2144,7 +2146,114 @@
       const outEl = document.createElement('div');
       outEl.className = 'space-y-1 pl-4';
 
-      if (cmd === 'test' || cmd.startsWith('test')) {
+      if (cmd === 'quests' || cmd === 'missions' || cmd === 'quest') {
+        outEl.innerHTML = `
+          <div class="space-y-2 text-xs">
+            <div class="text-cyan-600 dark:text-cyan-400 font-bold flex items-center gap-1.5 pb-1 border-b border-slate-200 dark:border-slate-800">
+              <i class="fa-solid fa-trophy text-amber-500"></i>
+              <span>COMPLETED PRODUCTION CAMPAIGNS &amp; MISSIONS (5/5 CLEARED)</span>
+            </div>
+            
+            <div class="space-y-0.5 p-2 rounded-lg bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
+              <div class="flex items-center justify-between text-[11px]">
+                <strong class="text-emerald-700 dark:text-emerald-300">[LVL 5] Kantor Notaris &amp; PPAT Irwan Baddu</strong>
+                <span class="text-emerald-600 dark:text-emerald-400 font-bold text-[10px] bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">PRODUCTION LIVE</span>
+              </div>
+              <div class="text-slate-600 dark:text-slate-400 text-[11px]">
+                &bull; Objective: Rekening Titipan Pajak (NTPN Escrow), Akta 7 Tahap, BOLA Authorization Policy, 0 Reconciled Bug
+              </div>
+              <div class="text-[10px] font-mono text-slate-500 dark:text-slate-400">Stack: Laravel 13 &bull; Svelte 5 &bull; MySQL 3NF &bull; PHPUnit 250+</div>
+            </div>
+
+            <div class="space-y-0.5 p-2 rounded-lg bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
+              <div class="flex items-center justify-between text-[11px]">
+                <strong class="text-emerald-700 dark:text-emerald-300">[LVL 4] SIM-PQTM Santri &amp; Tahfidz</strong>
+                <span class="text-emerald-600 dark:text-emerald-400 font-bold text-[10px] bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">VERIFIED SYSTEM</span>
+              </div>
+              <div class="text-slate-600 dark:text-slate-400 text-[11px]">
+                &bull; Objective: Dashboard Tahfidz &amp; Tasmi' (100% Akurat), Verifikasi Berkas &amp; Detail Santri, Single Source of Truth
+              </div>
+              <div class="text-[10px] font-mono text-slate-500 dark:text-slate-400">Stack: Laravel &bull; Tailwind CSS &bull; Live Telemetry Audit</div>
+            </div>
+
+            <div class="space-y-0.5 p-2 rounded-lg bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
+              <div class="flex items-center justify-between text-[11px]">
+                <strong class="text-emerald-700 dark:text-emerald-300">[LVL 3] Twinnie Group E-Commerce Platform</strong>
+                <span class="text-cyan-600 dark:text-cyan-400 font-bold text-[10px] bg-cyan-500/10 px-1.5 py-0.5 rounded border border-cyan-500/20">DELIVERED</span>
+              </div>
+              <div class="text-slate-600 dark:text-slate-400 text-[11px]">
+                &bull; Objective: FCP &lt; 1.0s, Multi-Channel Storefront, Dynamic Cart &amp; Responsive Mobile-First
+              </div>
+              <div class="text-[10px] font-mono text-slate-500 dark:text-slate-400">Stack: Modern Web &bull; Mobile-First UX &bull; High Conversion</div>
+            </div>
+
+            <div class="space-y-0.5 p-2 rounded-lg bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
+              <div class="flex items-center justify-between text-[11px]">
+                <strong class="text-emerald-700 dark:text-emerald-300">[LVL 5] Ar-Rohmah 12k Database Boss</strong>
+                <span class="text-purple-600 dark:text-purple-400 font-bold text-[10px] bg-purple-500/10 px-1.5 py-0.5 rounded border border-purple-500/20">ZERO LOSS RAID</span>
+              </div>
+              <div class="text-slate-600 dark:text-slate-400 text-[11px]">
+                &bull; Objective: 12.117 / 12.117 Records Reconciled (100% Checksum), Shared Hosting MySQL Error 1040 Fix
+              </div>
+              <div class="text-[10px] font-mono text-slate-500 dark:text-slate-400">Stack: MySQL CLI &bull; PHP Chunking Streams &bull; High Concurrency</div>
+            </div>
+
+            <div class="space-y-0.5 p-2 rounded-lg bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
+              <div class="flex items-center justify-between text-[11px]">
+                <strong class="text-emerald-700 dark:text-emerald-300">[LVL 4] JIP Polinema Scientific Paper</strong>
+                <span class="text-violet-600 dark:text-violet-400 font-bold text-[10px] bg-violet-500/10 px-1.5 py-0.5 rounded border border-violet-500/20">PEER-REVIEWED</span>
+              </div>
+              <div class="text-slate-600 dark:text-slate-400 text-[11px]">
+                &bull; Objective: Algoritma Genetika Penjadwalan Otomatis, Vol. 7 No. 2 (ISSN 2407-0696)
+              </div>
+              <div class="text-[10px] font-mono text-slate-500 dark:text-slate-400">Index: JIP POLINEMA SINTA Rigor</div>
+            </div>
+          </div>
+        `;
+      } else if (cmd === 'stats' || cmd === 'stat' || cmd === 'attributes') {
+        outEl.innerHTML = `
+          <div class="space-y-2 text-xs">
+            <div class="text-cyan-600 dark:text-cyan-400 font-bold flex items-center gap-1.5 pb-1 border-b border-slate-200 dark:border-slate-800">
+              <i class="fa-solid fa-shield-halved text-cyan-500"></i>
+              <span>CHARACTER ATTRIBUTES &amp; TELEMETRY MATRIX</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]">
+              <div class="p-2 rounded-lg bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 space-y-1">
+                <div><strong>Character:</strong> <span class="text-emerald-600 dark:text-emerald-400">Misbahudin, S.Kom.</span></div>
+                <div><strong>Class:</strong> Systems Engineer (D4 POLINEMA, IPK 3.32)</div>
+                <div><strong>Experience:</strong> 3.5+ Years in Enterprise Engineering</div>
+                <div><strong>Alignment:</strong> Clean Architecture &amp; TDD Determinism</div>
+              </div>
+              <div class="p-2 rounded-lg bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 space-y-1 font-mono">
+                <div class="flex justify-between"><span>Back-End ATK:</span><strong class="text-emerald-600 dark:text-emerald-400">98 / 100</strong></div>
+                <div class="flex justify-between"><span>Data Integrity DEF:</span><strong class="text-emerald-600 dark:text-emerald-400">100 / 100 (Zero Loss)</strong></div>
+                <div class="flex justify-between"><span>Front-End AGI:</span><strong class="text-cyan-600 dark:text-cyan-400">94 / 100 (Svelte 5)</strong></div>
+                <div class="flex justify-between"><span>Query Latency SPD:</span><strong class="text-emerald-600 dark:text-emerald-400">&lt; 50ms</strong></div>
+                <div class="flex justify-between"><span>Test Mana Pool:</span><strong class="text-purple-600 dark:text-purple-400">250+ Tests (812 Assertions)</strong></div>
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (cmd === 'inventory' || cmd === 'inv' || cmd === 'arsenal') {
+        outEl.innerHTML = `
+          <div class="space-y-2 text-xs">
+            <div class="text-purple-600 dark:text-purple-400 font-bold flex items-center gap-1.5 pb-1 border-b border-slate-200 dark:border-slate-800">
+              <i class="fa-solid fa-box-archive text-purple-500"></i>
+              <span>SYSTEM ARSENAL &amp; ACTIVE INVENTORY LOADOUT</span>
+            </div>
+            <div class="p-2 rounded-lg bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 font-mono text-[11px] space-y-1">
+              <div class="flex items-center justify-between"><span class="text-slate-500 dark:text-slate-400">Primary Core [Weapon]:</span><strong class="text-emerald-600 dark:text-emerald-400">PHP 8.4 JIT Engine &amp; Node 22</strong></div>
+              <div class="flex items-center justify-between"><span class="text-slate-500 dark:text-slate-400">Framework Armour:</span><strong class="text-slate-800 dark:text-slate-200">Laravel 13 (Sanctum SPA Session)</strong></div>
+              <div class="flex items-center justify-between"><span class="text-slate-500 dark:text-slate-400">Primary Defense [Shield]:</span><strong class="text-emerald-600 dark:text-emerald-400">MySQL 3NF Schema (Zero N+1)</strong></div>
+              <div class="flex items-center justify-between"><span class="text-slate-500 dark:text-slate-400">Secondary Defense:</span><strong class="text-cyan-600 dark:text-cyan-400">SQLite WAL In-Memory Test Harness</strong></div>
+              <div class="flex items-center justify-between"><span class="text-slate-500 dark:text-slate-400">Frontend Vanguard:</span><strong class="text-purple-600 dark:text-purple-400">Svelte 5 Runes ($state, $derived)</strong></div>
+              <div class="flex items-center justify-between"><span class="text-slate-500 dark:text-slate-400">Visual Styling Forge:</span><strong class="text-slate-800 dark:text-slate-200">Tailwind CSS v4 (@theme Tokens)</strong></div>
+              <div class="flex items-center justify-between"><span class="text-slate-500 dark:text-slate-400">Kinetic Motion Core:</span><strong class="text-emerald-600 dark:text-emerald-400">GSAP 3.12.5 (GPU Composited)</strong></div>
+              <div class="flex items-center justify-between"><span class="text-slate-500 dark:text-slate-400">Automated Ward:</span><strong class="text-emerald-600 dark:text-emerald-400">PHPUnit 250+ Tests (812 Assertions)</strong></div>
+            </div>
+          </div>
+        `;
+      } else if (cmd === 'test' || cmd.startsWith('test')) {
         outEl.innerHTML = `
           <div class="text-slate-500 dark:text-slate-400">RUNNING PHPUNIT 11.5.0 &bull; IN-MEMORY SQLite WAL &bull; JIT ACTIVE</div>
           <div class="text-emerald-700 dark:text-emerald-300 flex items-center gap-2">
@@ -2200,11 +2309,14 @@
       } else if (cmd === 'help') {
         outEl.innerHTML = `
           <div class="text-slate-600 dark:text-slate-400 space-y-0.5 text-xs">
-            <div><span class="text-emerald-500 font-bold inline-block w-20">test</span> Menjalankan simulasi suite pengujian PHPUnit otomatis</div>
-            <div><span class="text-emerald-500 font-bold inline-block w-20">stack</span> Menampilkan konfigurasi tech stack produksi dalam JSON</div>
-            <div><span class="text-emerald-500 font-bold inline-block w-20">bio</span> Profil profesional singkat dan latar belakang akademis</div>
-            <div><span class="text-emerald-500 font-bold inline-block w-20">contact</span> Saluran komunikasi langsung (WhatsApp, Email, LinkedIn)</div>
-            <div><span class="text-emerald-500 font-bold inline-block w-20">clear</span> Membersihkan layar log konsol terminal</div>
+            <div><span class="text-emerald-500 font-bold inline-block w-24">quests</span> Menampilkan daftar campaign misi produksi yang telah diselesaikan (5/5 Cleared)</div>
+            <div><span class="text-cyan-500 font-bold inline-block w-24">stats</span> Menampilkan atribut karakter RPG & telemetri engineer</div>
+            <div><span class="text-purple-500 font-bold inline-block w-24">inventory</span> Menampilkan persenjataan tech stack & arsitektur aktif</div>
+            <div><span class="text-emerald-500 font-bold inline-block w-24">test</span> Menjalankan simulasi suite pengujian PHPUnit otomatis (250+ Tests)</div>
+            <div><span class="text-emerald-500 font-bold inline-block w-24">stack</span> Menampilkan konfigurasi tech stack produksi dalam format JSON</div>
+            <div><span class="text-emerald-500 font-bold inline-block w-24">whoami</span> Profil profesional singkat dan latar belakang akademis POLINEMA</div>
+            <div><span class="text-emerald-500 font-bold inline-block w-24">contact</span> Saluran komunikasi langsung (WhatsApp, Email, LinkedIn)</div>
+            <div><span class="text-emerald-500 font-bold inline-block w-24">clear</span> Membersihkan layar log konsol terminal</div>
           </div>
         `;
       } else {
@@ -2263,11 +2375,11 @@
       'troubleshooting hardware pc': { cmd: 'smartctl -H /dev/sda', out: 'SMART Health Status: PASSED • Thermal & PSU diagnostics verified' },
       'jaringan lan & printer sharing': { cmd: 'ping -c 3 gateway.lan', out: '0% packet loss • Subnet 192.168.1.0/24 • CUPS SMB sharing operational' },
       'dapodik & asesmen nasional (anbk)': { cmd: 'anbk --sync-status', out: 'Client-Server VHD synchronized • 100% peserta ujian terverifikasi' },
-      'presensi massal < 2m': { cmd: 'php artisan pqtm:presensi --batch-sync', out: '320 attendance records synchronized in 1.14s • DB::transaction committed (0 errors)' },
-      'rapor kemendikbud': { cmd: 'php artisan raport:compile --curriculum=merdeka', out: 'Kurikulum Merdeka CP/TP generated • Kemendikbud standard PDF A4 compiled in-browser' },
-      'dashboard tahfidz & tasmi\'': { cmd: 'php artisan tahfidz:mutabaah --live', out: 'Mutaba\'ah halaqah synchronized • Ziyadah, Muraja\'ah & Ujian Tasmi\' 1-30 Juz verified' },
-      'pdf rapor engine': { cmd: 'node -e "raport.generatePdf()"', out: 'Vector PDF compiled in 0.18s • Official school letterhead & security QR code embedded' },
-      'kurikulum merdeka': { cmd: 'php artisan curriculum:validate', out: 'Fase A-F learning outcomes verified • Formative/Summative automatic interval descriptions calculated' }
+      'dashboard tahfidz & tasmi\' (100% akurat)': { cmd: 'php artisan tahfidz:audit', out: '100% Mutaba\'ah Verified • Zero Discrepancy • Bil-Ghaib Exam Logged' },
+      'dashboard tahfidz 100% akurat': { cmd: 'php artisan tahfidz:audit', out: '100% Mutaba\'ah Verified • Zero Discrepancy • Bil-Ghaib Exam Logged' },
+      'verifikasi berkas santri': { cmd: 'php artisan berkas:verify --all', out: 'KK, Akta & Ijazah SHA-256 Checksum Verified • Single Source of Truth' },
+      'verifikasi berkas & detail santri': { cmd: 'php artisan berkas:verify --all', out: 'KK, Akta & Ijazah SHA-256 Checksum Verified • Single Source of Truth' },
+      'dashboard tahfidz & tasmi\'': { cmd: 'php artisan tahfidz:mutabaah --live', out: 'Mutaba\'ah halaqah synchronized • Ziyadah, Muraja\'ah & Ujian Tasmi\' 1-30 Juz verified (100% Akurat)' }
     };
 
     function inspectSkill(rawName) {
@@ -2387,7 +2499,8 @@
 
     // Spotlight Hover Card Logic with Smooth GSAP 3D Tilt Micro-Parallax
     function initSpotlightCards() {
-      document.querySelectorAll('.spotlight-card').forEach(card => {
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      document.querySelectorAll('.spotlight-card, .terminal-window').forEach(card => {
         card.addEventListener('mousemove', e => {
           const rect = card.getBoundingClientRect();
           const mouseX = e.clientX - rect.left;
@@ -2396,11 +2509,11 @@
           card.style.setProperty('--mouse-y', `${mouseY}px`);
 
           // Subtle 3D Tilt Micro-Parallax on Desktop only via GSAP
-          if (window.innerWidth >= 768) {
+          if (!prefersReduced && window.innerWidth >= 768) {
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
-            const tiltX = (centerY - mouseY) / centerY * 2.2;
-            const tiltY = (mouseX - centerX) / centerX * 2.2;
+            const tiltX = (centerY - mouseY) / centerY * 2.8;
+            const tiltY = (mouseX - centerX) / centerX * 2.8;
             gsap.to(card, {
               rotationX: tiltX,
               rotationY: tiltY,
@@ -2414,7 +2527,7 @@
         });
 
         card.addEventListener('mouseleave', () => {
-          if (window.innerWidth >= 768) {
+          if (!prefersReduced && window.innerWidth >= 768) {
             gsap.to(card, {
               rotationX: 0,
               rotationY: 0,
