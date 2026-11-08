@@ -241,7 +241,7 @@
       z-index: 0;
     }
 
-    /* Interactive Project Image Hover & Zoom */
+    /* Interactive Project Image Parallax Window */
     .project-image-box {
       position: relative;
       overflow: hidden;
@@ -249,11 +249,15 @@
       background-color: #0b1120;
     }
     .project-image-box img {
-      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
       will-change: transform;
     }
-    .project-image-box:hover img {
-      transform: scale(1.03);
+    @media (max-width: 767px) {
+      .project-image-box img {
+        transition: transform 0.4s ease;
+      }
+      .project-image-box:hover img {
+        transform: scale(1.03);
+      }
     }
 
     /* Lightbox Modal */
@@ -285,6 +289,28 @@
     <div 
       data-parallax-depth="0.08" 
       class="ambient-parallax-layer bottom-10 left-1/4 w-[600px] h-[600px] bg-emerald-600/5 dark:bg-emerald-500/10">
+    </div>
+
+    <!-- Floating Engineering Telemetry Nodes (Scrubbed with Differential Parallax on Desktop) -->
+    <div 
+      data-parallax-depth="0.25"
+      class="hidden lg:flex items-center gap-2 absolute top-[28%] left-8 px-3 py-1 rounded-full bg-slate-200/50 dark:bg-slate-900/60 border border-slate-300/50 dark:border-slate-800/60 backdrop-blur-xs font-mono text-[11px] text-slate-500 dark:text-emerald-400/70 select-none shadow-2xs">
+      <span class="w-1.5 h-1.5 rounded-full bg-emerald-500/80 animate-pulse"></span>
+      <span>SYSTEM: HYPERION_KERNEL // 200_OK</span>
+    </div>
+
+    <div 
+      data-parallax-depth="-0.22"
+      class="hidden lg:flex items-center gap-2 absolute top-[58%] right-8 px-3 py-1 rounded-full bg-slate-200/50 dark:bg-slate-900/60 border border-slate-300/50 dark:border-slate-800/60 backdrop-blur-xs font-mono text-[11px] text-slate-500 dark:text-teal-400/70 select-none shadow-2xs">
+      <i class="fa-solid fa-database text-[10px] text-emerald-500/80"></i>
+      <span>ETL_STREAM: 12,117_RECORDS // ZERO_LOSS</span>
+    </div>
+
+    <div 
+      data-parallax-depth="0.18"
+      class="hidden lg:flex items-center gap-2 absolute top-[82%] left-12 px-3 py-1 rounded-full bg-slate-200/50 dark:bg-slate-900/60 border border-slate-300/50 dark:border-slate-800/60 backdrop-blur-xs font-mono text-[11px] text-slate-500 dark:text-emerald-400/70 select-none shadow-2xs">
+      <i class="fa-solid fa-microchip text-[10px] text-emerald-500/80"></i>
+      <span>PHP 8.4 JIT &bull; SVELTE 5 RUNES &bull; TDD 250+</span>
     </div>
   </div>
 
@@ -473,6 +499,7 @@
         <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-sm">
           Sistem operasional nyata yang dibangun untuk klien institusi, siap diverifikasi visual dan teknis.
         </p>
+        <span class="section-ghost-num hidden md:block absolute right-2 -bottom-3 text-6xl font-black font-mono text-slate-200/40 dark:text-slate-800/30 select-none pointer-events-none" aria-hidden="true">01</span>
         <div class="section-accent-line absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-emerald-500 via-teal-400 to-transparent origin-left scale-x-0"></div>
       </div>
 
@@ -942,14 +969,25 @@
           </h2>
         </div>
         <span class="text-xs font-mono text-slate-400">Total 3.5+ Tahun Kontribusi Nyata</span>
+        <span class="section-ghost-num hidden md:block absolute right-2 -bottom-3 text-6xl font-black font-mono text-slate-200/40 dark:text-slate-800/30 select-none pointer-events-none" aria-hidden="true">02</span>
         <div class="section-accent-line absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-emerald-500 via-teal-400 to-transparent origin-left scale-x-0"></div>
       </div>
 
-      <!-- Vertical Timeline Experience with Spotlight Cards -->
-      <div class="space-y-6">
+      <!-- Vertical Timeline Experience with Architectural Spine Line -->
+      <div id="experienceTimelineContainer" class="relative pl-0 sm:pl-7 space-y-6">
+
+        <!-- Continuous Architectural Timeline Spine (Scrubbed by GSAP on Desktop) -->
+        <div class="hidden sm:block absolute left-2 top-4 bottom-8 w-[2px] bg-slate-200/80 dark:bg-slate-800/80 rounded-full overflow-hidden" aria-hidden="true">
+          <div id="timelineProgressSpine" class="w-full h-full bg-gradient-to-b from-emerald-500 via-teal-400 to-emerald-600 origin-top scale-y-0"></div>
+        </div>
 
         <!-- Role 1: Full Stack Developer (Freelance) -->
-        <div class="spotlight-card p-5 sm:p-7 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 space-y-4 print-card shadow-2xs">
+        <div class="relative">
+          <!-- Timeline Node Marker (Desktop) -->
+          <div class="hidden sm:flex absolute -left-[26px] top-6 w-3.5 h-3.5 rounded-full bg-white dark:bg-slate-900 border-2 border-emerald-500 items-center justify-center shadow-xs z-10 timeline-node">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          </div>
+          <div class="spotlight-card p-5 sm:p-7 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 space-y-4 print-card shadow-2xs">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800/60 pb-3">
             <div>
               <h3 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight">Full Stack Developer (Freelance)</h3>
@@ -1009,8 +1047,14 @@
             <span class="px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[11px] font-mono text-slate-700 dark:text-slate-300">MySQL 3NF</span>
           </div>
         </div>
+      </div>
 
-        <!-- Role 2: SMKS Taruna Bhakti -->
+      <!-- Role 2: SMKS Taruna Bhakti -->
+      <div class="relative">
+        <!-- Timeline Node Marker (Desktop) -->
+        <div class="hidden sm:flex absolute -left-[26px] top-6 w-3.5 h-3.5 rounded-full bg-white dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-700 items-center justify-center shadow-xs z-10 timeline-node">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500/80"></span>
+        </div>
         <div class="spotlight-card p-5 sm:p-7 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 space-y-4 print-card shadow-2xs">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800/60 pb-3">
             <div>
@@ -1123,8 +1167,14 @@
             <span class="px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[11px] font-mono text-slate-700 dark:text-slate-300">Dapodik & ANBK</span>
           </div>
         </div>
+      </div>
 
-        <!-- Role 3: Ar-Rohmah Putri (Back End Developer & Technical PM) -->
+      <!-- Role 3: Ar-Rohmah Putri (Back End Developer & Technical PM) -->
+      <div class="relative">
+        <!-- Timeline Node Marker (Desktop) -->
+        <div class="hidden sm:flex absolute -left-[26px] top-6 w-3.5 h-3.5 rounded-full bg-white dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-700 items-center justify-center shadow-xs z-10 timeline-node">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500/80"></span>
+        </div>
         <div class="spotlight-card p-5 sm:p-7 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 space-y-4 print-card shadow-2xs">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800/60 pb-3">
             <div>
@@ -1204,6 +1254,7 @@
             <span class="px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[11px] font-mono text-slate-700 dark:text-slate-300">ETL 12.117 Records</span>
           </div>
         </div>
+      </div>
 
       </div>
 
@@ -1224,6 +1275,7 @@
         <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-xs font-mono font-bold border border-emerald-500/20 w-fit">
           Peer-Reviewed Journal
         </span>
+        <span class="section-ghost-num hidden md:block absolute right-2 -bottom-3 text-6xl font-black font-mono text-slate-200/40 dark:text-slate-800/30 select-none pointer-events-none" aria-hidden="true">03</span>
         <div class="section-accent-line absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-emerald-500 via-teal-400 to-transparent origin-left scale-x-0"></div>
       </div>
 
@@ -1292,6 +1344,7 @@
           <i class="fa-solid fa-file-arrow-down"></i>
           <span>Unduh CV Resmi (PDF)</span>
         </a>
+        <span class="section-ghost-num hidden md:block absolute right-2 -bottom-3 text-6xl font-black font-mono text-slate-200/40 dark:text-slate-800/30 select-none pointer-events-none" aria-hidden="true">04</span>
         <div class="section-accent-line absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-emerald-500 via-teal-400 to-transparent origin-left scale-x-0"></div>
       </div>
 
@@ -1334,6 +1387,44 @@
           </div>
         </div>
 
+      </div>
+
+      <!-- Automated CLI Diagnostics & Test Suite Verification Console -->
+      <div class="terminal-window overflow-hidden shadow-lg border border-slate-200 dark:border-slate-800">
+        <div class="terminal-header flex items-center justify-between px-4 py-2.5 bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 text-xs font-mono text-slate-500">
+          <div class="flex items-center gap-2">
+            <span class="terminal-dot bg-rose-500/80"></span>
+            <span class="terminal-dot bg-amber-500/80"></span>
+            <span class="terminal-dot bg-emerald-500/80"></span>
+            <span class="ml-2 font-semibold text-slate-700 dark:text-slate-300">misbahudin@hyperion-vault:~# test-suite --verified</span>
+          </div>
+          <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">250+ SUITE PASSING</span>
+        </div>
+        <div class="p-4 sm:p-5 font-mono text-xs leading-relaxed space-y-1.5 overflow-x-auto text-slate-800 dark:text-slate-200">
+          <div class="terminal-line flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
+            <span class="text-slate-400 dark:text-slate-500">$</span>
+            <span class="font-bold">php artisan test --filter=ArchitectureInvariantsTest</span>
+          </div>
+          <div class="terminal-line text-slate-500 dark:text-slate-400 pl-4">
+            RUNNING IN-MEMORY SQLite WAL &bull; PHP 8.4 JIT ACTIVE
+          </div>
+          <div class="terminal-line text-emerald-700 dark:text-emerald-300 pl-4 flex items-center gap-2">
+            <i class="fa-solid fa-check text-emerald-500 text-[11px]"></i>
+            <span>PASS Tests\Feature\BOLA_AuthorizationPolicyTest (41ms)</span>
+          </div>
+          <div class="terminal-line text-emerald-700 dark:text-emerald-300 pl-4 flex items-center gap-2">
+            <i class="fa-solid fa-check text-emerald-500 text-[11px]"></i>
+            <span>PASS Tests\Feature\NotarisEscrowPajakNTPNTest (29ms)</span>
+          </div>
+          <div class="terminal-line text-emerald-700 dark:text-emerald-300 pl-4 flex items-center gap-2">
+            <i class="fa-solid fa-check text-emerald-500 text-[11px]"></i>
+            <span>PASS Tests\Feature\ETL_ZeroDataLoss_ReconciliationTest (63ms)</span>
+          </div>
+          <div class="terminal-line pt-2 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800/80 flex flex-wrap items-center justify-between gap-2">
+            <span>Tests: <strong class="text-emerald-600 dark:text-emerald-400">250 passed</strong> (812 assertions)</span>
+            <span>Duration: <strong>0.38s</strong> &bull; Memory: <strong>21.4 MB</strong></span>
+          </div>
+        </div>
       </div>
 
       <!-- 5 Matriks Keahlian Terstruktur Sesuai CV.PDF -->
@@ -1427,7 +1518,9 @@
     <!-- ========================================== -->
     <section id="kontak" class="space-y-6 scroll-mt-20 gsap-section">
       
-      <div class="spotlight-card p-6 sm:p-12 rounded-3xl bg-gradient-to-br from-emerald-500/10 via-slate-100 to-white dark:from-emerald-950/30 dark:via-slate-900 dark:to-slate-950 border border-emerald-500/30 text-center space-y-6 shadow-lg">
+      <div class="spotlight-card p-6 sm:p-12 rounded-3xl bg-gradient-to-br from-emerald-500/10 via-slate-100 to-white dark:from-emerald-950/30 dark:via-slate-900 dark:to-slate-950 border border-emerald-500/30 text-center space-y-6 shadow-lg relative overflow-hidden">
+        
+        <span class="section-ghost-num hidden md:block absolute right-4 -bottom-4 text-7xl font-black font-mono text-slate-200/40 dark:text-slate-800/30 select-none pointer-events-none" aria-hidden="true">05</span>
         
         <div class="max-w-xl mx-auto space-y-3">
           <div class="flex flex-col items-center gap-1">
@@ -1735,6 +1828,7 @@
       if (window.innerWidth < 768) return;
       const heroSec = document.getElementById('hero');
       const avatar = document.getElementById('heroAvatar');
+      const avatarInner = document.getElementById('heroAvatarInner');
       const glowOrb = document.getElementById('heroGlowOrb');
       if (!heroSec) return;
 
@@ -1745,6 +1839,18 @@
         if (avatar) {
           gsap.to(avatar, { x: x * 0.025, y: y * 0.025, duration: 0.5, ease: 'power1.out', overwrite: 'auto' });
         }
+        if (avatarInner) {
+          const tiltX = (y / rect.height) * -12;
+          const tiltY = (x / rect.width) * 12;
+          gsap.to(avatarInner, {
+            rotationX: tiltX,
+            rotationY: tiltY,
+            duration: 0.45,
+            ease: 'power1.out',
+            transformPerspective: 800,
+            overwrite: 'auto'
+          });
+        }
         if (glowOrb) {
           gsap.to(glowOrb, { x: x * 0.05, y: y * 0.05, duration: 1.2, ease: 'power2.out', overwrite: 'auto' });
         }
@@ -1754,9 +1860,48 @@
         if (avatar) {
           gsap.to(avatar, { x: 0, y: 0, duration: 0.6, ease: 'power2.out', overwrite: 'auto' });
         }
+        if (avatarInner) {
+          gsap.to(avatarInner, { rotationX: 0, rotationY: 0, duration: 0.6, ease: 'power2.out', overwrite: 'auto' });
+        }
         if (glowOrb) {
           gsap.to(glowOrb, { x: 0, y: 0, duration: 1.0, ease: 'power2.out', overwrite: 'auto' });
         }
+      });
+    }
+
+    // Interactive Project Image Parallax Window & Tactile Zoom (Desktop Only)
+    function initProjectImageParallax() {
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced || window.innerWidth < 768) return;
+
+      document.querySelectorAll('.project-image-box').forEach(box => {
+        const img = box.querySelector('img');
+        if (!img) return;
+
+        // Subtle architectural window parallax depth
+        gsap.fromTo(img, 
+          { yPercent: -4, scale: 1.04 },
+          {
+            yPercent: 4,
+            scale: 1.04,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: box,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 0.5,
+              invalidateOnRefresh: true
+            }
+          }
+        );
+
+        // Tactile hover zoom coordinated through GSAP to avoid transform collision
+        box.addEventListener('mouseenter', () => {
+          gsap.to(img, { scale: 1.10, duration: 0.35, ease: 'power2.out', overwrite: 'auto' });
+        });
+        box.addEventListener('mouseleave', () => {
+          gsap.to(img, { scale: 1.04, duration: 0.4, ease: 'power2.out', overwrite: 'auto' });
+        });
       });
     }
 
@@ -1964,9 +2109,77 @@
           duration: 0.4,
           ease: 'power2.out'
         });
+
+        // Micro-stagger for tech badges inside cards
+        const badges = card.querySelectorAll('.flex-wrap > span');
+        if (badges.length > 0) {
+          gsap.from(badges, {
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 85%',
+              once: true
+            },
+            scale: 0.94,
+            opacity: 0,
+            duration: 0.3,
+            stagger: 0.025,
+            ease: 'back.out(1.5)',
+            delay: 0.08
+          });
+        }
       });
 
-      // G. Section Header Accent Lines Animated Draw-In
+      // G. Experience Timeline Spine Line Scrubbing (Desktop Only)
+      const timelineSpine = document.getElementById('timelineProgressSpine');
+      const timelineContainer = document.getElementById('experienceTimelineContainer');
+      if (timelineSpine && timelineContainer) {
+        gsap.to(timelineSpine, {
+          scaleY: 1,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: timelineContainer,
+            start: 'top 75%',
+            end: 'bottom 65%',
+            scrub: 0.2
+          }
+        });
+
+        // Pulse & illuminate milestone nodes as user reaches each experience step
+        document.querySelectorAll('.timeline-node').forEach(node => {
+          ScrollTrigger.create({
+            trigger: node,
+            start: 'top 65%',
+            onEnter: () => {
+              gsap.fromTo(node, 
+                { scale: 1.35, borderColor: '#10b981' }, 
+                { scale: 1, borderColor: '#10b981', duration: 0.4, ease: 'back.out(2)' }
+              );
+            }
+          });
+        });
+      }
+
+      // H. Architectural Ghost Section Numbers Scrub Parallax (Desktop Only)
+      if (window.innerWidth >= 768) {
+        gsap.utils.toArray('.section-ghost-num').forEach(num => {
+          gsap.fromTo(num, 
+            { x: 35, opacity: 0.15 },
+            {
+              x: -18,
+              opacity: 0.8,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: num.closest('section') || num.parentElement,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 0.5
+              }
+            }
+          );
+        });
+      }
+
+      // I. Section Header Accent Lines Animated Draw-In
       gsap.utils.toArray('.section-accent-line').forEach(line => {
         gsap.to(line, {
           scaleX: 1,
@@ -1980,7 +2193,7 @@
         });
       });
 
-      // H. Main Header Glassmorphism Scroll Elevation
+      // J. Main Header Glassmorphism Scroll Elevation
       ScrollTrigger.create({
         start: 'top -20',
         onUpdate: self => {
@@ -1994,7 +2207,7 @@
         }
       });
 
-      // I. Floating Back to Top Button Reactivity
+      // K. Floating Back to Top Button Reactivity
       const backToTop = document.getElementById('backToTopBtn');
       if (backToTop) {
         ScrollTrigger.create({
@@ -2009,7 +2222,7 @@
         });
       }
 
-      // J. ScrollSpy Active Section Sync
+      // L. ScrollSpy Active Section Sync
       const sections = ['hero', 'proyek', 'pengalaman', 'riset', 'keahlian', 'kontak'];
       sections.forEach(secId => {
         const secEl = document.getElementById(secId);
@@ -2051,6 +2264,7 @@
       initMagneticButtons();
       initHeroParallax();
       initParallaxAtmosphere();
+      initProjectImageParallax();
       initGSAPAnimations();
     });
   </script>
