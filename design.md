@@ -150,20 +150,20 @@ Di dalam Act 02 (Trees & Codex), disajikan 4 protokol rekayasa berstandar indust
 4. **Preservasi Scroll Alami (Anti Scroll-Jacking):**
    - Dilarang membajak scrolling alami peramban. Animasi bertindak sebagai pengamat (*passive observer*), bukan pencegat event roda tetikus.
 5. **Orkestrasi Story Motion Naratif & Matriks Kalibrasi Delay Internal Kartu (`.spotlight-card`):**
-   - Setiap kartu tidak lagi muncul sebagai kotak monolitik kaku, melainkan memiliki sekuens narasi terorkestrasi:
-     - `+0.00s`: Elevasi makro kartu (`y: 22 -> 0`, `opacity: 0.15 -> 1`).
-     - `+0.05s`: Sapuan balok laser pemindai dekrpsi (`.laser-scan-shimmer` menyapu `xPercent: -100 -> 100`).
-     - `+0.08s`: Geseran lencana misi & metadata kategori (`x: -12 -> 0`, stagger `0.035s`).
-     - `+0.12s`: Penyingkapan judul misi `h3` (`y: 10 -> 0`).
-     - `+0.16s`: Penajaman fokus wadah artefak visual/skema arsitektur (`scale: 0.97 -> 1`).
-     - `+0.18s`: Kemunculan narasi paragraf tantangan STAR (stagger `0.035s`).
-     - `+0.24s`: Gelombang kaskade panel mikro kaca bertingkat (`.tactical-subglass`, stagger `0.045s`).
-     - `+0.30s`: Micro-pop pil tumpukan teknologi (`scale: 0.92 -> 1`, stagger `0.02s`).
+   - Setiap kartu memiliki sekuens narasi bertahap yang memberi waktu kognitif bagi pembaca untuk mencerna informasi (*cinematic narrative pacing*):
+     - `+0.00s`: Elevasi makro kartu (`y: 28 -> 0`, `opacity: 0.15 -> 1`, durasi `0.55s`, `power3.out`).
+     - `+0.22s`: Sapuan balok laser pemindai dekripsi (`.laser-scan-shimmer` menyapu `xPercent: -100 -> 100`, durasi `0.90s`).
+     - `+0.42s`: Geseran lencana misi, tag status produksi, dan metadata kategori (`x: -16 -> 0`, durasi `0.42s`, stagger `0.05s`).
+     - `+0.58s`: Penyingkapan judul misi `h3` dan sub-label sistem (`y: 14 -> 0`, durasi `0.46s`).
+     - `+0.76s`: Penajaman fokus wadah artefak visual/skema arsitektur (`scale: 0.96 -> 1`, `opacity: 0.35 -> 1`, durasi `0.52s`).
+     - `+0.96s`: Kemunculan bertahap narasi paragraf tantangan STAR dan deskripsi arsitektur (`y: 12 -> 0`, durasi `0.44s`, stagger `0.08s`).
+     - `+1.20s`: Gelombang kaskade panel mikro kaca bertingkat (`.tactical-subglass` siklus akta, benchmark pajak, storyboard krisis/solusi, durasi `0.46s`, stagger `0.09s`).
+     - `+1.44s`: Micro-pop pil tumpukan teknologi arsenel rekayasa (`scale: 0.88 -> 1`, durasi `0.32s`, stagger `0.035s`, `back.out(2)`).
 6. **Mekanisme Re-aktifasi Animasi Dua Arah Bebas Kedipan (*Bi-directional Flicker-Free Re-activation*):**
    - Mengatasi kelemahan `once: true` (statis saat scroll ulang) dan `toggleActions: 'play reverse'` (elemen lenyap mendadak saat dibaca).
    - Menggunakan `gsap.timeline({ paused: true })` terisolasi yang diorkestrasi via `ScrollTrigger.create`:
      - `onEnter`: `cardTl.timeScale(1).play()` saat pengguna menggulir ke bawah memasuki kartu.
-     - `onEnterBack`: `cardTl.timeScale(1.18).restart()` saat pengguna menggulir ke atas kembali ke kartu dengan akselerasi halus yang responsif.
+     - `onEnterBack`: `cardTl.timeScale(1.25).restart()` saat pengguna menggulir ke atas kembali ke kartu dengan akselerasi halus yang responsif.
      - `onLeave` & `onLeaveBack`: `cardTl.pause(0)` dijalankan hanya ketika kartu telah **100% berada di luar viewport**, menjamin animasi tereset tanpa pernah menghilang mendadak saat sedang dibaca pengunjung.
    - Diimplementasikan secara konsisten pada seluruh Kartu Proyek (`.spotlight-card`), Terminal Konsol (`.terminal-window`), Tajuk Babak (`.section-header`), Strip Telemetri Vitals (`#metricsStrip`), dan Simpul Linimasa (`.timeline-node`).
 

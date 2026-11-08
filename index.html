@@ -349,55 +349,57 @@
 
     /* Apple Spatial Neo-Enterprise Glassmorphism (High-Contrast, Refractive Depth & Specular Edge Chamfer) */
     .tactical-glass {
-      background: rgba(15, 23, 42, 0.74);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.78) 0%, rgba(15, 23, 42, 0.84) 100%);
+      backdrop-filter: blur(20px) saturate(190%);
+      -webkit-backdrop-filter: blur(20px) saturate(190%);
       border: 1px solid rgba(51, 65, 85, 0.65);
-      box-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.35), inset 0 1px 0 0 rgba(255, 255, 255, 0.12), inset 0 0 24px 0 rgba(16, 185, 129, 0.02);
+      box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.42), inset 0 1px 1px 0 rgba(255, 255, 255, 0.16), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.3), inset 0 0 24px 0 rgba(16, 185, 129, 0.025);
       position: relative;
-      transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+      transition: border-color 0.28s ease, box-shadow 0.28s ease, transform 0.28s ease;
     }
     html:not(.dark) .tactical-glass {
-      background: rgba(255, 255, 255, 0.86);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.94) 0%, rgba(248, 250, 252, 0.88) 100%);
+      backdrop-filter: blur(20px) saturate(190%);
+      -webkit-backdrop-filter: blur(20px) saturate(190%);
       border: 1px solid rgba(203, 213, 225, 0.95);
-      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), inset 0 1px 0 0 #ffffff;
+      box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.06), inset 0 1px 2px 0 #ffffff, inset 0 -1px 1px 0 rgba(148, 163, 184, 0.2);
     }
     .tactical-glass:hover {
-      border-color: rgba(16, 185, 129, 0.45);
-      box-shadow: 0 12px 36px -4px rgba(0, 0, 0, 0.45), 0 0 20px -2px rgba(16, 185, 129, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.22);
+      border-color: rgba(16, 185, 129, 0.5);
+      box-shadow: 0 16px 44px -6px rgba(0, 0, 0, 0.55), 0 0 28px -2px rgba(16, 185, 129, 0.2), inset 0 1px 2px 0 rgba(255, 255, 255, 0.26), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.4);
     }
     html:not(.dark) .tactical-glass:hover {
-      border-color: rgba(16, 185, 129, 0.45);
-      box-shadow: 0 12px 32px -4px rgba(16, 185, 129, 0.12), inset 0 1px 0 0 #ffffff;
+      border-color: rgba(16, 185, 129, 0.5);
+      box-shadow: 0 16px 36px -6px rgba(16, 185, 129, 0.16), inset 0 1px 2px 0 #ffffff;
     }
 
     /* Sub-Surface Micro Glass for Embedded Cards */
     .tactical-subglass {
-      background: rgba(15, 23, 42, 0.58);
-      backdrop-filter: blur(14px) saturate(160%);
-      -webkit-backdrop-filter: blur(14px) saturate(160%);
-      border: 1px solid rgba(51, 65, 85, 0.55);
-      box-shadow: 0 2px 12px -1px rgba(0, 0, 0, 0.3), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.65) 0%, rgba(15, 23, 42, 0.75) 100%);
+      backdrop-filter: blur(16px) saturate(170%);
+      -webkit-backdrop-filter: blur(16px) saturate(170%);
+      border: 1px solid rgba(51, 65, 85, 0.6);
+      box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.35), inset 0 1px 1px 0 rgba(255, 255, 255, 0.1);
       transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
     }
     html:not(.dark) .tactical-subglass {
-      background: rgba(248, 250, 252, 0.88);
-      backdrop-filter: blur(14px) saturate(160%);
-      -webkit-backdrop-filter: blur(14px) saturate(160%);
-      border: 1px solid rgba(226, 232, 240, 0.95);
-      box-shadow: 0 2px 10px -1px rgba(15, 23, 42, 0.04), inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(241, 245, 249, 0.90) 100%);
+      backdrop-filter: blur(16px) saturate(170%);
+      -webkit-backdrop-filter: blur(16px) saturate(170%);
+      border: 1px solid rgba(226, 232, 240, 0.98);
+      box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.05), inset 0 1px 2px 0 #ffffff;
     }
     .tactical-subglass:hover {
       border-color: rgba(16, 185, 129, 0.45);
-      background: rgba(15, 23, 42, 0.75);
-      transform: translateY(-1.5px);
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.82) 0%, rgba(15, 23, 42, 0.88) 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px -2px rgba(0, 0, 0, 0.45), 0 0 14px -1px rgba(16, 185, 129, 0.15), inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
     }
     html:not(.dark) .tactical-subglass:hover {
       border-color: rgba(16, 185, 129, 0.45);
-      background: rgba(255, 255, 255, 0.98);
-      transform: translateY(-1.5px);
+      background: linear-gradient(135deg, #ffffff 0%, rgba(248, 250, 252, 0.98) 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px -2px rgba(16, 185, 129, 0.12), inset 0 1px 2px 0 #ffffff;
     }
 
     /* Laser Decryption Scanning Shimmer on Cards */
@@ -408,7 +410,7 @@
       width: 100%;
       height: 2px;
       background: linear-gradient(90deg, transparent 0%, rgba(52, 211, 153, 0.95) 50%, transparent 100%);
-      box-shadow: 0 0 12px 1.5px rgba(52, 211, 153, 0.6);
+      box-shadow: 0 0 16px 2px rgba(52, 211, 153, 0.65), 0 0 6px 1px rgba(16, 185, 129, 0.9);
       opacity: 0;
       pointer-events: none;
       z-index: 10;
@@ -3304,33 +3306,47 @@
       // D. Terminal Window Story Motion with Laser Sweep & Bi-Directional Re-Activation
       gsap.utils.toArray('.terminal-window').forEach(term => {
         const shimmer = term.querySelector('.laser-scan-shimmer');
+        const dots = term.querySelectorAll('.terminal-dot');
+        const badge = term.querySelector('.terminal-header span:last-child');
         const lines = term.querySelectorAll('.terminal-line');
         const chips = term.querySelectorAll('button');
 
         const termTl = gsap.timeline({ paused: true, defaults: { ease: 'power2.out' } });
 
-        termTl.fromTo(term, { y: 16, opacity: 0.2 }, { y: 0, opacity: 1, duration: 0.4 }, 0);
+        // 1. Terminal Frame Elevation (0.00s)
+        termTl.fromTo(term, { y: 24, opacity: 0.15 }, { y: 0, opacity: 1, duration: 0.52, ease: 'power3.out' }, 0);
+
+        // 2. Laser Shimmer Sweep (with deliberate narrative delay +0.22s)
         if (shimmer) {
           termTl.fromTo(shimmer, 
             { xPercent: -100, opacity: 0 }, 
-            { xPercent: 100, opacity: 1, duration: 0.8, ease: 'power2.inOut' }, 
-            0.05
+            { xPercent: 100, opacity: 1, duration: 0.88, ease: 'power2.inOut' }, 
+            0.22
           );
-          termTl.to(shimmer, { opacity: 0, duration: 0.2 }, 0.75);
+          termTl.to(shimmer, { opacity: 0, duration: 0.2 }, 1.0);
         }
+
+        // 3. Status Dots & Header Badge (+0.42s)
+        if (dots.length > 0) {
+          termTl.fromTo(dots, { scale: 0.5, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, stagger: 0.06, ease: 'back.out(2)' }, 0.42);
+        }
+
+        // 4. Prompt Lines typing sequence (+0.60s with typing-like rhythm)
         if (lines.length > 0) {
-          termTl.fromTo(lines, { x: -8, opacity: 0 }, { x: 0, opacity: 1, duration: 0.3, stagger: 0.06 }, 0.15);
+          termTl.fromTo(lines, { x: -12, opacity: 0 }, { x: 0, opacity: 1, duration: 0.38, stagger: 0.12, ease: 'power1.out' }, 0.60);
         }
+
+        // 5. Interactive Chips (+1.00s)
         if (chips.length > 0) {
-          termTl.fromTo(chips, { scale: 0.94, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.25, stagger: 0.03, ease: 'back.out(1.5)' }, 0.25);
+          termTl.fromTo(chips, { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.32, stagger: 0.05, ease: 'back.out(1.8)' }, 1.00);
         }
 
         ScrollTrigger.create({
           trigger: term,
-          start: 'top 86%',
+          start: 'top 85%',
           end: 'bottom top',
           onEnter: () => termTl.timeScale(1).play(),
-          onEnterBack: () => termTl.timeScale(1.2).restart(),
+          onEnterBack: () => termTl.timeScale(1.25).restart(),
           onLeave: () => termTl.pause(0),
           onLeaveBack: () => termTl.pause(0)
         });
@@ -3341,8 +3357,8 @@
       if (skillPills.length > 0) {
         const skillTl = gsap.timeline({ paused: true, defaults: { ease: 'back.out(1.8)' } });
         skillTl.fromTo(skillPills, 
-          { scale: 0.9, opacity: 0 }, 
-          { scale: 1, opacity: 1, duration: 0.3, stagger: 0.018 }
+          { scale: 0.88, opacity: 0 }, 
+          { scale: 1, opacity: 1, duration: 0.32, stagger: 0.024 }
         );
 
         ScrollTrigger.create({
@@ -3350,7 +3366,7 @@
           start: 'top 80%',
           end: 'bottom top',
           onEnter: () => skillTl.timeScale(1).play(),
-          onEnterBack: () => skillTl.timeScale(1.2).restart(),
+          onEnterBack: () => skillTl.timeScale(1.25).restart(),
           onLeave: () => skillTl.pause(0),
           onLeaveBack: () => skillTl.pause(0)
         });
@@ -3362,10 +3378,10 @@
         if (card.closest('#metricsStrip')) {
           const shimmer = card.querySelector('.laser-scan-shimmer');
           const vitalsTl = gsap.timeline({ paused: true, defaults: { ease: 'power2.out' } });
-          vitalsTl.fromTo(card, { y: 16, opacity: 0.2 }, { y: 0, opacity: 1, duration: 0.4 }, 0);
+          vitalsTl.fromTo(card, { y: 20, opacity: 0.15 }, { y: 0, opacity: 1, duration: 0.45, ease: 'power3.out' }, 0);
           if (shimmer) {
-            vitalsTl.fromTo(shimmer, { xPercent: -100, opacity: 0 }, { xPercent: 100, opacity: 1, duration: 0.75, ease: 'power2.inOut' }, 0.05);
-            vitalsTl.to(shimmer, { opacity: 0, duration: 0.2 }, 0.7);
+            vitalsTl.fromTo(shimmer, { xPercent: -100, opacity: 0 }, { xPercent: 100, opacity: 1, duration: 0.85, ease: 'power2.inOut' }, 0.18);
+            vitalsTl.to(shimmer, { opacity: 0, duration: 0.2 }, 0.95);
           }
           ScrollTrigger.create({
             trigger: card,
@@ -3373,8 +3389,8 @@
             end: 'bottom top',
             onEnter: () => vitalsTl.timeScale(1).play(),
             onEnterBack: () => {
-              vitalsTl.timeScale(1.2).restart();
-              gsap.fromTo(card, { y: -3 }, { y: 0, duration: 0.35, ease: 'back.out(2)' });
+              vitalsTl.timeScale(1.25).restart();
+              gsap.fromTo(card, { y: -4, borderColor: 'rgba(16, 185, 129, 0.6)' }, { y: 0, borderColor: '', duration: 0.4, ease: 'back.out(2)' });
             },
             onLeave: () => vitalsTl.pause(0),
             onLeaveBack: () => vitalsTl.pause(0)
@@ -3382,94 +3398,94 @@
           return;
         }
 
-        // Dedicated narrative timeline for project, education, and career cards
+        // Dedicated narrative timeline for project, education, codex, and career cards
         const cardTl = gsap.timeline({ paused: true, defaults: { ease: 'power2.out' } });
 
         // 1. Macro Card Container Elevation (0.00s)
         cardTl.fromTo(card, 
-          { y: 22, opacity: 0.15 }, 
-          { y: 0, opacity: 1, duration: 0.42, ease: 'power3.out' }, 
+          { y: 28, opacity: 0.15 }, 
+          { y: 0, opacity: 1, duration: 0.55, ease: 'power3.out' }, 
           0
         );
 
-        // 2. Laser Scanline Shimmer Beam Sweep (0.05s)
+        // 2. Laser Scanline Shimmer Beam Sweep (With deliberate narrative delay +0.22s)
         const shimmer = card.querySelector('.laser-scan-shimmer');
         if (shimmer) {
           cardTl.fromTo(shimmer, 
             { xPercent: -100, opacity: 0 }, 
-            { xPercent: 100, opacity: 1, duration: 0.75, ease: 'power2.inOut' }, 
-            0.05
+            { xPercent: 100, opacity: 1, duration: 0.90, ease: 'power2.inOut' }, 
+            0.22
           );
-          cardTl.to(shimmer, { opacity: 0, duration: 0.2 }, 0.70);
+          cardTl.to(shimmer, { opacity: 0, duration: 0.22 }, 0.98);
         }
 
-        // 3. Mission Header Badges & Category Metadata (0.08s)
-        const headerBadges = card.querySelectorAll('.border-b span, .border-b .rounded-md');
+        // 3. Mission Header Badges & Category Metadata (+0.42s)
+        const headerBadges = card.querySelectorAll('.border-b span, .border-b .rounded-md, .border-b a, .border-b button');
         if (headerBadges.length > 0) {
           cardTl.fromTo(headerBadges, 
-            { x: -12, opacity: 0 }, 
-            { x: 0, opacity: 1, duration: 0.32, stagger: 0.035, ease: 'power2.out' }, 
-            0.08
+            { x: -16, opacity: 0 }, 
+            { x: 0, opacity: 1, duration: 0.42, stagger: 0.05, ease: 'power2.out' }, 
+            0.42
           );
         }
 
-        // 4. Mission Heading h3 Reveal (0.12s)
-        const heading = card.querySelector('h3');
+        // 4. Mission Heading h3 Reveal (+0.58s)
+        const heading = card.querySelector('h3, h4');
         if (heading) {
           cardTl.fromTo(heading, 
-            { y: 10, opacity: 0 }, 
-            { y: 0, opacity: 1, duration: 0.35, ease: 'power2.out' }, 
-            0.12
+            { y: 14, opacity: 0 }, 
+            { y: 0, opacity: 1, duration: 0.46, ease: 'power2.out' }, 
+            0.58
           );
         }
 
-        // 5. Visual Artifact Media Container Focus (0.16s)
-        const mediaBox = card.querySelector('.media-container, .overflow-hidden.rounded-2xl');
-        if (mediaBox) {
+        // 5. Visual Artifact Media Container Focus (+0.76s)
+        const mediaBox = card.querySelectorAll('.media-container, .overflow-hidden.rounded-2xl, .project-image-box');
+        if (mediaBox.length > 0) {
           cardTl.fromTo(mediaBox, 
-            { scale: 0.97, opacity: 0.5 }, 
-            { scale: 1, opacity: 1, duration: 0.38, ease: 'power2.out' }, 
-            0.16
+            { scale: 0.96, opacity: 0.35 }, 
+            { scale: 1, opacity: 1, duration: 0.52, stagger: 0.08, ease: 'power2.out' }, 
+            0.76
           );
         }
 
-        // 6. Narrative Challenge & STAR Paragraphs (0.18s)
-        const paragraphs = card.querySelectorAll('p:not(.text-slate-400), .text-xs.font-mono.leading-relaxed');
+        // 6. Narrative Challenge & STAR Paragraphs (+0.96s)
+        const paragraphs = card.querySelectorAll('p:not(.text-slate-400), .text-xs.font-mono.leading-relaxed, .space-y-1\\.5 > p, .space-y-2 > p');
         if (paragraphs.length > 0) {
           cardTl.fromTo(paragraphs, 
-            { y: 8, opacity: 0 }, 
-            { y: 0, opacity: 1, duration: 0.32, stagger: 0.035, ease: 'power2.out' }, 
-            0.18
+            { y: 12, opacity: 0 }, 
+            { y: 0, opacity: 1, duration: 0.44, stagger: 0.08, ease: 'power2.out' }, 
+            0.96
           );
         }
 
-        // 7. Tactical Subglass Micro-Cards Wave Cascade (0.24s)
+        // 7. Tactical Subglass Micro-Cards Wave Cascade (+1.20s)
         const subglasses = card.querySelectorAll('.tactical-subglass');
         if (subglasses.length > 0) {
           cardTl.fromTo(subglasses, 
-            { y: 12, opacity: 0, scale: 0.98 }, 
-            { y: 0, opacity: 1, scale: 1, duration: 0.38, stagger: 0.045, ease: 'power2.out' }, 
-            0.24
+            { y: 16, opacity: 0, scale: 0.98 }, 
+            { y: 0, opacity: 1, scale: 1, duration: 0.46, stagger: 0.09, ease: 'power2.out' }, 
+            1.20
           );
         }
 
-        // 8. Technology Pills Micro-Pop Stagger (0.30s)
-        const techPills = card.querySelectorAll('.flex-wrap > span, .tech-pill');
+        // 8. Technology Pills Micro-Pop Stagger (+1.44s)
+        const techPills = card.querySelectorAll('.flex-wrap > span, .tech-pill, .skill-pill');
         if (techPills.length > 0) {
           cardTl.fromTo(techPills, 
-            { scale: 0.92, opacity: 0 }, 
-            { scale: 1, opacity: 1, duration: 0.28, stagger: 0.02, ease: 'back.out(1.6)' }, 
-            0.30
+            { scale: 0.88, opacity: 0 }, 
+            { scale: 1, opacity: 1, duration: 0.32, stagger: 0.035, ease: 'back.out(2)' }, 
+            1.44
           );
         }
 
         // Bi-Directional Flicker-Free ScrollTrigger Controller
         ScrollTrigger.create({
           trigger: card,
-          start: 'top 88%',
+          start: 'top 85%',
           end: 'bottom top',
           onEnter: () => cardTl.timeScale(1).play(),
-          onEnterBack: () => cardTl.timeScale(1.18).restart(),
+          onEnterBack: () => cardTl.timeScale(1.25).restart(),
           onLeave: () => cardTl.pause(0),
           onLeaveBack: () => cardTl.pause(0)
         });
@@ -3486,27 +3502,27 @@
         const headerTl = gsap.timeline({ paused: true, defaults: { ease: 'power2.out' } });
 
         if (badge) {
-          headerTl.fromTo(badge, { x: -16, opacity: 0 }, { x: 0, opacity: 1, duration: 0.35 }, 0);
+          headerTl.fromTo(badge, { x: -18, opacity: 0 }, { x: 0, opacity: 1, duration: 0.42 }, 0);
         }
         if (h2) {
-          headerTl.fromTo(h2, { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.38 }, 0.05);
+          headerTl.fromTo(h2, { y: 14, opacity: 0 }, { y: 0, opacity: 1, duration: 0.46 }, 0.20);
         }
         if (p) {
-          headerTl.fromTo(p, { y: 8, opacity: 0 }, { y: 0, opacity: 1, duration: 0.32 }, 0.1);
+          headerTl.fromTo(p, { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.42 }, 0.36);
         }
         if (line) {
-          headerTl.fromTo(line, { scaleX: 0 }, { scaleX: 1, duration: 0.75, ease: 'power3.out' }, 0.12);
+          headerTl.fromTo(line, { scaleX: 0 }, { scaleX: 1, duration: 0.85, ease: 'power3.out' }, 0.52);
         }
         if (ghostNum) {
-          headerTl.fromTo(ghostNum, { opacity: 0, x: 25 }, { opacity: 0.45, x: 0, duration: 0.5 }, 0.15);
+          headerTl.fromTo(ghostNum, { opacity: 0, x: 30 }, { opacity: 0.45, x: 0, duration: 0.6 }, 0.64);
         }
 
         ScrollTrigger.create({
           trigger: header,
-          start: 'top 88%',
+          start: 'top 85%',
           end: 'bottom top',
           onEnter: () => headerTl.timeScale(1).play(),
-          onEnterBack: () => headerTl.timeScale(1.2).restart(),
+          onEnterBack: () => headerTl.timeScale(1.25).restart(),
           onLeave: () => headerTl.pause(0),
           onLeaveBack: () => headerTl.pause(0)
         });
