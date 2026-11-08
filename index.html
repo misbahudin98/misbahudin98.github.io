@@ -272,7 +272,6 @@
     }
 
     /* Subtle Architectural Blueprint Dot-Grid & Atmospheric Vignette */
-    /* Subtle Architectural Blueprint Dot-Grid & Atmospheric Vignette */
     body {
       background-color: #07090e;
       background-attachment: fixed;
@@ -377,17 +376,39 @@
     /* Sub-Surface Micro Glass for Embedded Cards */
     .tactical-subglass {
       background: rgba(15, 23, 42, 0.55);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(14px) saturate(160%);
+      -webkit-backdrop-filter: blur(14px) saturate(160%);
       border: 1px solid rgba(51, 65, 85, 0.5);
-      box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+      box-shadow: 0 2px 10px -1px rgba(0, 0, 0, 0.25), inset 0 1px 0 0 rgba(255, 255, 255, 0.07);
+      transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
     }
     html:not(.dark) .tactical-subglass {
       background: rgba(248, 250, 252, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(226, 232, 240, 0.85);
-      box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(14px) saturate(160%);
+      -webkit-backdrop-filter: blur(14px) saturate(160%);
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      box-shadow: 0 2px 10px -1px rgba(15, 23, 42, 0.03), inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
+    }
+    .tactical-subglass:hover {
+      border-color: rgba(16, 185, 129, 0.35);
+      background: rgba(15, 23, 42, 0.7);
+    }
+    html:not(.dark) .tactical-subglass:hover {
+      border-color: rgba(16, 185, 129, 0.4);
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    /* Laser Decryption Scanning Shimmer on Cards */
+    .laser-scan-shimmer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, rgba(52, 211, 153, 0.9) 50%, transparent 100%);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 10;
     }
   </style>
 </head>
@@ -707,6 +728,7 @@
 
         <!-- 1. KANTOR NOTARIS & PPAT (irwan-baddu) -->
         <article class="spotlight-card tactical-glass tactical-reticle p-4 sm:p-8 rounded-3xl hover:border-emerald-500/40 transition-all space-y-6 shadow-sm group print-card">
+          <div class="laser-scan-shimmer"></div>
           
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800/60 pb-4">
             <div class="space-y-1">
@@ -766,43 +788,43 @@
           </div>
 
           <!-- Tab Pane 2: 7-Stage Deed Lifecycle Flowchart -->
-          <div id="tabPane-notaris-workflow" class="project-tab-pane hidden p-4 sm:p-5 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80 space-y-4">
-            <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-2">
+          <div id="tabPane-notaris-workflow" class="project-tab-pane hidden p-4 sm:p-5 rounded-2xl tactical-subglass space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-200/60 dark:border-slate-800/80 pb-2">
               <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">// PIPELINE OTOMASI AKTA 7 TAHAP (ZERO HUMAN ERROR)</span>
               <span class="text-[10px] font-mono text-slate-400">Status: Automated State Machine</span>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 text-xs font-mono">
-              <div class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
+              <div class="p-2.5 rounded-xl tactical-subglass space-y-1">
                 <span class="text-[10px] text-emerald-500 font-bold block">01. INTAKE</span>
                 <span class="font-bold text-slate-800 dark:text-slate-200 block">Pemberkasan Masuk</span>
                 <p class="text-[11px] text-slate-500 font-sans">KTP, KK, PBB, Sertifikat asli diindeks ke database 3NF.</p>
               </div>
-              <div class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
+              <div class="p-2.5 rounded-xl tactical-subglass space-y-1">
                 <span class="text-[10px] text-emerald-500 font-bold block">02. BPN VERIFY</span>
                 <span class="font-bold text-slate-800 dark:text-slate-200 block">Cek Sertifikat BPN</span>
                 <p class="text-[11px] text-slate-500 font-sans">Validasi plot tanah & bebas sengketa di kantor pertanahan.</p>
               </div>
-              <div class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
+              <div class="p-2.5 rounded-xl tactical-subglass space-y-1">
                 <span class="text-[10px] text-emerald-500 font-bold block">03. AUTO DRAFT</span>
                 <span class="font-bold text-slate-800 dark:text-slate-200 block">Kompilasi Draf Akta</span>
                 <p class="text-[11px] text-slate-500 font-sans">Template klausul hukum otomatis terisi 60% lebih cepat.</p>
               </div>
-              <div class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
+              <div class="p-2.5 rounded-xl tactical-subglass space-y-1">
                 <span class="text-[10px] text-emerald-500 font-bold block">04. SIGNING</span>
                 <span class="font-bold text-slate-800 dark:text-slate-200 block">Penandatanganan</span>
                 <p class="text-[11px] text-slate-500 font-sans">Dihadiri para pihak & saksi di hadapan Notaris resmi.</p>
               </div>
-              <div class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-emerald-500/30 bg-emerald-500/5 space-y-1">
+              <div class="p-2.5 rounded-xl tactical-subglass space-y-1 border border-emerald-500/30">
                 <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold block">05. TAX VALIDATION</span>
                 <span class="font-bold text-slate-900 dark:text-white block">Audit Pajak & NTPN</span>
                 <p class="text-[11px] text-slate-500 font-sans">Validasi kode billing PPh & BPHTB rekonsiliasi MPN-G3.</p>
               </div>
-              <div class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
+              <div class="p-2.5 rounded-xl tactical-subglass space-y-1">
                 <span class="text-[10px] text-emerald-500 font-bold block">06. REPERTORIUM</span>
                 <span class="font-bold text-slate-800 dark:text-slate-200 block">Buku Klapper & Lapor</span>
                 <p class="text-[11px] text-slate-500 font-sans">Nomor urut akta otomatis terkunci tanpa celah manipulasi.</p>
               </div>
-              <div class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1 sm:col-span-2">
+              <div class="p-2.5 rounded-xl tactical-subglass space-y-1 sm:col-span-2">
                 <span class="text-[10px] text-emerald-500 font-bold block">07. DELIVERY</span>
                 <span class="font-bold text-slate-800 dark:text-slate-200 block">Penyerahan Salinan Resmi</span>
                 <p class="text-[11px] text-slate-500 font-sans">Tanda terima fisik & digital ber-timestamp tersimpan aman.</p>
@@ -811,23 +833,23 @@
           </div>
 
           <!-- Tab Pane 3: Audit Kinerja & Rekening Titipan -->
-          <div id="tabPane-notaris-benchmark" class="project-tab-pane hidden p-4 sm:p-5 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80 space-y-4">
-            <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-2">
+          <div id="tabPane-notaris-benchmark" class="project-tab-pane hidden p-4 sm:p-5 rounded-2xl tactical-subglass space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-200/60 dark:border-slate-800/80 pb-2">
               <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">// AUDIT KINERJA & SEPARASI REKENING TITIPAN PAJAK</span>
               <span class="text-[10px] font-mono text-emerald-500 font-bold">100% RECONCILED</span>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-              <div class="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
+              <div class="p-3.5 rounded-xl tactical-subglass space-y-1.5">
                 <span class="text-slate-400 text-[10px] font-mono uppercase block font-semibold">Separasi Arus Kas</span>
                 <span class="text-base font-bold font-mono text-emerald-600 dark:text-emerald-400 block">Zero-Discrepancy</span>
                 <p class="text-slate-500 text-[11px]">Pemisahan tegas kas operasional kantor dengan rekening titipan pajak negara (PPh & BPHTB).</p>
               </div>
-              <div class="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
+              <div class="p-3.5 rounded-xl tactical-subglass space-y-1.5">
                 <span class="text-slate-400 text-[10px] font-mono uppercase block font-semibold">Efisiensi Pembuatan Draf</span>
                 <span class="text-base font-bold font-mono text-emerald-600 dark:text-emerald-400 block">-60% Turnaround</span>
                 <p class="text-slate-500 text-[11px]">Template klausul akta terotomasi mereduksi waktu penyusunan dari 3 jam menjadi &lt; 45 menit.</p>
               </div>
-              <div class="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
+              <div class="p-3.5 rounded-xl tactical-subglass space-y-1.5">
                 <span class="text-slate-400 text-[10px] font-mono uppercase block font-semibold">Validasi NTPN Pajak</span>
                 <span class="text-base font-bold font-mono text-emerald-600 dark:text-emerald-400 block">16-Digit Verified</span>
                 <p class="text-slate-500 text-[11px]">Validasi Nomor Transaksi Penerimaan Negara mencegah akta keluar sebelum pajak terkonfirmasi lunas.</p>
@@ -837,7 +859,7 @@
 
           <!-- 3-Babak Narrative Storyboard (The Crisis -> The Blueprint -> The Triumph) -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs pt-1">
-            <div class="p-3.5 sm:p-4 rounded-2xl bg-slate-50/80 dark:bg-slate-950/50 border border-slate-200/80 dark:border-slate-800/80 space-y-1.5 transition-all hover:border-rose-500/40">
+            <div class="p-3.5 sm:p-4 rounded-2xl tactical-subglass space-y-1.5 transition-all hover:border-rose-500/40">
               <div class="flex items-center gap-1.5 text-rose-500 font-mono text-[11px] font-bold uppercase">
                 <i class="fa-solid fa-triangle-exclamation"></i>
                 <span>Babak 1: The Crisis</span>
@@ -846,7 +868,7 @@
                 Risiko pencampuran kas operasional kantor dengan rekening titipan pajak negara (PPh & BPHTB) berpotensi pidana penggelapan pajak bila terjadi selisih rupiah.
               </p>
             </div>
-            <div class="p-3.5 sm:p-4 rounded-2xl bg-slate-50/80 dark:bg-slate-950/50 border border-slate-200/80 dark:border-slate-800/80 space-y-1.5 transition-all hover:border-emerald-500/40">
+            <div class="p-3.5 sm:p-4 rounded-2xl tactical-subglass space-y-1.5 transition-all hover:border-emerald-500/40">
               <div class="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-mono text-[11px] font-bold uppercase">
                 <i class="fa-solid fa-microchip"></i>
                 <span>Babak 2: The Blueprint</span>
@@ -855,7 +877,7 @@
                 Membangun arsitektur <em>Laravel 13 &bull; Svelte 5</em> dengan pemisahan sub-rekening database 3NF, otomasi 7 tahap akta, dan verifikasi NTPN 16 digit.
               </p>
             </div>
-            <div class="p-3.5 sm:p-4 rounded-2xl bg-emerald-500/5 dark:bg-emerald-500/10 border border-emerald-500/30 space-y-1.5 transition-all hover:border-emerald-500/60">
+            <div class="p-3.5 sm:p-4 rounded-2xl tactical-subglass space-y-1.5 transition-all hover:border-emerald-500/60 border-emerald-500/30">
               <div class="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-mono text-[11px] font-bold uppercase">
                 <i class="fa-solid fa-award"></i>
                 <span>Babak 3: The Triumph</span>
@@ -888,6 +910,7 @@
 
         <!-- 2. SISTEM MANAJEMEN PENDIDIKAN YAYASAN (yayasan-pqtm / SIM-PQTM) -->
         <article class="spotlight-card tactical-glass tactical-reticle p-4 sm:p-8 rounded-3xl hover:border-emerald-500/40 transition-all space-y-6 shadow-sm group print-card">
+          <div class="laser-scan-shimmer"></div>
           
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800/60 pb-4">
             <div class="space-y-1">
@@ -947,28 +970,28 @@
           </div>
 
           <!-- Tab Pane 2: Dashboard Tahfidz & Tasmi' Santri (100% Akurat) -->
-          <div id="tabPane-pqtm-tahfidz" class="project-tab-pane hidden p-4 sm:p-5 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80 space-y-4">
-            <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-2">
+          <div id="tabPane-pqtm-tahfidz" class="project-tab-pane hidden p-4 sm:p-5 rounded-2xl tactical-subglass space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-200/60 dark:border-slate-800/80 pb-2">
               <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">// DASHBOARD MUTABA'AH TAHFIDZ &amp; UJIAN TASMI' BIL-GHAIB SANTRI</span>
               <span class="text-[10px] font-mono text-emerald-500 font-bold">100% AKURAT &bull; ZERO DATA DISCREPANCY</span>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 text-xs font-mono">
-              <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
+              <div class="p-3 rounded-xl tactical-subglass space-y-1">
                 <span class="text-[10px] text-emerald-500 font-bold block">01. JURNAL SETORAN</span>
                 <span class="font-bold text-slate-800 dark:text-slate-200 block">Ziyadah &amp; Muraja'ah</span>
                 <p class="text-[11px] text-slate-500 font-sans">Pencatatan surat, rentang ayat, evaluasi kelancaran tajwid, makharijul huruf, dan predikat nilai harian.</p>
               </div>
-              <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
+              <div class="p-3 rounded-xl tactical-subglass space-y-1">
                 <span class="text-[10px] text-emerald-500 font-bold block">02. TRACKING JUZ</span>
                 <span class="font-bold text-slate-800 dark:text-slate-200 block">Akumulasi Real-Time</span>
                 <p class="text-[11px] text-slate-500 font-sans">Pemantauan progres kemajuan hafalan santri Juz 1 s/d 30 secara presisi tanpa ada catatan manual tercecer.</p>
               </div>
-              <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
+              <div class="p-3 rounded-xl tactical-subglass space-y-1">
                 <span class="text-[10px] text-emerald-500 font-bold block">03. TASMI' BIL-GHAIB</span>
                 <span class="font-bold text-slate-800 dark:text-slate-200 block">Ujian Sekali Duduk</span>
                 <p class="text-[11px] text-slate-500 font-sans">Pencatatan ujian hafalan 1 Juz, 5 Juz, 10 Juz s/d 30 Juz di hadapan majelis asatidz dengan counter kesalahan terukur.</p>
               </div>
-              <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-emerald-500/30 bg-emerald-500/5 space-y-1">
+              <div class="p-3 rounded-xl tactical-subglass space-y-1 border border-emerald-500/30">
                 <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold block">04. SYAHADAH DIGITAL</span>
                 <span class="font-bold text-slate-900 dark:text-white block">Sertifikasi &amp; Histori</span>
                 <p class="text-[11px] text-slate-500 font-sans">Penerbitan syahadah kelulusan juz ber-timestamp dan buku mutaba'ah digital berkala untuk wali santri.</p>
@@ -977,28 +1000,28 @@
           </div>
 
           <!-- Tab Pane 3: Verifikasi Berkas & Detail Santri -->
-          <div id="tabPane-pqtm-berkas" class="project-tab-pane hidden p-4 sm:p-5 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80 space-y-4">
-            <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-2">
+          <div id="tabPane-pqtm-berkas" class="project-tab-pane hidden p-4 sm:p-5 rounded-2xl tactical-subglass space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-200/60 dark:border-slate-800/80 pb-2">
               <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">// VERIFIKASI BERKAS DIGITAL &amp; MANAJEMEN DETAIL SANTRI TERPUSAT</span>
               <span class="text-[10px] font-mono text-emerald-500 font-bold">TERVERIFIKASI TERSENTRAL</span>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 text-xs font-mono">
-              <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
+              <div class="p-3 rounded-xl tactical-subglass space-y-1">
                 <span class="text-[10px] text-emerald-500 font-bold block">01. INTAKE DIGITAL</span>
                 <span class="font-bold text-slate-800 dark:text-slate-200 block">Arsip Berkas Masuk</span>
                 <p class="text-[11px] text-slate-500 font-sans">Digitalisasi dokumen penting santri: KTP orang tua, Akta Kelahiran, Kartu Keluarga, dan Ijazah/NISN.</p>
               </div>
-              <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
+              <div class="p-3 rounded-xl tactical-subglass space-y-1">
                 <span class="text-[10px] text-emerald-500 font-bold block">02. AUDIT CHECKLIST</span>
                 <span class="font-bold text-slate-800 dark:text-slate-200 block">Validasi Berjenjang</span>
                 <p class="text-[11px] text-slate-500 font-sans">Checklist verifikasi administrasi status dokumen (Valid, Pending, Perlu Revisi) oleh staf kesantrian.</p>
               </div>
-              <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
+              <div class="p-3 rounded-xl tactical-subglass space-y-1">
                 <span class="text-[10px] text-emerald-500 font-bold block">03. BIODATA DETAIL</span>
                 <span class="font-bold text-slate-800 dark:text-slate-200 block">Kamar &amp; Histori Medis</span>
                 <p class="text-[11px] text-slate-500 font-sans">Penyimpanan terpusat data penempatan kamar asrama, rekam medis santri, serta nomor darurat wali.</p>
               </div>
-              <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-emerald-500/30 bg-emerald-500/5 space-y-1">
+              <div class="p-3 rounded-xl tactical-subglass space-y-1 border border-emerald-500/30">
                 <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold block">04. SINGLE TRUTH</span>
                 <span class="font-bold text-slate-900 dark:text-white block">Sinkronisasi Multi-Unit</span>
                 <p class="text-[11px] text-slate-500 font-sans">Penyatuan data santri aktif lintas unit tahfidz dan asrama ke dalam satu database relasional terpusat.</p>
@@ -1008,7 +1031,7 @@
 
           <!-- 3-Babak Narrative Storyboard (The Crisis -> The Blueprint -> The Triumph) -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs pt-1">
-            <div class="p-3.5 sm:p-4 rounded-2xl bg-slate-50/80 dark:bg-slate-950/50 border border-slate-200/80 dark:border-slate-800/80 space-y-1.5 transition-all hover:border-rose-500/40">
+            <div class="p-3.5 sm:p-4 rounded-2xl tactical-subglass space-y-1.5 transition-all hover:border-rose-500/40">
               <div class="flex items-center gap-1.5 text-rose-500 font-mono text-[11px] font-bold uppercase">
                 <i class="fa-solid fa-triangle-exclamation"></i>
                 <span>Babak 1: The Crisis</span>
@@ -1017,7 +1040,7 @@
                 Data ratusan santri dan setoran hafalan dicatat di buku fisik terpisah antara kantor asrama dan halaqah tahfidz. Pencatatan manual rawan hilang atau tertukar, dan berkas pendaftaran santri sering tercecer saat dibutuhkan untuk pelaporan institusi.
               </p>
             </div>
-            <div class="p-3.5 sm:p-4 rounded-2xl bg-slate-50/80 dark:bg-slate-950/50 border border-slate-200/80 dark:border-slate-800/80 space-y-1.5 transition-all hover:border-emerald-500/40">
+            <div class="p-3.5 sm:p-4 rounded-2xl tactical-subglass space-y-1.5 transition-all hover:border-emerald-500/40">
               <div class="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-mono text-[11px] font-bold uppercase">
                 <i class="fa-solid fa-microchip"></i>
                 <span>Babak 2: The Blueprint</span>
@@ -1026,7 +1049,7 @@
                 Membangun platform sentralisasi terpadu <em>Laravel 13 &bull; Svelte 5</em>: modul verifikasi kelengkapan berkas santri masuk secara digital serta dashboard pelacakan mutaba'ah tahfidz dan ujian tasmi' bil-ghaib yang presisi.
               </p>
             </div>
-            <div class="p-3.5 sm:p-4 rounded-2xl bg-emerald-500/5 dark:bg-emerald-500/10 border border-emerald-500/30 space-y-1.5 transition-all hover:border-emerald-500/60">
+            <div class="p-3.5 sm:p-4 rounded-2xl tactical-subglass space-y-1.5 transition-all hover:border-emerald-500/60 border-emerald-500/30">
               <div class="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-mono text-[11px] font-bold uppercase">
                 <i class="fa-solid fa-award"></i>
                 <span>Babak 3: The Triumph</span>
@@ -1059,6 +1082,7 @@
 
         <!-- 3. EKOSISTEM LAYANAN KESEHATAN INTEGRATIF (twinnie-group) -->
         <article class="spotlight-card tactical-glass tactical-reticle p-4 sm:p-8 rounded-3xl hover:border-emerald-500/40 transition-all space-y-6 shadow-sm group print-card">
+          <div class="laser-scan-shimmer"></div>
           
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800/60 pb-4">
             <div class="space-y-1">
@@ -1098,7 +1122,7 @@
                 Membangun platform layanan kesehatan terpadu (Baby Spa, Terapi Medis Holistik TCM/Akupunktur, Konsultasi Psikologi & Kemitraan Syariah) yang ramah bagi pengguna di daerah pelosok Malang Raya dengan sinyal seluler terbatas. Merancang arsitektur web murni statis tanpa kompilasi server (*zero runtime compiler*) berbasis <strong>Semantic HTML5</strong> dan <strong>Modular Vanilla JavaScript</strong>. Mengintegrasikan kalkulator kemitraan syariah reaktif, formulir reservasi responsif multi-cabang, serta <em>direct deep-linking WhatsApp</em> tanpa kegagalan tersembunyi (*zero silent failure*).
               </p>
             </div>
-            <div class="space-y-2 p-3.5 sm:p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80">
+            <div class="space-y-2 p-3.5 sm:p-4 rounded-2xl tactical-subglass">
               <span class="font-bold text-slate-900 dark:text-white block font-mono text-xs uppercase text-emerald-600 dark:text-emerald-400">Dampak Terukur</span>
               <ul class="space-y-1 text-xs list-disc list-inside text-slate-600 dark:text-slate-400">
                 <li>Kecepatan FCP &lt; 1,0 detik pada koneksi 4G</li>
@@ -1132,6 +1156,7 @@
 
         <!-- 4. SISTEM INFORMASI PPDB TERPUSAT & GATEWAY NOTIFIKASI -->
         <article class="spotlight-card tactical-glass tactical-reticle p-4 sm:p-8 rounded-3xl hover:border-emerald-500/40 transition-all space-y-6 shadow-sm group print-card">
+          <div class="laser-scan-shimmer"></div>
           
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800/60 pb-4">
             <div class="space-y-1">
@@ -1170,7 +1195,7 @@
                 Mengintegrasikan pendaftaran santri baru untuk 5 unit institusi (SMA, SMP, SD, TK, Baby School) yang sebelumnya terisolasi. Merancang arsitektur RESTful API berbasis <strong>Laravel Passport (OAuth 2.0)</strong>, validasi multi-tahap, integrasi <strong>WhatsApp & Email Gateway</strong> otomatis untuk notifikasi status berkas dan mutasi biaya pendaftaran secara real-time, menghentikan pembuatan Virtual Account secara manual.
               </p>
             </div>
-            <div class="space-y-2 p-3.5 sm:p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80">
+            <div class="space-y-2 p-3.5 sm:p-4 rounded-2xl tactical-subglass">
               <span class="font-bold text-slate-900 dark:text-white block font-mono text-xs uppercase text-emerald-600 dark:text-emerald-400">Dampak Terukur</span>
               <ul class="space-y-1 text-xs list-disc list-inside text-slate-600 dark:text-slate-400">
                 <li>Reduksi waktu verifikasi berkas hingga 70%</li>
@@ -1200,6 +1225,7 @@
 
         <!-- 5. BUKU INDUK SANTRI & PIPELINE MIGRASI 12.117 RECORD -->
         <article class="spotlight-card tactical-glass tactical-reticle p-4 sm:p-8 rounded-3xl hover:border-emerald-500/40 transition-all space-y-6 shadow-sm group print-card">
+          <div class="laser-scan-shimmer"></div>
           
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800/60 pb-4">
             <div class="space-y-1">
@@ -1238,7 +1264,7 @@
                 Menangani krisis fragmentasi data santri dan pegawai selama bertahun-tahun di berbagai format SQL dan spreadsheet Excel lama yang memiliki masalah data ganda, typo, format tanggal inkonsisten, dan selisih angka antara bagian Humas dan Keuangan. Mengembangkan pipeline ETL otomatis untuk pembersihan anomali (*data cleansing*) dan migrasi 9.312 santri lama, 800 calon santri, serta 2.005 pegawai ke skema relasional 3NF terpusat berbasis Nomor Induk Santri Yayasan (NISY).
               </p>
             </div>
-            <div class="space-y-2 p-3.5 sm:p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80">
+            <div class="space-y-2 p-3.5 sm:p-4 rounded-2xl tactical-subglass">
               <span class="font-bold text-slate-900 dark:text-white block font-mono text-xs uppercase text-emerald-600 dark:text-emerald-400">Hasil Keandalan</span>
               <ul class="space-y-1 text-xs list-disc list-inside text-slate-600 dark:text-slate-400">
                 <li>100% data termigrasikan tanpa cacat</li>
@@ -1265,6 +1291,7 @@
 
         <!-- 6. APLIKASI KEPEGAWAIAN (SIM-SDM) -->
         <article class="spotlight-card tactical-glass tactical-reticle p-4 sm:p-8 rounded-3xl hover:border-emerald-500/40 transition-all space-y-6 shadow-sm group print-card">
+          <div class="laser-scan-shimmer"></div>
           
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800/60 pb-4">
             <div class="space-y-1">
@@ -1315,7 +1342,7 @@
                 Mendigitalkan siklus hidup kepegawaian untuk 2.005 staf institusi. Merancang formulir digital otomatis untuk pengajuan cuti, izin belajar, perubahan status kerja, perpanjangan kontrak, hingga PHK. Menggantikan proses birokrasi berbasis kertas yang lambat dengan validasi persetujuan bertingkat (*multi-level approval*) secara real-time.
               </p>
             </div>
-            <div class="space-y-2 p-3.5 sm:p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80">
+            <div class="space-y-2 p-3.5 sm:p-4 rounded-2xl tactical-subglass">
               <span class="font-bold text-slate-900 dark:text-white block font-mono text-xs uppercase text-emerald-600 dark:text-emerald-400">Dampak Efisiensi</span>
               <ul class="space-y-1 text-xs list-disc list-inside text-slate-600 dark:text-slate-400">
                 <li>Paperless administrasi HR hingga 85%</li>
@@ -1371,6 +1398,7 @@
         
         <!-- Polinema D4 -->
         <div class="spotlight-card tactical-reticle tactical-glass p-5 sm:p-6 rounded-2xl flex items-start justify-between gap-4 shadow-sm print-card">
+          <div class="laser-scan-shimmer"></div>
           <div class="flex items-start gap-3.5">
             <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400 text-xl shrink-0">
               <i class="fa-solid fa-graduation-cap"></i>
@@ -1393,6 +1421,7 @@
 
         <!-- SMKN 2 Singosari TKJ -->
         <div class="spotlight-card tactical-reticle tactical-glass p-5 sm:p-6 rounded-2xl flex items-start justify-between gap-4 shadow-sm print-card">
+          <div class="laser-scan-shimmer"></div>
           <div class="flex items-start gap-3.5">
             <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400 text-xl shrink-0">
               <i class="fa-solid fa-school"></i>
@@ -1429,6 +1458,7 @@
 
           <!-- Pillar 1: Backend Core & Auth Matrix -->
           <div class="spotlight-card tactical-reticle tactical-glass p-5 rounded-2xl border-emerald-500/30 space-y-4 shadow-sm print-card">
+            <div class="laser-scan-shimmer"></div>
             <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
               <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-mono text-xs font-bold">
                 <i class="fa-solid fa-server"></i>
@@ -1438,7 +1468,7 @@
             </div>
 
             <!-- Root Node -->
-            <div class="p-3 rounded-xl bg-emerald-500/5 dark:bg-emerald-500/10 border border-emerald-500/30 space-y-1">
+            <div class="p-3 rounded-xl tactical-subglass space-y-1">
               <div class="flex items-center justify-between text-[11px] font-mono">
                 <strong class="text-emerald-700 dark:text-emerald-300">[ROOT CORE] PHP 8.4 JIT</strong>
                 <span class="text-emerald-600 dark:text-emerald-400 font-bold">Zend OPcache</span>
@@ -1462,6 +1492,7 @@
 
           <!-- Pillar 2: Concurrency & Data Architecture -->
           <div class="spotlight-card tactical-reticle tactical-glass p-5 rounded-2xl border-cyan-500/30 space-y-4 shadow-sm print-card">
+            <div class="laser-scan-shimmer"></div>
             <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
               <div class="flex items-center gap-2 text-cyan-600 dark:text-cyan-400 font-mono text-xs font-bold">
                 <i class="fa-solid fa-database"></i>
@@ -1471,7 +1502,7 @@
             </div>
 
             <!-- Root Node -->
-            <div class="p-3 rounded-xl bg-cyan-500/5 dark:bg-cyan-500/10 border border-cyan-500/30 space-y-1">
+            <div class="p-3 rounded-xl tactical-subglass space-y-1">
               <div class="flex items-center justify-between text-[11px] font-mono">
                 <strong class="text-cyan-700 dark:text-cyan-300">[ROOT CORE] MySQL 3NF Normalization</strong>
                 <span class="text-cyan-600 dark:text-cyan-400 font-bold">Zero N+1</span>
@@ -1493,6 +1524,7 @@
 
           <!-- Pillar 3: Reactive Frontend & TDD Rigor -->
           <div class="spotlight-card tactical-reticle tactical-glass p-5 rounded-2xl border-cyan-500/30 space-y-4 shadow-sm print-card">
+            <div class="laser-scan-shimmer"></div>
             <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
               <div class="flex items-center gap-2 text-cyan-600 dark:text-cyan-400 font-mono text-xs font-bold">
                 <i class="fa-solid fa-laptop-code"></i>
@@ -1502,7 +1534,7 @@
             </div>
 
             <!-- Root Node -->
-            <div class="p-3 rounded-xl bg-cyan-500/5 dark:bg-cyan-500/10 border border-cyan-500/30 space-y-1">
+            <div class="p-3 rounded-xl tactical-subglass space-y-1">
               <div class="flex items-center justify-between text-[11px] font-mono">
                 <strong class="text-cyan-700 dark:text-cyan-300">[ROOT CORE] Svelte 5 Runes &amp; PHPUnit</strong>
                 <span class="text-cyan-600 dark:text-cyan-400 font-bold">250+ Tests</span>
@@ -1533,6 +1565,7 @@
 
         <!-- Auxiliary Modules Deck: Workflow AI, Tooling & IT Support -->
         <div class="spotlight-card tactical-reticle tactical-glass p-4 rounded-2xl space-y-2.5 print-card">
+          <div class="laser-scan-shimmer"></div>
           <div class="flex items-center justify-between text-xs font-mono text-slate-500">
             <span class="font-bold flex items-center gap-1.5 text-slate-700 dark:text-slate-300">
               <i class="fa-solid fa-toolbox text-amber-500"></i>
@@ -1568,6 +1601,7 @@
 
             <!-- 1. MySQL 3NF Normalization Standard -->
             <div class="spotlight-card tactical-reticle tactical-glass p-5 rounded-2xl space-y-3 print-card group hover:border-emerald-500/50 transition-all">
+              <div class="laser-scan-shimmer"></div>
               <div class="flex items-center justify-between border-b border-slate-200/80 dark:border-slate-800 pb-2.5">
                 <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-mono text-xs font-bold">
                   <i class="fa-solid fa-database text-sm"></i>
@@ -1596,6 +1630,7 @@
 
             <!-- 2. High-Throughput ETL Pipeline Engine -->
             <div class="spotlight-card tactical-reticle tactical-glass p-5 rounded-2xl space-y-3 print-card group hover:border-cyan-500/50 transition-all">
+              <div class="laser-scan-shimmer"></div>
               <div class="flex items-center justify-between border-b border-slate-200/80 dark:border-slate-800 pb-2.5">
                 <div class="flex items-center gap-2 text-cyan-600 dark:text-cyan-400 font-mono text-xs font-bold">
                   <i class="fa-solid fa-arrows-split-up-and-left text-sm"></i>
@@ -1624,6 +1659,7 @@
 
             <!-- 3. Automated Testing Suite PHPUnit (TDD) -->
             <div class="spotlight-card tactical-reticle tactical-glass p-5 rounded-2xl space-y-3 print-card group hover:border-emerald-500/50 transition-all">
+              <div class="laser-scan-shimmer"></div>
               <div class="flex items-center justify-between border-b border-slate-200/80 dark:border-slate-800 pb-2.5">
                 <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-mono text-xs font-bold">
                   <i class="fa-solid fa-vial-circle-check text-sm"></i>
@@ -1652,6 +1688,7 @@
 
             <!-- 4. W3C WCAG 2.1 AA / 2.2 AAA Accessibility -->
             <div class="spotlight-card tactical-reticle tactical-glass p-5 rounded-2xl space-y-3 print-card group hover:border-cyan-500/50 transition-all">
+              <div class="laser-scan-shimmer"></div>
               <div class="flex items-center justify-between border-b border-slate-200/80 dark:border-slate-800 pb-2.5">
                 <div class="flex items-center gap-2 text-cyan-600 dark:text-cyan-400 font-mono text-xs font-bold">
                   <i class="fa-solid fa-universal-access text-sm"></i>
@@ -1814,6 +1851,7 @@
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
           </div>
           <div class="spotlight-card tactical-reticle tactical-glass p-5 sm:p-7 rounded-2xl space-y-4 print-card shadow-2xs">
+            <div class="laser-scan-shimmer"></div>
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800/60 pb-3">
             <div>
               <div class="flex items-center gap-2 mb-0.5">
@@ -1845,14 +1883,14 @@
           </ul>
 
           <!-- Deliverable Verification Ledger: Compact Proof of Work (Distinct Typology) -->
-          <div class="p-3.5 sm:p-4 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80 space-y-2.5">
+          <div class="p-3.5 sm:p-4 rounded-xl tactical-subglass space-y-2.5">
             <div class="flex items-center justify-between border-b border-slate-200/60 dark:border-slate-800/60 pb-2">
               <span class="text-[11px] font-mono font-bold text-slate-500 dark:text-slate-400 uppercase">// DELIVERABLE ARTIFACTS TERVERIFIKASI:</span>
               <span class="text-[10px] font-mono text-emerald-600 dark:text-emerald-400 font-bold">2 Klien Produksi Selesai</span>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
               <div 
-                class="cursor-pointer group flex items-center justify-between p-2.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500/40 transition-colors shadow-2xs"
+                class="cursor-pointer group flex items-center justify-between p-2.5 rounded-lg tactical-subglass hover:border-emerald-500/40 transition-colors shadow-2xs"
                 onclick="openLightbox('assets/irwan-baddu.png', 'Deliverable Klien Notaris: Sistem Siklus Akta 7 Tahap &amp; Rekening Titipan Pajak')"
                 role="button"
                 tabindex="0">
@@ -1869,7 +1907,7 @@
               </div>
 
               <div 
-                class="cursor-pointer group flex items-center justify-between p-2.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500/40 transition-colors shadow-2xs"
+                class="cursor-pointer group flex items-center justify-between p-2.5 rounded-lg tactical-subglass hover:border-emerald-500/40 transition-colors shadow-2xs"
                 onclick="openLightbox('assets/yayasan-pqtm.jpg', 'Deliverable Klien Yayasan: SIM-PQTM Dashboard Tahfidz &amp; Verifikasi Berkas')"
                 role="button"
                 tabindex="0">
@@ -1904,6 +1942,7 @@
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-500/80"></span>
         </div>
         <div class="spotlight-card tactical-reticle tactical-glass p-5 sm:p-7 rounded-2xl space-y-4 print-card shadow-2xs">
+          <div class="laser-scan-shimmer"></div>
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800/60 pb-3">
             <div>
               <div class="flex items-center gap-2 mb-0.5">
@@ -2030,6 +2069,7 @@
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-500/80"></span>
         </div>
         <div class="spotlight-card tactical-reticle tactical-glass p-5 sm:p-7 rounded-2xl space-y-4 print-card shadow-2xs">
+          <div class="laser-scan-shimmer"></div>
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800/60 pb-3">
             <div>
               <div class="flex items-center gap-2 mb-0.5">
@@ -2141,6 +2181,7 @@
 
       <!-- Journal Card with Spotlight Effect -->
       <article class="spotlight-card tactical-reticle tactical-glass p-5 sm:p-8 rounded-3xl hover:border-cyan-500/40 space-y-5 print-card shadow-sm">
+        <div class="laser-scan-shimmer"></div>
         <div class="space-y-2 border-b border-slate-100 dark:border-slate-800/60 pb-4">
           <span class="text-[11px] font-mono px-2.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
             Jurnal Informatika Polinema (JIP) &bull; Vol. 7 No. 2 (Februari 2021)
@@ -2158,19 +2199,19 @@
             <strong>Abstrak Riset:</strong> Evaluasi kinerja pengajar di perguruan tinggi memerlukan keobjektifan dan transparansi multi-arah. Penelitian ini merancang serta mengimplementasikan sistem informasi pelaporan berbasis metode <strong>360-Degree Feedback</strong> yang mengintegrasikan penilaian dari empat perspektif secara deterministik:
           </p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-            <div class="p-3 bg-slate-50 dark:bg-slate-950/60 rounded-xl border border-slate-200/80 dark:border-slate-800/80">
+            <div class="p-3 rounded-xl tactical-subglass">
               <span class="font-bold text-emerald-600 dark:text-emerald-400 block mb-0.5">1. Evaluasi Pimpinan & Atasan</span>
               <p class="text-xs">Penilaian capaian Tridharma perguruan tinggi sesuai target kuantitatif tahunan.</p>
             </div>
-            <div class="p-3 bg-slate-50 dark:bg-slate-950/60 rounded-xl border border-slate-200/80 dark:border-slate-800/80">
+            <div class="p-3 rounded-xl tactical-subglass">
               <span class="font-bold text-emerald-600 dark:text-emerald-400 block mb-0.5">2. Penilaian Rekan Sejawat</span>
               <p class="text-xs">Umpan balik profesionalitas dan kolaborasi pengajaran antardosen.</p>
             </div>
-            <div class="p-3 bg-slate-50 dark:bg-slate-950/60 rounded-xl border border-slate-200/80 dark:border-slate-800/80">
+            <div class="p-3 rounded-xl tactical-subglass">
               <span class="font-bold text-emerald-600 dark:text-emerald-400 block mb-0.5">3. Evaluasi Diri (Self-Assessment)</span>
               <p class="text-xs">Refleksi mandiri dosen atas efektivitas metode instruksional.</p>
             </div>
-            <div class="p-3 bg-slate-50 dark:bg-slate-950/60 rounded-xl border border-slate-200/80 dark:border-slate-800/80">
+            <div class="p-3 rounded-xl tactical-subglass">
               <span class="font-bold text-emerald-600 dark:text-emerald-400 block mb-0.5">4. Feedback Mahasiswa</span>
               <p class="text-xs">Kuesioner evaluasi kejelasan materi dan interaktivitas kelas.</p>
             </div>
@@ -2193,7 +2234,7 @@
     <section id="kontak" class="space-y-6 scroll-mt-20 gsap-section">
       
       <div class="spotlight-card tactical-reticle tactical-glass p-6 sm:p-12 rounded-3xl border-emerald-500/30 text-center space-y-6 shadow-sm relative overflow-hidden">
-        
+        <div class="laser-scan-shimmer"></div>
         <span class="section-ghost-num hidden md:block absolute right-4 -bottom-4 text-7xl font-black font-mono text-slate-300/40 dark:text-slate-800/40 select-none pointer-events-none" aria-hidden="true">05</span>
         
         <div class="max-w-xl mx-auto space-y-3">
@@ -2472,17 +2513,27 @@
       document.querySelectorAll(`[id^="${btnPrefix}"]`).forEach(btn => {
         if (btn.id === `${btnPrefix}${tabId}`) {
           btn.className = 'project-tab-btn active px-3 py-1 rounded-lg text-xs font-mono font-bold transition-all bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30';
+          if (typeof gsap !== 'undefined') {
+            gsap.fromTo(btn, { scale: 0.94 }, { scale: 1, duration: 0.2, ease: 'back.out(2)' });
+          }
         } else {
           btn.className = 'project-tab-btn px-3 py-1 rounded-lg text-xs font-mono font-medium transition-all text-slate-600 dark:text-slate-400 hover:text-emerald-500 bg-slate-100 dark:bg-slate-800/60 border border-transparent';
         }
       });
 
-      // Update Tab Panes with GSAP Entrance
+      // Update Tab Panes with GSAP Entrance & Subglass Children Stagger
       document.querySelectorAll(`[id^="${prefix}"]`).forEach(pane => {
         if (pane.id === `${prefix}${tabId}`) {
           pane.classList.remove('hidden');
           if (typeof gsap !== 'undefined') {
             gsap.fromTo(pane, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.25, ease: 'power2.out' });
+            const subItems = pane.querySelectorAll('.tactical-subglass');
+            if (subItems.length > 0) {
+              gsap.fromTo(subItems, 
+                { opacity: 0, y: 6 }, 
+                { opacity: 1, y: 0, duration: 0.25, stagger: 0.03, ease: 'power2.out', delay: 0.04 }
+              );
+            }
           }
         } else {
           pane.classList.add('hidden');
@@ -3289,6 +3340,45 @@
           ease: 'power2.out'
         });
 
+        // Laser Decryption Beam Sweep upon card initialization
+        const shimmer = card.querySelector('.laser-scan-shimmer');
+        if (shimmer) {
+          gsap.fromTo(shimmer, 
+            { xPercent: -100, opacity: 0 },
+            {
+              xPercent: 100,
+              opacity: 1,
+              duration: 0.85,
+              ease: 'power2.inOut',
+              scrollTrigger: {
+                trigger: card,
+                start: 'top 86%',
+                once: true
+              },
+              onComplete: () => {
+                gsap.to(shimmer, { opacity: 0, duration: 0.25 });
+              }
+            }
+          );
+        }
+
+        // Micro-stagger for nested tactical-subglass panels
+        const subglasses = card.querySelectorAll('.tactical-subglass');
+        if (subglasses.length > 0) {
+          gsap.from(subglasses, {
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 84%',
+              once: true
+            },
+            y: 8,
+            opacity: 0.4,
+            duration: 0.35,
+            stagger: 0.04,
+            ease: 'power2.out'
+          });
+        }
+
         // Micro-stagger for tech badges inside cards
         const badges = card.querySelectorAll('.flex-wrap > span');
         if (badges.length > 0) {
@@ -3545,7 +3635,12 @@
       document.querySelectorAll('.skill-pill').forEach(pill => {
         pill.classList.add('cursor-pointer', 'transition-transform', 'hover:scale-105', 'active:scale-95');
         pill.setAttribute('title', `Klik untuk verifikasi telemetri ${pill.textContent.trim()} di konsol terminal`);
-        pill.addEventListener('click', () => inspectSkill(pill.textContent.trim()));
+        pill.addEventListener('click', () => {
+          inspectSkill(pill.textContent.trim());
+          if (typeof gsap !== 'undefined') {
+            gsap.fromTo(pill, { scale: 0.92 }, { scale: 1, duration: 0.25, ease: 'back.out(2)' });
+          }
+        });
       });
 
       // Tactile Haptic Click Listener

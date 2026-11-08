@@ -79,13 +79,17 @@ Portofolio mengadopsi standar ruang warna terukur untuk kenyamanan mata dan akse
 --accent-pulse:    #0ea5e9; /* Cyan-500 (Sinyal REPL, Telemetri, TDD) */
 ```
 
-### Mekanisme Spatial Glassmorphism (`.tactical-glass` & `.tactical-subglass`):
-Portofolio menerapkan mekanisme **Apple Spatial Materials & Specular Edge Chamfer**:
-- **Opacity Pelindung Kontras:** Semi-opak terukur (74% di Dark Mode `rgba(15, 23, 42, 0.74)` dan 84% di Daylight `rgba(255, 255, 255, 0.84)`) menjamin keterbacaan teks mutlak (APCA $L_c \ge 75$) tanpa efek kabur.
-- **Dynamic Vibrancy & Depth:** Menggunakan `backdrop-filter: blur(20px) saturate(180%)` yang membiaskan kanvas latar secara optis.
-- **1px Specular Edge Chamfer:** Menggunakan `inset 0 1px 0 0 rgba(255, 255, 255, 0.12)` untuk mensimulasikan refraksi tepi kaca tebal berkarakter mewah.
-- **Elevasi Taktil Hover:** Transisi halus pada hover (`border-color: rgba(16, 185, 129, 0.4)`, `box-shadow: 0 8px 32px -4px rgba(16, 185, 129, 0.12)`).
-- **Penerapan Penuh ke Seluruh Entitas Utama:** Bilah Navigasi Atas (`#mainHeader`), Kartu Avatar Hero (`#heroAvatarInner`), Kartu Vitals Hero (`#metricsStrip`), seluruh Kartu Proyek Skala Produksi (Act 01), Kartu Edukasi & Pilar Keahlian (Act 02), 4 Kartu Engineering Codex (Act 02), seluruh Kartu Riwayat Karir (Act 03), Kartu Riset Ilmiah (Act 04), Kartu Kolaborasi Kontak (Act 05), serta Mobile Thumb Dock.
+### Mekanisme Spatial Glassmorphism 2-Tier (`.tactical-glass` & `.tactical-subglass`):
+Portofolio menerapkan mekanisme arsitektur elevasi permukaan kaca berlapis (**2-Tier Apple Spatial Materials & Specular Edge Chamfer**):
+1. **Tier L1 — Macro Surface (`.tactical-glass`):**
+   - **Opacity Pelindung Kontras:** Semi-opak terukur (74% di Dark Mode `rgba(15, 23, 42, 0.74)` dan 84% di Daylight `rgba(255, 255, 255, 0.84)`) menjamin keterbacaan teks mutlak (APCA $L_c \ge 75$) tanpa efek kabur.
+   - **Dynamic Vibrancy & Depth:** Menggunakan `backdrop-filter: blur(20px) saturate(180%)` yang membiaskan kanvas latar atmosfer secara optis.
+   - **1px Specular Edge Chamfer:** Menggunakan `inset 0 1px 0 0 rgba(255, 255, 255, 0.12)` untuk mensimulasikan refraksi tepi kaca tebal berkarakter mewah.
+   - **Laser Decryption Beam (`.laser-scan-shimmer`):** Balok laser pemindai horizontal tipis (2px) di tepi atas kartu yang menyapu saat kartu masuk ke viewport via GSAP ScrollTrigger.
+   - **Penerapan L1:** Bilah Navigasi Atas (`#mainHeader`), Kartu Avatar Hero (`#heroAvatarInner`), Kartu Vitals Hero (`#metricsStrip`), seluruh Kartu Proyek Skala Produksi (Act 01), Kartu Edukasi & Pilar Keahlian (Act 02), 4 Kartu Engineering Codex (Act 02), seluruh Kartu Riwayat Karir (Act 03), Kartu Riset Ilmiah (Act 04), Kartu Kolaborasi Kontak (Act 05), serta Mobile Thumb Dock.
+2. **Tier L2 — Micro Surface (`.tactical-subglass`):**
+   - **Elevasi Tersemat:** Didesain khusus untuk panel-panel bersarang di dalam kartu L1 (`rgba(15, 23, 42, 0.55)` dark / `rgba(248, 250, 252, 0.85)` daylight) dengan `backdrop-filter: blur(14px) saturate(160%)` dan micro shadow `0 2px 10px -1px rgba(0, 0, 0, 0.25)`.
+   - **Penerapan L2:** 7-Tahap Pipeline Otomasi Akta Notaris, Benchmark Kecepatan Notaris, Tahfidz & Tasmi' Tracking Stages, Verifikasi Berkas Checklist, 3-Babak Narrative Storyboards (The Crisis &rarr; The Blueprint &rarr; The Triumph), Impact & Challenge Boxes proyek, Root Talent Nodes, Deliverable Proof of Work Ledger, dan 4-Quadrant Research Evaluation Boxes.
 
 ### Kanvas Atmosfer Gradasi Warna Latar Multi-Zona (`#bgAtmosphereCanvas`):
 Untuk memberikan kedalaman optis refraksi kaca (*refractive depth*) tanpa klise AI slop, situs dilengkapi kanvas gradasi atmosfer tetap yang tersinkronisasi dengan babak cerita:
