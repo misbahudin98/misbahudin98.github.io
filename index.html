@@ -526,6 +526,20 @@
     <!-- Chapter 04 & 05: Extraction Emerald Signal Beacon (Bottom-Right) -->
     <div id="ambientBeaconQuaternary" class="ambient-beacon -bottom-[5%] right-[15%] w-[640px] h-[580px] bg-emerald-500/15 dark:bg-emerald-500/11"></div>
 
+    <!-- Ambient Multi-Plane Parallax Background Layers (from https://misbahudin98.netlify.app/) -->
+    <div 
+      data-parallax-depth="0.12" 
+      class="ambient-parallax-layer -top-32 -left-32 w-[520px] h-[520px] bg-emerald-500/10 dark:bg-emerald-500/15">
+    </div>
+    <div 
+      data-parallax-depth="-0.16" 
+      class="ambient-parallax-layer top-1/3 -right-36 w-[480px] h-[480px] bg-teal-500/10">
+    </div>
+    <div 
+      data-parallax-depth="0.08" 
+      class="ambient-parallax-layer bottom-10 left-1/4 w-[600px] h-[600px] bg-emerald-600/5 dark:bg-emerald-500/10">
+    </div>
+
     <!-- Floating Engineering Telemetry Nodes (Scrubbed with Differential Parallax on Desktop from misbahudin98.netlify.app) -->
     <div 
       data-parallax-depth="0.25"
@@ -3363,7 +3377,13 @@
         opacity: 0,
         duration: 0.55,
         ease: 'back.out(1.5)'
-      }, '-=0.35');
+      }, '-=0.35')
+      .from('#heroGlowOrb', {
+        scale: 0.6,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power2.out'
+      }, '-=0.5');
 
       // Subtle breathing float for avatar (targets inner wrapper so mouse parallax never kills it)
       gsap.to('#heroAvatarInner', {
@@ -3374,319 +3394,180 @@
         ease: 'sine.inOut'
       });
 
-      // C. Dynamic Numerical Counters with Calibrated Suspense Delays & Bi-Directional Re-Activation
-      const metricsStrip = document.getElementById('metricsStrip');
-      if (metricsStrip) {
-        const dataObj = { val: 0 };
-        const usersObj = { val: 0 };
-        const testsObj = { val: 0 };
-        const yearsObj = { val: 0 };
+      // C. Dynamic Numerical Counters via ScrollTrigger with Micro-Celebration Pop (from https://misbahudin98.netlify.app/)
+      const metricsTrigger = {
+        trigger: '#metricsStrip',
+        start: 'top 85%',
+        once: true
+      };
 
-        const elData = document.getElementById('counter-data');
-        const elUsers = document.getElementById('counter-users');
-        const elTests = document.getElementById('counter-tests');
-        const elYears = document.getElementById('counter-years');
-
-        const metricsTl = gsap.timeline({ paused: true, defaults: { ease: 'power2.out' } });
-
-        // Calibrated Suspense Delays: cards settle first, then sequential countdown cascade
-        // 1. Metrik 1 (12.117+ Data): delay +0.42s
-        metricsTl.to(dataObj, {
-          val: 12117,
-          duration: 1.5,
-          onUpdate: () => {
-            if (elData) elData.textContent = Math.floor(dataObj.val).toLocaleString('id-ID');
-          },
-          onComplete: () => {
-            if (elData) gsap.fromTo(elData, { scale: 1.15, color: '#34d399' }, { scale: 1, color: '', duration: 0.42, ease: 'back.out(2.5)' });
-          }
-        }, 0.42);
-
-        // 2. Metrik 2 (10.000+ Users): staggered delay +0.68s
-        metricsTl.to(usersObj, {
-          val: 10000,
-          duration: 1.5,
-          onUpdate: () => {
-            if (elUsers) elUsers.textContent = Math.floor(usersObj.val).toLocaleString('id-ID');
-          },
-          onComplete: () => {
-            if (elUsers) gsap.fromTo(elUsers, { scale: 1.15, color: '#34d399' }, { scale: 1, color: '', duration: 0.42, ease: 'back.out(2.5)' });
-          }
-        }, 0.68);
-
-        // 3. Metrik 3 (250+ Tests): staggered delay +0.92s
-        metricsTl.to(testsObj, {
-          val: 250,
-          duration: 1.35,
-          onUpdate: () => {
-            if (elTests) elTests.textContent = Math.floor(testsObj.val).toString();
-          },
-          onComplete: () => {
-            if (elTests) gsap.fromTo(elTests, { scale: 1.15, color: '#34d399' }, { scale: 1, color: '', duration: 0.42, ease: 'back.out(2.5)' });
-          }
-        }, 0.92);
-
-        // 4. Metrik 4 (3.5+ Years): staggered delay +1.16s
-        metricsTl.to(yearsObj, {
-          val: 3.5,
-          duration: 1.3,
-          onUpdate: () => {
-            if (elYears) elYears.textContent = yearsObj.val.toFixed(1);
-          },
-          onComplete: () => {
-            if (elYears) gsap.fromTo(elYears, { scale: 1.15, color: '#34d399' }, { scale: 1, color: '', duration: 0.42, ease: 'back.out(2.5)' });
-          }
-        }, 1.16);
-
-        // Bi-Directional ScrollTrigger Controller for Metrics Strip
-        ScrollTrigger.create({
-          trigger: metricsStrip,
-          start: 'top 85%',
-          end: 'bottom top',
-          onEnter: () => metricsTl.timeScale(1).play(),
-          onEnterBack: () => metricsTl.timeScale(1.25).restart(),
-          onLeave: () => {
-            metricsTl.pause(0);
-            dataObj.val = 0; usersObj.val = 0; testsObj.val = 0; yearsObj.val = 0;
-            if (elData) elData.textContent = '0';
-            if (elUsers) elUsers.textContent = '0';
-            if (elTests) elTests.textContent = '0';
-            if (elYears) elYears.textContent = '0.0';
-          },
-          onLeaveBack: () => {
-            metricsTl.pause(0);
-            dataObj.val = 0; usersObj.val = 0; testsObj.val = 0; yearsObj.val = 0;
-            if (elData) elData.textContent = '0';
-            if (elUsers) elUsers.textContent = '0';
-            if (elTests) elTests.textContent = '0';
-            if (elYears) elYears.textContent = '0.0';
-          }
-        });
-      }
-
-      // D. Terminal Window Story Motion with Laser Sweep & Bi-Directional Re-Activation
-      gsap.utils.toArray('.terminal-window').forEach(term => {
-        const shimmer = term.querySelector('.laser-scan-shimmer');
-        const dots = term.querySelectorAll('.terminal-dot');
-        const badge = term.querySelector('.terminal-header span:last-child');
-        const lines = term.querySelectorAll('.terminal-line');
-        const chips = term.querySelectorAll('button');
-
-        const termTl = gsap.timeline({ paused: true, defaults: { ease: 'power2.out' } });
-
-        // 1. Terminal Frame Elevation (0.00s)
-        termTl.fromTo(term, { y: 24, opacity: 0.15 }, { y: 0, opacity: 1, duration: 0.52, ease: 'power3.out' }, 0);
-
-        // 2. Laser Shimmer Sweep (with deliberate narrative delay +0.22s)
-        if (shimmer) {
-          termTl.fromTo(shimmer, 
-            { xPercent: -100, opacity: 0 }, 
-            { xPercent: 100, opacity: 1, duration: 0.88, ease: 'power2.inOut' }, 
-            0.22
-          );
-          termTl.to(shimmer, { opacity: 0, duration: 0.2 }, 1.0);
+      // 12.117+ Data Counter
+      const dataObj = { val: 0 };
+      gsap.to(dataObj, {
+        val: 12117,
+        duration: 1.6,
+        ease: 'power2.out',
+        scrollTrigger: metricsTrigger,
+        onUpdate: () => {
+          const el = document.getElementById('counter-data');
+          if (el) el.textContent = Math.floor(dataObj.val).toLocaleString('id-ID');
+        },
+        onComplete: () => {
+          const el = document.getElementById('counter-data');
+          if (el) gsap.fromTo(el, { scale: 1.08 }, { scale: 1, duration: 0.35, ease: 'back.out(2)' });
         }
-
-        // 3. Status Dots & Header Badge (+0.42s)
-        if (dots.length > 0) {
-          termTl.fromTo(dots, { scale: 0.5, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, stagger: 0.06, ease: 'back.out(2)' }, 0.42);
-        }
-
-        // 4. Prompt Lines typing sequence (+0.60s with typing-like rhythm)
-        if (lines.length > 0) {
-          termTl.fromTo(lines, { x: -12, opacity: 0 }, { x: 0, opacity: 1, duration: 0.38, stagger: 0.12, ease: 'power1.out' }, 0.60);
-        }
-
-        // 5. Interactive Chips (+1.00s)
-        if (chips.length > 0) {
-          termTl.fromTo(chips, { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.32, stagger: 0.05, ease: 'back.out(1.8)' }, 1.00);
-        }
-
-        ScrollTrigger.create({
-          trigger: term,
-          start: 'top 85%',
-          end: 'bottom top',
-          onEnter: () => termTl.timeScale(1).play(),
-          onEnterBack: () => termTl.timeScale(1.25).restart(),
-          onLeave: () => termTl.pause(0),
-          onLeaveBack: () => termTl.pause(0)
-        });
       });
 
-      // E. Skill Pills Micro-Pop Stagger with Smooth Bi-Directional Re-Activation
-      const skillPills = gsap.utils.toArray('.skill-pill');
-      if (skillPills.length > 0) {
-        const skillTl = gsap.timeline({ paused: true, defaults: { ease: 'back.out(1.8)' } });
-        skillTl.fromTo(skillPills, 
-          { scale: 0.88, opacity: 0 }, 
-          { scale: 1, opacity: 1, duration: 0.32, stagger: 0.024 }
-        );
+      // 10.000+ Users Counter
+      const usersObj = { val: 0 };
+      gsap.to(usersObj, {
+        val: 10000,
+        duration: 1.6,
+        ease: 'power2.out',
+        scrollTrigger: metricsTrigger,
+        onUpdate: () => {
+          const el = document.getElementById('counter-users');
+          if (el) el.textContent = Math.floor(usersObj.val).toLocaleString('id-ID');
+        },
+        onComplete: () => {
+          const el = document.getElementById('counter-users');
+          if (el) gsap.fromTo(el, { scale: 1.08 }, { scale: 1, duration: 0.35, ease: 'back.out(2)' });
+        }
+      });
 
-        ScrollTrigger.create({
+      // 250+ Tests Counter
+      const testsObj = { val: 0 };
+      gsap.to(testsObj, {
+        val: 250,
+        duration: 1.4,
+        ease: 'power2.out',
+        scrollTrigger: metricsTrigger,
+        onUpdate: () => {
+          const el = document.getElementById('counter-tests');
+          if (el) el.textContent = Math.floor(testsObj.val).toString();
+        },
+        onComplete: () => {
+          const el = document.getElementById('counter-tests');
+          if (el) gsap.fromTo(el, { scale: 1.08 }, { scale: 1, duration: 0.35, ease: 'back.out(2)' });
+        }
+      });
+
+      // 3.5+ Years Counter
+      const yearsObj = { val: 0 };
+      gsap.to(yearsObj, {
+        val: 3.5,
+        duration: 1.4,
+        ease: 'power2.out',
+        scrollTrigger: metricsTrigger,
+        onUpdate: () => {
+          const el = document.getElementById('counter-years');
+          if (el) el.textContent = yearsObj.val.toFixed(1);
+        },
+        onComplete: () => {
+          const el = document.getElementById('counter-years');
+          if (el) gsap.fromTo(el, { scale: 1.08 }, { scale: 1, duration: 0.35, ease: 'back.out(2)' });
+        }
+      });
+
+      // D. Terminal Window Line Stagger (from https://misbahudin98.netlify.app/)
+      gsap.utils.toArray('.terminal-window').forEach(term => {
+        const lines = term.querySelectorAll('.terminal-line');
+        if (lines.length > 0) {
+          gsap.from(lines, {
+            scrollTrigger: {
+              trigger: term,
+              start: 'top 85%',
+              once: true
+            },
+            x: -8,
+            opacity: 0,
+            duration: 0.35,
+            stagger: 0.1,
+            ease: 'power1.out'
+          });
+        }
+      });
+
+      // E. Skill Pills Micro-Pop Stagger (from https://misbahudin98.netlify.app/)
+      gsap.from('.skill-pill', {
+        scrollTrigger: {
           trigger: '#keahlian',
           start: 'top 80%',
-          end: 'bottom top',
-          onEnter: () => skillTl.timeScale(1).play(),
-          onEnterBack: () => skillTl.timeScale(1.25).restart(),
-          onLeave: () => skillTl.pause(0),
-          onLeaveBack: () => skillTl.pause(0)
-        });
-      }
-
-      // F. Master Spotlight Cards Story Motion with Calibrated Delay & Bi-Directional Re-Activation
-      gsap.utils.toArray('.spotlight-card').forEach(card => {
-        // Handle #metricsStrip cards separately to preserve telemetry counters
-        if (card.closest('#metricsStrip')) {
-          const shimmer = card.querySelector('.laser-scan-shimmer');
-          const vitalsTl = gsap.timeline({ paused: true, defaults: { ease: 'power2.out' } });
-          vitalsTl.fromTo(card, { y: 20, opacity: 0.15 }, { y: 0, opacity: 1, duration: 0.45, ease: 'power3.out' }, 0);
-          if (shimmer) {
-            vitalsTl.fromTo(shimmer, { xPercent: -100, opacity: 0 }, { xPercent: 100, opacity: 1, duration: 0.85, ease: 'power2.inOut' }, 0.18);
-            vitalsTl.to(shimmer, { opacity: 0, duration: 0.2 }, 0.95);
-          }
-          ScrollTrigger.create({
-            trigger: card,
-            start: 'top 88%',
-            end: 'bottom top',
-            onEnter: () => vitalsTl.timeScale(1).play(),
-            onEnterBack: () => {
-              vitalsTl.timeScale(1.25).restart();
-              gsap.fromTo(card, { y: -4, borderColor: 'rgba(16, 185, 129, 0.6)' }, { y: 0, borderColor: '', duration: 0.4, ease: 'back.out(2)' });
-            },
-            onLeave: () => vitalsTl.pause(0),
-            onLeaveBack: () => vitalsTl.pause(0)
-          });
-          return;
-        }
-
-        // Dedicated narrative timeline for project, education, codex, and career cards
-        const cardTl = gsap.timeline({ paused: true, defaults: { ease: 'power2.out' } });
-
-        // 1. Macro Card Container Elevation (0.00s)
-        cardTl.fromTo(card, 
-          { y: 28, opacity: 0.15 }, 
-          { y: 0, opacity: 1, duration: 0.55, ease: 'power3.out' }, 
-          0
-        );
-
-        // 2. Laser Scanline Shimmer Beam Sweep (With deliberate narrative delay +0.22s)
-        const shimmer = card.querySelector('.laser-scan-shimmer');
-        if (shimmer) {
-          cardTl.fromTo(shimmer, 
-            { xPercent: -100, opacity: 0 }, 
-            { xPercent: 100, opacity: 1, duration: 0.90, ease: 'power2.inOut' }, 
-            0.22
-          );
-          cardTl.to(shimmer, { opacity: 0, duration: 0.22 }, 0.98);
-        }
-
-        // 3. Mission Header Badges & Category Metadata (+0.42s)
-        const headerBadges = card.querySelectorAll('.border-b span, .border-b .rounded-md, .border-b a, .border-b button');
-        if (headerBadges.length > 0) {
-          cardTl.fromTo(headerBadges, 
-            { x: -16, opacity: 0 }, 
-            { x: 0, opacity: 1, duration: 0.42, stagger: 0.05, ease: 'power2.out' }, 
-            0.42
-          );
-        }
-
-        // 4. Mission Heading h3 Reveal (+0.58s)
-        const heading = card.querySelector('h3, h4');
-        if (heading) {
-          cardTl.fromTo(heading, 
-            { y: 14, opacity: 0 }, 
-            { y: 0, opacity: 1, duration: 0.46, ease: 'power2.out' }, 
-            0.58
-          );
-        }
-
-        // 5. Visual Artifact Media Container Focus (+0.76s)
-        const mediaBox = card.querySelectorAll('.media-container, .overflow-hidden.rounded-2xl, .project-image-box');
-        if (mediaBox.length > 0) {
-          cardTl.fromTo(mediaBox, 
-            { scale: 0.96, opacity: 0.35 }, 
-            { scale: 1, opacity: 1, duration: 0.52, stagger: 0.08, ease: 'power2.out' }, 
-            0.76
-          );
-        }
-
-        // 6. Narrative Challenge & STAR Paragraphs (+0.96s)
-        const paragraphs = card.querySelectorAll('p:not(.text-slate-400), .text-xs.font-mono.leading-relaxed, .space-y-1\\.5 > p, .space-y-2 > p');
-        if (paragraphs.length > 0) {
-          cardTl.fromTo(paragraphs, 
-            { y: 12, opacity: 0 }, 
-            { y: 0, opacity: 1, duration: 0.44, stagger: 0.08, ease: 'power2.out' }, 
-            0.96
-          );
-        }
-
-        // 7. Tactical Subglass Micro-Cards Wave Cascade (+1.20s)
-        const subglasses = card.querySelectorAll('.tactical-subglass');
-        if (subglasses.length > 0) {
-          cardTl.fromTo(subglasses, 
-            { y: 16, opacity: 0, scale: 0.98 }, 
-            { y: 0, opacity: 1, scale: 1, duration: 0.46, stagger: 0.09, ease: 'power2.out' }, 
-            1.20
-          );
-        }
-
-        // 8. Technology Pills Micro-Pop Stagger (+1.44s)
-        const techPills = card.querySelectorAll('.flex-wrap > span, .tech-pill, .skill-pill');
-        if (techPills.length > 0) {
-          cardTl.fromTo(techPills, 
-            { scale: 0.88, opacity: 0 }, 
-            { scale: 1, opacity: 1, duration: 0.32, stagger: 0.035, ease: 'back.out(2)' }, 
-            1.44
-          );
-        }
-
-        // Bi-Directional Flicker-Free ScrollTrigger Controller
-        ScrollTrigger.create({
-          trigger: card,
-          start: 'top 85%',
-          end: 'bottom top',
-          onEnter: () => cardTl.timeScale(1).play(),
-          onEnterBack: () => cardTl.timeScale(1.25).restart(),
-          onLeave: () => cardTl.pause(0),
-          onLeaveBack: () => cardTl.pause(0)
-        });
+          once: true
+        },
+        scale: 0.9,
+        opacity: 0,
+        duration: 0.3,
+        stagger: 0.02,
+        ease: 'back.out(1.8)'
       });
 
-      // G. Section Header Orchestration with Calibrated Section-Transition Delay & Accent Line
-      gsap.utils.toArray('.section-header').forEach(header => {
-        const badge = header.querySelector('span.font-mono');
-        const h2 = header.querySelector('h2');
-        const p = header.querySelector('p');
-        const line = header.querySelector('.section-accent-line');
-        const ghostNum = header.querySelector('.section-ghost-num');
+      // F. Spotlight Card Individual Scroll Entrance (from https://misbahudin98.netlify.app/)
+      gsap.utils.toArray('.spotlight-card').forEach(card => {
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 88%',
+            toggleActions: 'play none none none'
+          },
+          y: 20,
+          opacity: 0,
+          duration: 0.4,
+          ease: 'power2.out'
+        });
 
-        // Calibrated Section Switching Delay (+0.25s) before chapter elements unfold
-        const headerTl = gsap.timeline({ paused: true, defaults: { ease: 'power2.out' } });
+        // Laser scanline shimmer sweep on entrance if present
+        const shimmer = card.querySelector('.laser-scan-shimmer');
+        if (shimmer) {
+          gsap.fromTo(shimmer, 
+            { xPercent: -100, opacity: 0 }, 
+            {
+              xPercent: 100,
+              opacity: 1,
+              duration: 0.85,
+              ease: 'power2.inOut',
+              scrollTrigger: {
+                trigger: card,
+                start: 'top 85%',
+                once: true
+              },
+              onComplete: () => {
+                gsap.to(shimmer, { opacity: 0, duration: 0.2 });
+              }
+            }
+          );
+        }
 
-        if (ghostNum) {
-          headerTl.fromTo(ghostNum, { opacity: 0, x: 32 }, { opacity: 0.45, x: 0, duration: 0.6 }, 0.15);
+        // Micro-stagger for tech badges inside cards
+        const badges = card.querySelectorAll('.flex-wrap > span, .tech-pill');
+        if (badges.length > 0) {
+          gsap.from(badges, {
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 85%',
+              once: true
+            },
+            scale: 0.94,
+            opacity: 0,
+            duration: 0.3,
+            stagger: 0.025,
+            ease: 'back.out(1.5)',
+            delay: 0.08
+          });
         }
-        if (badge) {
-          headerTl.fromTo(badge, { x: -18, opacity: 0 }, { x: 0, opacity: 1, duration: 0.44 }, 0.28);
-        }
-        if (h2) {
-          headerTl.fromTo(h2, { y: 14, opacity: 0 }, { y: 0, opacity: 1, duration: 0.48 }, 0.46);
-        }
-        if (p) {
-          headerTl.fromTo(p, { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.44 }, 0.62);
-        }
-        if (line) {
-          headerTl.fromTo(line, { scaleX: 0 }, { scaleX: 1, duration: 0.88, ease: 'power3.out' }, 0.76);
-        }
+      });
 
-        ScrollTrigger.create({
-          trigger: header,
-          start: 'top 85%',
-          end: 'bottom top',
-          onEnter: () => headerTl.timeScale(1).play(),
-          onEnterBack: () => headerTl.timeScale(1.25).restart(),
-          onLeave: () => headerTl.pause(0),
-          onLeaveBack: () => headerTl.pause(0)
+      // G. Section Header Accent Lines Animated Draw-In (from https://misbahudin98.netlify.app/)
+      gsap.utils.toArray('.section-accent-line').forEach(line => {
+        gsap.to(line, {
+          scaleX: 1,
+          duration: 0.85,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: line,
+            start: 'top 88%',
+            once: true
+          }
         });
       });
 
