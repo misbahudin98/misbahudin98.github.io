@@ -973,7 +973,7 @@
       <!-- Main Headline & Avatar -->
       <div class="flex flex-col-reverse md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8">
         
-        <div class="space-y-4 max-w-2xl">
+        <div class="space-y-4 flex-1 min-w-0 max-w-xl lg:max-w-2xl">
           <h1 class="hero-anim text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.18]">
             Menghubungkan Kompleksitas Sistem Menjadi Aplikasi yang <span class="shimmer-accent-text">Andal, Aman, &amp; Cepat</span>.
           </h1>
@@ -1003,8 +1003,8 @@
         </div>
 
         <!-- Architectural Engineer Dossier Card (55:45 Golden Ratio Equilibrium) -->
-        <div id="heroAvatar" class="relative shrink-0 self-center md:self-start my-2 md:my-0 w-full sm:w-auto md:w-80">
-          <div id="heroAvatarInner" class="spotlight-card p-4 sm:p-5 rounded-3xl tactical-glass tactical-reticle shadow-md space-y-4">
+        <div id="heroAvatar" class="relative shrink-0 self-center md:self-start my-2 md:my-0 w-full sm:max-w-sm md:w-[340px] lg:w-[350px]">
+          <div id="heroAvatarInner" class="spotlight-card p-4 sm:p-5 rounded-3xl tactical-glass tactical-reticle shadow-md space-y-4 w-full">
             
             <!-- Top Card Header: Status Bar -->
             <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800/80 pb-3">
@@ -1019,20 +1019,20 @@
             <div class="flex items-center gap-3.5">
               <div class="relative cursor-pointer group shrink-0 avatar-halo-wrapper" onclick="openLightbox('assets/avatar.jpg', 'Misbahudin, S.Kom. &bull; Full Stack Developer & Data Systems Engineer')">
                 <div class="avatar-halo-orbit" aria-hidden="true"></div>
-                <div class="relative z-10 w-20 h-20 sm:w-24 sm:h-24 aspect-square rounded-2xl overflow-hidden border-2 border-emerald-500/70 p-0.5 bg-white dark:bg-slate-950 shadow-md">
+                <div class="relative z-10 w-18 h-18 sm:w-20 sm:h-20 aspect-square rounded-2xl overflow-hidden border-2 border-emerald-500/70 p-0.5 bg-white dark:bg-slate-950 shadow-md">
                   <img src="assets/avatar.jpg" alt="Misbahudin, S.Kom." class="w-full h-full aspect-square object-cover object-top rounded-xl group-hover:scale-105 transition-transform duration-300" loading="eager" fetchpriority="high" />
                 </div>
-                <div class="relative z-20 absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center text-[10px] shadow-sm border border-white dark:border-slate-900" title="Verified Systems Engineer">
+                <div class="relative z-20 absolute -bottom-1 -right-1 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center text-[9px] sm:text-[10px] shadow-sm border border-white dark:border-slate-900" title="Verified Systems Engineer">
                   <i class="fa-solid fa-check"></i>
                 </div>
               </div>
 
-              <div class="space-y-1 min-w-0">
-                <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight truncate">Misbahudin, S.Kom.</h2>
-                <p class="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-semibold truncate">Systems Engineer</p>
-                <div class="flex items-center gap-1 text-[11px] text-slate-500 dark:text-slate-400 font-mono">
-                  <i class="fa-solid fa-graduation-cap text-[10px] text-slate-400"></i>
-                  <span class="truncate">D4 POLINEMA (IPK 3.32)</span>
+              <div class="space-y-1 min-w-0 flex-1">
+                <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight whitespace-nowrap">Misbahudin, S.Kom.</h2>
+                <p class="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-semibold whitespace-nowrap">Systems Engineer</p>
+                <div class="flex items-center gap-1.5 text-[11px] text-slate-500 dark:text-slate-400 font-mono">
+                  <i class="fa-solid fa-graduation-cap text-[10px] text-slate-400 shrink-0"></i>
+                  <span class="whitespace-nowrap">D4 POLINEMA (IPK 3.32)</span>
                 </div>
               </div>
             </div>
@@ -1089,7 +1089,7 @@
             <span class="text-[10px] font-mono bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 px-1.5 py-0.5 rounded font-bold">0-LOSS ETL</span>
           </div>
           <div class="flex items-baseline gap-0.5 overflow-hidden">
-            <span id="counter-data" class="text-xl sm:text-3xl font-extrabold font-mono tabular-nums text-emerald-600 dark:text-emerald-400 inline-block">0</span>
+            <span id="counter-data" data-target="12117" class="counter-value text-xl sm:text-3xl font-extrabold font-mono tabular-nums text-emerald-600 dark:text-emerald-400 inline-block">0</span>
             <span class="text-base sm:text-xl font-mono text-emerald-600 dark:text-emerald-400 font-bold">+</span>
           </div>
           <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Record Basis Data Dimigrasikan Sempurna</p>
@@ -1108,7 +1108,7 @@
           </div>
           <div class="flex items-baseline gap-0.5 overflow-hidden">
             <span class="text-sm font-mono text-slate-400 mr-0.5">&gt;</span>
-            <span id="counter-users" class="text-xl sm:text-3xl font-extrabold font-mono tabular-nums text-slate-900 dark:text-white inline-block">0</span>
+            <span id="counter-users" data-target="10000" class="counter-value text-xl sm:text-3xl font-extrabold font-mono tabular-nums text-slate-900 dark:text-white inline-block">0</span>
           </div>
           <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Pengguna Sistem PPDB, Santri, &amp; Klien</p>
         </div>
@@ -1125,7 +1125,7 @@
             <span class="text-[10px] font-mono bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 px-1.5 py-0.5 rounded font-bold">100% PASS</span>
           </div>
           <div class="flex items-baseline gap-0.5 overflow-hidden">
-            <span id="counter-tests" class="text-xl sm:text-3xl font-extrabold font-mono tabular-nums text-emerald-600 dark:text-emerald-400 inline-block">0</span>
+            <span id="counter-tests" data-target="250" class="counter-value text-xl sm:text-3xl font-extrabold font-mono tabular-nums text-emerald-600 dark:text-emerald-400 inline-block">0</span>
             <span class="text-base sm:text-xl font-mono text-emerald-600 dark:text-emerald-400 font-bold">+</span>
           </div>
           <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Automated Tests PHPUnit (Feature &amp; Unit)</p>
@@ -1143,7 +1143,7 @@
             <span class="text-[10px] font-mono bg-amber-500/15 text-amber-700 dark:text-amber-300 px-1.5 py-0.5 rounded font-bold">3.5+ TAHUN</span>
           </div>
           <div class="flex items-baseline gap-0.5 overflow-hidden">
-            <span id="counter-years" class="text-xl sm:text-3xl font-extrabold font-mono tabular-nums text-slate-900 dark:text-white inline-block">0.0</span>
+            <span id="counter-years" data-target="3.5" data-decimal="1" class="counter-value text-xl sm:text-3xl font-extrabold font-mono tabular-nums text-slate-900 dark:text-white inline-block">0.0</span>
             <span class="text-base sm:text-xl font-mono text-slate-900 dark:text-white font-bold">+ Th</span>
           </div>
           <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Rekayasa Perangkat Lunak &amp; Data Pipeline</p>
@@ -3936,103 +3936,82 @@
         ease: 'sine.inOut'
       });
 
-      // C. Dynamic Numerical Counters with Visible Stepped S-Curve & Multi-Trigger Reactivation
-      const metricCounterConfigs = [
-        { id: 'counter-data', target: 12117, decimals: 0, isLocale: true, color: '#10b981', duration: 2.6 },
-        { id: 'counter-users', target: 10000, decimals: 0, isLocale: true, color: '#0ea5e9', duration: 2.4 },
-        { id: 'counter-tests', target: 250, decimals: 0, isLocale: false, color: '#10b981', duration: 2.0 },
-        { id: 'counter-years', target: 3.5, decimals: 1, isLocale: false, color: '#f59e0b', duration: 1.9 }
-      ];
+      // C. Interactive Animated Counters (Twinnie Group Architecture: Native RAF + Cubic Ease-Out)
+      const activeCounterRafs = {};
 
-      const activeCounterTweens = {};
-
-      function runMetricCounter(cfg, customDuration = null) {
-        const el = document.getElementById(cfg.id);
+      function animateTwinnieCounter(el, customDuration = 1200) {
         if (!el) return;
+        const target = parseFloat(el.getAttribute('data-target')) || 0;
+        const isDecimal = el.getAttribute('data-decimal') === '1';
+        const duration = customDuration; // 1.2s - exact Twinnie Group timing
+        const startTime = performance.now();
         const card = el.closest('.tactical-glass') || el.closest('.spotlight-card');
 
-        // Kill previous running tweens on this counter
-        if (activeCounterTweens[cfg.id]) {
-          activeCounterTweens[cfg.id].kill();
+        // Cancel previous RAF on this counter if running
+        if (activeCounterRafs[el.id]) {
+          cancelAnimationFrame(activeCounterRafs[el.id]);
         }
-        gsap.killTweensOf(el);
 
-        // Explicit initial state: visibly reset to 0 so the eye registers the fresh liftoff
-        const animObj = { val: 0 };
-        el.textContent = cfg.decimals > 0 ? '0.00' : '0';
+        el.innerText = isDecimal ? '0.0' : '0';
 
-        // Subtle pop to visually cue the start of count-up
-        gsap.fromTo(el, 
-          { opacity: 0.6, scale: 0.94 }, 
-          { opacity: 1, scale: 1, duration: 0.2, ease: 'power1.out' }
-        );
+        function updateCounter(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          // Twinnie Group SSoT Ease-out cubic formula:
+          const easeOut = 1 - Math.pow(1 - progress, 3);
+          const currentVal = target * easeOut;
 
-        const dur = customDuration || cfg.duration;
+          if (isDecimal) {
+            el.innerText = currentVal.toFixed(1);
+          } else {
+            el.innerText = Math.floor(currentVal).toLocaleString('id-ID');
+          }
 
-        // power2.inOut: Slow takeoff (user clearly sees 0 -> small digits),
-        // fast momentum roll in the middle, and precision deceleration into the final value!
-        activeCounterTweens[cfg.id] = gsap.to(animObj, {
-          val: cfg.target,
-          duration: dur,
-          ease: 'power2.inOut',
-          overwrite: 'auto',
-          onUpdate: () => {
-            if (cfg.decimals > 0) {
-              // During rolling, display 2 decimal places so the user sees continuous fluid rolling
-              // instead of only a few jerky 0.1 steps!
-              if (animObj.val < cfg.target * 0.96) {
-                el.textContent = animObj.val.toFixed(2);
-              } else {
-                el.textContent = animObj.val.toFixed(cfg.decimals);
-              }
-            } else if (cfg.isLocale) {
-              el.textContent = Math.floor(animObj.val).toLocaleString('id-ID');
+          if (progress < 1) {
+            activeCounterRafs[el.id] = requestAnimationFrame(updateCounter);
+          } else {
+            if (isDecimal) {
+              el.innerText = target.toFixed(1);
             } else {
-              el.textContent = Math.floor(animObj.val).toString();
-            }
-          },
-          onComplete: () => {
-            // Settle final exact value cleanly
-            if (cfg.decimals > 0) {
-              el.textContent = cfg.target.toFixed(cfg.decimals);
-            } else if (cfg.isLocale) {
-              el.textContent = cfg.target.toLocaleString('id-ID');
-            } else {
-              el.textContent = cfg.target.toString();
+              el.innerText = target.toLocaleString('id-ID');
             }
 
-            // Visible radiant drop-shadow celebration pop
-            gsap.fromTo(el, 
-              { scale: 1.25, filter: `drop-shadow(0 0 14px ${cfg.color})` }, 
-              { scale: 1, filter: 'drop-shadow(0 0 0px transparent)', duration: 0.45, ease: 'back.out(2)' }
-            );
+            // Elegant celebration pop on landing
+            if (typeof gsap !== 'undefined') {
+              gsap.fromTo(el, 
+                { scale: 1.25, filter: 'drop-shadow(0 0 12px rgba(16, 185, 129, 0.5))' }, 
+                { scale: 1, filter: 'drop-shadow(0 0 0px transparent)', duration: 0.35, ease: 'back.out(2)' }
+              );
+            }
 
             if (card) {
-              gsap.fromTo(card, { borderColor: cfg.color }, { borderColor: '', duration: 0.8, ease: 'power2.out' });
               const shimmer = card.querySelector('.laser-scan-shimmer');
-              if (shimmer) {
+              if (shimmer && typeof gsap !== 'undefined') {
                 gsap.fromTo(shimmer, 
                   { xPercent: -100, opacity: 1 }, 
-                  { xPercent: 100, opacity: 1, duration: 0.7, ease: 'power2.out', onComplete: () => gsap.to(shimmer, { opacity: 0, duration: 0.15 }) }
+                  { xPercent: 100, opacity: 1, duration: 0.65, ease: 'power2.out', onComplete: () => gsap.to(shimmer, { opacity: 0, duration: 0.15 }) }
                 );
               }
             }
           }
-        });
+        }
+
+        activeCounterRafs[el.id] = requestAnimationFrame(updateCounter);
       }
 
-      function runAllMetricCounters(customDuration = null) {
-        metricCounterConfigs.forEach((cfg, idx) => {
-          setTimeout(() => runMetricCounter(cfg, customDuration), idx * 120);
+      function runAllMetricCounters(duration = 1200) {
+        document.querySelectorAll('.counter-value').forEach((el, idx) => {
+          setTimeout(() => animateTwinnieCounter(el, duration), idx * 80);
         });
       }
 
       // Expose globally for header buttons and console triggers
       window.retriggerMetricCounters = runAllMetricCounters;
       window.retriggerMetricSingle = function(idx) {
-        if (metricCounterConfigs[idx]) {
+        const counters = document.querySelectorAll('.counter-value');
+        if (counters[idx]) {
           playHapticClick(900, 0.015);
-          runMetricCounter(metricCounterConfigs[idx], 2.2);
+          animateTwinnieCounter(counters[idx], 1200);
         }
       };
 
@@ -4051,7 +4030,7 @@
         ease: 'back.out(1.4)',
         clearProps: 'transform,opacity',
         onStart: () => {
-          runAllMetricCounters();
+          runAllMetricCounters(1200);
         },
         onComplete: () => {
           // C2. Organic Floating Micro-Oscillation for Metrics Cards
@@ -4074,17 +4053,17 @@
         if (strip) {
           const rect = strip.getBoundingClientRect();
           if (rect.top < window.innerHeight && rect.bottom > 0) {
-            runAllMetricCounters();
+            runAllMetricCounters(1200);
           }
         }
-      }, 500);
+      }, 400);
 
       // C3. Bidirectional ScrollTrigger Reactivation (fires every time user scrolls in or back)
       ScrollTrigger.create({
         trigger: '#metricsStrip',
         start: 'top 85%',
-        onEnter: () => runAllMetricCounters(),
-        onEnterBack: () => runAllMetricCounters(2.0)
+        onEnter: () => runAllMetricCounters(1200),
+        onEnterBack: () => runAllMetricCounters(1100)
       });
 
       // C4. Interactive Mouse Hover & Click Reactivation on each Metric Card
@@ -4092,12 +4071,14 @@
       metricCards.forEach((card, idx) => {
         card.addEventListener('mouseenter', () => {
           playHapticClick(900, 0.012);
-          runMetricCounter(metricCounterConfigs[idx], 2.0);
+          const el = card.querySelector('.counter-value');
+          if (el) animateTwinnieCounter(el, 1100);
         });
 
         card.addEventListener('click', () => {
           playHapticClick(1000, 0.02);
-          runMetricCounter(metricCounterConfigs[idx], 2.2);
+          const el = card.querySelector('.counter-value');
+          if (el) animateTwinnieCounter(el, 1200);
         });
       });
 
