@@ -185,91 +185,7 @@
       }
     }
 
-    /* Human-Crafted Spotlight Card Effect with Animated Chromatic Gradient Aura */
-    @keyframes chromaticAuraShift {
-      0% {
-        background: radial-gradient(circle, rgba(16, 185, 129, 0.22) 0%, rgba(6, 182, 212, 0.14) 38%, rgba(99, 102, 241, 0.08) 60%, transparent 75%);
-        filter: hue-rotate(0deg);
-      }
-      50% {
-        background: radial-gradient(circle, rgba(6, 182, 212, 0.24) 0%, rgba(99, 102, 241, 0.15) 38%, rgba(16, 185, 129, 0.12) 60%, transparent 75%);
-        filter: hue-rotate(40deg);
-      }
-      100% {
-        background: radial-gradient(circle, rgba(16, 185, 129, 0.22) 0%, rgba(6, 182, 212, 0.14) 38%, rgba(99, 102, 241, 0.08) 60%, transparent 75%);
-        filter: hue-rotate(0deg);
-      }
-    }
-
-    @keyframes chromaticBorderFlow {
-      0% {
-        border-color: rgba(16, 185, 129, 0.55);
-        box-shadow: 0 16px 44px -6px rgba(0, 0, 0, 0.55), 0 0 26px -2px rgba(16, 185, 129, 0.28), inset 0 1px 2px 0 rgba(255, 255, 255, 0.26);
-      }
-      33% {
-        border-color: rgba(6, 182, 212, 0.62);
-        box-shadow: 0 16px 44px -6px rgba(0, 0, 0, 0.55), 0 0 30px -2px rgba(6, 182, 212, 0.32), inset 0 1px 2px 0 rgba(255, 255, 255, 0.26);
-      }
-      66% {
-        border-color: rgba(99, 102, 241, 0.58);
-        box-shadow: 0 16px 44px -6px rgba(0, 0, 0, 0.55), 0 0 26px -2px rgba(99, 102, 241, 0.28), inset 0 1px 2px 0 rgba(255, 255, 255, 0.26);
-      }
-      100% {
-        border-color: rgba(16, 185, 129, 0.55);
-        box-shadow: 0 16px 44px -6px rgba(0, 0, 0, 0.55), 0 0 26px -2px rgba(16, 185, 129, 0.28), inset 0 1px 2px 0 rgba(255, 255, 255, 0.26);
-      }
-    }
-
-    @keyframes chromaticSubBorderFlow {
-      0% {
-        border-color: rgba(16, 185, 129, 0.5);
-        box-shadow: 0 6px 20px -2px rgba(0, 0, 0, 0.45), 0 0 16px -1px rgba(16, 185, 129, 0.22);
-      }
-      50% {
-        border-color: rgba(6, 182, 212, 0.55);
-        box-shadow: 0 6px 20px -2px rgba(0, 0, 0, 0.45), 0 0 18px -1px rgba(6, 182, 212, 0.25);
-      }
-      100% {
-        border-color: rgba(16, 185, 129, 0.5);
-        box-shadow: 0 6px 20px -2px rgba(0, 0, 0, 0.45), 0 0 16px -1px rgba(16, 185, 129, 0.22);
-      }
-    }
-
-    /* Dedicated Daylight Keyframes: High-Contrast, Ambient Chroma Without Dark Muddy Shadows */
-    @keyframes chromaticBorderFlowLight {
-      0% {
-        border-color: rgba(16, 185, 129, 0.6);
-        box-shadow: 0 14px 34px -4px rgba(16, 185, 129, 0.16), 0 4px 12px -2px rgba(15, 23, 42, 0.05), inset 0 1px 2px 0 #ffffff;
-      }
-      33% {
-        border-color: rgba(14, 165, 233, 0.65);
-        box-shadow: 0 14px 34px -4px rgba(14, 165, 233, 0.16), 0 4px 12px -2px rgba(15, 23, 42, 0.05), inset 0 1px 2px 0 #ffffff;
-      }
-      66% {
-        border-color: rgba(99, 102, 241, 0.6);
-        box-shadow: 0 14px 34px -4px rgba(99, 102, 241, 0.14), 0 4px 12px -2px rgba(15, 23, 42, 0.05), inset 0 1px 2px 0 #ffffff;
-      }
-      100% {
-        border-color: rgba(16, 185, 129, 0.6);
-        box-shadow: 0 14px 34px -4px rgba(16, 185, 129, 0.16), 0 4px 12px -2px rgba(15, 23, 42, 0.05), inset 0 1px 2px 0 #ffffff;
-      }
-    }
-
-    @keyframes chromaticSubBorderFlowLight {
-      0% {
-        border-color: rgba(16, 185, 129, 0.5);
-        box-shadow: 0 6px 18px -2px rgba(16, 185, 129, 0.14), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
-      }
-      50% {
-        border-color: rgba(14, 165, 233, 0.55);
-        box-shadow: 0 6px 18px -2px rgba(14, 165, 233, 0.14), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
-      }
-      100% {
-        border-color: rgba(16, 185, 129, 0.5);
-        box-shadow: 0 6px 18px -2px rgba(16, 185, 129, 0.14), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
-      }
-    }
-
+    /* Clean High-Performance Surface Transitions (Zero Infinite Repaints) */
     /* Avatar Iridescent Halo Orbit Animation */
     @keyframes avatarHaloRotate {
       0% {
@@ -369,53 +285,37 @@
       transform: scale(0.96);
     }
 
-    /* Interactive Dynamic Ultra-Soft Cursor Gradient Aura & Perimeter Edge Glow */
-    @keyframes cursorAuraSoftDrift {
-      0% {
-        filter: hue-rotate(0deg);
-      }
-      50% {
-        filter: hue-rotate(25deg);
-      }
-      100% {
-        filter: hue-rotate(0deg);
-      }
-    }
-
     .spotlight-card {
       position: relative;
       overflow: hidden;
-      transition: border-color 0.25s ease, box-shadow 0.25s ease;
-      will-change: transform;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
-    /* 1. Ultra-Soft Ambient Surface Glow (Feathered 420px Diffusion) */
+    /* 1. Ultra-Soft Ambient Surface Glow (Feathered 420px Diffusion, Zero Hue-Rotate Lag) */
     .cursor-glow-aura {
       position: absolute;
       inset: 0;
       border-radius: inherit;
-      background: radial-gradient(420px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), 
-        rgba(16, 185, 129, 0.16) 0%, 
-        rgba(6, 182, 212, 0.10) 30%, 
-        rgba(99, 102, 241, 0.05) 60%, 
+      background: radial-gradient(400px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), 
+        rgba(16, 185, 129, 0.14) 0%, 
+        rgba(6, 182, 212, 0.08) 32%, 
+        rgba(99, 102, 241, 0.03) 60%, 
         transparent 80%);
       opacity: 0;
-      transition: opacity 0.38s ease;
+      transition: opacity 0.25s ease;
       pointer-events: none;
       z-index: 1;
     }
 
     html:not(.dark) .cursor-glow-aura {
-      background: radial-gradient(420px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), 
-        rgba(16, 185, 129, 0.11) 0%, 
-        rgba(14, 165, 233, 0.07) 32%, 
-        rgba(99, 102, 241, 0.03) 62%, 
-        transparent 80%);
+      background: radial-gradient(400px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), 
+        rgba(16, 185, 129, 0.10) 0%, 
+        rgba(14, 165, 233, 0.06) 32%, 
+        transparent 75%);
     }
 
     .spotlight-card:hover .cursor-glow-aura {
       opacity: 1;
-      animation: cursorAuraSoftDrift 8s ease-in-out infinite;
     }
 
     /* 2. Soft Perimeter Border Glow (Hairline 1px Cursor Tracing) */
@@ -424,31 +324,29 @@
       inset: 0;
       border-radius: inherit;
       padding: 1px;
-      background: radial-gradient(320px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), 
-        rgba(16, 185, 129, 0.45) 0%, 
-        rgba(6, 182, 212, 0.32) 35%, 
-        rgba(99, 102, 241, 0.16) 65%, 
-        transparent 82%);
+      background: radial-gradient(300px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), 
+        rgba(16, 185, 129, 0.4) 0%, 
+        rgba(6, 182, 212, 0.25) 35%, 
+        rgba(99, 102, 241, 0.1) 65%, 
+        transparent 80%);
       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
       opacity: 0;
-      transition: opacity 0.32s ease;
+      transition: opacity 0.22s ease;
       pointer-events: none;
       z-index: 15;
     }
 
     html:not(.dark) .cursor-border-aura {
-      background: radial-gradient(320px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), 
-        rgba(16, 185, 129, 0.38) 0%, 
-        rgba(14, 165, 233, 0.28) 35%, 
-        rgba(99, 102, 241, 0.14) 65%, 
-        transparent 82%);
+      background: radial-gradient(300px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), 
+        rgba(16, 185, 129, 0.32) 0%, 
+        rgba(14, 165, 233, 0.22) 35%, 
+        transparent 80%);
     }
 
     .spotlight-card:hover .cursor-border-aura {
       opacity: 1;
-      animation: cursorAuraSoftDrift 8s ease-in-out infinite;
     }
 
     /* Pro-Grade Tactile Interactive CTA Buttons (Zero-Wobble, Smooth Elevation, Subsurface Sheen) */
@@ -704,56 +602,62 @@
       pointer-events: none;
     }
 
-    /* Apple Spatial Neo-Enterprise Glassmorphism (High-Contrast, Refractive Depth & Specular Edge Chamfer) */
+    /* High-Performance Surface Architecture (O(1) Solid Rasterization, Zero-Lag Scrolling) */
     .tactical-glass {
-      background: linear-gradient(135deg, rgba(30, 41, 59, 0.78) 0%, rgba(15, 23, 42, 0.84) 100%);
-      backdrop-filter: blur(20px) saturate(190%);
-      -webkit-backdrop-filter: blur(20px) saturate(190%);
+      background: #0d1527;
       border: 1px solid rgba(51, 65, 85, 0.65);
-      box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.42), inset 0 1px 1px 0 rgba(255, 255, 255, 0.16), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.3), inset 0 0 24px 0 rgba(16, 185, 129, 0.025);
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4), inset 0 1px 1px 0 rgba(255, 255, 255, 0.08);
       position: relative;
-      transition: border-color 0.28s ease, box-shadow 0.28s ease, transform 0.28s ease;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
     }
     html:not(.dark) .tactical-glass {
       background: #ffffff;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(226, 232, 240, 0.95);
-      box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 8px 24px -4px rgba(15, 23, 42, 0.06), inset 0 1px 2px 0 #ffffff;
-      transition: box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+      box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 4px 16px -2px rgba(15, 23, 42, 0.05);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
     }
     .tactical-glass:hover {
-      animation: chromaticBorderFlow 4s ease-in-out infinite;
+      border-color: rgba(16, 185, 129, 0.5);
+      box-shadow: 0 8px 24px -4px rgba(16, 185, 129, 0.2), 0 2px 8px -1px rgba(0, 0, 0, 0.3);
     }
     html:not(.dark) .tactical-glass:hover {
-      animation: chromaticBorderFlowLight 4s ease-in-out infinite;
+      border-color: rgba(16, 185, 129, 0.5);
+      box-shadow: 0 8px 24px -4px rgba(16, 185, 129, 0.12), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
     }
 
-    /* Sub-Surface Micro Glass for Embedded Cards */
+    /* Sub-Surface Micro Surface for Embedded Cards */
     .tactical-subglass {
-      background: linear-gradient(135deg, rgba(30, 41, 59, 0.65) 0%, rgba(15, 23, 42, 0.75) 100%);
-      backdrop-filter: blur(16px) saturate(170%);
-      -webkit-backdrop-filter: blur(16px) saturate(170%);
-      border: 1px solid rgba(51, 65, 85, 0.6);
-      box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.35), inset 0 1px 1px 0 rgba(255, 255, 255, 0.1);
-      transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+      background: #090e1a;
+      border: 1px solid rgba(51, 65, 85, 0.5);
+      box-shadow: 0 2px 10px -2px rgba(0, 0, 0, 0.3);
+      transition: border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
     }
     html:not(.dark) .tactical-subglass {
       background: #f8fafc;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(226, 232, 240, 0.9);
-      box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.03);
-      transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 1px 2px 0 rgba(15, 23, 42, 0.03);
+      transition: border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
     }
     .tactical-subglass:hover {
-      animation: chromaticSubBorderFlow 3.5s ease-in-out infinite;
-      transform: translateY(-2px);
+      border-color: rgba(16, 185, 129, 0.45);
+      transform: translateY(-1.5px);
     }
     html:not(.dark) .tactical-subglass:hover {
       background: #ffffff;
-      animation: chromaticSubBorderFlowLight 3.5s ease-in-out infinite;
-      transform: translateY(-2px);
+      border-color: rgba(16, 185, 129, 0.45);
+      box-shadow: 0 4px 14px -2px rgba(16, 185, 129, 0.1);
+    }
+
+    /* Selective Glassmorphism: Reserved exclusively for floating overlays above scrolling content */
+    #mainHeader, #mobileThumbDock {
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    /* Section Off-Screen Virtualization Pipeline */
+    .gsap-section {
+      content-visibility: auto;
+      contain-intrinsic-size: 1px 700px;
     }
 
     /* Section Switching Pulse Chromatic Highlight */
@@ -1230,7 +1134,7 @@
           <!-- Tab Pane 1: Visual Screenshots (Default) -->
           <div id="tabPane-notaris-ui" class="project-tab-pane grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 shadow-sm" onclick="openLightbox('assets/irwan-baddu.png', 'Aplikasi Notaris & PPAT Irwan Baddu: Manajemen Berkas & Siklus Akta 7 Tahap')">
-              <img src="assets/irwan-baddu.png" alt="Aplikasi Notaris & PPAT Irwan Baddu" class="w-full aspect-[16/10] sm:aspect-video object-cover object-top" />
+              <img loading="lazy" decoding="async" src="assets/irwan-baddu.png" alt="Aplikasi Notaris & PPAT Irwan Baddu" class="w-full aspect-[16/10] sm:aspect-video object-cover object-top" />
               <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white text-xs font-mono font-bold">
                 <i class="fa-solid fa-magnifying-glass-plus text-base"></i>
                 <span>Lihat Screenshot Antarmuka Akta</span>
@@ -1241,7 +1145,7 @@
             </div>
 
             <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 shadow-sm" onclick="openLightbox('assets/irwan-baddu1.png', 'Dashboard Operasional Notaris & PPAT Irwan Baddu: Validasi Pajak BPHTB/PPh & NTPN')">
-              <img src="assets/irwan-baddu1.png" alt="Dashboard Notaris & PPAT Irwan Baddu" class="w-full aspect-[16/10] sm:aspect-video object-cover object-top" />
+              <img loading="lazy" decoding="async" src="assets/irwan-baddu1.png" alt="Dashboard Notaris & PPAT Irwan Baddu" class="w-full aspect-[16/10] sm:aspect-video object-cover object-top" />
               <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white text-xs font-mono font-bold">
                 <i class="fa-solid fa-magnifying-glass-plus text-base"></i>
                 <span>Lihat Dashboard Pajak & NTPN</span>
@@ -1412,7 +1316,7 @@
           <!-- Tab Pane 1: Visual Screenshots (Default) -->
           <div id="tabPane-pqtm-ui" class="project-tab-pane grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 shadow-sm" onclick="openLightbox('assets/yayasan-pqtm.jpg', 'Aplikasi SIM PQTM: Sistem Informasi Manajemen Yayasan Multi-Unit')">
-              <img src="assets/yayasan-pqtm.jpg" alt="Aplikasi SIM PQTM" class="w-full aspect-[16/10] sm:aspect-video object-cover object-center" />
+              <img loading="lazy" decoding="async" src="assets/yayasan-pqtm.jpg" alt="Aplikasi SIM PQTM" class="w-full aspect-[16/10] sm:aspect-video object-cover object-center" />
               <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white text-xs font-mono font-bold">
                 <i class="fa-solid fa-magnifying-glass-plus text-base"></i>
                 <span>Lihat Antarmuka SIM PQTM</span>
@@ -1423,7 +1327,7 @@
             </div>
 
             <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 shadow-sm" onclick="openLightbox('assets/yayasan-pesantren.jpg', 'Dashboard SIM PQTM: Dashboard Tahfidz &amp; Tasmi\' Santri (100% Akurat)')">
-              <img src="assets/yayasan-pesantren.jpg" alt="Dashboard SIM PQTM" class="w-full aspect-[16/10] sm:aspect-video object-cover object-center" />
+              <img loading="lazy" decoding="async" src="assets/yayasan-pesantren.jpg" alt="Dashboard SIM PQTM" class="w-full aspect-[16/10] sm:aspect-video object-cover object-center" />
               <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white text-xs font-mono font-bold">
                 <i class="fa-solid fa-magnifying-glass-plus text-base"></i>
                 <span>Lihat Dashboard SIM PQTM</span>
@@ -1569,7 +1473,7 @@
 
           <!-- Wide Visual Artifact Thumbnail with Lightbox click (Aset Terbaru) -->
           <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 shadow-sm" onclick="openLightbox('assets/twinnie-group.jpg', 'Twinnie Group: Ekosistem Web Layanan Kesehatan Integratif Malang Raya (twinniegroup.com)')">
-            <img src="assets/twinnie-group.jpg" alt="Platform Web Twinnie Group" class="w-full aspect-[16/10] sm:aspect-video md:aspect-[21/10] object-cover object-top" />
+            <img loading="lazy" decoding="async" src="assets/twinnie-group.jpg" alt="Platform Web Twinnie Group" class="w-full aspect-[16/10] sm:aspect-video md:aspect-[21/10] object-cover object-top" />
             <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white text-xs font-mono font-bold">
               <i class="fa-solid fa-magnifying-glass-plus text-base"></i>
               <span>Klik untuk Perbesar Screenshot Antarmuka Web</span>
@@ -1643,7 +1547,7 @@
 
           <!-- Single Wide Image Box with Lightbox -->
           <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 shadow-sm" onclick="openLightbox('assets/ppdb.jpg', 'Antarmuka Portal PPDB Online Terpusat (Ar-Rohmah Putri)')">
-            <img src="assets/ppdb.jpg" alt="Aplikasi PPDB Online Ar-Rohmah Putri" class="w-full aspect-[16/10] sm:aspect-video md:aspect-[21/10] object-cover object-top" />
+            <img loading="lazy" decoding="async" src="assets/ppdb.jpg" alt="Aplikasi PPDB Online Ar-Rohmah Putri" class="w-full aspect-[16/10] sm:aspect-video md:aspect-[21/10] object-cover object-top" />
             <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white text-xs font-mono font-bold">
               <i class="fa-solid fa-magnifying-glass-plus text-base"></i>
               <span>Klik untuk Perbesar Screenshot Antarmuka</span>
@@ -1712,7 +1616,7 @@
 
           <!-- Screenshot Box with Lightbox -->
           <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 shadow-sm" onclick="openLightbox('assets/santri.png', 'Buku Induk Santri Terpusat (9.312 Santri Lama + 800 Calon Santri)')">
-            <img src="assets/santri.png" alt="Aplikasi Buku Induk Santri" class="w-full aspect-[16/10] sm:aspect-video md:aspect-[21/10] object-cover object-top" />
+            <img loading="lazy" decoding="async" src="assets/santri.png" alt="Aplikasi Buku Induk Santri" class="w-full aspect-[16/10] sm:aspect-video md:aspect-[21/10] object-cover object-top" />
             <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white text-xs font-mono font-bold">
               <i class="fa-solid fa-magnifying-glass-plus text-base"></i>
               <span>Klik untuk Perbesar Screenshot Antarmuka</span>
@@ -1779,7 +1683,7 @@
           <!-- Dual Screenshot Thumbnails with Zoom Lightbox -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 shadow-sm" onclick="openLightbox('assets/sdm1.png', 'Aplikasi Kepegawaian Baru: Modul Formulir Digital Terpadu')">
-              <img src="assets/sdm1.png" alt="Aplikasi Kepegawaian Baru" class="w-full aspect-[16/10] sm:aspect-video object-cover object-top" />
+              <img loading="lazy" decoding="async" src="assets/sdm1.png" alt="Aplikasi Kepegawaian Baru" class="w-full aspect-[16/10] sm:aspect-video object-cover object-top" />
               <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white text-xs font-mono font-bold">
                 <i class="fa-solid fa-magnifying-glass-plus text-base"></i>
                 <span>Lihat Dashboard SDM Baru</span>
@@ -1789,7 +1693,7 @@
               </div>
             </div>
             <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 shadow-sm" onclick="openLightbox('assets/sdm.png', 'Aplikasi Kepegawaian Versi Awal: Manajemen Arsip Pegawai')">
-              <img src="assets/sdm.png" alt="Aplikasi Kepegawaian Arsip" class="w-full aspect-[16/10] sm:aspect-video object-cover object-top" />
+              <img loading="lazy" decoding="async" src="assets/sdm.png" alt="Aplikasi Kepegawaian Arsip" class="w-full aspect-[16/10] sm:aspect-video object-cover object-top" />
               <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white text-xs font-mono font-bold">
                 <i class="fa-solid fa-magnifying-glass-plus text-base"></i>
                 <span>Lihat Arsip SDM Digital</span>
@@ -2525,7 +2429,7 @@
             <div class="text-[11px] font-mono font-bold text-slate-500 dark:text-slate-400 uppercase">// ARSIP DOKUMENTASI OPERASIONAL &amp; PENGAJARAN (SMK):</div>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-2xs" onclick="openLightbox('assets/smk-taruna-bhakti.jpeg', 'SMKS Taruna Bhakti: Pembinaan dari Pengawas Sekolah')">
-              <img src="assets/smk-taruna-bhakti.jpeg" alt="Pembinaan dari Pengawas Sekolah" class="w-full aspect-[4/3] sm:aspect-[3/4] md:aspect-video object-cover object-top group-hover:scale-105 transition-transform duration-300" />
+              <img loading="lazy" decoding="async" src="assets/smk-taruna-bhakti.jpeg" alt="Pembinaan dari Pengawas Sekolah" class="w-full aspect-[4/3] sm:aspect-[3/4] md:aspect-video object-cover object-top group-hover:scale-105 transition-transform duration-300" />
               <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-[11px] font-mono font-bold">
                 <i class="fa-solid fa-magnifying-glass-plus text-xs"></i>
                 <span>Pembinaan Pengawas</span>
@@ -2536,7 +2440,7 @@
             </div>
 
             <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-2xs" onclick="openLightbox('assets/taruna-bhakti-2.jpeg', 'SMKS Taruna Bhakti: Pelaporan Dana BOS')">
-              <img src="assets/taruna-bhakti-2.jpeg" alt="Pelaporan Dana BOS" class="w-full aspect-[4/3] sm:aspect-[3/4] md:aspect-video object-cover object-top group-hover:scale-105 transition-transform duration-300" />
+              <img loading="lazy" decoding="async" src="assets/taruna-bhakti-2.jpeg" alt="Pelaporan Dana BOS" class="w-full aspect-[4/3] sm:aspect-[3/4] md:aspect-video object-cover object-top group-hover:scale-105 transition-transform duration-300" />
               <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-[11px] font-mono font-bold">
                 <i class="fa-solid fa-magnifying-glass-plus text-xs"></i>
                 <span>Pelaporan Dana BOS</span>
@@ -2556,7 +2460,7 @@
               onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); openLightbox('assets/smk-taruna-bhakti.mp4', 'SMKS Taruna Bhakti: Pengajaran Siswa & Praktikum Komputer', true);}">
               
               <!-- Video Poster / Thumbnail dari rekaman asli pengajaran siswa -->
-              <img 
+              <img loading="lazy" decoding="async" 
                 src="assets/smk-pengajaran-preview.jpg" 
                 alt="Dokumentasi Pengajaran Siswa SMKS Taruna Bhakti" 
                 class="w-full aspect-[4/3] sm:aspect-[3/4] md:aspect-video object-cover object-center group-hover/video:scale-105 transition-transform duration-300" />
@@ -2656,7 +2560,7 @@
             <div class="text-[11px] font-mono font-bold text-slate-500 dark:text-slate-400 uppercase">// ARSIP DOKUMENTASI PERTEMUAN SISTEM TERPUSAT &amp; SIM-SDM:</div>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-2xs" onclick="openLightbox('assets/arrohmah.jpeg', 'Ar-Rohmah Putri: Pembahasan Awal Konsep Aplikasi Terpusat dari Data Santri, Data Pegawai dan Data PPDB')">
-              <img src="assets/arrohmah.jpeg" alt="Pembahasan Awal Konsep Aplikasi Terpusat dari Data Santri, Data Pegawai dan Data PPDB" class="w-full aspect-[16/10] sm:aspect-video object-cover object-center group-hover:scale-105 transition-transform duration-300" />
+              <img loading="lazy" decoding="async" src="assets/arrohmah.jpeg" alt="Pembahasan Awal Konsep Aplikasi Terpusat dari Data Santri, Data Pegawai dan Data PPDB" class="w-full aspect-[16/10] sm:aspect-video object-cover object-center group-hover:scale-105 transition-transform duration-300" />
               <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-[11px] font-mono font-bold">
                 <i class="fa-solid fa-magnifying-glass-plus text-xs"></i>
                 <span>Konsep Aplikasi Terpusat</span>
@@ -2667,7 +2571,7 @@
             </div>
 
             <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-2xs" onclick="openLightbox('assets/arrohmah1.jpeg', 'Ar-Rohmah Putri: Rapat Pembahasan Awal Aplikasi Pegawai')">
-              <img src="assets/arrohmah1.jpeg" alt="Rapat Pembahasan Awal Aplikasi Pegawai" class="w-full aspect-[16/10] sm:aspect-video object-cover object-center group-hover:scale-105 transition-transform duration-300" />
+              <img loading="lazy" decoding="async" src="assets/arrohmah1.jpeg" alt="Rapat Pembahasan Awal Aplikasi Pegawai" class="w-full aspect-[16/10] sm:aspect-video object-cover object-center group-hover:scale-105 transition-transform duration-300" />
               <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-[11px] font-mono font-bold">
                 <i class="fa-solid fa-magnifying-glass-plus text-xs"></i>
                 <span>Rapat Aplikasi Pegawai</span>
@@ -2678,7 +2582,7 @@
             </div>
 
             <div class="project-image-box cursor-pointer group/img border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-2xs" onclick="openLightbox('assets/arrohmah2.jpeg', 'Ar-Rohmah Putri: Aula Agenda Pembinaan Pegawai')">
-              <img src="assets/arrohmah2.jpeg" alt="Aula Agenda Pembinaan Pegawai" class="w-full aspect-[16/10] sm:aspect-video object-cover object-center group-hover:scale-105 transition-transform duration-300" />
+              <img loading="lazy" decoding="async" src="assets/arrohmah2.jpeg" alt="Aula Agenda Pembinaan Pegawai" class="w-full aspect-[16/10] sm:aspect-video object-cover object-center group-hover:scale-105 transition-transform duration-300" />
               <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-[11px] font-mono font-bold">
                 <i class="fa-solid fa-magnifying-glass-plus text-xs"></i>
                 <span>Aula Pembinaan Pegawai</span>
@@ -2859,7 +2763,7 @@
         </button>
       </div>
       <div class="p-2 sm:p-4 bg-black flex items-center justify-center max-h-[75vh] overflow-hidden">
-        <img id="lightboxImage" src="" alt="Screenshot Proyek" class="max-w-full max-h-[70vh] object-contain rounded-xl shadow-lg" />
+        <img loading="lazy" decoding="async" id="lightboxImage" src="" alt="Screenshot Proyek" class="max-w-full max-h-[70vh] object-contain rounded-xl shadow-lg" />
         <video id="lightboxVideo" src="" class="max-w-full max-h-[70vh] object-contain rounded-xl shadow-lg hidden" controls playsinline></video>
       </div>
       <div class="px-4 sm:px-5 py-2.5 border-t border-slate-800 bg-slate-950/60 text-right">
@@ -3656,7 +3560,7 @@
       }
     });
 
-    // Spotlight Hover Card Logic with Reactive Cursor Gradient Aura & Hardware VSync-Locked GSAP 3D Tilt
+    // Spotlight Hover Card Logic with Zero-Layout-Thrashing Cursor Gradient Aura
     function initSpotlightCards() {
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       document.querySelectorAll('.spotlight-card, .terminal-window').forEach(card => {
@@ -3675,45 +3579,27 @@
         }
 
         let rafId = null;
+        let cardRect = null;
 
         const updateCoords = (clientX, clientY) => {
-          const rect = card.getBoundingClientRect();
-          const mouseX = clientX - rect.left;
-          const mouseY = clientY - rect.top;
+          if (!cardRect) return;
+          const mouseX = clientX - cardRect.left;
+          const mouseY = clientY - cardRect.top;
 
           if (rafId) cancelAnimationFrame(rafId);
           rafId = requestAnimationFrame(() => {
             card.style.setProperty('--mouse-x', `${mouseX}px`);
             card.style.setProperty('--mouse-y', `${mouseY}px`);
-
-            // Subtle 3D Tilt Micro-Parallax on Desktop only via GSAP
-            if (!prefersReduced && window.innerWidth >= 768) {
-              const centerX = rect.width / 2;
-              const centerY = rect.height / 2;
-              const tiltX = (centerY - mouseY) / centerY * 2.8;
-              const tiltY = (mouseX - centerX) / centerX * 2.8;
-              gsap.to(card, {
-                rotationX: tiltX,
-                rotationY: tiltY,
-                y: -2,
-                duration: 0.18,
-                ease: 'power1.out',
-                overwrite: 'auto',
-                transformPerspective: 1000
-              });
-            }
           });
         };
 
-        card.addEventListener('mousemove', e => {
-          updateCoords(e.clientX, e.clientY);
-        });
-
-        // Dynamic Laser Scanline Shimmer Sweep on Hover Enter
+        // Cache bounding rect on mouseenter once to eliminate layout thrashing
         card.addEventListener('mouseenter', e => {
+          cardRect = card.getBoundingClientRect();
           updateCoords(e.clientX, e.clientY);
+
           const shimmer = card.querySelector('.laser-scan-shimmer');
-          if (shimmer && !prefersReduced) {
+          if (shimmer && !prefersReduced && typeof gsap !== 'undefined') {
             gsap.fromTo(shimmer, 
               { xPercent: -100, opacity: 1 }, 
               {
@@ -3729,20 +3615,16 @@
           }
         });
 
+        card.addEventListener('mousemove', e => {
+          if (!cardRect) cardRect = card.getBoundingClientRect();
+          updateCoords(e.clientX, e.clientY);
+        });
+
         card.addEventListener('mouseleave', () => {
           if (rafId) cancelAnimationFrame(rafId);
+          cardRect = null;
           card.style.setProperty('--mouse-x', `-500px`);
           card.style.setProperty('--mouse-y', `-500px`);
-          if (!prefersReduced && window.innerWidth >= 768) {
-            gsap.to(card, {
-              rotationX: 0,
-              rotationY: 0,
-              y: 0,
-              duration: 0.35,
-              ease: 'power2.out',
-              overwrite: 'auto'
-            });
-          }
         });
       });
     }
@@ -3770,67 +3652,78 @@
       });
     }
 
-    // Subtle Mouse Tracking 3D Parallax on Hero Avatar (Desktop Only)
+    // Lightweight Mouse Tracking Parallax on Hero Avatar (Desktop Only, Zero Layout Thrashing)
     function initHeroParallax() {
       if (window.innerWidth < 768) return;
       const heroSec = document.getElementById('hero');
       const avatar = document.getElementById('heroAvatar');
       const avatarInner = document.getElementById('heroAvatarInner');
       const glowOrb = document.getElementById('heroGlowOrb');
-      if (!heroSec) return;
+      if (!heroSec || !avatar) return;
+
+      let heroRect = null;
+      let rafId = null;
+
+      heroSec.addEventListener('mouseenter', () => {
+        heroRect = heroSec.getBoundingClientRect();
+      });
 
       heroSec.addEventListener('mousemove', e => {
-        const rect = heroSec.getBoundingClientRect();
-        const x = (e.clientX - rect.left - rect.width / 2);
-        const y = (e.clientY - rect.top - rect.height / 2);
-        if (avatar) {
-          gsap.to(avatar, { x: x * 0.025, y: y * 0.025, duration: 0.5, ease: 'power1.out', overwrite: 'auto' });
-        }
-        if (avatarInner) {
-          const tiltX = (y / rect.height) * -12;
-          const tiltY = (x / rect.width) * 12;
-          gsap.to(avatarInner, {
-            rotationX: tiltX,
-            rotationY: tiltY,
-            duration: 0.45,
-            ease: 'power1.out',
-            transformPerspective: 800,
-            overwrite: 'auto'
-          });
-        }
-        if (glowOrb) {
-          gsap.to(glowOrb, { x: x * 0.05, y: y * 0.05, duration: 1.2, ease: 'power2.out', overwrite: 'auto' });
-        }
+        if (!heroRect) heroRect = heroSec.getBoundingClientRect();
+        const clientX = e.clientX;
+        const clientY = e.clientY;
+
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(() => {
+          const x = (clientX - heroRect.left - heroRect.width / 2);
+          const y = (clientY - heroRect.top - heroRect.height / 2);
+          if (avatar && typeof gsap !== 'undefined') {
+            gsap.to(avatar, { x: x * 0.02, y: y * 0.02, duration: 0.4, ease: 'power1.out', overwrite: 'auto' });
+          }
+          if (avatarInner && typeof gsap !== 'undefined') {
+            const tiltX = (y / heroRect.height) * -8;
+            const tiltY = (x / heroRect.width) * 8;
+            gsap.to(avatarInner, {
+              rotationX: tiltX,
+              rotationY: tiltY,
+              duration: 0.4,
+              ease: 'power1.out',
+              transformPerspective: 800,
+              overwrite: 'auto'
+            });
+          }
+          if (glowOrb && typeof gsap !== 'undefined') {
+            gsap.to(glowOrb, { x: x * 0.04, y: y * 0.04, duration: 0.8, ease: 'power2.out', overwrite: 'auto' });
+          }
+        });
       });
 
       heroSec.addEventListener('mouseleave', () => {
-        if (avatar) {
-          gsap.to(avatar, { x: 0, y: 0, duration: 0.6, ease: 'power2.out', overwrite: 'auto' });
-        }
-        if (avatarInner) {
-          gsap.to(avatarInner, { rotationX: 0, rotationY: 0, duration: 0.6, ease: 'power2.out', overwrite: 'auto' });
-        }
-        if (glowOrb) {
-          gsap.to(glowOrb, { x: 0, y: 0, duration: 1.0, ease: 'power2.out', overwrite: 'auto' });
+        if (rafId) cancelAnimationFrame(rafId);
+        heroRect = null;
+        if (typeof gsap !== 'undefined') {
+          if (avatar) gsap.to(avatar, { x: 0, y: 0, duration: 0.5, ease: 'power2.out', overwrite: 'auto' });
+          if (avatarInner) gsap.to(avatarInner, { rotationX: 0, rotationY: 0, duration: 0.5, ease: 'power2.out', overwrite: 'auto' });
+          if (glowOrb) gsap.to(glowOrb, { x: 0, y: 0, duration: 0.8, ease: 'power2.out', overwrite: 'auto' });
         }
       });
     }
 
-    // Parallax Atmosphere Background Scrubbing (from misbahudin98.netlify.app)
+    // Parallax Atmosphere Background Scrubbing (Desktop Only, High-Performance Scrub)
     function initParallaxAtmosphere() {
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (prefersReduced || window.innerWidth < 768) return;
+      if (prefersReduced || window.innerWidth < 1024) return;
 
       gsap.utils.toArray('[data-parallax-depth]').forEach(layer => {
         const depth = parseFloat(layer.getAttribute('data-parallax-depth')) || 0.15;
         gsap.to(layer, {
-          y: () => -1 * (ScrollTrigger.maxScroll(window) * depth * 0.15),
+          y: () => -1 * (ScrollTrigger.maxScroll(window) * depth * 0.12),
           ease: 'none',
           scrollTrigger: {
             trigger: document.body,
             start: 'top top',
             end: 'bottom bottom',
-            scrub: 0.4,
+            scrub: 0.8,
             invalidateOnRefresh: true
           }
         });
@@ -4373,76 +4266,71 @@
       const bQuaternary = document.getElementById('ambientBeaconQuaternary');
 
       if (bPrimary && bSecondary && bTertiary && bQuaternary) {
-        // Act 00: Spawn
+        // High-Performance Opacity-Only Transitions for Ambient Beacons (Zero GPU Resizing)
         ScrollTrigger.create({
           trigger: '#hero',
           start: 'top 50%',
           end: 'bottom 40%',
           onEnter: () => {
-            gsap.to(bPrimary, { scale: 1.15, opacity: 1, duration: 1.2, ease: 'power2.out', overwrite: 'auto' });
+            gsap.to(bPrimary, { opacity: 0.9, duration: 0.8, ease: 'power1.out', overwrite: 'auto' });
           }
         });
 
-        // Act 01: Raids (Cyan tactical glow)
         ScrollTrigger.create({
           trigger: '#proyek',
           start: 'top 60%',
           end: 'bottom 40%',
           onEnter: () => {
-            gsap.to(bSecondary, { scale: 1.25, opacity: 1, duration: 1.2, ease: 'power2.out', overwrite: 'auto' });
-            gsap.to(bPrimary, { scale: 0.95, opacity: 0.65, duration: 1.2, overwrite: 'auto' });
+            gsap.to(bSecondary, { opacity: 0.85, duration: 0.8, ease: 'power1.out', overwrite: 'auto' });
+            gsap.to(bPrimary, { opacity: 0.5, duration: 0.8, overwrite: 'auto' });
           },
           onLeaveBack: () => {
-            gsap.to(bPrimary, { scale: 1.15, opacity: 1, duration: 1.2, ease: 'power2.out', overwrite: 'auto' });
-            gsap.to(bSecondary, { scale: 1, opacity: 0.7, duration: 1.2, overwrite: 'auto' });
+            gsap.to(bPrimary, { opacity: 0.9, duration: 0.8, overwrite: 'auto' });
+            gsap.to(bSecondary, { opacity: 0.4, duration: 0.8, overwrite: 'auto' });
           }
         });
 
-        // Act 02: Trees & Codex (Dual Emerald & Cyan matrix)
         ScrollTrigger.create({
           trigger: '#keahlian',
           start: 'top 60%',
           end: 'bottom 40%',
           onEnter: () => {
-            gsap.to(bPrimary, { scale: 1.1, opacity: 0.85, duration: 1.2, ease: 'power2.out', overwrite: 'auto' });
-            gsap.to(bSecondary, { scale: 1.15, opacity: 0.9, duration: 1.2, overwrite: 'auto' });
+            gsap.to(bPrimary, { opacity: 0.75, duration: 0.8, overwrite: 'auto' });
+            gsap.to(bSecondary, { opacity: 0.8, duration: 0.8, overwrite: 'auto' });
           }
         });
 
-        // Act 03: Logs (Warm Amber chronicle illumination)
         ScrollTrigger.create({
           trigger: '#pengalaman',
           start: 'top 60%',
           end: 'bottom 40%',
           onEnter: () => {
-            gsap.to(bTertiary, { scale: 1.3, opacity: 1, duration: 1.2, ease: 'power2.out', overwrite: 'auto' });
-            gsap.to(bSecondary, { opacity: 0.45, duration: 1.2, overwrite: 'auto' });
+            gsap.to(bTertiary, { opacity: 0.9, duration: 0.8, overwrite: 'auto' });
+            gsap.to(bSecondary, { opacity: 0.35, duration: 0.8, overwrite: 'auto' });
           },
           onLeaveBack: () => {
-            gsap.to(bTertiary, { scale: 1, opacity: 0.6, duration: 1.2, overwrite: 'auto' });
-            gsap.to(bSecondary, { opacity: 0.9, duration: 1.2, overwrite: 'auto' });
+            gsap.to(bTertiary, { opacity: 0.4, duration: 0.8, overwrite: 'auto' });
+            gsap.to(bSecondary, { opacity: 0.8, duration: 0.8, overwrite: 'auto' });
           }
         });
 
-        // Act 04: Codex (Scholarly Cyan/Slate)
         ScrollTrigger.create({
           trigger: '#riset',
           start: 'top 65%',
           end: 'bottom 40%',
           onEnter: () => {
-            gsap.to(bSecondary, { scale: 1.2, opacity: 0.95, duration: 1.2, ease: 'power2.out', overwrite: 'auto' });
+            gsap.to(bSecondary, { opacity: 0.85, duration: 0.8, overwrite: 'auto' });
           }
         });
 
-        // Act 05: Co-Op (Extraction Signal Emerald Beacon)
         ScrollTrigger.create({
           trigger: '#kontak',
           start: 'top 70%',
           onEnter: () => {
-            gsap.to(bQuaternary, { scale: 1.35, opacity: 1, duration: 1.2, ease: 'power2.out', overwrite: 'auto' });
+            gsap.to(bQuaternary, { opacity: 0.95, duration: 0.8, overwrite: 'auto' });
           },
           onLeaveBack: () => {
-            gsap.to(bQuaternary, { scale: 1, opacity: 0.6, duration: 1.2, overwrite: 'auto' });
+            gsap.to(bQuaternary, { opacity: 0.4, duration: 0.8, overwrite: 'auto' });
           }
         });
       }
