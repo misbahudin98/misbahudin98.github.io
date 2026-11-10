@@ -68,12 +68,12 @@
   <!-- LLM Context & Fast Ingestion Standard (llmstxt.org) -->
   <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM Context Summary" />
 
-  <!-- Anti-FOUC Theme Script -->
+  <!-- Anti-FOUC Theme Script (Default Light Mode Mandatory) -->
   <script>
-    if (localStorage.theme === 'light' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
-      document.documentElement.classList.remove('dark');
-    } else {
+    if (localStorage.theme === 'dark') {
       document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
     }
   </script>
 
@@ -235,42 +235,301 @@
       }
     }
 
+    /* Dedicated Daylight Keyframes: High-Contrast, Ambient Chroma Without Dark Muddy Shadows */
+    @keyframes chromaticBorderFlowLight {
+      0% {
+        border-color: rgba(16, 185, 129, 0.6);
+        box-shadow: 0 14px 34px -4px rgba(16, 185, 129, 0.16), 0 4px 12px -2px rgba(15, 23, 42, 0.05), inset 0 1px 2px 0 #ffffff;
+      }
+      33% {
+        border-color: rgba(14, 165, 233, 0.65);
+        box-shadow: 0 14px 34px -4px rgba(14, 165, 233, 0.16), 0 4px 12px -2px rgba(15, 23, 42, 0.05), inset 0 1px 2px 0 #ffffff;
+      }
+      66% {
+        border-color: rgba(99, 102, 241, 0.6);
+        box-shadow: 0 14px 34px -4px rgba(99, 102, 241, 0.14), 0 4px 12px -2px rgba(15, 23, 42, 0.05), inset 0 1px 2px 0 #ffffff;
+      }
+      100% {
+        border-color: rgba(16, 185, 129, 0.6);
+        box-shadow: 0 14px 34px -4px rgba(16, 185, 129, 0.16), 0 4px 12px -2px rgba(15, 23, 42, 0.05), inset 0 1px 2px 0 #ffffff;
+      }
+    }
+
+    @keyframes chromaticSubBorderFlowLight {
+      0% {
+        border-color: rgba(16, 185, 129, 0.5);
+        box-shadow: 0 6px 18px -2px rgba(16, 185, 129, 0.14), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+      }
+      50% {
+        border-color: rgba(14, 165, 233, 0.55);
+        box-shadow: 0 6px 18px -2px rgba(14, 165, 233, 0.14), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+      }
+      100% {
+        border-color: rgba(16, 185, 129, 0.5);
+        box-shadow: 0 6px 18px -2px rgba(16, 185, 129, 0.14), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+      }
+    }
+
+    /* Avatar Iridescent Halo Orbit Animation */
+    @keyframes avatarHaloRotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    .avatar-halo-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+    .avatar-halo-orbit {
+      position: absolute;
+      inset: -4px;
+      border-radius: 1.25rem;
+      background: conic-gradient(from 0deg, #10b981, #06b6d4, #6366f1, #f59e0b, #10b981);
+      animation: avatarHaloRotate 7s linear infinite;
+      opacity: 0.85;
+      filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.45));
+      z-index: 0;
+      pointer-events: none;
+    }
+    html:not(.dark) .avatar-halo-orbit {
+      opacity: 0.75;
+      filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.35));
+    }
+
+    /* Dynamic Living Text Gradient Sheen for Hero Headline */
+    @keyframes dynamicTextShimmer {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+    .shimmer-accent-text {
+      background: linear-gradient(90deg, #10b981 0%, #06b6d4 35%, #6366f1 70%, #10b981 100%);
+      background-size: 250% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: dynamicTextShimmer 5s ease infinite;
+    }
+
+    /* Traveling Timeline Spark Beacon & Milestone Wave Ripple */
+    @keyframes sparkPulse {
+      0%, 100% {
+        transform: translate(-50%, 50%) scale(1);
+        box-shadow: 0 0 10px 2px rgba(16, 185, 129, 0.9), 0 0 18px 4px rgba(6, 182, 212, 0.6);
+      }
+      50% {
+        transform: translate(-50%, 50%) scale(1.35);
+        box-shadow: 0 0 16px 4px rgba(16, 185, 129, 1), 0 0 24px 6px rgba(6, 182, 212, 0.85);
+      }
+    }
+    .timeline-spark-head {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%, 50%);
+      width: 10px;
+      height: 10px;
+      border-radius: 9999px;
+      background: #ffffff;
+      border: 2px solid #10b981;
+      animation: sparkPulse 2s ease-in-out infinite;
+      z-index: 5;
+      pointer-events: none;
+    }
+    @keyframes milestoneRipple {
+      0% {
+        transform: scale(1);
+        opacity: 0.9;
+      }
+      100% {
+        transform: scale(2.4);
+        opacity: 0;
+      }
+    }
+    .timeline-node-active::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 9999px;
+      border: 2px solid #10b981;
+      animation: milestoneRipple 1.8s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+      pointer-events: none;
+    }
+
+    /* Instant Tactile Active Micro-Physics */
+    button:active, .hud-scrubber-btn:active, .skill-pill:active {
+      transform: scale(0.96);
+    }
+
+    /* Interactive Dynamic Ultra-Soft Cursor Gradient Aura & Perimeter Edge Glow */
+    @keyframes cursorAuraSoftDrift {
+      0% {
+        filter: hue-rotate(0deg);
+      }
+      50% {
+        filter: hue-rotate(25deg);
+      }
+      100% {
+        filter: hue-rotate(0deg);
+      }
+    }
+
     .spotlight-card {
       position: relative;
       overflow: hidden;
-      transition: border-color 0.28s ease, box-shadow 0.28s ease;
-    }
-    .spotlight-card::before {
-      content: '';
-      position: absolute;
-      top: var(--mouse-y, -1000px);
-      left: var(--mouse-x, -1000px);
-      width: 440px;
-      height: 440px;
-      background: radial-gradient(circle, rgba(16, 185, 129, 0.18) 0%, rgba(6, 182, 212, 0.12) 38%, rgba(99, 102, 241, 0.08) 60%, transparent 75%);
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.32s ease;
-      z-index: 1;
-    }
-    .spotlight-card:hover::before {
-      opacity: 1;
-      animation: chromaticAuraShift 4s ease-in-out infinite;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+      will-change: transform;
     }
 
-    /* Magnetic CTA Button physics with Chromatic Sheen */
-    .magnetic-btn {
-      will-change: transform;
-      transition: box-shadow 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+    /* 1. Ultra-Soft Ambient Surface Glow (Feathered 420px Diffusion) */
+    .cursor-glow-aura {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(420px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), 
+        rgba(16, 185, 129, 0.16) 0%, 
+        rgba(6, 182, 212, 0.10) 30%, 
+        rgba(99, 102, 241, 0.05) 60%, 
+        transparent 80%);
+      opacity: 0;
+      transition: opacity 0.38s ease;
+      pointer-events: none;
+      z-index: 1;
     }
-    .magnetic-btn:hover {
-      box-shadow: 0 10px 28px -4px rgba(16, 185, 129, 0.35), 0 0 18px -2px rgba(6, 182, 212, 0.25);
+
+    html:not(.dark) .cursor-glow-aura {
+      background: radial-gradient(420px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), 
+        rgba(16, 185, 129, 0.11) 0%, 
+        rgba(14, 165, 233, 0.07) 32%, 
+        rgba(99, 102, 241, 0.03) 62%, 
+        transparent 80%);
+    }
+
+    .spotlight-card:hover .cursor-glow-aura {
+      opacity: 1;
+      animation: cursorAuraSoftDrift 8s ease-in-out infinite;
+    }
+
+    /* 2. Soft Perimeter Border Glow (Hairline 1px Cursor Tracing) */
+    .cursor-border-aura {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: radial-gradient(320px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), 
+        rgba(16, 185, 129, 0.45) 0%, 
+        rgba(6, 182, 212, 0.32) 35%, 
+        rgba(99, 102, 241, 0.16) 65%, 
+        transparent 82%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.32s ease;
+      pointer-events: none;
+      z-index: 15;
+    }
+
+    html:not(.dark) .cursor-border-aura {
+      background: radial-gradient(320px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), 
+        rgba(16, 185, 129, 0.38) 0%, 
+        rgba(14, 165, 233, 0.28) 35%, 
+        rgba(99, 102, 241, 0.14) 65%, 
+        transparent 82%);
+    }
+
+    .spotlight-card:hover .cursor-border-aura {
+      opacity: 1;
+      animation: cursorAuraSoftDrift 8s ease-in-out infinite;
+    }
+
+    /* Pro-Grade Tactile Interactive CTA Buttons (Zero-Wobble, Smooth Elevation, Subsurface Sheen) */
+    .magnetic-btn, .tactile-btn {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
+                  box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
+                  border-color 0.2s ease, 
+                  background-color 0.2s ease, 
+                  color 0.2s ease !important;
+      will-change: transform, box-shadow;
+      cursor: pointer;
+    }
+
+    /* Pure Smooth Micro-Elevation on Hover - Never Slips or Wobbles */
+    .magnetic-btn:hover, .tactile-btn:hover {
+      transform: translateY(-2px) !important;
+    }
+
+    /* Confident Micro-Depression on Click without snapping or jumping */
+    .magnetic-btn:active, .tactile-btn:active {
+      transform: translateY(0px) scale(0.98) !important;
+      transition-duration: 0.08s !important;
+    }
+
+    /* Icon Micro-Choreography for Specific Buttons */
+    .magnetic-btn:hover .fa-file-arrow-down,
+    .tactile-btn:hover .fa-file-arrow-down {
+      transform: translateY(2px);
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .magnetic-btn:hover .fa-arrow-down,
+    .tactile-btn:hover .fa-arrow-down {
+      transform: translateY(2px);
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .magnetic-btn:hover .fa-github,
+    .magnetic-btn:hover .fa-linkedin,
+    .magnetic-btn:hover .fa-whatsapp,
+    .magnetic-btn:hover .fa-envelope,
+    .tactile-btn:hover .fa-github,
+    .tactile-btn:hover .fa-linkedin,
+    .tactile-btn:hover .fa-whatsapp,
+    .tactile-btn:hover .fa-envelope {
+      transform: scale(1.12);
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* Dynamic Subsurface Light Sheen Sweep on Hover */
+    .btn-sheen-sweep {
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 65%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.26) 50%, transparent 100%);
+      transform: skewX(-20deg);
+      pointer-events: none;
+      transition: left 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 10;
+    }
+    html.dark .btn-sheen-sweep {
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.15) 50%, transparent 100%);
+    }
+    .magnetic-btn:hover .btn-sheen-sweep,
+    .tactile-btn:hover .btn-sheen-sweep {
+      left: 140%;
+    }
+
+    /* Tailored Ambient Glow Profiles */
+    .magnetic-btn:hover, .tactile-btn:hover {
+      box-shadow: 0 10px 24px -4px rgba(16, 185, 129, 0.3), 0 2px 6px -1px rgba(16, 185, 129, 0.15);
+    }
+    html:not(.dark) .magnetic-btn:hover, html:not(.dark) .tactile-btn:hover {
+      box-shadow: 0 8px 22px -4px rgba(16, 185, 129, 0.2), 0 2px 8px -2px rgba(15, 23, 42, 0.08);
     }
 
     /* Skill Pill Chromatic Gradient Hover Interaction */
     .skill-pill {
-      transition: transform 0.22s ease, border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      transition: transform 0.22s ease, border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.2s ease;
     }
     .skill-pill:hover {
       background: linear-gradient(135deg, rgba(16, 185, 129, 0.18) 0%, rgba(6, 182, 212, 0.18) 50%, rgba(99, 102, 241, 0.14) 100%) !important;
@@ -278,26 +537,47 @@
       box-shadow: 0 0 14px -2px rgba(16, 185, 129, 0.38), 0 0 6px rgba(6, 182, 212, 0.22) !important;
       transform: translateY(-2px) scale(1.05);
     }
+    html:not(.dark) .skill-pill {
+      background: #ffffff;
+      border: 1px solid rgba(226, 232, 240, 0.95);
+      color: #334155;
+      box-shadow: 0 1px 2px 0 rgba(15, 23, 42, 0.04);
+    }
+    html:not(.dark) .skill-pill:hover {
+      background: linear-gradient(135deg, rgba(236, 253, 245, 0.95) 0%, rgba(240, 249, 255, 0.95) 100%) !important;
+      color: #065f46 !important;
+      border-color: rgba(16, 185, 129, 0.5) !important;
+      box-shadow: 0 4px 14px -2px rgba(16, 185, 129, 0.18) !important;
+      transform: translateY(-2.5px) scale(1.05);
+    }
 
     /* Subtle Architectural Glows */
     .glow-emerald {
       box-shadow: 0 0 50px -12px rgba(16, 185, 129, 0.2);
     }
 
-    /* Code Terminal Styling */
+    /* Code Terminal Styling - Universal Obsidian Pro Console */
     .terminal-window {
-      background: #0b1120;
-      border: 1px solid #1e293b;
-      border-radius: 0.875rem;
+      background: #080d1a !important;
+      border: 1px solid rgba(30, 41, 59, 0.8) !important;
+      border-radius: 1rem;
       font-family: 'JetBrains Mono', monospace;
+      color: #f1f5f9;
+      box-shadow: 0 20px 48px -12px rgba(15, 23, 42, 0.25), 0 0 0 1px rgba(15, 23, 42, 0.08);
+    }
+    html:not(.dark) .terminal-window {
+      background: #080d1a !important;
+      border: 1px solid rgba(203, 213, 225, 0.9) !important;
+      box-shadow: 0 24px 52px -12px rgba(15, 23, 42, 0.18), 0 4px 14px -2px rgba(15, 23, 42, 0.06);
     }
     .terminal-header {
-      background: #070c18;
-      border-bottom: 1px solid #1e293b;
-      padding: 0.5rem 0.75rem;
+      background: #0d1527 !important;
+      border-bottom: 1px solid rgba(30, 41, 59, 0.9) !important;
+      padding: 0.6rem 0.875rem;
       display: flex;
       align-items: center;
       gap: 0.375rem;
+      color: #94a3b8;
     }
     .terminal-dot {
       width: 8px;
@@ -305,12 +585,11 @@
       border-radius: 9999px;
     }
 
-    /* Ambient Parallax Orbs (GPU Threaded from misbahudin98.netlify.app) */
+    /* Ambient Parallax Orbs (Zero-Blur GPU Accelerated Radial Falloff) */
     .ambient-parallax-layer {
       position: absolute;
       border-radius: 9999px;
       pointer-events: none;
-      filter: blur(85px);
       will-change: transform;
       z-index: 0;
     }
@@ -352,6 +631,11 @@
     }
     html:not(.dark) body {
       background-color: #f8fafc;
+      background-image: 
+        radial-gradient(at 12% 12%, rgba(16, 185, 129, 0.08) 0px, transparent 45%),
+        radial-gradient(at 88% 18%, rgba(14, 165, 233, 0.07) 0px, transparent 45%),
+        radial-gradient(at 16% 78%, rgba(245, 158, 11, 0.05) 0px, transparent 45%),
+        radial-gradient(at 84% 88%, rgba(16, 185, 129, 0.07) 0px, transparent 45%);
       background-attachment: fixed;
     }
 
@@ -364,12 +648,11 @@
       overflow: hidden;
       contain: strict;
     }
+    /* Atmospheric Chroma Beacon (Zero-Blur GPU Accelerated) */
     .ambient-beacon {
       position: absolute;
       border-radius: 9999px;
       pointer-events: none;
-      filter: blur(120px);
-      -webkit-filter: blur(120px);
       transform: translate3d(0, 0, 0);
       will-change: transform, opacity;
       transition: opacity 0.8s ease;
@@ -432,18 +715,18 @@
       transition: border-color 0.28s ease, box-shadow 0.28s ease, transform 0.28s ease;
     }
     html:not(.dark) .tactical-glass {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.94) 0%, rgba(248, 250, 252, 0.88) 100%);
-      backdrop-filter: blur(20px) saturate(190%);
-      -webkit-backdrop-filter: blur(20px) saturate(190%);
-      border: 1px solid rgba(203, 213, 225, 0.95);
-      box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.06), inset 0 1px 2px 0 #ffffff, inset 0 -1px 1px 0 rgba(148, 163, 184, 0.2);
+      background: #ffffff;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(226, 232, 240, 0.95);
+      box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 8px 24px -4px rgba(15, 23, 42, 0.06), inset 0 1px 2px 0 #ffffff;
+      transition: box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
     }
     .tactical-glass:hover {
       animation: chromaticBorderFlow 4s ease-in-out infinite;
     }
     html:not(.dark) .tactical-glass:hover {
-      border-color: rgba(16, 185, 129, 0.6);
-      box-shadow: 0 16px 36px -6px rgba(16, 185, 129, 0.2), 0 0 22px -2px rgba(6, 182, 212, 0.18), inset 0 1px 2px 0 #ffffff;
+      animation: chromaticBorderFlowLight 4s ease-in-out infinite;
     }
 
     /* Sub-Surface Micro Glass for Embedded Cards */
@@ -456,21 +739,21 @@
       transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
     }
     html:not(.dark) .tactical-subglass {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(241, 245, 249, 0.90) 100%);
-      backdrop-filter: blur(16px) saturate(170%);
-      -webkit-backdrop-filter: blur(16px) saturate(170%);
-      border: 1px solid rgba(226, 232, 240, 0.98);
-      box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.05), inset 0 1px 2px 0 #ffffff;
+      background: #f8fafc;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.03);
+      transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
     }
     .tactical-subglass:hover {
       animation: chromaticSubBorderFlow 3.5s ease-in-out infinite;
       transform: translateY(-2px);
     }
     html:not(.dark) .tactical-subglass:hover {
-      border-color: rgba(16, 185, 129, 0.5);
-      background: linear-gradient(135deg, #ffffff 0%, rgba(248, 250, 252, 0.98) 100%);
+      background: #ffffff;
+      animation: chromaticSubBorderFlowLight 3.5s ease-in-out infinite;
       transform: translateY(-2px);
-      box-shadow: 0 6px 18px -2px rgba(16, 185, 129, 0.16), 0 0 14px rgba(6, 182, 212, 0.12), inset 0 1px 2px 0 #ffffff;
     }
 
     /* Section Switching Pulse Chromatic Highlight */
@@ -518,26 +801,29 @@
   <!-- ============================================================== -->
   <div id="bgAtmosphereCanvas" class="no-print pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden="true">
     <!-- Chapter 00: Emerald Phosphor Core Beacon (Top-Left) -->
-    <div id="ambientBeaconPrimary" class="ambient-beacon -top-[8%] left-[10%] w-[680px] h-[680px] bg-emerald-500/16 dark:bg-emerald-500/12"></div>
+    <div id="ambientBeaconPrimary" class="ambient-beacon -top-[8%] left-[10%] w-[680px] h-[680px]" style="background: radial-gradient(circle, rgba(16, 185, 129, 0.16) 0%, rgba(16, 185, 129, 0.05) 45%, transparent 70%);"></div>
     <!-- Chapter 01 & 02: Tactical Engineering Cyan Wash (Center-Right) -->
-    <div id="ambientBeaconSecondary" class="ambient-beacon top-[32%] -right-[8%] w-[620px] h-[620px] bg-cyan-500/14 dark:bg-cyan-500/10"></div>
+    <div id="ambientBeaconSecondary" class="ambient-beacon top-[32%] -right-[8%] w-[620px] h-[620px]" style="background: radial-gradient(circle, rgba(6, 182, 212, 0.14) 0%, rgba(6, 182, 212, 0.04) 45%, transparent 70%);"></div>
     <!-- Chapter 03: Warm Amber Chronicle Glow (Mid-Left) -->
-    <div id="ambientBeaconTertiary" class="ambient-beacon top-[62%] -left-[10%] w-[560px] h-[560px] bg-amber-500/12 dark:bg-amber-500/8"></div>
+    <div id="ambientBeaconTertiary" class="ambient-beacon top-[62%] -left-[10%] w-[560px] h-[560px]" style="background: radial-gradient(circle, rgba(245, 158, 11, 0.12) 0%, rgba(245, 158, 11, 0.03) 45%, transparent 70%);"></div>
     <!-- Chapter 04 & 05: Extraction Emerald Signal Beacon (Bottom-Right) -->
-    <div id="ambientBeaconQuaternary" class="ambient-beacon -bottom-[5%] right-[15%] w-[640px] h-[580px] bg-emerald-500/15 dark:bg-emerald-500/11"></div>
+    <div id="ambientBeaconQuaternary" class="ambient-beacon -bottom-[5%] right-[15%] w-[640px] h-[580px]" style="background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.04) 45%, transparent 70%);"></div>
 
-    <!-- Ambient Multi-Plane Parallax Background Layers (from https://misbahudin98.netlify.app/) -->
+    <!-- Ambient Multi-Plane Parallax Background Layers (Zero-Blur GPU Accelerated Radial Falloff) -->
     <div 
       data-parallax-depth="0.12" 
-      class="ambient-parallax-layer -top-32 -left-32 w-[520px] h-[520px] bg-emerald-500/10 dark:bg-emerald-500/15">
+      class="ambient-parallax-layer -top-32 -left-32 w-[520px] h-[520px]"
+      style="background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, rgba(16, 185, 129, 0.03) 45%, transparent 70%);">
     </div>
     <div 
       data-parallax-depth="-0.16" 
-      class="ambient-parallax-layer top-1/3 -right-36 w-[480px] h-[480px] bg-teal-500/10">
+      class="ambient-parallax-layer top-1/3 -right-36 w-[480px] h-[480px]"
+      style="background: radial-gradient(circle, rgba(20, 184, 166, 0.10) 0%, rgba(20, 184, 166, 0.02) 45%, transparent 70%);">
     </div>
     <div 
       data-parallax-depth="0.08" 
-      class="ambient-parallax-layer bottom-10 left-1/4 w-[600px] h-[600px] bg-emerald-600/5 dark:bg-emerald-500/10">
+      class="ambient-parallax-layer bottom-10 left-1/4 w-[600px] h-[600px]"
+      style="background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, rgba(16, 185, 129, 0.02) 45%, transparent 70%);">
     </div>
 
     <!-- Floating Engineering Telemetry Nodes (Scrubbed with Differential Parallax on Desktop from misbahudin98.netlify.app) -->
@@ -594,22 +880,22 @@
       <!-- Desktop Tactical Mission Scrubber HUD (ScrollSpy Synchronized) -->
       <nav id="desktopNav" class="hidden lg:flex items-center gap-1 text-[11px] font-mono font-bold">
         <a href="#hero" class="hud-scrubber-btn nav-link px-2.5 py-1 rounded-lg text-slate-500 dark:text-slate-400 hover:text-emerald-500 transition-all border border-transparent flex items-center gap-1" data-section="hero">
-          <span class="text-emerald-500">00</span><span>SPAWN</span>
+          <span class="text-emerald-500">00</span><span>BERANDA</span>
         </a>
         <a href="#proyek" class="hud-scrubber-btn nav-link px-2.5 py-1 rounded-lg text-slate-500 dark:text-slate-400 hover:text-emerald-500 transition-all border border-transparent flex items-center gap-1" data-section="proyek">
-          <span class="text-cyan-500">01</span><span>RAIDS</span>
+          <span class="text-cyan-500">01</span><span>PROYEK</span>
         </a>
         <a href="#keahlian" class="hud-scrubber-btn nav-link px-2.5 py-1 rounded-lg text-slate-500 dark:text-slate-400 hover:text-emerald-500 transition-all border border-transparent flex items-center gap-1" data-section="keahlian">
-          <span class="text-emerald-500">02</span><span>TREES</span>
+          <span class="text-emerald-500">02</span><span>KEAHLIAN</span>
         </a>
         <a href="#pengalaman" class="hud-scrubber-btn nav-link px-2.5 py-1 rounded-lg text-slate-500 dark:text-slate-400 hover:text-emerald-500 transition-all border border-transparent flex items-center gap-1" data-section="pengalaman">
-          <span class="text-amber-500">03</span><span>LOGS</span>
+          <span class="text-amber-500">03</span><span>KARIER</span>
         </a>
         <a href="#riset" class="hud-scrubber-btn nav-link px-2.5 py-1 rounded-lg text-slate-500 dark:text-slate-400 hover:text-emerald-500 transition-all border border-transparent flex items-center gap-1" data-section="riset">
-          <span class="text-cyan-500">04</span><span>CODEX</span>
+          <span class="text-cyan-500">04</span><span>RISET</span>
         </a>
         <a href="#kontak" class="hud-scrubber-btn nav-link px-2.5 py-1 rounded-lg text-slate-500 dark:text-slate-400 hover:text-emerald-500 transition-all border border-transparent flex items-center gap-1" data-section="kontak">
-          <span class="text-emerald-500">05</span><span>CO-OP</span>
+          <span class="text-emerald-500">05</span><span>KONTAK</span>
         </a>
       </nav>
 
@@ -629,8 +915,8 @@
         </button>
 
         <!-- Theme Switcher -->
-        <button id="themeToggleBtn" onclick="toggleTheme()" type="button" aria-label="Ubah Tema Terang / Gelap" class="w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-100/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 flex items-center justify-center text-sm transition-all hover:border-emerald-500/50 hover:text-emerald-600 dark:hover:text-emerald-400 shadow-2xs">
-          <i id="themeIcon" class="fa-solid fa-sun text-amber-400 text-xs"></i>
+        <button id="themeToggleBtn" onclick="toggleTheme()" type="button" aria-label="Ubah Tema Terang / Gelap" title="Ubah Tema: Terang / Gelap" class="w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 flex items-center justify-center text-sm transition-all hover:border-emerald-500/50 hover:text-emerald-600 dark:hover:text-emerald-400 shadow-2xs">
+          <i id="themeIcon" class="fa-solid fa-moon text-slate-700 text-xs"></i>
         </button>
 
         <!-- Direct Download CV.PDF Link (Sesuai Permintaan) -->
@@ -660,27 +946,27 @@
     <!-- ========================================== -->
     <section id="hero" class="space-y-8 pt-2 sm:pt-4 relative">
       
-      <!-- Dynamic Interactive Ambient Glow Orb (Desktop Tracking via GSAP from misbahudin98.netlify.app) -->
-      <div id="heroGlowOrb" class="no-print pointer-events-none absolute -top-16 -left-16 w-80 h-80 rounded-full bg-emerald-500/10 dark:bg-emerald-500/15 blur-3xl opacity-70 dark:opacity-40 transition-opacity" aria-hidden="true"></div>
+      <!-- Dynamic Interactive Ambient Glow Orb (Zero-Blur GPU Accelerated Desktop Tracking) -->
+      <div id="heroGlowOrb" class="no-print pointer-events-none absolute -top-16 -left-16 w-80 h-80 rounded-full opacity-70 dark:opacity-40 transition-opacity" style="background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, rgba(6, 182, 212, 0.1) 40%, transparent 70%);" aria-hidden="true"></div>
       
       <!-- Top Status Pill with Live System HUD, Narrative Prologue, & Real-Time Clock -->
       <div class="hero-anim flex flex-wrap items-center gap-2">
-        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 dark:text-emerald-400 text-xs font-mono font-medium">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 dark:text-emerald-400 text-xs font-semibold">
           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span>// ACT 00: THE SYSTEMS ENGINEER AWAKENING</span>
+          <span>✨ Systems &amp; Full Stack Software Engineer</span>
         </span>
-        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 text-xs font-mono">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 text-xs font-medium">
           <i class="fa-solid fa-location-dot text-rose-500 text-[11px]"></i>
           <span>Kab. Malang, Jawa Timur</span>
         </span>
         <!-- Real-Time Local WIB Clock & Telemetry HUD -->
-        <span id="liveClockPill" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100/90 dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800/80 text-slate-500 dark:text-slate-400 text-[11px] font-mono shadow-2xs">
+        <span id="liveClockPill" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100/90 dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800/80 text-slate-600 dark:text-slate-400 text-[11px] font-mono shadow-2xs">
           <i class="fa-regular fa-clock text-emerald-500 text-[11px]"></i>
           <span id="clockDisplay">Memuat Waktu...</span>
         </span>
-        <span class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/5 dark:bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[10px] font-mono">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span>SYSTEM ONLINE &bull; 99.98% UPTIME</span>
+        <span class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400 text-[10px] font-bold">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>TERBUKA UNTUK PELUANG KERJA</span>
         </span>
       </div>
 
@@ -689,10 +975,10 @@
         
         <div class="space-y-4 max-w-2xl">
           <h1 class="hero-anim text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.18]">
-            Membangun sistem informasi terpusat, API terotorisasi, dan pipeline data berintegritas.
+            Menghubungkan Kompleksitas Sistem Menjadi Aplikasi yang <span class="shimmer-accent-text">Andal, Aman, &amp; Cepat</span>.
           </h1>
           <p class="hero-anim text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
-            <strong>Full Stack Developer & Data Systems Engineer</strong> dengan pengalaman kerja <strong>3,5+ tahun</strong> yang berfokus pada rekayasa backend <strong>Laravel (Sanctum/Passport)</strong>, database <strong>MySQL (3NF)</strong>, dan antarmuka modern <strong>Svelte 5 (Runes)</strong>. Memiliki rekam jejak terbukti membangun sistem terpusat melayani <strong>&gt;10.000 data pengguna</strong>, mengeksekusi pipeline <strong>ETL 12.000+ data dengan zero data loss</strong>, serta mengoptimalkan server hemat biaya bebas kendala <em>Too Many Connections (Error 1040)</em> dengan <strong>250+ automated tests PHPUnit</strong>.
+            Pengalaman <strong>3,5+ tahun</strong> merancang arsitektur backend <strong>Laravel</strong>, database <strong>MySQL (3NF)</strong>, dan antarmuka reaktif <strong>Svelte 5</strong>. Terbukti membangun sistem operasional skala institusi: melayani <strong>&gt;10.000 pengguna aktif</strong>, mengeksekusi pipeline <strong>ETL 12.000+ data santri &amp; klien dengan 0% data loss</strong>, serta mengoptimalkan server hemat biaya bebas kendala <em>Too Many Connections</em> lewat <strong>250+ automated tests</strong>.
           </p>
 
           <!-- Quick Action Buttons: Prioritas Direct Download CV.PDF -->
@@ -718,24 +1004,25 @@
 
         <!-- Architectural Engineer Dossier Card (55:45 Golden Ratio Equilibrium) -->
         <div id="heroAvatar" class="relative shrink-0 self-center md:self-start my-2 md:my-0 w-full sm:w-auto md:w-80">
-          <div id="heroAvatarInner" class="p-4 sm:p-5 rounded-3xl tactical-glass tactical-reticle shadow-md space-y-4">
+          <div id="heroAvatarInner" class="spotlight-card p-4 sm:p-5 rounded-3xl tactical-glass tactical-reticle shadow-md space-y-4">
             
             <!-- Top Card Header: Status Bar -->
             <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800/80 pb-3">
-              <span class="text-[10px] font-mono font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">// DOSSIER: MISBAHUDIN</span>
+              <span class="text-[10px] font-mono font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Profil &amp; Spesifikasi Rekayasa</span>
               <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-[10px] font-mono font-bold border border-emerald-500/20">
                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span>VERIFIED</span>
+                <span>TERVERIFIKASI</span>
               </span>
             </div>
 
-            <!-- Avatar + Key Meta Row -->
+            <!-- Avatar + Key Meta Row with Iridescent Orbit Halo -->
             <div class="flex items-center gap-3.5">
-              <div class="relative cursor-pointer group shrink-0" onclick="openLightbox('assets/avatar.jpg', 'Misbahudin, S.Kom. &bull; Full Stack Developer & Data Systems Engineer')">
-                <div class="w-20 h-20 sm:w-24 sm:h-24 aspect-square rounded-2xl overflow-hidden border-2 border-emerald-500/60 p-0.5 bg-white dark:bg-slate-950 shadow-md glow-emerald">
+              <div class="relative cursor-pointer group shrink-0 avatar-halo-wrapper" onclick="openLightbox('assets/avatar.jpg', 'Misbahudin, S.Kom. &bull; Full Stack Developer & Data Systems Engineer')">
+                <div class="avatar-halo-orbit" aria-hidden="true"></div>
+                <div class="relative z-10 w-20 h-20 sm:w-24 sm:h-24 aspect-square rounded-2xl overflow-hidden border-2 border-emerald-500/70 p-0.5 bg-white dark:bg-slate-950 shadow-md">
                   <img src="assets/avatar.jpg" alt="Misbahudin, S.Kom." class="w-full h-full aspect-square object-cover object-top rounded-xl group-hover:scale-105 transition-transform duration-300" loading="eager" fetchpriority="high" />
                 </div>
-                <div class="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center text-[10px] shadow-sm border border-white dark:border-slate-900" title="Verified Systems Engineer">
+                <div class="relative z-20 absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center text-[10px] shadow-sm border border-white dark:border-slate-900" title="Verified Systems Engineer">
                   <i class="fa-solid fa-check"></i>
                 </div>
               </div>
@@ -790,56 +1077,76 @@
       <!-- Player Vitals & Quantitative Metrics Strip (GSAP Telemetry Counter) -->
       <div id="metricsStrip" class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-slate-200/80 dark:border-slate-800/80">
         
-        <div class="p-3.5 sm:p-4 rounded-2xl tactical-glass space-y-1 spotlight-card tactical-reticle overflow-hidden relative">
+        <div class="p-3.5 sm:p-4 rounded-2xl tactical-glass space-y-1 spotlight-card tactical-reticle overflow-hidden relative cursor-pointer" onclick="window.retriggerMetricSingle(0);" title="Klik untuk memutar ulang animasi counter">
           <div class="laser-scan-shimmer"></div>
-          <div class="text-[10px] font-mono font-bold text-emerald-600 dark:text-emerald-400 flex items-center justify-between">
-            <span>[ DATA_INTEGRITY ]</span>
-            <span class="text-[9px] bg-emerald-500/10 px-1 rounded">0-LOSS</span>
+          <div class="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 flex items-center justify-between">
+            <span class="flex items-center gap-1.5">
+              <span>Integritas Data</span>
+              <button type="button" onclick="event.stopPropagation(); window.retriggerMetricSingle(0);" class="text-[10px] text-slate-400 hover:text-emerald-500 transition-colors p-0.5 rounded" title="Putar ulang animasi counter">
+                <i class="fa-solid fa-arrows-rotate text-[9px]"></i>
+              </button>
+            </span>
+            <span class="text-[10px] font-mono bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 px-1.5 py-0.5 rounded font-bold">0-LOSS ETL</span>
           </div>
           <div class="flex items-baseline gap-0.5 overflow-hidden">
-            <span id="counter-data" class="text-xl sm:text-3xl font-extrabold font-mono text-emerald-600 dark:text-emerald-400 inline-block">0</span>
+            <span id="counter-data" class="text-xl sm:text-3xl font-extrabold font-mono tabular-nums text-emerald-600 dark:text-emerald-400 inline-block">0</span>
             <span class="text-base sm:text-xl font-mono text-emerald-600 dark:text-emerald-400 font-bold">+</span>
           </div>
-          <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Record Basis Data Dimigrasikan (Zero Loss)</p>
+          <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Record Basis Data Dimigrasikan Sempurna</p>
         </div>
 
-        <div class="p-3.5 sm:p-4 rounded-2xl tactical-glass space-y-1 spotlight-card tactical-reticle overflow-hidden relative">
+        <div class="p-3.5 sm:p-4 rounded-2xl tactical-glass space-y-1 spotlight-card tactical-reticle overflow-hidden relative cursor-pointer" onclick="window.retriggerMetricSingle(1);" title="Klik untuk memutar ulang animasi counter">
           <div class="laser-scan-shimmer"></div>
-          <div class="text-[10px] font-mono font-bold text-cyan-600 dark:text-cyan-400 flex items-center justify-between">
-            <span>[ ACTIVE_SCALE ]</span>
-            <span class="text-[9px] bg-cyan-500/10 px-1 rounded">STABLE</span>
+          <div class="text-[11px] font-bold text-cyan-600 dark:text-cyan-400 flex items-center justify-between">
+            <span class="flex items-center gap-1.5">
+              <span>Skala Sistem</span>
+              <button type="button" onclick="event.stopPropagation(); window.retriggerMetricSingle(1);" class="text-[10px] text-slate-400 hover:text-cyan-500 transition-colors p-0.5 rounded" title="Putar ulang animasi counter">
+                <i class="fa-solid fa-arrows-rotate text-[9px]"></i>
+              </button>
+            </span>
+            <span class="text-[10px] font-mono bg-cyan-500/15 text-cyan-700 dark:text-cyan-300 px-1.5 py-0.5 rounded font-bold">TERUJI</span>
           </div>
           <div class="flex items-baseline gap-0.5 overflow-hidden">
             <span class="text-sm font-mono text-slate-400 mr-0.5">&gt;</span>
-            <span id="counter-users" class="text-xl sm:text-3xl font-extrabold font-mono text-slate-900 dark:text-white inline-block">0</span>
+            <span id="counter-users" class="text-xl sm:text-3xl font-extrabold font-mono tabular-nums text-slate-900 dark:text-white inline-block">0</span>
           </div>
-          <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Pengguna Sistem PPDB &amp; Santri Terkelola</p>
+          <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Pengguna Sistem PPDB, Santri, &amp; Klien</p>
         </div>
 
-        <div class="p-3.5 sm:p-4 rounded-2xl tactical-glass space-y-1 spotlight-card tactical-reticle overflow-hidden relative">
+        <div class="p-3.5 sm:p-4 rounded-2xl tactical-glass space-y-1 spotlight-card tactical-reticle overflow-hidden relative cursor-pointer" onclick="window.retriggerMetricSingle(2);" title="Klik untuk memutar ulang animasi counter">
           <div class="laser-scan-shimmer"></div>
-          <div class="text-[10px] font-mono font-bold text-cyan-600 dark:text-cyan-400 flex items-center justify-between">
-            <span>[ TEST_MANA ]</span>
-            <span class="text-[9px] bg-cyan-500/10 px-1 rounded">TDD 100%</span>
+          <div class="text-[11px] font-bold text-cyan-600 dark:text-cyan-400 flex items-center justify-between">
+            <span class="flex items-center gap-1.5">
+              <span>Standar Pengujian</span>
+              <button type="button" onclick="event.stopPropagation(); window.retriggerMetricSingle(2);" class="text-[10px] text-slate-400 hover:text-emerald-500 transition-colors p-0.5 rounded" title="Putar ulang animasi counter">
+                <i class="fa-solid fa-arrows-rotate text-[9px]"></i>
+              </button>
+            </span>
+            <span class="text-[10px] font-mono bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 px-1.5 py-0.5 rounded font-bold">100% PASS</span>
           </div>
           <div class="flex items-baseline gap-0.5 overflow-hidden">
-            <span id="counter-tests" class="text-xl sm:text-3xl font-extrabold font-mono text-emerald-600 dark:text-emerald-400 inline-block">0</span>
+            <span id="counter-tests" class="text-xl sm:text-3xl font-extrabold font-mono tabular-nums text-emerald-600 dark:text-emerald-400 inline-block">0</span>
             <span class="text-base sm:text-xl font-mono text-emerald-600 dark:text-emerald-400 font-bold">+</span>
           </div>
-          <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Automated Tests PHPUnit (Unit &amp; Feature)</p>
+          <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Automated Tests PHPUnit (Feature &amp; Unit)</p>
         </div>
 
-        <div class="p-3.5 sm:p-4 rounded-2xl tactical-glass space-y-1 spotlight-card tactical-reticle overflow-hidden relative">
+        <div class="p-3.5 sm:p-4 rounded-2xl tactical-glass space-y-1 spotlight-card tactical-reticle overflow-hidden relative cursor-pointer" onclick="window.retriggerMetricSingle(3);" title="Klik untuk memutar ulang animasi counter">
           <div class="laser-scan-shimmer"></div>
-          <div class="text-[10px] font-mono font-bold text-amber-600 dark:text-amber-400 flex items-center justify-between">
-            <span>[ EXP_LEVEL ]</span>
-            <span class="text-[9px] bg-amber-500/10 px-1 rounded">PRO</span>
+          <div class="text-[11px] font-bold text-amber-600 dark:text-amber-400 flex items-center justify-between">
+            <span class="flex items-center gap-1.5">
+              <span>Pengalaman Nyata</span>
+              <button type="button" onclick="event.stopPropagation(); window.retriggerMetricSingle(3);" class="text-[10px] text-slate-400 hover:text-amber-500 transition-colors p-0.5 rounded" title="Putar ulang animasi counter">
+                <i class="fa-solid fa-arrows-rotate text-[9px]"></i>
+              </button>
+            </span>
+            <span class="text-[10px] font-mono bg-amber-500/15 text-amber-700 dark:text-amber-300 px-1.5 py-0.5 rounded font-bold">3.5+ TAHUN</span>
           </div>
           <div class="flex items-baseline gap-0.5 overflow-hidden">
-            <span id="counter-years" class="text-xl sm:text-3xl font-extrabold font-mono text-slate-900 dark:text-white inline-block">0.0</span>
+            <span id="counter-years" class="text-xl sm:text-3xl font-extrabold font-mono tabular-nums text-slate-900 dark:text-white inline-block">0.0</span>
             <span class="text-base sm:text-xl font-mono text-slate-900 dark:text-white font-bold">+ Th</span>
           </div>
-          <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Pengalaman Rekayasa Perangkat Lunak</p>
+          <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Rekayasa Perangkat Lunak &amp; Data Pipeline</p>
         </div>
 
       </div>
@@ -853,7 +1160,7 @@
       
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200/80 dark:border-slate-800/80 pb-4 section-header relative overflow-hidden">
         <div>
-          <span class="text-xs font-mono font-semibold text-indigo-600 dark:text-cyan-400 tracking-wider uppercase">// ACT 01: PRODUCTION MISSIONS &amp; ARCHITECTURAL BLUEPRINTS</span>
+          <span class="text-xs font-mono font-bold text-emerald-600 dark:text-cyan-400 tracking-wider uppercase">PORTFOLIO REKAYASA &amp; ARSITEKTUR PRODUKSI</span>
           <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-0.5">
             Proyek Unggulan Skala Produksi
           </h2>
@@ -865,10 +1172,27 @@
         <div class="section-accent-line absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-emerald-500/70 via-cyan-400/50 to-transparent origin-left scale-x-0"></div>
       </div>
 
+      <!-- Interactive Quick Project Filter / Jumper Pills -->
+      <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 pt-1" id="projectQuickFilterBar" role="tablist" aria-label="Filter Proyek Unggulan">
+        <span class="text-[11px] font-mono text-slate-400 dark:text-slate-500 mr-1">// Filter Proyek:</span>
+        <button type="button" onclick="filterPortfolioProjects('all')" id="projFilterBtn-all" class="proj-filter-btn active px-3 py-1 rounded-lg text-xs font-mono font-bold transition-all bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30">
+          ✨ Semua Proyek
+        </button>
+        <button type="button" onclick="filterPortfolioProjects('pqtm')" id="projFilterBtn-pqtm" class="proj-filter-btn px-3 py-1 rounded-lg text-xs font-mono font-medium transition-all text-slate-600 dark:text-slate-400 hover:text-emerald-500 bg-slate-100 dark:bg-slate-800/60 border border-transparent">
+          🕌 SIM-PQTM (Pendidikan Islam &amp; Tahfidz)
+        </button>
+        <button type="button" onclick="filterPortfolioProjects('notaris')" id="projFilterBtn-notaris" class="proj-filter-btn px-3 py-1 rounded-lg text-xs font-mono font-medium transition-all text-slate-600 dark:text-slate-400 hover:text-emerald-500 bg-slate-100 dark:bg-slate-800/60 border border-transparent">
+          🏛️ Notaris &amp; PPAT Irwan Baddu
+        </button>
+        <button type="button" onclick="filterPortfolioProjects('twinnie')" id="projFilterBtn-twinnie" class="proj-filter-btn px-3 py-1 rounded-lg text-xs font-mono font-medium transition-all text-slate-600 dark:text-slate-400 hover:text-emerald-500 bg-slate-100 dark:bg-slate-800/60 border border-transparent">
+          🛍️ Twinnie Group E-Commerce
+        </button>
+      </div>
+
       <div class="space-y-10">
 
         <!-- 1. KANTOR NOTARIS & PPAT (irwan-baddu) -->
-        <article class="spotlight-card tactical-glass tactical-reticle p-4 sm:p-8 rounded-3xl hover:border-emerald-500/40 transition-all space-y-6 shadow-sm group print-card">
+        <article id="projCard-notaris" data-proj-key="notaris" class="spotlight-card tactical-glass tactical-reticle p-4 sm:p-8 rounded-3xl hover:border-emerald-500/40 transition-all space-y-6 shadow-sm group print-card">
           <div class="laser-scan-shimmer"></div>
           
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800/60 pb-4">
@@ -1050,24 +1374,24 @@
         </article>
 
         <!-- 2. SISTEM MANAJEMEN PENDIDIKAN YAYASAN (yayasan-pqtm / SIM-PQTM) -->
-        <article class="spotlight-card tactical-glass tactical-reticle p-4 sm:p-8 rounded-3xl hover:border-emerald-500/40 transition-all space-y-6 shadow-sm group print-card">
+        <article id="projCard-pqtm" data-proj-key="pqtm" class="spotlight-card tactical-glass tactical-reticle p-4 sm:p-8 rounded-3xl hover:border-emerald-500/40 transition-all space-y-6 shadow-sm group print-card">
           <div class="laser-scan-shimmer"></div>
           
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800/60 pb-4">
             <div class="space-y-1">
               <div class="flex flex-wrap items-center gap-1.5 sm:gap-2">
-                <span class="px-2.5 py-0.5 rounded-md bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-xs font-mono font-bold border border-emerald-500/20">
-                  Live Production System
+                <span class="px-2.5 py-0.5 rounded-md bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 text-xs font-bold border border-emerald-500/30">
+                  🕌 Sistem Pendidikan Islam Terpadu
                 </span>
-                <span class="text-[11px] sm:text-xs text-slate-400 dark:text-slate-500 font-mono">Yayasan Pondok Quran Terpadu Malang</span>
+                <span class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">Yayasan Pondok Quran Terpadu Malang &bull; Smart Boarding Ready</span>
               </div>
               <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
-                SIM-PQTM: Sistem Informasi Manajemen Santri, Verifikasi Berkas &amp; Dashboard Tahfidz-Tasmi'
+                SIM-PQTM: Digitalisasi Terpadu Santri, Verifikasi Berkas &amp; Monitoring Tahfidz-Tasmi'
               </h3>
             </div>
-            <div class="flex items-center gap-2 self-start sm:self-center font-mono text-xs text-emerald-600 dark:text-emerald-400 bg-emerald-500/5 px-3 py-1.5 rounded-xl border border-emerald-500/20 shrink-0">
-              <i class="fa-solid fa-graduation-cap text-sm"></i>
-              <span class="font-bold">Multi-Unit PKBM &amp; Asrama</span>
+            <div class="flex items-center gap-2 self-start sm:self-center text-xs text-emerald-700 dark:text-emerald-300 bg-emerald-500/10 px-3 py-1.5 rounded-xl border border-emerald-500/30 shrink-0 font-bold">
+              <i class="fa-solid fa-school-flag text-sm text-emerald-600"></i>
+              <span>Multi-Unit PKBM &amp; Asrama</span>
             </div>
           </div>
 
@@ -1222,7 +1546,7 @@
         </article>
 
         <!-- 3. EKOSISTEM LAYANAN KESEHATAN INTEGRATIF (twinnie-group) -->
-        <article class="spotlight-card tactical-glass tactical-reticle p-4 sm:p-8 rounded-3xl hover:border-emerald-500/40 transition-all space-y-6 shadow-sm group print-card">
+        <article id="projCard-twinnie" data-proj-key="twinnie" class="spotlight-card tactical-glass tactical-reticle p-4 sm:p-8 rounded-3xl hover:border-emerald-500/40 transition-all space-y-6 shadow-sm group print-card">
           <div class="laser-scan-shimmer"></div>
           
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800/60 pb-4">
@@ -1520,7 +1844,7 @@
       
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200/80 dark:border-slate-800/80 pb-4 section-header relative overflow-hidden">
         <div>
-          <span class="text-xs font-mono font-semibold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase">// ACT 02: TREES // INTERACTIVE TALENT TREE &amp; COMMAND DECK</span>
+          <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase">KEAHLIAN TEKNIS &amp; COMMAND DECK</span>
           <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-0.5">
             Pohon Keahlian Arsitektur &amp; Command Deck
           </h2>
@@ -1890,98 +2214,131 @@
       </div>
 
       <!-- Playable Developer Console & Automated CLI Diagnostics -->
-      <div class="terminal-window tactical-reticle tactical-glass overflow-hidden shadow-lg border border-slate-200 dark:border-slate-800 relative">
+      <div class="terminal-window tactical-reticle overflow-hidden shadow-xl border border-slate-700/80 dark:border-slate-800 relative">
         <div class="laser-scan-shimmer"></div>
-        <div class="terminal-header flex flex-wrap items-center justify-between gap-2 px-4 py-2.5 bg-slate-100/90 dark:bg-slate-900/90 border-b border-slate-200 dark:border-slate-800 text-xs font-mono text-slate-500">
+        <div class="terminal-header flex flex-wrap items-center justify-between gap-2 px-4 py-2.5 bg-[#0e1626] border-b border-slate-800 text-xs font-mono text-slate-400">
           <div class="flex items-center gap-2">
             <span class="terminal-dot bg-rose-500/80"></span>
             <span class="terminal-dot bg-amber-500/80"></span>
             <span class="terminal-dot bg-emerald-500/80"></span>
-            <span class="ml-2 font-semibold text-slate-700 dark:text-slate-300">misbahudin@hyperion-shell:~# (Playable Command Deck)</span>
+            <span class="ml-2 font-semibold text-slate-300">misbahudin@hyperion-shell:~# (Playable Command Deck)</span>
           </div>
           <div class="flex items-center gap-2">
-            <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">LIVE REPL</span>
+            <span class="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">LIVE REPL</span>
             <span class="text-[10px] text-slate-400 hidden sm:inline">PHP 8.4 JIT</span>
           </div>
         </div>
 
         <!-- Quick Interactive Command Chips -->
-        <div class="flex flex-wrap items-center gap-1.5 px-4 py-2 bg-slate-50/70 dark:bg-slate-950/70 border-b border-slate-200/60 dark:border-slate-800/60 text-[11px] font-mono">
-          <span class="text-slate-400 dark:text-slate-500 mr-1">// Game CLI Menu:</span>
-          <button type="button" onclick="runTerminalCmd('quests')" class="px-2.5 py-0.5 rounded-md bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30 transition-all flex items-center gap-1">
+        <div class="flex flex-wrap items-center gap-1.5 px-4 py-2 bg-[#0a0f1d] border-b border-slate-800 text-[11px] font-mono">
+          <span class="text-slate-500 mr-1">// Game CLI Menu:</span>
+          <button type="button" onclick="runTerminalCmd('quests', this)" class="px-2.5 py-0.5 rounded-md bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 font-bold border border-emerald-500/30 transition-all flex items-center gap-1">
             <i class="fa-solid fa-trophy text-[9px]"></i>
             <span>quests</span>
           </button>
-          <button type="button" onclick="runTerminalCmd('stats')" class="px-2.5 py-0.5 rounded-md bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-700 dark:text-cyan-400 font-bold border border-cyan-500/30 transition-all flex items-center gap-1">
+          <button type="button" onclick="runTerminalCmd('stats', this)" class="px-2.5 py-0.5 rounded-md bg-cyan-500/15 hover:bg-cyan-500/25 text-cyan-300 font-bold border border-cyan-500/30 transition-all flex items-center gap-1">
             <i class="fa-solid fa-shield-halved text-[9px]"></i>
             <span>stats</span>
           </button>
-          <button type="button" onclick="runTerminalCmd('inventory')" class="px-2.5 py-0.5 rounded-md bg-slate-200/80 dark:bg-slate-800/80 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold border border-slate-300 dark:border-slate-700 transition-all flex items-center gap-1">
-            <i class="fa-solid fa-box-archive text-[9px] text-emerald-500"></i>
+          <button type="button" onclick="runTerminalCmd('inventory', this)" class="px-2.5 py-0.5 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold border border-slate-700 transition-all flex items-center gap-1">
+            <i class="fa-solid fa-box-archive text-[9px] text-emerald-400"></i>
             <span>inventory</span>
           </button>
-          <button type="button" onclick="runTerminalCmd('3nf')" class="px-2.5 py-0.5 rounded-md bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30 transition-all flex items-center gap-1">
+          <button type="button" onclick="runTerminalCmd('3nf', this)" class="px-2.5 py-0.5 rounded-md bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 font-bold border border-emerald-500/30 transition-all flex items-center gap-1">
             <i class="fa-solid fa-database text-[9px]"></i>
             <span>3nf</span>
           </button>
-          <button type="button" onclick="runTerminalCmd('etl')" class="px-2.5 py-0.5 rounded-md bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-700 dark:text-cyan-400 font-bold border border-cyan-500/30 transition-all flex items-center gap-1">
+          <button type="button" onclick="runTerminalCmd('etl', this)" class="px-2.5 py-0.5 rounded-md bg-cyan-500/15 hover:bg-cyan-500/25 text-cyan-300 font-bold border border-cyan-500/30 transition-all flex items-center gap-1">
             <i class="fa-solid fa-arrows-split-up-and-left text-[9px]"></i>
             <span>etl</span>
           </button>
-          <button type="button" onclick="runTerminalCmd('test')" class="px-2.5 py-0.5 rounded-md bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/30 transition-all flex items-center gap-1">
+          <button type="button" onclick="runTerminalCmd('test', this)" class="px-2.5 py-0.5 rounded-md bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 font-bold border border-emerald-500/30 transition-all flex items-center gap-1">
             <i class="fa-solid fa-play text-[9px]"></i>
             <span>test --suite</span>
           </button>
-          <button type="button" onclick="runTerminalCmd('wcag')" class="px-2.5 py-0.5 rounded-md bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-700 dark:text-cyan-400 font-bold border border-cyan-500/30 transition-all flex items-center gap-1">
+          <button type="button" onclick="runTerminalCmd('wcag', this)" class="px-2.5 py-0.5 rounded-md bg-cyan-500/15 hover:bg-cyan-500/25 text-cyan-300 font-bold border border-cyan-500/30 transition-all flex items-center gap-1">
             <i class="fa-solid fa-universal-access text-[9px]"></i>
             <span>wcag</span>
           </button>
-          <button type="button" onclick="runTerminalCmd('whoami')" class="px-2.5 py-0.5 rounded-md bg-slate-200/80 dark:bg-slate-800/80 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-all flex items-center gap-1">
-            <i class="fa-solid fa-user text-[9px] text-emerald-500"></i>
+          <button type="button" onclick="runTerminalCmd('whoami', this)" class="px-2.5 py-0.5 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-200 transition-all flex items-center gap-1">
+            <i class="fa-solid fa-user text-[9px] text-emerald-400"></i>
             <span>whoami</span>
           </button>
-          <button type="button" onclick="runTerminalCmd('contact')" class="px-2.5 py-0.5 rounded-md bg-slate-200/80 dark:bg-slate-800/80 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-all flex items-center gap-1">
-            <i class="fa-solid fa-paper-plane text-[9px] text-emerald-500"></i>
+          <button type="button" onclick="runTerminalCmd('contact', this)" class="px-2.5 py-0.5 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-200 transition-all flex items-center gap-1">
+            <i class="fa-solid fa-paper-plane text-[9px] text-emerald-400"></i>
             <span>contact</span>
           </button>
-          <button type="button" onclick="runTerminalCmd('clear')" class="px-2.5 py-0.5 rounded-md bg-slate-200/80 dark:bg-slate-800/80 hover:bg-rose-500/20 hover:text-rose-500 text-slate-600 dark:text-slate-400 transition-all ml-auto">
+          <button type="button" onclick="runTerminalCmd('clear', this)" class="px-2.5 py-0.5 rounded-md bg-slate-800/80 hover:bg-rose-500/20 hover:text-rose-400 text-slate-400 border border-slate-700 transition-all ml-auto">
             <span>clear</span>
           </button>
         </div>
 
         <!-- Terminal Output Screen -->
-        <div id="terminalScreen" class="p-4 sm:p-5 font-mono text-xs leading-relaxed space-y-2 overflow-x-auto max-h-[360px] overflow-y-auto text-slate-800 dark:text-slate-200">
+        <div id="terminalScreen" class="p-4 sm:p-5 font-mono text-xs leading-relaxed space-y-2 overflow-x-auto max-h-[360px] overflow-y-auto text-slate-200">
           <div id="terminalLog" class="space-y-1.5">
-            <div class="terminal-line flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
-              <span class="text-slate-400 dark:text-slate-500">$</span>
+            <div class="terminal-line flex items-center gap-2 text-emerald-400">
+              <span class="text-slate-500">$</span>
               <span class="font-bold">php artisan test --filter=ArchitectureInvariantsTest</span>
             </div>
-            <div class="terminal-line text-slate-500 dark:text-slate-400 pl-4">
+            <div class="terminal-line text-slate-400 pl-4">
               RUNNING IN-MEMORY SQLite WAL &bull; PHP 8.4 JIT ACTIVE
             </div>
-            <div class="terminal-line text-emerald-700 dark:text-emerald-300 pl-4 flex items-center gap-2">
-              <i class="fa-solid fa-check text-emerald-500 text-[11px]"></i>
+            <div class="terminal-line text-emerald-300 pl-4 flex items-center gap-2">
+              <i class="fa-solid fa-check text-emerald-400 text-[11px]"></i>
               <span>PASS Tests\Feature\BOLA_AuthorizationPolicyTest (41ms)</span>
             </div>
-            <div class="terminal-line text-emerald-700 dark:text-emerald-300 pl-4 flex items-center gap-2">
-              <i class="fa-solid fa-check text-emerald-500 text-[11px]"></i>
+            <div class="terminal-line text-emerald-300 pl-4 flex items-center gap-2">
+              <i class="fa-solid fa-check text-emerald-400 text-[11px]"></i>
               <span>PASS Tests\Feature\NotarisEscrowPajakNTPNTest (29ms)</span>
             </div>
-            <div class="terminal-line text-emerald-700 dark:text-emerald-300 pl-4 flex items-center gap-2">
-              <i class="fa-solid fa-check text-emerald-500 text-[11px]"></i>
+            <div class="terminal-line text-emerald-300 pl-4 flex items-center gap-2">
+              <i class="fa-solid fa-check text-emerald-400 text-[11px]"></i>
               <span>PASS Tests\Feature\ETL_ZeroDataLoss_ReconciliationTest (63ms)</span>
             </div>
-            <div class="terminal-line pt-2 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800/80 flex flex-wrap items-center justify-between gap-2">
-              <span>Tests: <strong class="text-emerald-600 dark:text-emerald-400">250 passed</strong> (812 assertions)</span>
+            <div class="terminal-line pt-2 text-[11px] text-slate-400 border-t border-slate-800 flex flex-wrap items-center justify-between gap-2">
+              <span>Tests: <strong class="text-emerald-400">250 passed</strong> (812 assertions)</span>
               <span>Duration: <strong>0.38s</strong> &bull; Memory: <strong>21.4 MB</strong></span>
             </div>
           </div>
 
+          <!-- Interactive Quick Command Chips (Instant Mobile & Desktop Action) -->
+          <div class="pt-2.5 pb-1 flex flex-wrap items-center gap-1.5 border-t border-slate-800 text-[11px] font-mono">
+            <span class="text-slate-500 text-[10px] uppercase font-bold mr-0.5">// Klik Perintah Cepat:</span>
+            <button type="button" onclick="runTerminalCmd('quests')" class="px-2 py-0.5 rounded-md bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/30 transition-all active:scale-95 flex items-center gap-1 font-bold shadow-2xs">
+              <i class="fa-solid fa-trophy text-amber-400 text-[10px]"></i>
+              <span>quests</span>
+            </button>
+            <button type="button" onclick="runTerminalCmd('stats')" class="px-2 py-0.5 rounded-md bg-cyan-500/15 hover:bg-cyan-500/25 text-cyan-300 border border-cyan-500/30 transition-all active:scale-95 flex items-center gap-1 font-bold shadow-2xs">
+              <i class="fa-solid fa-chart-line text-cyan-400 text-[10px]"></i>
+              <span>stats</span>
+            </button>
+            <button type="button" onclick="runTerminalCmd('inventory')" class="px-2 py-0.5 rounded-md bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/30 transition-all active:scale-95 flex items-center gap-1 font-bold shadow-2xs">
+              <i class="fa-solid fa-toolbox text-amber-400 text-[10px]"></i>
+              <span>inventory</span>
+            </button>
+            <button type="button" onclick="runTerminalCmd('test')" class="px-2 py-0.5 rounded-md bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/30 transition-all active:scale-95 flex items-center gap-1 font-bold shadow-2xs">
+              <i class="fa-solid fa-check-double text-emerald-400 text-[10px]"></i>
+              <span>test</span>
+            </button>
+            <button type="button" onclick="runTerminalCmd('stack')" class="px-2 py-0.5 rounded-md bg-purple-500/15 hover:bg-purple-500/25 text-purple-300 border border-purple-500/30 transition-all active:scale-95 flex items-center gap-1 font-bold shadow-2xs">
+              <i class="fa-solid fa-layer-group text-purple-400 text-[10px]"></i>
+              <span>stack</span>
+            </button>
+            <button type="button" onclick="runTerminalCmd('contact')" class="px-2 py-0.5 rounded-md bg-rose-500/15 hover:bg-rose-500/25 text-rose-300 border border-rose-500/30 transition-all active:scale-95 flex items-center gap-1 font-bold shadow-2xs">
+              <i class="fa-solid fa-envelope text-rose-400 text-[10px]"></i>
+              <span>contact</span>
+            </button>
+            <button type="button" onclick="runTerminalCmd('clear')" class="px-2 py-0.5 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-400 border border-slate-700 transition-all active:scale-95 flex items-center gap-1 font-medium shadow-2xs">
+              <i class="fa-solid fa-eraser text-[10px]"></i>
+              <span>clear</span>
+            </button>
+          </div>
+
           <!-- Interactive CLI Input Form -->
-          <form id="terminalForm" onsubmit="handleTerminalSubmit(event)" class="flex items-center gap-2 pt-2 border-t border-slate-200 dark:border-slate-800 text-xs font-mono">
-            <span class="text-emerald-600 dark:text-emerald-400 font-bold shrink-0">guest@hyperion:~$</span>
-            <input id="terminalInput" type="text" autocomplete="off" spellcheck="false" placeholder="ketik perintah ('quests', 'stats', 'inventory', 'test', 'help')..." class="w-full bg-transparent text-slate-900 dark:text-emerald-300 focus:outline-none placeholder:text-slate-400 dark:placeholder:text-slate-600 font-mono text-xs" />
-            <button type="submit" class="px-2.5 py-1 rounded bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[11px] font-bold font-mono transition-colors">Run</button>
+          <form id="terminalForm" onsubmit="handleTerminalSubmit(event)" class="flex items-center gap-2 pt-2 border-t border-slate-800 text-xs font-mono">
+            <span class="text-emerald-400 font-bold shrink-0">guest@hyperion:~$</span>
+            <input id="terminalInput" type="text" autocomplete="off" spellcheck="false" placeholder="ketik perintah ('quests', 'stats', 'inventory', 'test', 'help')..." class="w-full bg-transparent text-emerald-300 focus:outline-none placeholder:text-slate-500 font-mono text-xs" />
+            <button type="submit" class="px-2.5 py-1 rounded bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 text-[11px] font-bold font-mono transition-colors">Run</button>
           </form>
         </div>
       </div>
@@ -1995,7 +2352,7 @@
       
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200/80 dark:border-slate-800/80 pb-4 section-header relative overflow-hidden">
         <div>
-          <span class="text-xs font-mono font-semibold text-amber-600 dark:text-amber-400 tracking-wider uppercase">// ACT 03: LOGS // CAREER CHRONICLES &amp; INSTITUTIONAL LEDGER</span>
+          <span class="text-xs font-mono font-bold text-amber-600 dark:text-amber-400 tracking-wider uppercase">REKAM JEJAK KARIER &amp; KONTRIBUSI NYATA</span>
           <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-0.5">
             Logbook Rekam Jejak &amp; Kepemimpinan Rekayasa
           </h2>
@@ -2009,9 +2366,10 @@
       <div id="experienceTimelineContainer" class="relative pl-0 sm:pl-7 space-y-6">
 
         <!-- Continuous Architectural Timeline Spine with Traveling Beacon Head (Scrubbed by GSAP on Desktop) -->
-        <div class="hidden sm:block absolute left-2 top-4 bottom-8 w-[2px] bg-slate-200/80 dark:border-slate-800/80 rounded-full" aria-hidden="true">
-          <div id="timelineProgressSpine" class="w-full h-full bg-gradient-to-b from-amber-500 via-emerald-400 to-amber-600 origin-top scale-y-0 rounded-full relative overflow-hidden">
+        <div class="hidden sm:block absolute left-2 top-4 bottom-8 w-[2px] bg-slate-200/80 dark:bg-slate-800/80 rounded-full" aria-hidden="true">
+          <div id="timelineProgressSpine" class="w-full h-full bg-gradient-to-b from-amber-500 via-emerald-400 to-amber-600 origin-top scale-y-0 rounded-full relative">
             <div class="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-amber-200 dark:from-amber-300 to-transparent"></div>
+            <div id="timelineSparkHead" class="timeline-spark-head"></div>
           </div>
         </div>
 
@@ -2338,7 +2696,7 @@
       
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200/80 dark:border-slate-800/80 pb-4 section-header relative overflow-hidden">
         <div>
-          <span class="text-xs font-mono font-semibold text-cyan-600 dark:text-cyan-400 tracking-wider uppercase">// ACT 04: CODEX // THEORETICAL RIGOR &amp; PEER-REVIEWED RESEARCH</span>
+          <span class="text-xs font-mono font-bold text-cyan-600 dark:text-cyan-400 tracking-wider uppercase">PUBLIKASI ILMIAH &amp; RISET AKADEMIK</span>
           <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-0.5">
             Publikasi Ilmiah Terindeks
           </h2>
@@ -2410,7 +2768,7 @@
         
         <div class="max-w-xl mx-auto space-y-3">
           <div class="flex flex-col items-center gap-1">
-            <span class="text-[11px] font-mono font-semibold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase">// ACT 05: CO-OP // INITIATE MULTIPLAYER &amp; DIRECT TRANSMISSION</span>
+            <span class="text-[11px] font-mono font-bold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase">HUBUNGI SAYA &amp; MARI BERKOLABORASI</span>
             <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-xs font-mono font-bold">
               <i class="fa-solid fa-handshake"></i>
               <span>Mari Berkolaborasi</span>
@@ -2512,25 +2870,25 @@
   <!-- MOBILE BOTTOM THUMB DOCK (ERGONOMIC UX)    -->
   <!-- ========================================== -->
   <div id="mobileThumbDock" class="no-print md:hidden fixed bottom-3 left-3 right-3 z-40 tactical-glass rounded-2xl p-1.5 flex items-center justify-around text-slate-600 dark:text-slate-400 text-xs shadow-xl" style="bottom: max(0.75rem, env(safe-area-inset-bottom, 0.75rem));">
-    <a href="#proyek" class="mobile-nav-link flex flex-col items-center gap-0.5 p-1 hover:text-emerald-400" data-section="proyek">
+    <a href="#proyek" class="mobile-nav-link flex flex-col items-center gap-0.5 p-1 hover:text-emerald-400 font-medium" data-section="proyek">
       <i class="fa-solid fa-diagram-project text-sm"></i>
-      <span class="text-[10px]">01 Raids</span>
+      <span class="text-[10px]">Proyek</span>
     </a>
-    <a href="#keahlian" class="mobile-nav-link flex flex-col items-center gap-0.5 p-1 hover:text-emerald-400" data-section="keahlian">
+    <a href="#keahlian" class="mobile-nav-link flex flex-col items-center gap-0.5 p-1 hover:text-emerald-400 font-medium" data-section="keahlian">
       <i class="fa-solid fa-network-wired text-sm"></i>
-      <span class="text-[10px]">02 Trees</span>
+      <span class="text-[10px]">Keahlian</span>
     </a>
-    <a href="#pengalaman" class="mobile-nav-link flex flex-col items-center gap-0.5 p-1 hover:text-emerald-400" data-section="pengalaman">
+    <a href="#pengalaman" class="mobile-nav-link flex flex-col items-center gap-0.5 p-1 hover:text-emerald-400 font-medium" data-section="pengalaman">
       <i class="fa-solid fa-briefcase text-sm"></i>
-      <span class="text-[10px]">03 Logs</span>
+      <span class="text-[10px]">Karier</span>
     </a>
-    <a href="#riset" class="mobile-nav-link flex flex-col items-center gap-0.5 p-1 hover:text-emerald-400" data-section="riset">
+    <a href="#riset" class="mobile-nav-link flex flex-col items-center gap-0.5 p-1 hover:text-emerald-400 font-medium" data-section="riset">
       <i class="fa-solid fa-book-bookmark text-sm"></i>
-      <span class="text-[10px]">04 Codex</span>
+      <span class="text-[10px]">Riset</span>
     </a>
-    <a href="#kontak" class="mobile-nav-link flex flex-col items-center gap-0.5 p-1 hover:text-emerald-400" data-section="kontak">
+    <a href="#kontak" class="mobile-nav-link flex flex-col items-center gap-0.5 p-1 hover:text-emerald-400 font-medium" data-section="kontak">
       <i class="fa-solid fa-paper-plane text-sm"></i>
-      <span class="text-[10px]">05 Co-Op</span>
+      <span class="text-[10px]">Kontak</span>
     </a>
   </div>
 
@@ -2697,12 +3055,12 @@
         if (pane.id === `${prefix}${tabId}`) {
           pane.classList.remove('hidden');
           if (typeof gsap !== 'undefined') {
-            gsap.fromTo(pane, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.25, ease: 'power2.out' });
-            const subItems = pane.querySelectorAll('.tactical-subglass');
+            gsap.fromTo(pane, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out' });
+            const subItems = pane.querySelectorAll('.tactical-subglass, .p-3, .p-4, .space-y-2');
             if (subItems.length > 0) {
               gsap.fromTo(subItems, 
-                { opacity: 0, y: 6 }, 
-                { opacity: 1, y: 0, duration: 0.25, stagger: 0.03, ease: 'power2.out', delay: 0.04 }
+                { opacity: 0, y: 10 }, 
+                { opacity: 1, y: 0, duration: 0.3, stagger: 0.04, ease: 'power2.out', delay: 0.04 }
               );
             }
           }
@@ -2712,8 +3070,56 @@
       });
     }
 
-    // Playable Developer Console Logic
-    function runTerminalCmd(rawCmd) {
+    // Interactive Quick Project Filter Jumper
+    function filterPortfolioProjects(key) {
+      playHapticClick(860, 0.015);
+      const btns = document.querySelectorAll('.proj-filter-btn');
+      btns.forEach(btn => {
+        const isCurrent = btn.id === `projFilterBtn-${key}`;
+        if (isCurrent) {
+          btn.className = 'proj-filter-btn active px-3 py-1 rounded-lg text-xs font-mono font-bold transition-all bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30';
+          if (typeof gsap !== 'undefined') {
+            gsap.fromTo(btn, { scale: 0.88 }, { scale: 1, duration: 0.3, ease: 'back.out(2.5)' });
+          }
+        } else {
+          btn.className = 'proj-filter-btn px-3 py-1 rounded-lg text-xs font-mono font-medium transition-all text-slate-600 dark:text-slate-400 hover:text-emerald-500 bg-slate-100 dark:bg-slate-800/60 border border-transparent';
+        }
+      });
+
+      const articles = document.querySelectorAll('#proyek article[data-proj-key]');
+      if (key === 'all') {
+        articles.forEach((art, idx) => {
+          art.style.display = 'block';
+          if (typeof gsap !== 'undefined') {
+            gsap.fromTo(art, 
+              { opacity: 0, y: 24 }, 
+              { opacity: 1, y: 0, duration: 0.45, delay: idx * 0.06, ease: 'power2.out', clearProps: 'transform,opacity' }
+            );
+          }
+        });
+      } else {
+        articles.forEach(art => {
+          if (art.getAttribute('data-proj-key') === key) {
+            art.style.display = 'block';
+            art.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            if (typeof gsap !== 'undefined') {
+              gsap.fromTo(art, 
+                { opacity: 0, scale: 0.96, y: 18 }, 
+                { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: 'back.out(1.5)', clearProps: 'transform,opacity' }
+              );
+            }
+          } else {
+            art.style.display = 'none';
+          }
+        });
+      }
+    }
+
+    // Playable Developer Console Logic with Mechanical Spring Feedback
+    function runTerminalCmd(rawCmd, btnEl = null) {
+      if (btnEl && typeof gsap !== 'undefined') {
+        gsap.fromTo(btnEl, { scale: 0.88 }, { scale: 1, duration: 0.35, ease: 'back.out(2.5)' });
+      }
       playHapticClick(820, 0.015);
       const cmd = rawCmd.trim().toLowerCase();
       const log = document.getElementById('terminalLog');
@@ -2731,8 +3137,8 @@
 
       // Append Prompt Echo
       const echoEl = document.createElement('div');
-      echoEl.className = 'terminal-line flex items-center gap-2 text-emerald-600 dark:text-emerald-400 pt-1 font-bold';
-      echoEl.innerHTML = `<span class="text-slate-400 dark:text-slate-500">$</span><span>${escapeHtml(rawCmd)}</span>`;
+      echoEl.className = 'terminal-line flex items-center gap-2 text-emerald-400 pt-1 font-bold';
+      echoEl.innerHTML = `<span class="text-slate-500">$</span><span>${escapeHtml(rawCmd)}</span>`;
       log.appendChild(echoEl);
 
       // Process Output
@@ -3070,6 +3476,10 @@
       }
 
       log.appendChild(outEl);
+      if (typeof gsap !== 'undefined') {
+        const animTargets = outEl.children.length > 0 ? [echoEl, ...outEl.children] : [echoEl, outEl];
+        gsap.fromTo(animTargets, { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.25, stagger: 0.04, ease: 'power2.out' });
+      }
       if (screen) screen.scrollTop = screen.scrollHeight;
     }
 
@@ -3137,14 +3547,18 @@
       if (!log) return;
 
       const echoEl = document.createElement('div');
-      echoEl.className = 'terminal-line flex items-center gap-2 text-emerald-600 dark:text-emerald-400 pt-1 font-bold';
-      echoEl.innerHTML = `<span class="text-slate-400 dark:text-slate-500">$</span><span>${demo.cmd}</span>`;
+      echoEl.className = 'terminal-line flex items-center gap-2 text-emerald-400 pt-1 font-bold';
+      echoEl.innerHTML = `<span class="text-slate-500">$</span><span>${demo.cmd}</span>`;
       log.appendChild(echoEl);
 
       const outEl = document.createElement('div');
-      outEl.className = 'pl-4 text-slate-600 dark:text-slate-300 text-xs';
+      outEl.className = 'pl-4 text-emerald-300 font-mono text-xs';
       outEl.textContent = demo.out;
       log.appendChild(outEl);
+
+      if (typeof gsap !== 'undefined') {
+        gsap.fromTo([echoEl, outEl], { opacity: 0, x: -8 }, { opacity: 1, x: 0, duration: 0.22, stagger: 0.04, ease: 'power1.out' });
+      }
 
       if (screen) screen.scrollTop = screen.scrollHeight;
     }
@@ -3239,42 +3653,89 @@
       }
     });
 
-    // Spotlight Hover Card Logic with Smooth GSAP 3D Tilt Micro-Parallax
+    // Spotlight Hover Card Logic with Reactive Cursor Gradient Aura & Hardware VSync-Locked GSAP 3D Tilt
     function initSpotlightCards() {
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       document.querySelectorAll('.spotlight-card, .terminal-window').forEach(card => {
-        card.addEventListener('mousemove', e => {
-          const rect = card.getBoundingClientRect();
-          const mouseX = e.clientX - rect.left;
-          const mouseY = e.clientY - rect.top;
-          card.style.setProperty('--mouse-x', `${mouseX}px`);
-          card.style.setProperty('--mouse-y', `${mouseY}px`);
+        // Ensure dedicated chromatic cursor aura elements exist
+        if (!card.querySelector('.cursor-glow-aura')) {
+          const aura = document.createElement('div');
+          aura.className = 'cursor-glow-aura';
+          aura.setAttribute('aria-hidden', 'true');
+          card.insertBefore(aura, card.firstChild);
+        }
+        if (!card.querySelector('.cursor-border-aura')) {
+          const borderAura = document.createElement('div');
+          borderAura.className = 'cursor-border-aura';
+          borderAura.setAttribute('aria-hidden', 'true');
+          card.insertBefore(borderAura, card.firstChild);
+        }
 
-          // Subtle 3D Tilt Micro-Parallax on Desktop only via GSAP
-          if (!prefersReduced && window.innerWidth >= 768) {
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            const tiltX = (centerY - mouseY) / centerY * 2.8;
-            const tiltY = (mouseX - centerX) / centerX * 2.8;
-            gsap.to(card, {
-              rotationX: tiltX,
-              rotationY: tiltY,
-              y: -2,
-              duration: 0.25,
-              ease: 'power1.out',
-              overwrite: 'auto',
-              transformPerspective: 1000
-            });
+        let rafId = null;
+
+        const updateCoords = (clientX, clientY) => {
+          const rect = card.getBoundingClientRect();
+          const mouseX = clientX - rect.left;
+          const mouseY = clientY - rect.top;
+
+          if (rafId) cancelAnimationFrame(rafId);
+          rafId = requestAnimationFrame(() => {
+            card.style.setProperty('--mouse-x', `${mouseX}px`);
+            card.style.setProperty('--mouse-y', `${mouseY}px`);
+
+            // Subtle 3D Tilt Micro-Parallax on Desktop only via GSAP
+            if (!prefersReduced && window.innerWidth >= 768) {
+              const centerX = rect.width / 2;
+              const centerY = rect.height / 2;
+              const tiltX = (centerY - mouseY) / centerY * 2.8;
+              const tiltY = (mouseX - centerX) / centerX * 2.8;
+              gsap.to(card, {
+                rotationX: tiltX,
+                rotationY: tiltY,
+                y: -2,
+                duration: 0.18,
+                ease: 'power1.out',
+                overwrite: 'auto',
+                transformPerspective: 1000
+              });
+            }
+          });
+        };
+
+        card.addEventListener('mousemove', e => {
+          updateCoords(e.clientX, e.clientY);
+        });
+
+        // Dynamic Laser Scanline Shimmer Sweep on Hover Enter
+        card.addEventListener('mouseenter', e => {
+          updateCoords(e.clientX, e.clientY);
+          const shimmer = card.querySelector('.laser-scan-shimmer');
+          if (shimmer && !prefersReduced) {
+            gsap.fromTo(shimmer, 
+              { xPercent: -100, opacity: 1 }, 
+              {
+                xPercent: 100,
+                opacity: 1,
+                duration: 0.65,
+                ease: 'power2.out',
+                onComplete: () => {
+                  gsap.to(shimmer, { opacity: 0, duration: 0.15 });
+                }
+              }
+            );
           }
         });
 
         card.addEventListener('mouseleave', () => {
+          if (rafId) cancelAnimationFrame(rafId);
+          card.style.setProperty('--mouse-x', `-500px`);
+          card.style.setProperty('--mouse-y', `-500px`);
           if (!prefersReduced && window.innerWidth >= 768) {
             gsap.to(card, {
               rotationX: 0,
               rotationY: 0,
               y: 0,
-              duration: 0.4,
+              duration: 0.35,
               ease: 'power2.out',
               overwrite: 'auto'
             });
@@ -3283,18 +3744,25 @@
       });
     }
 
-    // Magnetic CTA Button Physics (Desktop Only)
+    // Pro-Grade Tactile Button Engine (Zero-Wobble, Stable Coordinates, Subsurface Sheen & Haptic Audio)
     function initMagneticButtons() {
-      if (window.innerWidth < 768) return;
-      document.querySelectorAll('.magnetic-btn').forEach(btn => {
-        btn.addEventListener('mousemove', e => {
-          const rect = btn.getBoundingClientRect();
-          const x = (e.clientX - rect.left - rect.width / 2) * 0.25;
-          const y = (e.clientY - rect.top - rect.height / 2) * 0.25;
-          gsap.to(btn, { x, y, duration: 0.25, ease: 'power2.out' });
+      document.querySelectorAll('.magnetic-btn, .tactile-btn').forEach(btn => {
+        // Ensure dedicated subsurface sheen sweep element exists inside button
+        if (!btn.querySelector('.btn-sheen-sweep')) {
+          const sheen = document.createElement('span');
+          sheen.className = 'btn-sheen-sweep';
+          sheen.setAttribute('aria-hidden', 'true');
+          btn.appendChild(sheen);
+        }
+
+        // Tactile micro-haptic audio feedback on hover
+        btn.addEventListener('mouseenter', () => {
+          playHapticClick(1200, 0.008);
         });
-        btn.addEventListener('mouseleave', () => {
-          gsap.to(btn, { x: 0, y: 0, duration: 0.45, ease: 'elastic.out(1, 0.4)' });
+
+        // Crisp haptic feedback on click
+        btn.addEventListener('click', () => {
+          playHapticClick(850, 0.02);
         });
       });
     }
@@ -3434,24 +3902,28 @@
       heroTl.from('#mainHeader', {
         y: -16,
         opacity: 0,
-        duration: 0.4
+        duration: 0.5
       })
       .from('.hero-anim', {
+        y: 26,
+        opacity: 0,
+        duration: 0.65,
+        stagger: 0.08,
+        ease: 'power2.out',
+        clearProps: 'transform,opacity'
+      }, '-=0.25')
+      .from('#heroAvatar', {
+        scale: 0.86,
         y: 18,
         opacity: 0,
-        duration: 0.5,
-        stagger: 0.07
-      }, '-=0.2')
-      .from('#heroAvatar', {
-        scale: 0.88,
-        opacity: 0,
-        duration: 0.55,
-        ease: 'back.out(1.5)'
-      }, '-=0.35')
+        duration: 0.75,
+        ease: 'back.out(1.5)',
+        clearProps: 'transform,opacity'
+      }, '-=0.4')
       .from('#heroGlowOrb', {
         scale: 0.6,
         opacity: 0,
-        duration: 0.8,
+        duration: 0.9,
         ease: 'power2.out'
       }, '-=0.5');
 
@@ -3464,79 +3936,169 @@
         ease: 'sine.inOut'
       });
 
-      // C. Dynamic Numerical Counters via ScrollTrigger with Micro-Celebration Pop (from https://misbahudin98.netlify.app/)
-      const metricsTrigger = {
-        trigger: '#metricsStrip',
-        start: 'top 85%',
-        once: true
+      // C. Dynamic Numerical Counters with Visible Stepped S-Curve & Multi-Trigger Reactivation
+      const metricCounterConfigs = [
+        { id: 'counter-data', target: 12117, decimals: 0, isLocale: true, color: '#10b981', duration: 2.6 },
+        { id: 'counter-users', target: 10000, decimals: 0, isLocale: true, color: '#0ea5e9', duration: 2.4 },
+        { id: 'counter-tests', target: 250, decimals: 0, isLocale: false, color: '#10b981', duration: 2.0 },
+        { id: 'counter-years', target: 3.5, decimals: 1, isLocale: false, color: '#f59e0b', duration: 1.9 }
+      ];
+
+      const activeCounterTweens = {};
+
+      function runMetricCounter(cfg, customDuration = null) {
+        const el = document.getElementById(cfg.id);
+        if (!el) return;
+        const card = el.closest('.tactical-glass') || el.closest('.spotlight-card');
+
+        // Kill previous running tweens on this counter
+        if (activeCounterTweens[cfg.id]) {
+          activeCounterTweens[cfg.id].kill();
+        }
+        gsap.killTweensOf(el);
+
+        // Explicit initial state: visibly reset to 0 so the eye registers the fresh liftoff
+        const animObj = { val: 0 };
+        el.textContent = cfg.decimals > 0 ? '0.00' : '0';
+
+        // Subtle pop to visually cue the start of count-up
+        gsap.fromTo(el, 
+          { opacity: 0.6, scale: 0.94 }, 
+          { opacity: 1, scale: 1, duration: 0.2, ease: 'power1.out' }
+        );
+
+        const dur = customDuration || cfg.duration;
+
+        // power2.inOut: Slow takeoff (user clearly sees 0 -> small digits),
+        // fast momentum roll in the middle, and precision deceleration into the final value!
+        activeCounterTweens[cfg.id] = gsap.to(animObj, {
+          val: cfg.target,
+          duration: dur,
+          ease: 'power2.inOut',
+          overwrite: 'auto',
+          onUpdate: () => {
+            if (cfg.decimals > 0) {
+              // During rolling, display 2 decimal places so the user sees continuous fluid rolling
+              // instead of only a few jerky 0.1 steps!
+              if (animObj.val < cfg.target * 0.96) {
+                el.textContent = animObj.val.toFixed(2);
+              } else {
+                el.textContent = animObj.val.toFixed(cfg.decimals);
+              }
+            } else if (cfg.isLocale) {
+              el.textContent = Math.floor(animObj.val).toLocaleString('id-ID');
+            } else {
+              el.textContent = Math.floor(animObj.val).toString();
+            }
+          },
+          onComplete: () => {
+            // Settle final exact value cleanly
+            if (cfg.decimals > 0) {
+              el.textContent = cfg.target.toFixed(cfg.decimals);
+            } else if (cfg.isLocale) {
+              el.textContent = cfg.target.toLocaleString('id-ID');
+            } else {
+              el.textContent = cfg.target.toString();
+            }
+
+            // Visible radiant drop-shadow celebration pop
+            gsap.fromTo(el, 
+              { scale: 1.25, filter: `drop-shadow(0 0 14px ${cfg.color})` }, 
+              { scale: 1, filter: 'drop-shadow(0 0 0px transparent)', duration: 0.45, ease: 'back.out(2)' }
+            );
+
+            if (card) {
+              gsap.fromTo(card, { borderColor: cfg.color }, { borderColor: '', duration: 0.8, ease: 'power2.out' });
+              const shimmer = card.querySelector('.laser-scan-shimmer');
+              if (shimmer) {
+                gsap.fromTo(shimmer, 
+                  { xPercent: -100, opacity: 1 }, 
+                  { xPercent: 100, opacity: 1, duration: 0.7, ease: 'power2.out', onComplete: () => gsap.to(shimmer, { opacity: 0, duration: 0.15 }) }
+                );
+              }
+            }
+          }
+        });
+      }
+
+      function runAllMetricCounters(customDuration = null) {
+        metricCounterConfigs.forEach((cfg, idx) => {
+          setTimeout(() => runMetricCounter(cfg, customDuration), idx * 120);
+        });
+      }
+
+      // Expose globally for header buttons and console triggers
+      window.retriggerMetricCounters = runAllMetricCounters;
+      window.retriggerMetricSingle = function(idx) {
+        if (metricCounterConfigs[idx]) {
+          playHapticClick(900, 0.015);
+          runMetricCounter(metricCounterConfigs[idx], 2.2);
+        }
       };
 
-      // 12.117+ Data Counter
-      const dataObj = { val: 0 };
-      gsap.to(dataObj, {
-        val: 12117,
-        duration: 1.6,
-        ease: 'power2.out',
-        scrollTrigger: metricsTrigger,
-        onUpdate: () => {
-          const el = document.getElementById('counter-data');
-          if (el) el.textContent = Math.floor(dataObj.val).toLocaleString('id-ID');
+      // C1. Staggered Entrance for Metric Cards & Initial Roll Trigger
+      gsap.from('#metricsStrip > div', {
+        scrollTrigger: {
+          trigger: '#metricsStrip',
+          start: 'top 85%',
+          once: true
+        },
+        y: 26,
+        opacity: 0,
+        scale: 0.92,
+        duration: 0.6,
+        stagger: 0.09,
+        ease: 'back.out(1.4)',
+        clearProps: 'transform,opacity',
+        onStart: () => {
+          runAllMetricCounters();
         },
         onComplete: () => {
-          const el = document.getElementById('counter-data');
-          if (el) gsap.fromTo(el, { scale: 1.08 }, { scale: 1, duration: 0.35, ease: 'back.out(2)' });
+          // C2. Organic Floating Micro-Oscillation for Metrics Cards
+          document.querySelectorAll('#metricsStrip > div').forEach((card, idx) => {
+            gsap.to(card, {
+              y: -4,
+              duration: 2.2 + idx * 0.35,
+              repeat: -1,
+              yoyo: true,
+              ease: 'sine.inOut',
+              delay: idx * 0.2
+            });
+          });
         }
       });
 
-      // 10.000+ Users Counter
-      const usersObj = { val: 0 };
-      gsap.to(usersObj, {
-        val: 10000,
-        duration: 1.6,
-        ease: 'power2.out',
-        scrollTrigger: metricsTrigger,
-        onUpdate: () => {
-          const el = document.getElementById('counter-users');
-          if (el) el.textContent = Math.floor(usersObj.val).toLocaleString('id-ID');
-        },
-        onComplete: () => {
-          const el = document.getElementById('counter-users');
-          if (el) gsap.fromTo(el, { scale: 1.08 }, { scale: 1, duration: 0.35, ease: 'back.out(2)' });
+      // C2. Initial Page Load Fallback: If metrics strip is already in viewport, immediately roll numbers
+      setTimeout(() => {
+        const strip = document.getElementById('metricsStrip');
+        if (strip) {
+          const rect = strip.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            runAllMetricCounters();
+          }
         }
+      }, 500);
+
+      // C3. Bidirectional ScrollTrigger Reactivation (fires every time user scrolls in or back)
+      ScrollTrigger.create({
+        trigger: '#metricsStrip',
+        start: 'top 85%',
+        onEnter: () => runAllMetricCounters(),
+        onEnterBack: () => runAllMetricCounters(2.0)
       });
 
-      // 250+ Tests Counter
-      const testsObj = { val: 0 };
-      gsap.to(testsObj, {
-        val: 250,
-        duration: 1.4,
-        ease: 'power2.out',
-        scrollTrigger: metricsTrigger,
-        onUpdate: () => {
-          const el = document.getElementById('counter-tests');
-          if (el) el.textContent = Math.floor(testsObj.val).toString();
-        },
-        onComplete: () => {
-          const el = document.getElementById('counter-tests');
-          if (el) gsap.fromTo(el, { scale: 1.08 }, { scale: 1, duration: 0.35, ease: 'back.out(2)' });
-        }
-      });
+      // C4. Interactive Mouse Hover & Click Reactivation on each Metric Card
+      const metricCards = document.querySelectorAll('#metricsStrip > div');
+      metricCards.forEach((card, idx) => {
+        card.addEventListener('mouseenter', () => {
+          playHapticClick(900, 0.012);
+          runMetricCounter(metricCounterConfigs[idx], 2.0);
+        });
 
-      // 3.5+ Years Counter
-      const yearsObj = { val: 0 };
-      gsap.to(yearsObj, {
-        val: 3.5,
-        duration: 1.4,
-        ease: 'power2.out',
-        scrollTrigger: metricsTrigger,
-        onUpdate: () => {
-          const el = document.getElementById('counter-years');
-          if (el) el.textContent = yearsObj.val.toFixed(1);
-        },
-        onComplete: () => {
-          const el = document.getElementById('counter-years');
-          if (el) gsap.fromTo(el, { scale: 1.08 }, { scale: 1, duration: 0.35, ease: 'back.out(2)' });
-        }
+        card.addEventListener('click', () => {
+          playHapticClick(1000, 0.02);
+          runMetricCounter(metricCounterConfigs[idx], 2.2);
+        });
       });
 
       // D. Terminal Window Line Stagger (from https://misbahudin98.netlify.app/)
@@ -3562,14 +4124,16 @@
       gsap.from('.skill-pill', {
         scrollTrigger: {
           trigger: '#keahlian',
-          start: 'top 80%',
+          start: 'top 78%',
           once: true
         },
-        scale: 0.9,
+        scale: 0.85,
+        y: 12,
         opacity: 0,
-        duration: 0.3,
+        duration: 0.35,
         stagger: 0.02,
-        ease: 'back.out(1.8)'
+        ease: 'back.out(2)',
+        clearProps: 'transform,opacity'
       });
 
       // F. Spotlight Card Individual Scroll Entrance (from https://misbahudin98.netlify.app/)
@@ -3577,13 +4141,14 @@
         gsap.from(card, {
           scrollTrigger: {
             trigger: card,
-            start: 'top 88%',
+            start: 'top 85%',
             toggleActions: 'play none none none'
           },
-          y: 20,
+          y: 30,
           opacity: 0,
-          duration: 0.4,
-          ease: 'power2.out'
+          duration: 0.65,
+          ease: 'power2.out',
+          clearProps: 'opacity'
         });
 
         // Laser scanline shimmer sweep on entrance if present
@@ -3594,18 +4159,33 @@
             {
               xPercent: 100,
               opacity: 1,
-              duration: 0.85,
+              duration: 1.0,
               ease: 'power2.inOut',
               scrollTrigger: {
                 trigger: card,
-                start: 'top 85%',
+                start: 'top 82%',
                 once: true
               },
               onComplete: () => {
-                gsap.to(shimmer, { opacity: 0, duration: 0.2 });
+                gsap.to(shimmer, { opacity: 0, duration: 0.25 });
               }
             }
           );
+        }
+
+        // Project image subtle zoom reveal
+        const img = card.querySelector('.project-image-box img');
+        if (img) {
+          gsap.from(img, {
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 82%',
+              once: true
+            },
+            scale: 1.05,
+            duration: 0.85,
+            ease: 'power2.out'
+          });
         }
 
         // Micro-stagger for tech badges inside cards
@@ -3614,15 +4194,17 @@
           gsap.from(badges, {
             scrollTrigger: {
               trigger: card,
-              start: 'top 85%',
+              start: 'top 80%',
               once: true
             },
-            scale: 0.94,
+            y: 8,
+            scale: 0.9,
             opacity: 0,
-            duration: 0.3,
-            stagger: 0.025,
-            ease: 'back.out(1.5)',
-            delay: 0.08
+            duration: 0.35,
+            stagger: 0.03,
+            ease: 'back.out(1.8)',
+            delay: 0.1,
+            clearProps: 'transform,opacity'
           });
         }
       });
@@ -3678,18 +4260,23 @@
           }
         });
 
-        // Pulse & illuminate milestone nodes bi-directionally on scroll enter and return
+        // Pulse & illuminate milestone nodes bi-directionally on scroll enter and return with ripple aura
         document.querySelectorAll('.timeline-node').forEach(node => {
           ScrollTrigger.create({
             trigger: node,
             start: 'top 65%',
             onEnter: () => {
+              node.classList.add('timeline-node-active');
               gsap.fromTo(node, 
                 { scale: 1.35, borderColor: '#10b981' }, 
                 { scale: 1, borderColor: '#10b981', duration: 0.4, ease: 'back.out(2)' }
               );
             },
+            onLeaveBack: () => {
+              node.classList.remove('timeline-node-active');
+            },
             onEnterBack: () => {
+              node.classList.add('timeline-node-active');
               gsap.fromTo(node, 
                 { scale: 1.25, borderColor: '#f59e0b' }, 
                 { scale: 1, borderColor: '#10b981', duration: 0.35, ease: 'back.out(2)' }
