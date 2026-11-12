@@ -3,8 +3,8 @@
 
 ## 👤 Developer Profile & Identity (SSoT)
 - **Full Name:** Misbahudin
-- **Professional Title:** Full Stack Developer & Data Systems Engineer
-- **Experience:** 3.5+ years of production experience in relational databases, backend APIs, modern Svelte 5 interfaces, and enterprise data migration.
+- **Professional Title:** Full Stack Developer & Systems Engineer
+- **Experience:** 3.5+ years of production experience in relational databases (MySQL 3NF), Laravel 13 backend APIs, modern Svelte 5 interfaces, enterprise ETL data migration (12,117 records, 0% loss), and IT/Network infrastructure (MikroTik RouterOS QoS & Centralized LAN Printer Sharing).
 - **Location:** Kab. Malang, Jawa Timur, Indonesia (65162)
 - **Education:**
   - Politeknik Negeri Malang (D4 Teknik Informatika | IPK 3.32 | 2016 - 2020)
@@ -24,7 +24,7 @@
 - **Frontend & UI:** Svelte 5 (Runes), Tailwind CSS (v4), JavaScript (ES6+), GSAP 3.12 (ScrollTrigger 60fps compositor-only parallax), HTML5 Semantic DOM, CSS3, Accessible UI (WCAG 2.2 AA / AAA).
 - **Workflow AI & Tooling:** Prompt Engineering Terstruktur (XML/Anthropic System Standards), AI Pair-Programming (Antigravity CLI), Optimasi Konteks LLM (llms.txt), Git/GitHub, Vite, Composer.
 - **Testing & Quality:** PHPUnit (Automated Unit & Feature Testing, 250+ automated tests), Test-Driven Development (TDD), PSR-12 / PER Coding Style 2.0.
-- **Server, Infrastructure & IT Support:** Server Optimization (Resolving Error 1040 / Too Many Connections on low-cost shared hosting), PC Hardware Troubleshooting (Intel Celeron / low-spec tuning), LAN Networking & Printer Sharing, Dapodik & Asesmen Nasional (ANBK/Sulinjar/TKA).
+- **Server, Infrastructure & IT Support:** Server Optimization (Resolving Error 1040 / Too Many Connections on low-cost shared hosting), Network Engineering (MikroTik RouterOS hEX RB750Gr3, QoS Simple Queue Bandwidth Management, Bufferbloat Elimination for 60+ Concurrent Users), Centralized LAN Printer Sharing (eliminating USB flash drive dependencies & printer procurement costs), PC Hardware Troubleshooting (Intel Celeron / low-spec tuning), Dapodik & Asesmen Nasional (ANBK/Sulinjar/TKA).
 
 ---
 
