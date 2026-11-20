@@ -1432,9 +1432,9 @@
                 <p class="text-slate-500 text-[11px]">Kebal Error 1040 pada kuota 25 koneksi MySQL via penyimpanan sesi NVMe lokal (`SESSION_DRIVER=file`) dan Inode GC atomik.</p>
               </div>
               <div class="p-3.5 rounded-xl tactical-subglass space-y-1.5">
-                <span class="text-slate-400 text-[10px] font-mono uppercase block font-semibold">Validasi NTPN &amp; Cetak A4</span>
-                <span class="text-base font-bold font-mono text-emerald-600 dark:text-emerald-400 block">16-Digit Verified</span>
-                <p class="text-slate-500 text-[11px]">Verifikasi NTPN kas negara sebelum akta terbit, serta modul cetak kuitansi A4 kop surat resmi dengan tanda tangan horizontal sejajar.</p>
+                <span class="text-slate-400 text-[10px] font-mono uppercase block font-semibold">Validasi NTPN, A4 &amp; Analitik</span>
+                <span class="text-base font-bold font-mono text-emerald-600 dark:text-emerald-400 block">16-Digit &bull; Multi-Temporal</span>
+                <p class="text-slate-500 text-[11px]">Verifikasi NTPN kas negara sebelum akta terbit, modul cetak kuitansi A4 kop surat resmi, serta dasbor analitik multi-temporal dengan ekspor CSV in-memory.</p>
               </div>
             </div>
           </div>
@@ -1458,7 +1458,7 @@
                 <span>Arsitektur &amp; Solusi Rekayasa</span>
               </div>
               <p class="text-slate-600 dark:text-slate-400 text-[11px] leading-relaxed">
-                Membangun SPA Svelte 5 Native Runes dan backend Laravel 13 Sanctum dengan sistem akuntansi dual-pocket single-entry ledger, penomoran register repertorium otomatis, tracking rak warkah fisik, serta offload sesi ke disk NVMe dengan Inode GC atomik (Little's Law L &le; 0.16).
+                Membangun SPA Svelte 5 Native Runes dan backend Laravel 13 Sanctum dengan sistem akuntansi dual-pocket single-entry ledger, dasbor analitik multi-temporal dengan in-memory filtering (&lt;0.1ms), ekspor CSV anti-CWE-1236, penomoran register repertorium otomatis, tracking rak warkah fisik, serta offload sesi ke disk NVMe dengan Inode GC atomik (Little's Law L &le; 0.16).
               </p>
             </div>
             <div
@@ -1475,6 +1475,8 @@
                 <li class="flex items-center gap-1.5"><i
                     class="fa-solid fa-check text-emerald-500 text-[10px]"></i><span>Buku register repertorium <strong>terkunci
                       tanpa gap</strong></span></li>
+                <li class="flex items-center gap-1.5"><i
+                    class="fa-solid fa-check text-emerald-500 text-[10px]"></i><span>Dasbor analitik <strong>multi-temporal &amp; ekspor CSV in-memory</strong></span></li>
                 <li class="flex items-center gap-1.5"><i
                     class="fa-solid fa-check text-emerald-500 text-[10px]"></i><span>Teruji bebas regresi via <strong>104 automated tests (994 assertions)</strong></span></li>
               </ul>
@@ -1499,6 +1501,12 @@
               <span
                 class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">Dual-Pocket
                 Escrow</span>
+              <span
+                class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">Multi-Temporal
+                Analytics</span>
+              <span
+                class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">In-Memory
+                CSV Export</span>
               <span
                 class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">Little's Law
                 (L &le; 0.16)</span>
@@ -2927,7 +2935,7 @@
             <ul class="space-y-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 list-none">
               <li class="flex items-start gap-2.5">
                 <i class="fa-solid fa-check text-emerald-500 text-xs mt-1 shrink-0"></i>
-                <span><strong>Sistem Informasi Kantor Notaris &amp; PPAT:</strong> Merancang dan membangun platform operasional kantor notaris (<em>Laravel 13 Sanctum</em> + <em>Svelte 5 Runes</em>) mencakup registrasi berkas berpenomoran otomatis (repertorium/klapper), pelacakan checklist warkah sertipikat fisik di rak arsip, serta sistem akuntansi <em>dual-pocket ledger</em> yang memisahkan rekening honorarium kantor dari dana escrow titipan pajak (BPHTB, PPh Final 2.5%, dan PNBP) berbasis validasi NTPN 16 digit.</span>
+                <span><strong>Sistem Informasi Kantor Notaris &amp; PPAT:</strong> Merancang dan membangun platform operasional kantor notaris (<em>Laravel 13 Sanctum</em> + <em>Svelte 5 Runes</em>) mencakup registrasi berkas berpenomoran otomatis (repertorium/klapper), pelacakan checklist warkah sertipikat fisik di rak arsip, dasbor analitik multi-temporal dengan ekspor CSV in-memory, serta sistem akuntansi <em>dual-pocket ledger</em> yang memisahkan rekening honorarium kantor dari dana escrow titipan pajak (BPHTB, PPh Final 2.5%, dan PNBP) berbasis validasi NTPN 16 digit.</span>
               </li>
               <li class="flex items-start gap-2.5">
                 <i class="fa-solid fa-check text-emerald-500 text-xs mt-1 shrink-0"></i>

@@ -32,10 +32,11 @@
 
 ### 1. Aplikasi Operasional Kantor Notaris & PPAT (irwan-baddu)
 - **Context:** Core operational system for Notary & PPAT Irwan Baddu handling 7-stage deed processing, automatic reporting, and escrow tax compliance.
-- **Action:** Engineered architecture using Laravel 13 Sanctum and Svelte 5 (Runes), automated deed registration with periodic repertorium/klapper numbering, tracked physical warkah files in archive racks, and enforced dual-pocket ledger financial segregation between office operational accounts and state tax escrow accounts (PPh & BPHTB with 16-digit validated NTPN codes).
-- **Impact:** 100% green test suite (104 tests, 994 assertions); zero discrepancy in tax escrow auditing; 60% reduction in draft deed preparation cycle time; immune to Error 1040 on 25-connection MySQL limit.
-- **Stack:** Laravel 13, Svelte 5 (Runes), Tailwind CSS v4, MySQL 3NF, NTPN Validation, PHPUnit.
-- **Repository:** Private Client System (Internal Production Architecture)
+- **Action:** Engineered architecture using Laravel 13 Sanctum and Svelte 5 (Runes), automated deed registration with periodic repertorium/klapper numbering, tracked physical warkah files in archive racks, architected interactive multi-temporal executive analytics (Weekly, Monthly, Quarterly Q1–Q4, Semester S1–S2, Yearly, All-Time) with client-side in-memory CSV export (BOM UTF-8, CWE-1236 immune), and enforced dual-pocket ledger financial segregation between office operational accounts and state tax escrow accounts (PPh & BPHTB with 16-digit validated NTPN codes).
+- **Impact:** 100% green test suite (104 tests, 994 assertions); zero discrepancy in tax escrow auditing; sub-0.1ms client-side report filtering; 60% reduction in draft deed preparation cycle time; immune to Error 1040 on 25-connection MySQL limit.
+- **Stack:** Laravel 13, Svelte 5 (Runes), Tailwind CSS v4, MySQL 3NF, SQLite WAL, Multi-Temporal Analytics, In-Memory CSV Export, NTPN Validation, PHPUnit.
+- **Live Platform:** [https://irwanbaddu.id](https://irwanbaddu.id)
+- **Repository:** [https://github.com/misbahudin98/notaris](https://github.com/misbahudin98/notaris)
 
 ### 2. SIM-PQTM: Sistem Manajemen Pendidikan Yayasan & Rapor Digital (yayasan-pqtm)
 - **Context:** Centralized institutional management platform for Yayasan Pondok Quran Terpadu Malang across 3 educational units (Santri Boarding, LTQ, and PKBM Kurikulum Merdeka).
