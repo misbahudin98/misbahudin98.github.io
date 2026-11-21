@@ -8,4 +8,6 @@ portofolio.zip
 .env.*
 Thumbs.db
 .DS_Store
+# Temporary & Backups
+index1.html
 *.tmp
