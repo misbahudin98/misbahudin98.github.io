@@ -7,6 +7,11 @@
   <meta name="description" content="Portofolio profesional Misbahudin, S.Tr.Kom. Lulusan D4 Teknik Informatika Politeknik Negeri Malang berpengalaman lebih dari 3,5 tahun di bidang IT Operations, Database MySQL, Pengolahan Data Microsoft Excel, Administrasi Operasional, dan Pengembangan Web Laravel." />
   <link rel="canonical" href="https://misbahudin98.github.io/" />
 
+  <!-- Favicon & Identity Icons -->
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+  <link rel="alternate icon" href="./assets/logo.png" />
+  <link rel="apple-touch-icon" href="./assets/logo.png" />
+
   <!-- Open Graph Metadata -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Misbahudin, S.Tr.Kom. - Portofolio IT, Data &amp; Sistem Web" />
@@ -23,6 +28,19 @@
     "email": "mailto:misbah.udin@outlook.co.id",
     "telephone": "+62-822-3282-8065",
     "jobTitle": "IT Operations, Database & Data Systems, Full Stack Web Developer",
+    "knowsAbout": [
+      "IT Operations",
+      "Database Administration",
+      "MySQL 3NF Normalization",
+      "Data Migration & ETL Pipelines",
+      "Full Stack Web Development",
+      "Laravel Web Framework",
+      "Svelte 5",
+      "PHPUnit Automated Testing",
+      "MikroTik RouterOS & QoS Management",
+      "Microsoft Excel Advanced Modeling (VLOOKUP, SUMIFS, Pivot Tables)",
+      "HRIS & Educational Operations (Dapodik, e-Ijazah)"
+    ],
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Kabupaten Malang",
@@ -231,6 +249,33 @@
       background-color: rgba(217, 119, 6, 0.14);
     }
 
+    /* Spotlight Radial Hover Glow (Compositor-friendly) */
+    .spotlight-card {
+      position: relative;
+    }
+    .spotlight-card::before {
+      content: '';
+      position: absolute;
+      top: var(--mouse-y, -1000px);
+      left: var(--mouse-x, -1000px);
+      width: 440px;
+      height: 440px;
+      background: radial-gradient(circle, rgba(27, 54, 93, 0.08) 0%, transparent 68%);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 20;
+    }
+    .spotlight-card:hover::before {
+      opacity: 1;
+    }
+
+    /* Magnetic CTA Button physics anchor */
+    .magnetic-btn {
+      will-change: transform;
+    }
+
     /* Respect Reduced Motion Preferences */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -408,14 +453,18 @@
 
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <!-- Chapter Eyebrow & Animated Hairline -->
+        <!-- Chapter Eyebrow & Live Availability Badge -->
         <div class="flex flex-wrap items-center justify-between gap-3 pb-4">
           <p class="font-mono text-xs uppercase tracking-widest text-slateMuted">
             <span class="text-copper font-semibold">01 / PROFIL PROFESIONAL</span> - KAB. MALANG, JAWA TIMUR
           </p>
-          <span class="font-mono text-[11px] text-navy bg-surface border border-hairline px-3 py-1 rounded-sm">
-            Terbuka untuk Kesempatan Kerja &amp; Kolaborasi
-          </span>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-800 font-mono text-[11px] shadow-2xs">
+            <span class="relative flex h-2 w-2" aria-hidden="true">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
+            </span>
+            <span class="font-semibold uppercase tracking-wider">Available for Hire &middot; Siap Kerja</span>
+          </div>
         </div>
         <div class="hairline-rule h-px w-full bg-hairline mb-10 sm:mb-12"></div>
 
@@ -440,11 +489,11 @@
             <!-- Primary CTA (Single Universal CV) + Secondary CTA -->
             <div class="body-reveal pt-2 space-y-2.5">
               <div class="flex flex-wrap items-center gap-3">
-                <a data-asset-href="cvPdf" href="./assets/cv/CV_Misbahudin_Portofolio_Umum.pdf" download class="inline-flex items-center gap-2.5 px-5 py-3 rounded-md bg-navy text-white text-sm font-semibold hover:bg-ink transition-colors">
+                <a data-asset-href="cvPdf" href="./assets/cv/CV_Misbahudin_Portofolio_Umum.pdf" download class="magnetic-btn inline-flex items-center gap-2.5 px-5 py-3 rounded-md bg-navy text-white text-sm font-semibold hover:bg-ink transition-colors">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" /></svg>
                   <span>Unduh CV (PDF)</span>
                 </a>
-                <a href="#studi-kasus-excel" class="inline-flex items-center gap-2 px-5 py-3 rounded-md bg-surface border border-hairline text-ink text-sm font-semibold hover:border-navy transition-colors">
+                <a href="#studi-kasus-excel" class="magnetic-btn inline-flex items-center gap-2 px-5 py-3 rounded-md bg-surface border border-hairline text-ink text-sm font-semibold hover:border-navy transition-colors">
                   <span>Lihat Studi Kasus Data Excel</span>
                   <svg class="w-4 h-4 text-copper" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
                 </a>
@@ -516,25 +565,25 @@
           <div class="grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-hairline border-b border-hairline bg-surface/80">
             <div class="metric-card p-5 sm:p-6 cursor-pointer hover:bg-surface active:scale-[0.99] transition-all" title="Klik untuk memutar ulang animasi metrik">
               <div class="mask-wrap">
-                <p class="masked-metric font-mono text-2xl sm:text-3xl font-semibold text-navy" data-count-target="3.5" data-count-format="decimal-tahun">0,0+ Tahun</p>
+                <p class="masked-metric font-mono text-2xl sm:text-3xl font-semibold text-navy" data-count-target="3.5" data-count-format="decimal-tahun">3,5+ Tahun</p>
               </div>
               <p class="font-mono text-[11px] uppercase tracking-wider text-slateMuted mt-1.5">Pengalaman Operasional &amp; Sistem</p>
             </div>
             <div class="metric-card p-5 sm:p-6 border-l border-hairline lg:border-l-0 cursor-pointer hover:bg-surface active:scale-[0.99] transition-all" title="Klik untuk memutar ulang animasi metrik">
               <div class="mask-wrap">
-                <p class="masked-metric font-mono text-2xl sm:text-3xl font-semibold text-ink" data-count-target="12117" data-count-format="thousands-data">0 Data</p>
+                <p class="masked-metric font-mono text-2xl sm:text-3xl font-semibold text-ink" data-count-target="12117" data-count-format="thousands-data">12.117 Data</p>
               </div>
               <p class="font-mono text-[11px] uppercase tracking-wider text-slateMuted mt-1.5">Migrasi &amp; Pembersihan 0% Data Loss</p>
             </div>
             <div class="metric-card p-5 sm:p-6 cursor-pointer hover:bg-surface active:scale-[0.99] transition-all" title="Klik untuk memutar ulang animasi metrik">
               <div class="mask-wrap">
-                <p class="masked-metric font-mono text-2xl sm:text-3xl font-semibold text-copper" data-count-target="100" data-count-format="percent">0%</p>
+                <p class="masked-metric font-mono text-2xl sm:text-3xl font-semibold text-copper" data-count-target="100" data-count-format="percent">100%</p>
               </div>
               <p class="font-mono text-[11px] uppercase tracking-wider text-slateMuted mt-1.5">Validitas Data Instansi &amp; Keuangan</p>
             </div>
             <div class="metric-card p-5 sm:p-6 border-l border-hairline lg:border-l-0 cursor-pointer hover:bg-surface active:scale-[0.99] transition-all" title="Klik untuk memutar ulang animasi metrik">
               <div class="mask-wrap">
-                <p class="masked-metric font-mono text-2xl sm:text-3xl font-semibold text-ink" data-count-target="250" data-count-format="int-plus">0+</p>
+                <p class="masked-metric font-mono text-2xl sm:text-3xl font-semibold text-ink" data-count-target="250" data-count-format="int-plus">250+</p>
               </div>
               <p class="font-mono text-[11px] uppercase tracking-wider text-slateMuted mt-1.5">Pengujian Otomatis PHPUnit</p>
             </div>
@@ -1343,8 +1392,14 @@
           </div>
           <div class="lg:col-span-5 lg:text-right">
             <p class="body-reveal text-sm text-slateMuted leading-relaxed">
-              Setiap kartu memuat tangkapan layar dari folder aset lokal beserta ringkasan dampak terukur. Klik kartu untuk membuka tampilan penuh.
+              Setiap kartu memuat tangkapan layar dari folder aset lokal beserta ringkasan dampak terukur. Klik kartu untuk membuka tampilan penuh atau telusuri repositori langsung.
             </p>
+            <div class="mt-3 flex lg:justify-end items-center gap-2">
+              <a href="https://github.com/misbahudin98" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-sm bg-surface border border-hairline font-mono text-[11px] text-ink hover:border-navy transition-colors">
+                <svg class="w-3.5 h-3.5 text-navy" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                <span>Live Demo &amp; Repositori GitHub &rarr;</span>
+              </a>
+            </div>
           </div>
         </div>
         <div class="hairline-rule h-px w-full bg-hairline mb-12"></div>
@@ -1353,7 +1408,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
           <!-- Project 1: Aplikasi Operasional Notaris & PPAT -->
-          <article class="group bg-surface border border-hairline rounded-md overflow-hidden hover:border-navy transition-colors shadow-sm flex flex-col">
+          <article class="spotlight-card group bg-surface border border-hairline rounded-md overflow-hidden hover:border-navy transition-colors shadow-sm flex flex-col">
             <button type="button" data-lightbox-id="proj-notaris" class="lightbox-trigger text-left w-full flex-1 flex flex-col">
               <div class="px-3.5 py-2 bg-paper border-b border-hairline flex items-center justify-between">
                 <div class="flex items-center gap-1.5" aria-hidden="true">
@@ -1421,14 +1476,20 @@
                     <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">Svelte 5</span>
                     <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">MySQL</span>
                   </div>
-                  <span class="font-mono text-[11px] font-semibold text-copper">Pratinjau &rarr;</span>
+                  <span class="font-mono text-[11px] font-semibold text-copper">Pratinjau Arsitektur &rarr;</span>
                 </div>
               </div>
             </button>
+            <div class="px-6 py-2.5 bg-paper/90 border-t border-hairline flex items-center justify-between font-mono text-[11px]">
+              <a href="https://github.com/misbahudin98" target="_blank" rel="noopener noreferrer" class="text-navy hover:text-copper font-semibold inline-flex items-center gap-1">
+                <span>Live Demo &amp; Code</span> &nearr;
+              </a>
+              <span class="text-slateMuted text-[10.5px]">PHPUnit 250+ Passed</span>
+            </div>
           </article>
 
           <!-- Project 2: Sistem Manajemen Pendidikan SIM-PQTM -->
-          <article class="group bg-surface border border-hairline rounded-md overflow-hidden hover:border-navy transition-colors shadow-sm flex flex-col">
+          <article class="spotlight-card group bg-surface border border-hairline rounded-md overflow-hidden hover:border-navy transition-colors shadow-sm flex flex-col">
             <button type="button" data-lightbox-id="proj-simpqtm" class="lightbox-trigger text-left w-full flex-1 flex flex-col">
               <div class="px-3.5 py-2 bg-paper border-b border-hairline flex items-center justify-between">
                 <div class="flex items-center gap-1.5" aria-hidden="true">
@@ -1498,10 +1559,16 @@
                     <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">Presensi Massal</span>
                     <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">Rapor Otomatis</span>
                   </div>
-                  <span class="font-mono text-[11px] font-semibold text-copper">Pratinjau &rarr;</span>
+                  <span class="font-mono text-[11px] font-semibold text-copper">Pratinjau Arsitektur &rarr;</span>
                 </div>
               </div>
             </button>
+            <div class="px-6 py-2.5 bg-paper/90 border-t border-hairline flex items-center justify-between font-mono text-[11px]">
+              <a href="https://github.com/misbahudin98" target="_blank" rel="noopener noreferrer" class="text-navy hover:text-copper font-semibold inline-flex items-center gap-1">
+                <span>Live Demo &amp; Code</span> &nearr;
+              </a>
+              <span class="text-slateMuted text-[10.5px]">98,4% Presensi Massal</span>
+            </div>
           </article>
 
           <!-- Project 3: Ekosistem SIM, PPDB & HRIS 3 Kampus -->
@@ -1579,14 +1646,20 @@
                     <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">12.117 Data Migrasi</span>
                     <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">Format VA Otomatis</span>
                   </div>
-                  <span class="font-mono text-[11px] font-semibold text-copper">Pratinjau &rarr;</span>
+                  <span class="font-mono text-[11px] font-semibold text-copper">Pratinjau Arsitektur &rarr;</span>
                 </div>
               </div>
             </button>
+            <div class="px-6 py-2.5 bg-paper/90 border-t border-hairline flex items-center justify-between font-mono text-[11px]">
+              <a href="https://github.com/misbahudin98" target="_blank" rel="noopener noreferrer" class="text-navy hover:text-copper font-semibold inline-flex items-center gap-1">
+                <span>Live Demo &amp; Code</span> &nearr;
+              </a>
+              <span class="text-slateMuted text-[10.5px]">12.117 Data 0% Loss</span>
+            </div>
           </article>
 
           <!-- Project 4: Pipeline ETL & Dashboard KPI Microsoft Excel -->
-          <article class="group bg-surface border border-hairline rounded-md overflow-hidden hover:border-navy transition-colors shadow-sm flex flex-col">
+          <article class="spotlight-card group bg-surface border border-hairline rounded-md overflow-hidden hover:border-navy transition-colors shadow-sm flex flex-col">
             <button type="button" data-lightbox-id="proj-excel" class="lightbox-trigger text-left w-full flex-1 flex flex-col">
               <div class="px-3.5 py-2 bg-paper border-b border-hairline flex items-center justify-between">
                 <div class="flex items-center gap-1.5" aria-hidden="true">
@@ -1671,10 +1744,19 @@
                     <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">Chart</span>
                     <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">Rekonsiliasi</span>
                   </div>
-                  <span class="font-mono text-[11px] font-semibold text-copper">Pratinjau &rarr;</span>
+                  <span class="font-mono text-[11px] font-semibold text-copper">Pratinjau Arsitektur &rarr;</span>
                 </div>
               </div>
             </button>
+            <div class="px-6 py-2.5 bg-paper/90 border-t border-hairline flex items-center justify-between font-mono text-[11px]">
+              <a data-asset-href="excelFile" href="./assets/files/Portofolio_Data_Pipeline_Dashboard_Misbahudin.xlsx" download class="text-navy hover:text-copper font-semibold inline-flex items-center gap-1.5">
+                <svg class="w-3.5 h-3.5 text-copper" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" /></svg>
+                <span>Unduh File Excel (.xlsx)</span>
+              </a>
+              <a href="https://github.com/misbahudin98" target="_blank" rel="noopener noreferrer" class="text-copper hover:underline font-semibold inline-flex items-center gap-1">
+                <span>Live Demo &amp; Preview</span> &nearr;
+              </a>
+            </div>
           </article>
 
         </div>
@@ -1901,6 +1983,13 @@
 
     </div>
   </footer>
+
+  <!-- Floating Quick Back-to-Top Navigator (Desktop & Tablet) -->
+  <div id="scroll-to-top" class="no-print fixed bottom-6 right-6 z-40 opacity-0 pointer-events-none transition-all duration-300">
+    <button type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Kembali ke atas" class="w-10 h-10 rounded-full bg-paper/95 border border-hairline shadow-md flex items-center justify-center text-ink hover:text-copper hover:border-copper transition-all hover:scale-105 backdrop-blur-xs">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" /></svg>
+    </button>
+  </div>
 
   <!-- =========================================================
        EDITORIAL LIGHTBOX MODAL
@@ -2639,13 +2728,100 @@
         return String(Math.round(val));
       }
 
+      function easeOutCubic(x) {
+        return 1 - Math.pow(1 - x, 3);
+      }
+
+      // Universal High-Precision 60fps Rolling Counter Engine (Always active & interactive)
+      function runHeroCounters() {
+        var metricElements = document.querySelectorAll('.masked-metric');
+        metricElements.forEach(function (el, index) {
+          var target = parseFloat(el.getAttribute('data-count-target'));
+          var fmt = el.getAttribute('data-count-format');
+          if (isNaN(target)) return;
+
+          if (el._rafId) {
+            cancelAnimationFrame(el._rafId);
+            el._rafId = null;
+          }
+
+          el.textContent = formatMetricValue(0, fmt);
+
+          // Kalibrasi HRD 6-Second Cognitive Scan: durasi gesit 0.58s - 0.67s dengan easeOutCubic agar instan, estetik & nyaman dipindai
+          var duration = 580 + (index * 25); // 0.58s - 0.66s snappy telemetry
+          var delay = index * 15; // micro-stagger 15ms untuk ritme teratur
+          var startTimestamp = null;
+
+          function step(now) {
+            var currentTime = (typeof now === 'number' && now > 0) ? now : performance.now();
+            if (!startTimestamp) startTimestamp = currentTime + delay;
+            if (currentTime < startTimestamp) {
+              el._rafId = requestAnimationFrame(step);
+              return;
+            }
+            var elapsed = currentTime - startTimestamp;
+            var progress = Math.min(elapsed / duration, 1);
+            var currentVal = target * easeOutCubic(progress);
+
+            el.textContent = formatMetricValue(currentVal, fmt);
+
+            if (progress < 1) {
+              el._rafId = requestAnimationFrame(step);
+            } else {
+              el.textContent = formatMetricValue(target, fmt);
+              el._rafId = null;
+            }
+          }
+
+          el._rafId = requestAnimationFrame(step);
+        });
+      }
+
+      // Expose globally for interactive and dev inspection
+      window.runHeroCounters = runHeroCounters;
+
       function initStoryMotion() {
         if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
           updateActiveChapter('01', 'light');
+          runHeroCounters();
           return;
         }
 
         gsap.registerPlugin(ScrollTrigger);
+
+        // Core Hero Metric Setup & Multi-Channel Interactive Triggers
+        var metricCards = document.querySelectorAll('.metric-card');
+        metricCards.forEach(function (card) {
+          card.addEventListener('click', function () {
+            gsap.fromTo(card, { scale: 0.98 }, { scale: 1, duration: 0.25, ease: 'back.out(2)' });
+            runHeroCounters();
+          });
+        });
+
+        document.querySelectorAll('a[href="#profil"]').forEach(function (link) {
+          link.addEventListener('click', function () {
+            setTimeout(runHeroCounters, 300);
+          });
+        });
+
+        var stripTrigger = document.getElementById('hero-metrics-strip') || '#profil';
+        ScrollTrigger.create({
+          trigger: stripTrigger,
+          start: 'top 92%',
+          end: 'bottom 10%',
+          onEnter: runHeroCounters,
+          onEnterBack: runHeroCounters
+        });
+
+        ScrollTrigger.create({
+          trigger: '#profil',
+          start: 'top 60%',
+          end: 'bottom 25%',
+          onEnterBack: runHeroCounters
+        });
+
+        // Jalankan langsung pada pemuatan halaman
+        runHeroCounters();
 
         // Chapter rail & nav contrast tracking
         document.querySelectorAll('[data-chapter]').forEach(function (section) {
@@ -2703,45 +2879,8 @@
             }
           });
 
-          // 2. Hero KPI Metric Count-Up (animasi diperlambat secara sinematik & dapat diaktivasi ulang via scroll, klik kartu, dan navigasi)
-          var metricElements = gsap.utils.toArray('.masked-metric');
-          var metricCards = document.querySelectorAll('.metric-card');
-
-          function runHeroCounters() {
-            metricElements.forEach(function (el, index) {
-              var target = parseFloat(el.getAttribute('data-count-target'));
-              var fmt = el.getAttribute('data-count-format');
-              if (isNaN(target)) return;
-
-              // Matikan tween lama jika masih berjalan saat navigasi cepat
-              if (el._metricTween) {
-                el._metricTween.kill();
-              }
-
-              var counter = { val: 0 };
-              el.textContent = formatMetricValue(0, fmt);
-
-              // Durasi diperlambat (2.2s - 2.56s) dengan akselerasi halus power2.out dan jeda stagger 0.08s
-              var duration = 2.2 + (index * 0.12);
-              var delay = index * 0.08;
-
-              el._metricTween = gsap.to(counter, {
-                val: target,
-                duration: duration,
-                delay: delay,
-                ease: 'power2.out',
-                onUpdate: function () {
-                  el.textContent = formatMetricValue(counter.val, fmt);
-                },
-                onComplete: function () {
-                  el.textContent = formatMetricValue(target, fmt);
-                }
-              });
-            });
-          }
-
-          // Trigger masked slide-up awal
-          metricElements.forEach(function (el) {
+          // 2. Initial Masked Slide-Up for Metric Numbers
+          gsap.utils.toArray('.masked-metric').forEach(function (el) {
             gsap.from(el, {
               yPercent: 105,
               duration: 0.7,
@@ -2754,44 +2893,6 @@
               }
             });
           });
-
-          // Observer ScrollTrigger pada strip metrik: memicu ulang hitungan setiap kali masuk/kembali ke viewport
-          var stripTrigger = document.getElementById('hero-metrics-strip') || '#profil';
-          ScrollTrigger.create({
-            trigger: stripTrigger,
-            start: 'top 92%',
-            end: 'bottom 10%',
-            onEnter: runHeroCounters,
-            onEnterBack: runHeroCounters
-          });
-
-          // Observer ScrollTrigger pada section Hero (#profil) secara menyeluruh saat scroll kembali ke atas
-          ScrollTrigger.create({
-            trigger: '#profil',
-            start: 'top 60%',
-            end: 'bottom 25%',
-            onEnterBack: runHeroCounters
-          });
-
-          // Interaktivitas: Aktivasi ulang saat kartu metrik diklik / disentuh dengan efek haptic tactile pulse
-          metricCards.forEach(function (card) {
-            card.addEventListener('click', function () {
-              gsap.fromTo(card, { scale: 0.98 }, { scale: 1, duration: 0.25, ease: 'back.out(2)' });
-              runHeroCounters();
-            });
-          });
-
-          // Interaktivitas: Aktivasi ulang saat tautan navigasi menuju #profil diklik
-          document.querySelectorAll('a[href="#profil"]').forEach(function (link) {
-            link.addEventListener('click', function () {
-              setTimeout(runHeroCounters, 300);
-            });
-          });
-
-          // Jalankan langsung pada pemuatan awal jika hero sudah terlihat
-          if (typeof window !== 'undefined' && window.scrollY < 400) {
-            runHeroCounters();
-          }
 
           // 3. Fast Body Opacity Reveal (0.35s, once: true)
           gsap.utils.toArray('.body-reveal').forEach(function (el) {
@@ -2901,20 +3002,60 @@
 
         // Accessible fallback for users with prefers-reduced-motion
         mm.add('(prefers-reduced-motion: reduce)', function () {
-          document.querySelectorAll('.masked-metric').forEach(function (el) {
-            var target = parseFloat(el.getAttribute('data-count-target'));
-            var fmt = el.getAttribute('data-count-format');
-            if (!isNaN(target)) {
-              el.textContent = formatMetricValue(target, fmt);
-            }
-          });
+          // Bypasses heavy transforms while allowing smooth telemetry counting
         });
+
+        // 8. Story Motion Parallax Recipes: Magnetic Buttons & Spotlight Cards
+        initMagneticButtons();
+        initSpotlightCards();
 
         ScrollTrigger.refresh();
       }
 
+      function initMagneticButtons() {
+        if (typeof gsap === 'undefined') return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.innerWidth < 768) return;
+        document.querySelectorAll('.magnetic-btn').forEach(function (btn) {
+          btn.addEventListener('mousemove', function (e) {
+            var rect = btn.getBoundingClientRect();
+            var x = (e.clientX - rect.left - rect.width / 2) * 0.22;
+            var y = (e.clientY - rect.top - rect.height / 2) * 0.22;
+            gsap.to(btn, { x: x, y: y, duration: 0.3, ease: 'power2.out' });
+          });
+          btn.addEventListener('mouseleave', function () {
+            gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.4)' });
+          });
+        });
+      }
+
+      function initSpotlightCards() {
+        document.querySelectorAll('.spotlight-card').forEach(function (card) {
+          card.addEventListener('mousemove', function (e) {
+            var rect = card.getBoundingClientRect();
+            card.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
+            card.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
+          });
+        });
+      }
+
+      // Quick Back-to-Top Floating Trigger
+      var scrollToTopEl = document.getElementById('scroll-to-top');
+      if (scrollToTopEl) {
+        window.addEventListener('scroll', function () {
+          if (window.scrollY > 400) {
+            scrollToTopEl.classList.remove('opacity-0', 'pointer-events-none');
+            scrollToTopEl.classList.add('opacity-100', 'pointer-events-auto');
+          } else {
+            scrollToTopEl.classList.add('opacity-0', 'pointer-events-none');
+            scrollToTopEl.classList.remove('opacity-100', 'pointer-events-auto');
+          }
+        }, { passive: true });
+      }
+
+      // Inisialisasi story motion langsung saat DOM siap
+      initStoryMotion();
+
       window.addEventListener('load', function () {
-        initStoryMotion();
         if (window.ScrollTrigger) {
           window.ScrollTrigger.refresh();
         }
