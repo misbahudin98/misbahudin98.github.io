@@ -223,6 +223,67 @@
       }
     }
 
+    /* Mobile Story Carousel (Chapter 03) */
+    .story-carousel-track {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      gap: 1rem;
+      padding: 0.5rem 0.25rem 1.25rem 0.25rem;
+      scrollbar-width: none;
+    }
+    .story-carousel-track::-webkit-scrollbar {
+      display: none;
+    }
+    .story-carousel-slide {
+      flex: 0 0 88%;
+      max-width: 88%;
+      scroll-snap-align: center;
+      position: relative;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+      will-change: transform, opacity;
+    }
+    @media (min-width: 640px) and (max-width: 1023px) {
+      .story-carousel-slide {
+        flex: 0 0 85%;
+        max-width: 85%;
+      }
+    }
+    .story-carousel-slide.is-active {
+      transform: scale(1);
+      opacity: 1;
+    }
+    .story-carousel-slide:not(.is-active) {
+      transform: scale(0.96);
+      opacity: 0.65;
+    }
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 9999px;
+      background-color: #334155;
+      transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
+    }
+    .carousel-dot.is-active {
+      width: 24px;
+      background-color: #D97706;
+    }
+    .carousel-nav-btn {
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    }
+    .carousel-nav-btn:active {
+      transform: scale(0.92);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .story-carousel-slide {
+        transform: none !important;
+        opacity: 1 !important;
+        transition: none !important;
+      }
+    }
+
     /* Spreadsheet Scrollbar */
     .sheet-scroll::-webkit-scrollbar {
       height: 6px;
@@ -938,8 +999,8 @@
         </div>
         <div class="hairline-rule h-px w-full bg-darkLine mb-12"></div>
 
-        <!-- Sticky Split-Screen Scrollytelling -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+        <!-- Desktop Sticky Split-Screen Scrollytelling (lg: screens) -->
+        <div class="hidden lg:grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
 
           <!-- Left 5 Cols: 4 Scroll Steps (ScrollTrigger synced + clickable) -->
           <div class="lg:col-span-5 space-y-5 lg:space-y-10 order-2 lg:order-1">
@@ -1366,6 +1427,397 @@
             </div>
           </div>
 
+        </div>
+
+        <!-- Mobile Interactive Story Carousel (< 1024px) -->
+        <div class="block lg:hidden mt-4">
+
+          <!-- Top Stage Controller: Counter, Dot Indicator & Prev/Next Micro-Nav -->
+          <div class="flex items-center justify-between gap-2 mb-3 px-0.5">
+            <div class="flex items-center gap-2">
+              <span id="carousel-stage-counter" class="font-mono text-xs font-semibold text-copperBright bg-copperBright/10 border border-copperBright/30 px-2.5 py-1 rounded-full">
+                TAHAP 01 / 04 - RAW DATA
+              </span>
+            </div>
+
+            <!-- Dot Indicators & Arrow Buttons -->
+            <div class="flex items-center gap-2.5">
+              <div class="flex items-center gap-1.5" role="tablist" aria-label="Indikator Tahap Carousel">
+                <button type="button" data-slide-index="0" class="carousel-dot is-active" aria-label="Lihat Tahap 01"></button>
+                <button type="button" data-slide-index="1" class="carousel-dot" aria-label="Lihat Tahap 02"></button>
+                <button type="button" data-slide-index="2" class="carousel-dot" aria-label="Lihat Tahap 03"></button>
+                <button type="button" data-slide-index="3" class="carousel-dot" aria-label="Lihat Tahap 04"></button>
+              </div>
+
+              <div class="flex items-center gap-1">
+                <button type="button" id="carousel-btn-prev" aria-label="Tahap Sebelumnya" class="carousel-nav-btn w-8 h-8 rounded-md bg-darkSurface border border-darkLine hover:border-copperBright text-slate-300 hover:text-paper flex items-center justify-center">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+                </button>
+                <button type="button" id="carousel-btn-next" aria-label="Tahap Berikutnya" class="carousel-nav-btn w-8 h-8 rounded-md bg-darkSurface border border-darkLine hover:border-copperBright text-slate-300 hover:text-paper flex items-center justify-center">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Horizontal Swipeable Track -->
+          <div id="story-carousel-track" class="story-carousel-track">
+
+            <!-- SLIDE 01: RAW DATA MENTAH -->
+            <div class="story-carousel-slide is-active" data-stage-index="0" data-stage="raw">
+              <div class="bg-darkSurface border border-darkLine rounded-lg p-4 sm:p-5 space-y-3.5 shadow-2xl relative overflow-hidden h-full flex flex-col justify-between">
+                <!-- Parallax Watermark Number -->
+                <div aria-hidden="true" class="absolute -right-2 -bottom-4 font-mono font-bold text-[7rem] leading-none text-slate-800/25 pointer-events-none select-none">
+                  01
+                </div>
+
+                <div>
+                  <div class="flex items-center justify-between gap-2 mb-2">
+                    <span class="font-mono text-xs font-semibold text-copperBright">TAHAP 01 - 1_Raw_Data_Mentah</span>
+                    <span class="font-mono text-[11px] text-slate-400">60 Log Mentah</span>
+                  </div>
+                  <h3 class="text-base sm:text-lg font-bold text-paper">Menampung Log Transaksi Lintas Sumber</h3>
+                  <p class="text-xs sm:text-sm text-slate-300 mt-1 leading-relaxed">
+                    Menghimpun 60 log transaksi dari Excel Cabang, Form Web, Kasir, dan SQL yang memuat 3 transaksi duplikat, 2 kode unit tidak valid (<span class="font-mono text-xs text-red-300">UNT-99</span>), spasi teks acak, serta selisih pembayaran.
+                  </p>
+                </div>
+
+                <div class="space-y-3 relative z-10">
+                  <div class="flex flex-wrap items-center justify-between gap-1.5 text-xs pb-1 border-b border-darkLine">
+                    <span class="font-mono text-[11px] text-slate-300">Cuplikan Anomali Lapangan:</span>
+                    <div class="flex flex-wrap gap-1 font-mono text-[10px]">
+                      <span class="px-2 py-0.5 rounded-sm bg-auditRed/25 border border-auditRed/50 text-red-300">3 Duplikat</span>
+                      <span class="px-2 py-0.5 rounded-sm bg-copperBright/20 border border-copperBright/50 text-amber-300">2 Kode Unit Salah</span>
+                      <span class="px-2 py-0.5 rounded-sm bg-slate-700/80 border border-slate-600 text-slate-200">Spasi Acak</span>
+                    </div>
+                  </div>
+
+                  <!-- Anomaly Log Cards -->
+                  <div class="space-y-2 font-mono text-[11px]">
+                    <div class="p-2.5 rounded bg-darkCanvas border border-darkLine/70 space-y-1">
+                      <div class="flex items-center justify-between text-slate-400 text-[10px]">
+                        <span>#3 &middot; TRX-2026-001</span>
+                        <span class="text-slate-300">Excel Cabang</span>
+                      </div>
+                      <div class="text-amber-200 text-xs bg-amber-500/10 px-1.5 py-0.5 rounded-sm whitespace-pre">"  pt sumber makmur jaya "</div>
+                      <div class="flex items-center justify-between pt-0.5 text-[10.5px]">
+                        <span class="text-slate-400">Unit: UNT-01</span>
+                        <span class="text-emerald-400 font-semibold">Rp 15.000.000 (Lunas)</span>
+                      </div>
+                    </div>
+
+                    <div class="p-2.5 rounded bg-darkCanvas border border-darkLine/70 space-y-1">
+                      <div class="flex items-center justify-between text-slate-400 text-[10px]">
+                        <span>#12 &middot; TRX-2026-010</span>
+                        <span class="text-slate-300">Form Web</span>
+                      </div>
+                      <div class="text-paper text-xs">CV BINTANG TIMUR</div>
+                      <div class="flex items-center justify-between pt-0.5 text-[10.5px]">
+                        <span class="text-slate-400">Unit: UNT-02</span>
+                        <span class="text-amber-300 font-semibold">Bayar 10 Jt / Tagih 14,5 Jt (Selisih)</span>
+                      </div>
+                    </div>
+
+                    <div class="p-2.5 rounded bg-red-950/25 border border-red-900/50 space-y-1">
+                      <div class="flex items-center justify-between text-red-300 text-[10px]">
+                        <span class="font-bold">#19 &middot; TRX-2026-001 (DUPLIKAT SQL)</span>
+                        <span class="text-slate-400">SQL Export</span>
+                      </div>
+                      <div class="text-slate-200 text-xs">PT Sumber Makmur Jaya</div>
+                      <div class="flex items-center justify-between pt-0.5 text-[10.5px]">
+                        <span class="text-slate-400">Unit: UNT-01</span>
+                        <span class="text-red-300 font-semibold">Terdeteksi Rekaman Ganda</span>
+                      </div>
+                    </div>
+
+                    <div class="p-2.5 rounded bg-darkCanvas border border-darkLine/70 space-y-1">
+                      <div class="flex items-center justify-between text-slate-400 text-[10px]">
+                        <span>#27 &middot; TRX-2026-024</span>
+                        <span class="text-slate-300">Kasir</span>
+                      </div>
+                      <div class="text-slate-200 text-xs">" koperasi maju bersama"</div>
+                      <div class="flex items-center justify-between pt-0.5 text-[10.5px]">
+                        <span class="text-red-300 font-semibold bg-red-500/20 px-1 rounded-sm">UNT-99 (KODE TIDAK VALID)</span>
+                        <span class="text-slate-300">Rp 12.000.000</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 3 Pillar Badges -->
+                  <div class="grid grid-cols-3 gap-2 pt-1 text-[10px] font-mono">
+                    <div class="p-2 rounded bg-darkCanvas border border-darkLine text-center">
+                      <span class="block text-blueprint font-semibold">4 Sumber</span>
+                      <span class="text-slate-400">Excel/Web/SQL</span>
+                    </div>
+                    <div class="p-2 rounded bg-darkCanvas border border-darkLine text-center">
+                      <span class="block text-red-400 font-semibold">5 Anomali</span>
+                      <span class="text-slate-400">Terdeteksi</span>
+                    </div>
+                    <div class="p-2 rounded bg-darkCanvas border border-darkLine text-center">
+                      <span class="block text-emerald-400 font-semibold">Audit Trail</span>
+                      <span class="text-slate-400">100% Utuh</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pt-2 flex items-center justify-between font-mono text-[11px] text-slate-400">
+                  <span>Raw Layer Utuh</span>
+                  <span class="text-copperBright">Geser ke Tahap 02 &rarr;</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- SLIDE 02: MASTER REFERENSI -->
+            <div class="story-carousel-slide" data-stage-index="1" data-stage="master">
+              <div class="bg-darkSurface border border-darkLine rounded-lg p-4 sm:p-5 space-y-3.5 shadow-2xl relative overflow-hidden h-full flex flex-col justify-between">
+                <!-- Parallax Watermark Number -->
+                <div aria-hidden="true" class="absolute -right-2 -bottom-4 font-mono font-bold text-[7rem] leading-none text-slate-800/25 pointer-events-none select-none">
+                  02
+                </div>
+
+                <div>
+                  <div class="flex items-center justify-between gap-2 mb-2">
+                    <span class="font-mono text-xs font-semibold text-copperBright">TAHAP 02 - 2_Master_Referensi</span>
+                    <span class="font-mono text-[11px] text-slate-400">Star Schema / 3NF</span>
+                  </div>
+                  <h3 class="text-base sm:text-lg font-bold text-paper">Normalisasi Tabel Dimensi Referensi</h3>
+                  <p class="text-xs sm:text-sm text-slate-300 mt-1 leading-relaxed">
+                    Memisahkan tabel referensi ala Star Schema dan 3NF ke dalam Master Unit Operasional, Master Kategori Layanan, serta Master Kalender Bulan agar perubahan target terpusat.
+                  </p>
+                </div>
+
+                <div class="space-y-3 relative z-10">
+                  <!-- Master Unit -->
+                  <div class="border border-darkLine rounded-md overflow-hidden">
+                    <div class="px-3 py-1.5 bg-darkCanvas border-b border-darkLine flex items-center justify-between">
+                      <span class="font-mono text-[10.5px] font-semibold text-copperBright">Master_Unit_Operasional</span>
+                      <span class="font-mono text-[9.5px] text-slate-400">PK: Kode_Unit</span>
+                    </div>
+                    <div class="divide-y divide-darkLine/60 font-mono text-[11px] text-slate-200">
+                      <div class="p-2 flex items-center justify-between"><span class="text-emerald-400 font-semibold">UNT-01</span><span>Pusat</span><span class="text-slate-300">40 Jt/Bln</span></div>
+                      <div class="p-2 flex items-center justify-between"><span class="text-emerald-400 font-semibold">UNT-02</span><span>Akademik</span><span class="text-slate-300">33,3 Jt/Bln</span></div>
+                      <div class="p-2 flex items-center justify-between"><span class="text-emerald-400 font-semibold">UNT-03</span><span>Mitra Korporat</span><span class="text-slate-300">30 Jt/Bln</span></div>
+                      <div class="p-2 flex items-center justify-between"><span class="text-emerald-400 font-semibold">UNT-04</span><span>Cabang</span><span class="text-slate-300">25 Jt/Bln</span></div>
+                    </div>
+                  </div>
+
+                  <!-- Master Layanan -->
+                  <div class="border border-darkLine rounded-md overflow-hidden">
+                    <div class="px-3 py-1.5 bg-darkCanvas border-b border-darkLine flex items-center justify-between">
+                      <span class="font-mono text-[10.5px] font-semibold text-blueprint">Master_Kategori_Layanan</span>
+                      <span class="font-mono text-[9.5px] text-slate-400">PK: Kode_PRD</span>
+                    </div>
+                    <div class="divide-y divide-darkLine/60 font-mono text-[11px] text-slate-200">
+                      <div class="p-2 flex items-center justify-between"><span class="text-amber-300 font-semibold">PRD-A</span><span>Audit Sistem</span><span class="text-slate-300">15 Jt / 5H</span></div>
+                      <div class="p-2 flex items-center justify-between"><span class="text-amber-300 font-semibold">PRD-B</span><span>Migrasi Data</span><span class="text-slate-300">14,5 Jt / 7H</span></div>
+                      <div class="p-2 flex items-center justify-between"><span class="text-amber-300 font-semibold">PRD-C</span><span>Integrasi Web</span><span class="text-slate-300">16,8 Jt / 10H</span></div>
+                      <div class="p-2 flex items-center justify-between"><span class="text-amber-300 font-semibold">PRD-D</span><span>Setup Jaringan</span><span class="text-slate-300">12 Jt / 3H</span></div>
+                    </div>
+                  </div>
+
+                  <!-- Master Kalender -->
+                  <div class="border border-darkLine rounded-md overflow-hidden">
+                    <div class="px-3 py-1.5 bg-darkCanvas border-b border-darkLine flex items-center justify-between">
+                      <span class="font-mono text-[10.5px] font-semibold text-copperBright">Dimensi Waktu (Jan - Jun 2026)</span>
+                      <span class="font-mono text-[9.5px] text-slate-400">SUMIFS Key</span>
+                    </div>
+                    <div class="grid grid-cols-6 divide-x divide-darkLine font-mono text-[10px] text-center">
+                      <div class="p-1.5"><span class="text-slate-400 block">01</span><span class="text-paper font-semibold">Jan</span></div>
+                      <div class="p-1.5"><span class="text-slate-400 block">02</span><span class="text-paper font-semibold">Feb</span></div>
+                      <div class="p-1.5"><span class="text-slate-400 block">03</span><span class="text-paper font-semibold">Mar</span></div>
+                      <div class="p-1.5"><span class="text-slate-400 block">04</span><span class="text-paper font-semibold">Apr</span></div>
+                      <div class="p-1.5"><span class="text-slate-400 block">05</span><span class="text-paper font-semibold">Mei</span></div>
+                      <div class="p-1.5"><span class="text-slate-400 block">06</span><span class="text-paper font-semibold">Jun</span></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pt-2 flex items-center justify-between font-mono text-[11px] text-slate-400">
+                  <span>Star Schema / 3NF</span>
+                  <span class="text-copperBright">Geser ke Tahap 03 &rarr;</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- SLIDE 03: DATA BERSIH ETL -->
+            <div class="story-carousel-slide" data-stage-index="2" data-stage="etl">
+              <div class="bg-darkSurface border border-darkLine rounded-lg p-4 sm:p-5 space-y-3.5 shadow-2xl relative overflow-hidden h-full flex flex-col justify-between">
+                <!-- Parallax Watermark Number -->
+                <div aria-hidden="true" class="absolute -right-2 -bottom-4 font-mono font-bold text-[7rem] leading-none text-slate-800/25 pointer-events-none select-none">
+                  03
+                </div>
+
+                <div>
+                  <div class="flex items-center justify-between gap-2 mb-2">
+                    <span class="font-mono text-xs font-semibold text-copperBright">TAHAP 03 - 3_Data_Bersih_ETL</span>
+                    <span class="font-mono text-[11px] text-slate-400">100% Formula</span>
+                  </div>
+                  <h3 class="text-base sm:text-lg font-bold text-paper">Pembersihan, Format VA &amp; Rekonsiliasi</h3>
+                  <p class="text-xs sm:text-sm text-slate-300 mt-1 leading-relaxed">
+                    100% formula tanpa mengubah data mentah: <span class="font-mono text-xs text-amber-200">PROPER(TRIM(...))</span>, <span class="font-mono text-xs text-amber-200">VLOOKUP</span>, format VA otomatis, <span class="font-mono text-xs text-amber-200">COUNTIF</span> deteksi duplikat, logika rekonsiliasi, Data Validation, dan Conditional Formatting.
+                  </p>
+                </div>
+
+                <div class="space-y-3 relative z-10">
+                  <!-- Formula Buttons -->
+                  <div>
+                    <span class="block text-xs text-slate-300 mb-2">Sentuh rumus untuk memeriksa logika aktif:</span>
+                    <div class="flex flex-wrap gap-1.5">
+                      <button type="button" data-formula-key="nama" class="mob-etl-col-btn etl-col-active px-2.5 py-1 rounded-sm border border-darkLine bg-darkCanvas font-mono text-[10.5px] text-slate-300">PROPER(TRIM)</button>
+                      <button type="button" data-formula-key="unit" class="mob-etl-col-btn px-2.5 py-1 rounded-sm border border-darkLine bg-darkCanvas font-mono text-[10.5px] text-slate-300">VLOOKUP</button>
+                      <button type="button" data-formula-key="va" class="mob-etl-col-btn px-2.5 py-1 rounded-sm border border-darkLine bg-darkCanvas font-mono text-[10.5px] text-slate-300">Format VA</button>
+                      <button type="button" data-formula-key="dup" class="mob-etl-col-btn px-2.5 py-1 rounded-sm border border-darkLine bg-darkCanvas font-mono text-[10.5px] text-slate-300">COUNTIF</button>
+                      <button type="button" data-formula-key="status" class="mob-etl-col-btn px-2.5 py-1 rounded-sm border border-darkLine bg-darkCanvas font-mono text-[10.5px] text-slate-300">Rekonsiliasi</button>
+                    </div>
+                  </div>
+
+                  <!-- Live Formula Display -->
+                  <div class="p-2.5 rounded bg-[#0A111E] border border-darkLine font-mono text-xs flex items-center gap-2">
+                    <span id="mob-formula-cell-ref" class="px-1.5 py-0.5 rounded-sm bg-darkCanvas border border-darkLine text-slate-300 text-[11px] flex-shrink-0">D3</span>
+                    <span class="text-slate-500 italic font-serif font-bold flex-shrink-0">fx</span>
+                    <code id="mob-formula-bar-text" class="text-amber-300 text-[11px] break-all flex-1">=PROPER(TRIM('1_Raw_Data_Mentah'!E3))</code>
+                  </div>
+
+                  <!-- Clean Output Rows -->
+                  <div class="space-y-2 font-mono text-[11px]">
+                    <div class="p-2.5 rounded bg-darkCanvas border border-darkLine/70 space-y-1">
+                      <div class="flex items-center justify-between text-slate-400 text-[10px]">
+                        <span>TRX-001 &middot; VA: 880101001</span>
+                        <span class="text-emerald-400 font-semibold">UNIK</span>
+                      </div>
+                      <div class="text-paper text-xs font-semibold">Pt Sumber Makmur Jaya</div>
+                      <div class="flex items-center justify-between pt-0.5 text-[10.5px]">
+                        <span class="text-slate-400">Unit Valid: Operasional Pusat</span>
+                        <span class="px-2 py-0.5 rounded-sm bg-auditGreen/25 border border-auditGreen/50 text-emerald-300 text-[10px] font-semibold">COCOK (LUNAS)</span>
+                      </div>
+                    </div>
+
+                    <div class="p-2.5 rounded bg-darkCanvas border border-darkLine/70 space-y-1">
+                      <div class="flex items-center justify-between text-slate-400 text-[10px]">
+                        <span>TRX-010 &middot; VA: 880102010</span>
+                        <span class="text-emerald-400 font-semibold">UNIK</span>
+                      </div>
+                      <div class="text-paper text-xs font-semibold">Cv Bintang Timur</div>
+                      <div class="flex items-center justify-between pt-0.5 text-[10.5px]">
+                        <span class="text-slate-400">Layanan Akademik</span>
+                        <span class="px-2 py-0.5 rounded-sm bg-copperBright/25 border border-copperBright/50 text-amber-300 text-[10px] font-semibold">SELISIH BAYAR</span>
+                      </div>
+                    </div>
+
+                    <div class="p-2.5 rounded bg-red-950/20 border border-red-900/40 space-y-1">
+                      <div class="flex items-center justify-between text-slate-400 text-[10px]">
+                        <span>TRX-024 &middot; VA: 880103024</span>
+                        <span class="text-emerald-400 font-semibold">UNIK</span>
+                      </div>
+                      <div class="text-paper text-xs font-semibold">Koperasi Maju Bersama</div>
+                      <div class="flex items-center justify-between pt-0.5 text-[10.5px]">
+                        <span class="text-red-300">KODE UNIT TIDAK VALID</span>
+                        <span class="px-2 py-0.5 rounded-sm bg-auditRed/25 border border-auditRed/50 text-red-300 text-[10px] font-semibold">PERLU KOREKSI UNIT</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pt-2 flex items-center justify-between font-mono text-[11px] text-slate-400">
+                  <span>100% Excel Formula</span>
+                  <span class="text-copperBright">Geser ke Tahap 04 &rarr;</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- SLIDE 04: DASHBOARD VISUAL -->
+            <div class="story-carousel-slide" data-stage-index="3" data-stage="dashboard">
+              <div class="bg-darkSurface border border-darkLine rounded-lg p-4 sm:p-5 space-y-4 shadow-2xl relative overflow-hidden h-full flex flex-col justify-between">
+                <!-- Parallax Watermark Number -->
+                <div aria-hidden="true" class="absolute -right-2 -bottom-4 font-mono font-bold text-[7rem] leading-none text-slate-800/25 pointer-events-none select-none">
+                  04
+                </div>
+
+                <div>
+                  <div class="flex items-center justify-between gap-2 mb-2">
+                    <span class="font-mono text-xs font-semibold text-copperBright">TAHAP 04 - 4_Dashboard_Visual</span>
+                    <span class="font-mono text-[11px] text-slate-400">SUMIFS / COUNTIFS</span>
+                  </div>
+                  <h3 class="text-base sm:text-lg font-bold text-paper">5 KPI Cards &amp; Grafik Manajemen</h3>
+                  <p class="text-xs sm:text-sm text-slate-300 mt-1 leading-relaxed">
+                    Menghitung otomatis 60 Log Diproses, 55 Data Valid (91,7%), 5 Anomali Terdeteksi, Realisasi <strong class="text-white">Rp 742.600.000</strong>, dan Piutang Aktif <strong class="text-white">Rp 51.600.000</strong> beserta grafik tren performa.
+                  </p>
+                </div>
+
+                <div class="space-y-4 relative z-10">
+                  <!-- 5 KPI Cards -->
+                  <div class="grid grid-cols-2 gap-2 font-mono">
+                    <div class="p-2.5 rounded bg-darkCanvas border border-darkLine">
+                      <span class="block text-[10px] text-slate-400 uppercase">Log Diproses</span>
+                      <span class="block text-base font-bold text-paper mt-0.5">60</span>
+                      <span class="block text-[9.5px] text-slate-400">Total baris</span>
+                    </div>
+                    <div class="p-2.5 rounded bg-darkCanvas border border-darkLine">
+                      <span class="block text-[10px] text-slate-400 uppercase">Data Valid</span>
+                      <span class="block text-base font-bold text-emerald-400 mt-0.5">91,7%</span>
+                      <span class="block text-[9.5px] text-slate-400">55 baris valid</span>
+                    </div>
+                    <div class="p-2.5 rounded bg-darkCanvas border border-darkLine">
+                      <span class="block text-[10px] text-slate-400 uppercase">Anomali</span>
+                      <span class="block text-base font-bold text-red-400 mt-0.5">5</span>
+                      <span class="block text-[9.5px] text-slate-400">Terdeteksi</span>
+                    </div>
+                    <div class="p-2.5 rounded bg-darkCanvas border border-darkLine">
+                      <span class="block text-[10px] text-slate-400 uppercase">Piutang Aktif</span>
+                      <span class="block text-xs font-bold text-copperBright mt-0.5">Rp 51.600.000</span>
+                      <span class="block text-[9.5px] text-slate-400">Selisih/Belum</span>
+                    </div>
+                    <div class="p-2.5 rounded bg-darkCanvas border border-darkLine col-span-2">
+                      <span class="block text-[10px] text-slate-400 uppercase">Realisasi Keuangan</span>
+                      <span class="block text-sm font-bold text-paper mt-0.5">Rp 742.600.000</span>
+                      <span class="block text-[9.5px] text-emerald-400">Terkonfirmasi Masuk Rekening</span>
+                    </div>
+                  </div>
+
+                  <!-- Chart Toggle -->
+                  <div class="flex flex-wrap items-center justify-between gap-2 pt-1 border-t border-darkLine">
+                    <span id="bar-chart-heading-mob" class="font-mono text-xs font-semibold text-paper">Tren Bulanan: Tagihan vs Realisasi (Rp Juta)</span>
+                    <div class="inline-flex rounded-md bg-darkCanvas border border-darkLine p-0.5">
+                      <button type="button" id="btn-view-monthly-mob" class="px-2.5 py-1 rounded-sm font-mono text-[10px] font-semibold bg-copperBright text-white transition-colors">
+                        Bulanan
+                      </button>
+                      <button type="button" id="btn-view-unit-mob" class="px-2.5 py-1 rounded-sm font-mono text-[10px] font-medium text-slate-300 hover:text-paper transition-colors">
+                        Per Unit
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Live Canvases -->
+                  <div class="space-y-3">
+                    <div class="bg-darkCanvas border border-darkLine rounded-md p-3">
+                      <div class="relative h-48 w-full">
+                        <canvas id="excelBarChartMob"></canvas>
+                      </div>
+                    </div>
+                    <div class="bg-darkCanvas border border-darkLine rounded-md p-3">
+                      <span class="block font-mono text-[10.5px] font-semibold text-slate-200 mb-2">Komposisi Kualitas Data (60 Log)</span>
+                      <div class="relative h-40 w-full">
+                        <canvas id="excelDoughnutChartMob"></canvas>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Action Footer -->
+                  <div class="pt-3 border-t border-darkLine flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5">
+                    <button type="button" data-lightbox-id="proj-excel" class="lightbox-trigger inline-flex items-center justify-center gap-2 px-3 py-2 rounded-md border border-darkLine bg-darkCanvas hover:border-copperBright text-slate-200 font-mono text-[11px] transition-colors">
+                      <svg class="w-3.5 h-3.5 text-copperBright" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+                      <span>Pratinjau Screenshot</span>
+                    </button>
+                    <a data-asset-href="excelFile" href="./assets/files/Portofolio_Data_Pipeline_Dashboard_Misbahudin.xlsx" download class="inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-md bg-copperBright hover:bg-copper text-white text-xs font-semibold transition-colors">
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" /></svg>
+                      <span>Unduh File Excel (.xlsx)</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
     </section>
@@ -2422,7 +2874,34 @@
       var currentEtlCol = 'nama';
       var barChartInstance = null;
       var doughnutChartInstance = null;
+      var barChartMobInstance = null;
+      var doughnutChartMobInstance = null;
       var dashboardMode = 'monthly';
+
+      var btnViewMonthlyMob = document.getElementById('btn-view-monthly-mob');
+      var btnViewUnitMob = document.getElementById('btn-view-unit-mob');
+      var barChartHeadingMob = document.getElementById('bar-chart-heading-mob');
+
+      var mobEtlColBtns = document.querySelectorAll('.mob-etl-col-btn');
+      var mobFormulaCellRef = document.getElementById('mob-formula-cell-ref');
+      var mobFormulaBarText = document.getElementById('mob-formula-bar-text');
+
+      function setMobileEtlColumn(colKey) {
+        if (!etlFormulas[colKey]) return;
+        mobEtlColBtns.forEach(function (btn) {
+          btn.classList.toggle('etl-col-active', btn.getAttribute('data-formula-key') === colKey);
+        });
+        if (mobFormulaCellRef && mobFormulaBarText) {
+          mobFormulaCellRef.textContent = etlFormulas[colKey].ref;
+          mobFormulaBarText.textContent = etlFormulas[colKey].formula;
+        }
+      }
+
+      mobEtlColBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          setMobileEtlColumn(btn.getAttribute('data-formula-key'));
+        });
+      });
 
       function setEtlColumn(colKey) {
         if (!etlFormulas[colKey]) return;
@@ -2475,123 +2954,249 @@
         if (typeof Chart === 'undefined') return;
         var barCanvas = document.getElementById('excelBarChart');
         var doughnutCanvas = document.getElementById('excelDoughnutChart');
-        if (!barCanvas || !doughnutCanvas) return;
+        var barMobCanvas = document.getElementById('excelBarChartMob');
+        var doughnutMobCanvas = document.getElementById('excelDoughnutChartMob');
 
         var ds = chartDatasets[dashboardMode];
 
-        if (!barChartInstance) {
-          barChartInstance = new Chart(barCanvas.getContext('2d'), {
-            type: 'bar',
-            data: {
-              labels: ds.labels,
-              datasets: [
-                {
-                  label: 'Tagihan (Rp Jt)',
-                  data: ds.tagihan,
-                  backgroundColor: 'rgba(148, 163, 184, 0.35)',
-                  borderColor: 'rgba(148, 163, 184, 0.85)',
-                  borderWidth: 1,
-                  borderRadius: 2
-                },
-                {
-                  label: 'Realisasi (Rp Jt)',
-                  data: ds.realisasi,
-                  backgroundColor: '#3B82F6',
-                  borderColor: '#60A5FA',
-                  borderWidth: 1,
-                  borderRadius: 2
-                }
-              ]
-            },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              plugins: {
-                legend: {
-                  position: 'bottom',
-                  labels: {
-                    color: '#CBD5E1',
-                    font: { family: '"JetBrains Mono", monospace', size: 10 },
-                    boxWidth: 10,
-                    padding: 10
+        if (barCanvas) {
+          if (!barChartInstance) {
+            barChartInstance = new Chart(barCanvas.getContext('2d'), {
+              type: 'bar',
+              data: {
+                labels: ds.labels,
+                datasets: [
+                  {
+                    label: 'Tagihan (Rp Jt)',
+                    data: ds.tagihan,
+                    backgroundColor: 'rgba(148, 163, 184, 0.35)',
+                    borderColor: 'rgba(148, 163, 184, 0.85)',
+                    borderWidth: 1,
+                    borderRadius: 2
+                  },
+                  {
+                    label: 'Realisasi (Rp Jt)',
+                    data: ds.realisasi,
+                    backgroundColor: '#3B82F6',
+                    borderColor: '#60A5FA',
+                    borderWidth: 1,
+                    borderRadius: 2
                   }
-                },
-                tooltip: {
-                  backgroundColor: '#080E18',
-                  borderColor: '#243247',
-                  borderWidth: 1,
-                  titleFont: { family: '"JetBrains Mono", monospace' },
-                  bodyFont: { family: '"JetBrains Mono", monospace', size: 11 },
-                  callbacks: {
-                    label: function (ctx) {
-                      return ctx.dataset.label + ': Rp ' + ctx.parsed.y.toFixed(1).replace('.', ',') + ' Jt';
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                  legend: {
+                    position: 'bottom',
+                    labels: {
+                      color: '#CBD5E1',
+                      font: { family: '"JetBrains Mono", monospace', size: 10 },
+                      boxWidth: 10,
+                      padding: 10
+                    }
+                  },
+                  tooltip: {
+                    backgroundColor: '#080E18',
+                    borderColor: '#243247',
+                    borderWidth: 1,
+                    titleFont: { family: '"JetBrains Mono", monospace' },
+                    bodyFont: { family: '"JetBrains Mono", monospace', size: 11 },
+                    callbacks: {
+                      label: function (ctx) {
+                        return ctx.dataset.label + ': Rp ' + ctx.parsed.y.toFixed(1).replace('.', ',') + ' Jt';
+                      }
                     }
                   }
-                }
-              },
-              scales: {
-                x: {
-                  ticks: { color: '#94A3B8', font: { family: '"JetBrains Mono", monospace', size: 10 } },
-                  grid: { display: false }
                 },
-                y: {
-                  beginAtZero: true,
-                  ticks: {
-                    color: '#94A3B8',
-                    font: { family: '"JetBrains Mono", monospace', size: 10 },
-                    callback: function (v) { return v + ' Jt'; }
+                scales: {
+                  x: {
+                    ticks: { color: '#94A3B8', font: { family: '"JetBrains Mono", monospace', size: 10 } },
+                    grid: { display: false }
                   },
-                  grid: { color: 'rgba(36, 50, 71, 0.65)' }
+                  y: {
+                    beginAtZero: true,
+                    ticks: {
+                      color: '#94A3B8',
+                      font: { family: '"JetBrains Mono", monospace', size: 10 },
+                      callback: function (v) { return v + ' Jt'; }
+                    },
+                    grid: { color: 'rgba(36, 50, 71, 0.65)' }
+                  }
                 }
               }
-            }
-          });
-        } else {
-          barChartInstance.data.labels = ds.labels;
-          barChartInstance.data.datasets[0].data = ds.tagihan;
-          barChartInstance.data.datasets[1].data = ds.realisasi;
-          barChartInstance.resize();
-          barChartInstance.update();
+            });
+          } else {
+            barChartInstance.data.labels = ds.labels;
+            barChartInstance.data.datasets[0].data = ds.tagihan;
+            barChartInstance.data.datasets[1].data = ds.realisasi;
+            barChartInstance.resize();
+            barChartInstance.update();
+          }
         }
 
-        if (!doughnutChartInstance) {
-          doughnutChartInstance = new Chart(doughnutCanvas.getContext('2d'), {
-            type: 'doughnut',
-            data: {
-              labels: ['Lunas (47)', 'Selisih (5)', 'Belum (3)', 'Duplikat (3)', 'Unit Salah (2)'],
-              datasets: [{
-                data: [47, 5, 3, 3, 2],
-                backgroundColor: ['#15803D', '#D97706', '#3B82F6', '#B91C1C', '#7F1D1D'],
-                borderColor: '#0B1320',
-                borderWidth: 2
-              }]
-            },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              cutout: '62%',
-              plugins: {
-                legend: {
-                  position: 'right',
-                  labels: {
-                    color: '#CBD5E1',
-                    font: { family: '"JetBrains Mono", monospace', size: 9.5 },
-                    boxWidth: 9,
-                    padding: 8
+        if (doughnutCanvas) {
+          if (!doughnutChartInstance) {
+            doughnutChartInstance = new Chart(doughnutCanvas.getContext('2d'), {
+              type: 'doughnut',
+              data: {
+                labels: ['Lunas (47)', 'Selisih (5)', 'Belum (3)', 'Duplikat (3)', 'Unit Salah (2)'],
+                datasets: [{
+                  data: [47, 5, 3, 3, 2],
+                  backgroundColor: ['#15803D', '#D97706', '#3B82F6', '#B91C1C', '#7F1D1D'],
+                  borderColor: '#0B1320',
+                  borderWidth: 2
+                }]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '62%',
+                plugins: {
+                  legend: {
+                    position: 'right',
+                    labels: {
+                      color: '#CBD5E1',
+                      font: { family: '"JetBrains Mono", monospace', size: 9.5 },
+                      boxWidth: 9,
+                      padding: 8
+                    }
+                  },
+                  tooltip: {
+                    backgroundColor: '#080E18',
+                    borderColor: '#243247',
+                    borderWidth: 1,
+                    bodyFont: { family: '"JetBrains Mono", monospace', size: 11 }
                   }
-                },
-                tooltip: {
-                  backgroundColor: '#080E18',
-                  borderColor: '#243247',
-                  borderWidth: 1,
-                  bodyFont: { family: '"JetBrains Mono", monospace', size: 11 }
                 }
               }
-            }
-          });
-        } else {
-          doughnutChartInstance.resize();
-          doughnutChartInstance.update();
+            });
+          } else {
+            doughnutChartInstance.resize();
+            doughnutChartInstance.update();
+          }
+        }
+
+        // Mobile Bar Chart
+        if (barMobCanvas) {
+          if (!barChartMobInstance) {
+            barChartMobInstance = new Chart(barMobCanvas.getContext('2d'), {
+              type: 'bar',
+              data: {
+                labels: ds.labels,
+                datasets: [
+                  {
+                    label: 'Tagihan (Rp Jt)',
+                    data: ds.tagihan,
+                    backgroundColor: 'rgba(148, 163, 184, 0.35)',
+                    borderColor: 'rgba(148, 163, 184, 0.85)',
+                    borderWidth: 1,
+                    borderRadius: 2
+                  },
+                  {
+                    label: 'Realisasi (Rp Jt)',
+                    data: ds.realisasi,
+                    backgroundColor: '#3B82F6',
+                    borderColor: '#60A5FA',
+                    borderWidth: 1,
+                    borderRadius: 2
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                  legend: {
+                    position: 'bottom',
+                    labels: {
+                      color: '#CBD5E1',
+                      font: { family: '"JetBrains Mono", monospace', size: 9.5 },
+                      boxWidth: 9,
+                      padding: 8
+                    }
+                  },
+                  tooltip: {
+                    backgroundColor: '#080E18',
+                    borderColor: '#243247',
+                    borderWidth: 1,
+                    titleFont: { family: '"JetBrains Mono", monospace' },
+                    bodyFont: { family: '"JetBrains Mono", monospace', size: 10.5 },
+                    callbacks: {
+                      label: function (ctx) {
+                        return ctx.dataset.label + ': Rp ' + ctx.parsed.y.toFixed(1).replace('.', ',') + ' Jt';
+                      }
+                    }
+                  }
+                },
+                scales: {
+                  x: {
+                    ticks: { color: '#94A3B8', font: { family: '"JetBrains Mono", monospace', size: 9 } },
+                    grid: { display: false }
+                  },
+                  y: {
+                    beginAtZero: true,
+                    ticks: {
+                      color: '#94A3B8',
+                      font: { family: '"JetBrains Mono", monospace', size: 9 },
+                      callback: function (v) { return v + ' Jt'; }
+                    },
+                    grid: { color: 'rgba(36, 50, 71, 0.65)' }
+                  }
+                }
+              }
+            });
+          } else {
+            barChartMobInstance.data.labels = ds.labels;
+            barChartMobInstance.data.datasets[0].data = ds.tagihan;
+            barChartMobInstance.data.datasets[1].data = ds.realisasi;
+            barChartMobInstance.resize();
+            barChartMobInstance.update();
+          }
+        }
+
+        // Mobile Doughnut Chart
+        if (doughnutMobCanvas) {
+          if (!doughnutChartMobInstance) {
+            doughnutChartMobInstance = new Chart(doughnutMobCanvas.getContext('2d'), {
+              type: 'doughnut',
+              data: {
+                labels: ['Lunas (47)', 'Selisih (5)', 'Belum (3)', 'Duplikat (3)', 'Unit Salah (2)'],
+                datasets: [{
+                  data: [47, 5, 3, 3, 2],
+                  backgroundColor: ['#15803D', '#D97706', '#3B82F6', '#B91C1C', '#7F1D1D'],
+                  borderColor: '#0B1320',
+                  borderWidth: 2
+                }]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '60%',
+                plugins: {
+                  legend: {
+                    position: 'right',
+                    labels: {
+                      color: '#CBD5E1',
+                      font: { family: '"JetBrains Mono", monospace', size: 9 },
+                      boxWidth: 8,
+                      padding: 6
+                    }
+                  },
+                  tooltip: {
+                    backgroundColor: '#080E18',
+                    borderColor: '#243247',
+                    borderWidth: 1,
+                    bodyFont: { family: '"JetBrains Mono", monospace', size: 10.5 }
+                  }
+                }
+              }
+            });
+          } else {
+            doughnutChartMobInstance.resize();
+            doughnutChartMobInstance.update();
+          }
         }
       }
 
@@ -2602,8 +3207,9 @@
       function setDashboardView(mode) {
         dashboardMode = mode;
         if (barChartHeading) barChartHeading.textContent = chartDatasets[mode].heading;
+        if (barChartHeadingMob) barChartHeadingMob.textContent = chartDatasets[mode].heading;
+        var isMonthly = mode === 'monthly';
         if (btnViewMonthly && btnViewUnit) {
-          var isMonthly = mode === 'monthly';
           btnViewMonthly.className = isMonthly
             ? 'px-2.5 py-1.5 rounded-sm font-mono text-[10.5px] font-semibold bg-copperBright text-white transition-colors'
             : 'px-2.5 py-1.5 rounded-sm font-mono text-[10.5px] font-medium text-slate-300 hover:text-paper transition-colors';
@@ -2611,11 +3217,21 @@
             ? 'px-2.5 py-1.5 rounded-sm font-mono text-[10.5px] font-semibold bg-copperBright text-white transition-colors'
             : 'px-2.5 py-1.5 rounded-sm font-mono text-[10.5px] font-medium text-slate-300 hover:text-paper transition-colors';
         }
+        if (btnViewMonthlyMob && btnViewUnitMob) {
+          btnViewMonthlyMob.className = isMonthly
+            ? 'px-2.5 py-1 rounded-sm font-mono text-[10px] font-semibold bg-copperBright text-white transition-colors'
+            : 'px-2.5 py-1 rounded-sm font-mono text-[10px] font-medium text-slate-300 hover:text-paper transition-colors';
+          btnViewUnitMob.className = !isMonthly
+            ? 'px-2.5 py-1 rounded-sm font-mono text-[10px] font-semibold bg-copperBright text-white transition-colors'
+            : 'px-2.5 py-1 rounded-sm font-mono text-[10px] font-medium text-slate-300 hover:text-paper transition-colors';
+        }
         initOrUpdateCharts();
       }
 
       if (btnViewMonthly) btnViewMonthly.addEventListener('click', function () { setDashboardView('monthly'); });
       if (btnViewUnit) btnViewUnit.addEventListener('click', function () { setDashboardView('unit'); });
+      if (btnViewMonthlyMob) btnViewMonthlyMob.addEventListener('click', function () { setDashboardView('monthly'); });
+      if (btnViewUnitMob) btnViewUnitMob.addEventListener('click', function () { setDashboardView('unit'); });
 
       function switchSheet(sheetKey) {
         if (!tabMeta[sheetKey]) return;
@@ -2664,7 +3280,70 @@
           if (barChartInstance) barChartInstance.resize();
           if (doughnutChartInstance) doughnutChartInstance.resize();
         }
+        if (barChartMobInstance) barChartMobInstance.resize();
+        if (doughnutChartMobInstance) doughnutChartMobInstance.resize();
       });
+
+      /* Mobile Story Carousel Controls */
+      var carouselTrack = document.getElementById('story-carousel-track');
+      var carouselDots = document.querySelectorAll('.carousel-dot');
+      var carouselCounter = document.getElementById('carousel-stage-counter');
+      var carouselPrevBtn = document.getElementById('carousel-btn-prev');
+      var carouselNextBtn = document.getElementById('carousel-btn-next');
+      var carouselSlides = document.querySelectorAll('.story-carousel-slide');
+
+      var stageTitles = [
+        'TAHAP 01 / 04 - RAW DATA',
+        'TAHAP 02 / 04 - MASTER 3NF',
+        'TAHAP 03 / 04 - BERSIH ETL',
+        'TAHAP 04 / 04 - DASHBOARD'
+      ];
+
+      function updateActiveCarouselSlide(index) {
+        if (index < 0 || index >= carouselSlides.length) return;
+        carouselSlides.forEach(function (slide, idx) {
+          slide.classList.toggle('is-active', idx === index);
+        });
+        carouselDots.forEach(function (dot, idx) {
+          dot.classList.toggle('is-active', idx === index);
+        });
+        if (carouselCounter) {
+          carouselCounter.textContent = stageTitles[index] || ('TAHAP 0' + (index + 1) + ' / 04');
+        }
+        if (index === 3) {
+          requestAnimationFrame(initOrUpdateCharts);
+        }
+      }
+
+      if (carouselTrack && carouselSlides.length) {
+        carouselTrack.addEventListener('scroll', function () {
+          var scrollLeft = carouselTrack.scrollLeft;
+          var slideWidth = carouselSlides[0].offsetWidth + 16;
+          var activeIndex = Math.round(scrollLeft / slideWidth);
+          activeIndex = Math.max(0, Math.min(carouselSlides.length - 1, activeIndex));
+          updateActiveCarouselSlide(activeIndex);
+        }, { passive: true });
+
+        carouselDots.forEach(function (dot) {
+          dot.addEventListener('click', function () {
+            var idx = parseInt(dot.getAttribute('data-slide-index'), 10);
+            if (!isNaN(idx) && carouselSlides[idx]) {
+              carouselSlides[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
+          });
+        });
+
+        if (carouselPrevBtn) {
+          carouselPrevBtn.addEventListener('click', function () {
+            carouselTrack.scrollBy({ left: -(carouselSlides[0].offsetWidth + 16), behavior: 'smooth' });
+          });
+        }
+        if (carouselNextBtn) {
+          carouselNextBtn.addEventListener('click', function () {
+            carouselTrack.scrollBy({ left: (carouselSlides[0].offsetWidth + 16), behavior: 'smooth' });
+          });
+        }
+      }
 
       /* -------------------------------------------------------
          6. TOP PROGRESS BAR & RIGHT CHAPTER RAIL THEME SYNC
@@ -2850,6 +3529,24 @@
               onEnterBack: function () { switchSheet(key); }
             });
           });
+        });
+
+        // Mobile Story Carousel Motion (< 1024px)
+        mm.add('(max-width: 1023px) and (prefers-reduced-motion: no-preference)', function () {
+          var carouselTrackEl = document.getElementById('story-carousel-track');
+          if (carouselTrackEl) {
+            gsap.from(carouselTrackEl, {
+              opacity: 0.35,
+              y: 18,
+              duration: 0.55,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: '#studi-kasus-excel',
+                start: 'top 75%',
+                once: true
+              }
+            });
+          }
         });
 
         // Entrance Choreography (respects prefers-reduced-motion)
