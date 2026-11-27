@@ -1,6 +1,6 @@
 # Formula Eksekutif Ringkasan Karir (Standar Harvard & Google)
-> **Acuan Internasional:** Harvard Mignone Center for Career Success, Harvard Business School (HBS) Online, Google Laszlo Bock (*Work Rules!*), SHRM Executive Talent Blueprint.  
-> **Tujuan:** Merumuskan ringkasan karir (*Professional / Executive Summary*) yang memadatkan seluruh pengalaman pengembang menjadi nilai jual tertinggi dalam 3–4 kalimat padat.
+> **Acuan Internasional:** Harvard Mignone Center for Career Success, Harvard Business School (HBS) Online, Google Laszlo Bock (*Work Rules!*), SHRM Executive Talent Blueprint, ISO 24495-1:2023 (*Plain Language Standard*).  
+> **Tujuan:** Merumuskan ringkasan karir (*Professional / Executive Summary*) yang memadatkan seluruh pengalaman pengembang menjadi nilai jual tertinggi dalam 3–4 kalimat padat, mudah dipahami pembaca awam/HRD, humanis, dan selaras kata kunci lowongan kerja (*lihat panduan gaya bahasa di [`plain_language_writing_guide.md`](./plain_language_writing_guide.md)*).
 
 ---
 

@@ -19,7 +19,7 @@ param (
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
 Write-Host "==================================================================" -ForegroundColor Cyan
-Write-Host "  INTERNATIONAL DEVELOPER PORTFOLIO AUDITOR v2.0" -ForegroundColor Cyan
+Write-Host "  INTERNATIONAL DEVELOPER PORTFOLIO AUDITOR v2.1" -ForegroundColor Cyan
 Write-Host "  Standard: ATS Schema, HRD 6s Scan, GSAP Compositor, WCAG 2.2" -ForegroundColor DarkCyan
 Write-Host "==================================================================" -ForegroundColor Cyan
 
@@ -53,7 +53,7 @@ Write-Host "`n[1/5] Memeriksa ATS Machine Readability..." -ForegroundColor Yello
 if ($content -match '<script\s+type=["'']application/ld\+json["'']>([\s\S]*?)<\/script>') {
     $jsonContent = $matches[1]
     if ($jsonContent -match '"@type"\s*:\s*"Person"') {
-        $scoreATS += 6
+        $scoreATS += 4
         $findings.Add("[PASS] Schema.org '@type: Person' ditemukan.")
     } else {
         $warnings.Add("[WARN] Schema.org JSON-LD ditemukan tetapi tidak bertipe 'Person'.")
@@ -64,6 +64,13 @@ if ($content -match '<script\s+type=["'']application/ld\+json["'']>([\s\S]*?)<\/
         $findings.Add("[PASS] Schema.org properti 'jobTitle' ditemukan.")
     } else {
         $warnings.Add("[WARN] Schema.org tidak memiliki properti 'jobTitle'.")
+    }
+
+    if ($jsonContent -match '"description"') {
+        $scoreATS += 2
+        $findings.Add("[PASS] Schema.org properti 'description' (Tri-Level SSoT) ditemukan.")
+    } else {
+        $warnings.Add("[WARN] Schema.org belum memiliki properti 'description' untuk sinkronisasi SSoT.")
     }
 
     if ($jsonContent -match '"knowsAbout"') {
@@ -191,14 +198,19 @@ if ($content -match 'ScrollTrigger(?:\.min)?\.js') {
     $findings.Add("[PASS] GSAP ScrollTrigger plugin terintegrasi.")
 }
 
-# C. Anti-Pattern Layout Thrashing Check
-# Cek apakah ada animasi gsap yang mengutak-atik top, left, width, height langsung
-$hasLayoutThrashing = ($content -match 'gsap\.(?:to|from|fromTo)\([^)]*\{\s*[^}]*\b(?:top|left|right|bottom|width|height|margin)\s*:')
-if (-not $hasLayoutThrashing) {
+# C. Anti-Pattern Layout Thrashing Check (GSAP & CSS Pointer Vars)
+$hasGsapThrashing = ($content -match 'gsap\.(?:to|from|fromTo)\([^)]*\{\s*[^}]*\b(?:top|left|right|bottom|width|height|margin)\s*:')
+$hasPointerThrashing = ($content -match '(?:top|left)\s*:\s*var\(--mouse-(?:x|y)')
+if (-not $hasGsapThrashing -and -not $hasPointerThrashing) {
     $scoreGSAP += 6
-    $findings.Add("[PASS] Zero Layout Thrashing: Animasi berfokus pada properti GPU (transform/opacity).")
+    $findings.Add("[PASS] Zero Layout Thrashing: Animasi GSAP & efek pointer berfokus pada GPU (transform/opacity).")
 } else {
-    $warnings.Add("[WARN] Terdeteksi manipulasi properti layout (top/left/width/height) di GSAP.")
+    if ($hasGsapThrashing) {
+        $warnings.Add("[WARN] Terdeteksi manipulasi properti layout (top/left/width/height) di GSAP.")
+    }
+    if ($hasPointerThrashing) {
+        $warnings.Add("[WARN] Terdeteksi pointer CSS var pada top/left (--mouse-x/y); wajib gunakan transform: translate3d().")
+    }
     $scoreGSAP += 2
 }
 
@@ -215,7 +227,7 @@ Write-Host "[5/5] Memeriksa Aksesibilitas (WCAG 2.2) & Print CSS..." -Foreground
 
 # A. Print Stylesheet (@media print)
 if ($content -match '@media\s+print') {
-    $scoreA11Y += 6
+    $scoreA11Y += 5
     $findings.Add("[PASS] '@media print' stylesheet terintegrasi untuk ekspor CV bersih.")
     
     if ($content -match 'break-inside\s*:\s*avoid' -or $content -match 'page-break-inside') {
@@ -228,11 +240,26 @@ if ($content -match '@media\s+print') {
 
 # B. Prefers-Reduced-Motion Check
 if ($content -match 'prefers-reduced-motion') {
-    $scoreA11Y += 7
+    $scoreA11Y += 6
     $findings.Add("[PASS] Mendukung standar W3C 'prefers-reduced-motion'.")
 } else {
     $warnings.Add("[WARN] Tidak ditemukan penanganan 'prefers-reduced-motion' untuk kenyamanan pengguna sensitif gerak.")
     $scoreA11Y += 2
+}
+
+# C. Skip-to-Content & Keyboard Focus-Visible (WCAG 2.2)
+$hasSkipLink = ($content -match 'href=["'']#main-content["'']')
+$hasFocusVisible = ($content -match ':focus-visible')
+if ($hasSkipLink -and $hasFocusVisible) {
+    $scoreA11Y += 2
+    $findings.Add("[PASS] Skip-to-Content (#main-content) & :focus-visible ring aktif (WCAG 2.2).")
+} else {
+    if (-not $hasSkipLink) {
+        $warnings.Add("[WARN] Tautan Skip-to-Content (#main-content) belum tersedia untuk akses keyboard.")
+    }
+    if (-not $hasFocusVisible) {
+        $warnings.Add("[WARN] Gaya global ':focus-visible' belum didefinisikan.")
+    }
 }
 
 # ==========================================================

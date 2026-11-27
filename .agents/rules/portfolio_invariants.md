@@ -1,5 +1,5 @@
 # Portfolio Engineering & Quality Invariants (portfolio_invariants.md)
-> **Standard:** International Developer Portfolio Standards v2.0 (ATS Machine-Readable, HRD Cognitive 6-Second Scan, GSAP 60fps Motion Engineering, WCAG 2.2 AA).  
+> **Standard:** International Developer Portfolio Standards v2.1 — Nielsen Norman Group (NN/g 6-Second Scan & Layer-Cake Scanning), Baymard Institute (Focus & Modal Ergonomics), W3C WCAG 2.2 AA/AAA, Google Core Web Vitals (LCP < 2.5s, INP < 200ms, CLS < 0.1), Josef Müller-Brockmann (Swiss Grid), Edward Tufte (High Data-to-Ink Ratio).  
 > **Target Scope:** Seluruh modifikasi kode HTML, CSS, JavaScript, dan konten di dalam repositori portofolio ini.
 
 ---
@@ -45,6 +45,8 @@
    - Tautan langsung yang berfungsi (*clickable*): **Live Demo** dan **Source Code (GitHub)**. Jika repo bersifat privat, cantumkan badge/label penjelas yang kredibel.
 5. **Scannable Micro-Typography:**
    - Gunakan format bullet poin dan kata kunci tebal (*bold keywords*) pada pencapaian penting. Hindari blok paragraf padat melebihi 4 baris.
+6. **Tabular Numerals & Scannable Metrics:**
+   - Wajib menerapkan `font-variant-numeric: tabular-nums` (`tabular-nums`) pada strip KPI, penghitung metrik (*rolling counters*), dan tabel keuangan/data agar angka sejajar secara vertikal saat dipindai mata HRD.
 
 ---
 
@@ -62,6 +64,9 @@
    - Efek parallax scroll **HANYA** boleh diterapkan pada lapisan grafis atau dekoratif latar belakang (`aria-hidden="true"`).
    - **Dilarang keras** menerapkan kecepatan scroll berbeda pada teks esensial (heading, paragraf, daftar keahlian, link kontak) karena merusak keterbacaan *NN/g 6-Second Cognitive Scan*.
    - Parallax wajib dinonaktifkan secara otomatis (`transform: none !important`) saat preferensi `prefers-reduced-motion: reduce` aktif atau pada layar mobile (`< 768px`) untuk mencegah disorientasi vestibular dan lag sentuh.
+6. **Compositor-Safe Pointer Effects:**
+   - Efek spotlight/hover pelacak kursor **WAJIB** menggunakan `transform: translate3d(...)`, **DILARANG** memanipulasi properti layout `top`/`left` melalui variabel CSS dinamis.
+   - Listener pointer wajib dilindungi media query `(hover: hover)`, `prefers-reduced-motion`, dan dibatasi dengan `requestAnimationFrame`.
 
 ---
 
@@ -74,6 +79,9 @@
 3. **Color Contrast & Focus State:**
    - Rasio kontras teks terhadap latar belakang wajib minimal `4.5:1` untuk teks normal dan `3:1` untuk teks besar (WCAG AA).
    - Seluruh elemen interaktif (`<a>`, `<button>`, `<input>`) wajib memiliki visual focus ring yang jelas saat dinavigasi via tombol `Tab`.
+4. **Keyboard Bypass & Modal Focus Hygiene (Baymard & WCAG 2.2):**
+   - Wajib menyediakan tautan *Skip-to-Content* (`href="#main-content"`) di awal `<body>` untuk akses langsung pembaca layar dan navigasi keyboard.
+   - Wajib mendefinisikan gaya `:focus-visible` yang konsisten dan berkontras tinggi, menjaga target sentuh ≥ 44px, serta memindahkan fokus masuk saat modal/lightbox dibuka dan mengembalikannya ke pemicu saat ditutup.
 
 ---
 
@@ -82,6 +90,7 @@ Setiap perubahan kode portofolio harus lolos uji:
 1. `audit-portfolio.ps1` menghasilkan skor **Tier 1 (≥ 85/100)**.
 2. Print preview (`Ctrl + P`) menampilkan tata letak resume yang rapi, bersih, dan hemat kertas.
 3. Tidak ada error di console browser saat transisi ScrollTrigger berlangsung.
+4. **SSoT Documentation Sync:** `design.md`, `README.md`, dan `llms.txt` wajib selalu sinkron dengan arsitektur visual aktual pada `index.html` serta URL kanonikal `https://misbahudin98.github.io/`.
 
 ---
 
@@ -102,3 +111,23 @@ Setiap perubahan kode portofolio harus lolos uji:
    - Loop animasi (`requestAnimationFrame`) wajib dihentikan saat elemen berada di luar viewport (menggunakan `IntersectionObserver` / GSAP ticker pause) untuk menjaga INP `< 200ms`.
 6. **Graceful Fallback & Offline State:**
    - Jika simpul RPC blockchain lambat, mengalami rate-limit, atau pengguna membatalkan tanda tangan dompet, antarmuka wajib menampilkan data statis tersimpan (*cached fallback*) tanpa menyebabkan *White Screen of Death*.
+
+---
+
+## 7. INVARIANT PENULISAN LUGAS, HUMANIS & RAMAH AWAM (PLAIN LANGUAGE & JD KEYWORD ALIGNMENT)
+> **Acuan Kredibel:** ISO 24495-1:2023 (*Plain Language Standard*), GOV.UK Content Design / PlainLanguage.gov, NN/g *Inverted Pyramid*, William Zinsser (*On Writing Well*), dan *Feynman Technique*.
+
+1. **Singkat & 1 Kalimat = 1 Gagasan (*Micro-Clarity*):**
+   - Target panjang **12–20 kata per kalimat** dengan struktur aktif (*Subjek/Aksi + Dampak Nyata*).
+   - Terapkan pola **Inverted Pyramid**: sebutkan hasil atau manfaat paling penting di awal kalimat, baru diikuti cara kerja atau teknologinya.
+2. **Jembatan Awam–Teknis (*Feynman Rule*):**
+   - Dilarang menumpuk akronim atau jargon teknis tanpa konteks manfaat.
+   - Setiap istilah teknis wajib dijelaskan dampaknya dengan bahasa sehari-hari agar HRD dan pembaca awam non-IT langsung paham dalam sekali baca.
+3. **Nada Humanis & Anti-Robot (*Zero Corporate/AI Slop*):**
+   - Gunakan bahasa yang alami, hangat-profesional, jujur, dan spesifik pada masalah nyata yang diselesaikan untuk manusia/tim.
+   - Dilarang keras memakai frasa brosur kosong atau klise AI (*"passionate", "synergy", "leverage", "cutting-edge", "dynamic", "visionary", "revolusioner"*).
+4. **Injeksi Kata Kunci Lowongan Kerja (*Contextual JD Alignment*):**
+   - Saat menyesuaikan teks portofolio/CV dengan suatu lowongan kerja (*Job Description*), wajib mengekstrak **5–10 kata kunci inti** dari lowongan (keahlian teknis, proses kerja, dan target bisnis) lalu menyisipkannya secara organik ke dalam kalimat bukti kerja.
+   - Batasi maksimal **2 istilah teknis per kalimat**; dilarang melakukan *keyword stuffing* (menjejalkan kata kunci hingga kalimat kaku atau tidak masuk akal).
+5. **Uji Baca Pembaca Awam (*5-Second Comprehension Gate*):**
+   - Jika pembaca non-IT harus membaca ulang sebuah kalimat dua kali untuk menangkap inti maknanya, kalimat tersebut wajib dipecah atau disederhanakan.

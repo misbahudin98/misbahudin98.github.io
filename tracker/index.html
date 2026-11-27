@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Job Application Tracker &amp; Message Hub — Misbahudin, S.Tr.Kom.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>
+    (function () {
+      var origWarn = console.warn;
+      console.warn = function () {
+        if (arguments[0] && typeof arguments[0] === 'string' && arguments[0].indexOf('cdn.tailwindcss.com') !== -1) return;
+        origWarn.apply(console, arguments);
+      };
+    })();
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          },
+          colors: {
+            paper: '#F6F4EF',
+            surface: '#FFFFFF',
+            ink: '#0F172A',
+            navy: '#1B365D',
+            slateMuted: '#475569',
+            copper: '#B45309',
+            hairline: '#DCD9D0'
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    :root {
+      --copper: #B45309;
+    }
+    :focus-visible {
+      outline: 2px solid var(--copper);
+      outline-offset: 2px;
+      border-radius: 3px;
+    }
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-paper text-ink font-sans antialiased min-h-screen">
+
+  <!-- Toast -->
+  <div id="toast" role="status" aria-live="polite" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 translate-y-2 transition-all duration-200">
+    <div class="bg-ink text-paper px-4 py-2 rounded-md shadow-lg font-mono text-xs flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+      <span id="toast-msg">Tersimpan.</span>
+    </div>
+  </div>
+
+  <!-- Top Bar -->
+  <header class="sticky top-0 z-30 bg-paper/95 backdrop-blur border-b border-hairline">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3 min-w-0">
+        <a href="../index.html" class="w-8 h-8 rounded-sm bg-navy text-white font-mono text-xs font-bold flex items-center justify-center flex-shrink-0" title="Kembali ke Portofolio">MS</a>
+        <div class="min-w-0">
+          <h1 class="text-sm sm:text-base font-bold text-ink truncate">Rekap Lamaran Kerja &amp; Hub Pesan</h1>
+          <p class="font-mono text-[11px] text-slateMuted truncate">SSoT: tracker/applications.json &middot; Misbahudin, S.Tr.Kom.</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2.5 flex-shrink-0">
+        <span id="storage-badge" class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-hairline bg-surface font-mono text-[11px] text-slateMuted">
+          <span id="storage-dot" class="w-2 h-2 rounded-full bg-amber-500"></span>
+          <span id="storage-label">Memeriksa penyimpanan...</span>
+        </span>
+        <a href="../index.html" class="px-3 py-1.5 rounded-md border border-hairline bg-surface text-xs font-semibold text-ink hover:border-navy transition-colors">
+          &larr; Portofolio
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+
+    <!-- Dashboard KPI Strip -->
+    <section aria-label="Ringkasan Lamaran" class="bg-surface border border-hairline rounded-md shadow-sm overflow-hidden">
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 divide-y sm:divide-y-0 sm:divide-x divide-hairline">
+        <div class="p-4 sm:p-5">
+          <p class="font-mono text-[10.5px] uppercase tracking-wider text-slateMuted">Total Lamaran</p>
+          <p id="kpi-total" class="tabular-nums font-mono text-2xl font-bold text-ink mt-1">0</p>
+        </div>
+        <div class="p-4 sm:p-5">
+          <p class="font-mono text-[10.5px] uppercase tracking-wider text-slateMuted">Siap Kirim / Draft</p>
+          <p id="kpi-ready" class="tabular-nums font-mono text-2xl font-bold text-copper mt-1">0</p>
+        </div>
+        <div class="p-4 sm:p-5">
+          <p class="font-mono text-[10.5px] uppercase tracking-wider text-slateMuted">Terkirim</p>
+          <p id="kpi-sent" class="tabular-nums font-mono text-2xl font-bold text-navy mt-1">0</p>
+        </div>
+        <div class="p-4 sm:p-5">
+          <p class="font-mono text-[10.5px] uppercase tracking-wider text-slateMuted">Proses / Wawancara</p>
+          <p id="kpi-process" class="tabular-nums font-mono text-2xl font-bold text-blue-700 mt-1">0</p>
+        </div>
+        <div class="p-4 sm:p-5">
+          <p class="font-mono text-[10.5px] uppercase tracking-wider text-slateMuted">Diterima</p>
+          <p id="kpi-accepted" class="tabular-nums font-mono text-2xl font-bold text-emerald-700 mt-1">0</p>
+        </div>
+        <div class="p-4 sm:p-5">
+          <p class="font-mono text-[10.5px] uppercase tracking-wider text-slateMuted">Ditolak / Arsip</p>
+          <p id="kpi-closed" class="tabular-nums font-mono text-2xl font-bold text-slateMuted mt-1">0</p>
+        </div>
+      </div>
+      <!-- Stacked Visual Progress Bar + Channel Breakdown -->
+      <div class="px-4 sm:px-5 py-3 bg-paper/60 border-t border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div class="flex-1">
+          <div class="h-2 w-full rounded-full bg-hairline overflow-hidden flex" id="status-bar"></div>
+        </div>
+        <div id="channel-summary" class="font-mono text-[11px] text-slateMuted flex flex-wrap gap-3"></div>
+      </div>
+    </section>
+
+    <!-- Toolbar -->
+    <section aria-label="Filter dan Aksi" class="bg-surface border border-hairline rounded-md p-4 shadow-sm flex flex-col lg:flex-row gap-3 lg:items-center lg:justify-between">
+      <div class="flex flex-1 flex-wrap gap-2.5">
+        <input id="search-input" type="search" placeholder="Cari ID (APP-001), perusahaan, posisi, atau kata kunci..." class="flex-1 min-w-[220px] px-3 py-2 rounded-md border border-hairline bg-paper/50 text-sm text-ink placeholder:text-slateMuted" />
+        <select id="filter-status" aria-label="Filter status" class="px-3 py-2 rounded-md border border-hairline bg-paper/50 text-xs font-mono text-ink">
+          <option value="">Semua Status</option>
+          <option value="Draft">Draft</option>
+          <option value="Siap Kirim">Siap Kirim</option>
+          <option value="Terkirim">Terkirim</option>
+          <option value="Proses / Tes">Proses / Tes</option>
+          <option value="Wawancara">Wawancara</option>
+          <option value="Diterima">Diterima</option>
+          <option value="Ditolak">Ditolak</option>
+          <option value="Arsip">Arsip</option>
+        </select>
+        <select id="filter-channel" aria-label="Filter platform" class="px-3 py-2 rounded-md border border-hairline bg-paper/50 text-xs font-mono text-ink">
+          <option value="">Semua Platform</option>
+          <option value="Email">Email</option>
+          <option value="WhatsApp">WhatsApp</option>
+          <option value="Glints">Glints</option>
+          <option value="LinkedIn">LinkedIn</option>
+          <option value="Lainnya">Lainnya</option>
+        </select>
+      </div>
+      <div class="flex flex-wrap items-center gap-2">
+        <button id="btn-add" type="button" class="px-4 py-2 rounded-md bg-navy text-white text-xs font-semibold hover:bg-ink transition-colors">
+          + Tambah Lamaran
+        </button>
+        <button id="btn-export" type="button" class="px-3 py-2 rounded-md border border-hairline bg-paper text-xs font-mono font-semibold text-ink hover:border-navy transition-colors">
+          Export JSON
+        </button>
+        <label class="px-3 py-2 rounded-md border border-hairline bg-paper text-xs font-mono font-semibold text-ink hover:border-navy transition-colors cursor-pointer">
+          <span>Import JSON</span>
+          <input id="input-import" type="file" accept="application/json,.json" class="sr-only" />
+        </label>
+      </div>
+    </section>
+
+    <!-- Interactive Applications Table -->
+    <section aria-label="Daftar Lamaran Kerja" class="bg-surface border border-hairline rounded-md shadow-sm overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse text-sm">
+          <thead>
+            <tr class="bg-paper border-b border-hairline font-mono text-[11px] uppercase tracking-wider text-slateMuted">
+              <th class="py-3 px-4">ID</th>
+              <th class="py-3 px-4">Perusahaan &amp; Posisi</th>
+              <th class="py-3 px-4">Saluran &amp; Target</th>
+              <th class="py-3 px-4">Status</th>
+              <th class="py-3 px-4">Berkas PDF</th>
+              <th class="py-3 px-4 text-right">Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="table-body" class="divide-y divide-hairline"></tbody>
+        </table>
+      </div>
+      <div id="empty-state" class="hidden py-12 px-4 text-center">
+        <p class="font-mono text-sm font-semibold text-ink">Belum ada data lamaran yang cocok.</p>
+        <p class="text-xs text-slateMuted mt-1">Klik "+ Tambah Lamaran" atau ubah kata kunci pencarian Anda.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MESSAGE VIEWER MODAL -->
+  <div id="msg-modal" role="dialog" aria-modal="true" aria-labelledby="msg-modal-title" class="fixed inset-0 z-40 hidden items-center justify-center p-4 bg-ink/75 backdrop-blur-xs">
+    <div class="bg-paper border border-hairline rounded-md shadow-2xl w-full max-w-3xl max-h-[92vh] flex flex-col overflow-hidden">
+      <div class="px-5 py-3.5 bg-surface border-b border-hairline flex items-center justify-between gap-4">
+        <div class="min-w-0">
+          <span id="msg-modal-id" class="font-mono text-[11px] font-semibold text-copper uppercase">APP-001</span>
+          <h2 id="msg-modal-title" class="text-base sm:text-lg font-bold text-ink truncate">Perusahaan — Posisi</h2>
+        </div>
+        <button id="msg-modal-close" type="button" aria-label="Tutup jendela pesan" class="p-2 rounded-md border border-hairline bg-paper text-ink hover:border-navy">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M18 6l-12 12" /></svg>
+        </button>
+      </div>
+
+      <!-- Platform Tabs -->
+      <div class="px-5 pt-3 bg-surface border-b border-hairline flex flex-wrap gap-1.5" role="tablist">
+        <button type="button" data-msg-tab="email" class="msg-tab px-3 py-1.5 rounded-t font-mono text-xs font-semibold border border-b-0 border-hairline bg-paper text-navy">Email</button>
+        <button type="button" data-msg-tab="whatsapp" class="msg-tab px-3 py-1.5 rounded-t font-mono text-xs font-medium text-slateMuted hover:text-ink">WhatsApp</button>
+        <button type="button" data-msg-tab="glints" class="msg-tab px-3 py-1.5 rounded-t font-mono text-xs font-medium text-slateMuted hover:text-ink">Glints</button>
+        <button type="button" data-msg-tab="linkedin" class="msg-tab px-3 py-1.5 rounded-t font-mono text-xs font-medium text-slateMuted hover:text-ink">LinkedIn</button>
+        <button type="button" data-msg-tab="other" class="msg-tab px-3 py-1.5 rounded-t font-mono text-xs font-medium text-slateMuted hover:text-ink">Lainnya</button>
+      </div>
+
+      <!-- Modal Content -->
+      <div class="p-5 overflow-y-auto space-y-4">
+        <div id="msg-meta-bar" class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs bg-surface border border-hairline rounded-md p-3.5"></div>
+
+        <!-- Quick Send Action Bar -->
+        <div class="bg-surface border border-hairline rounded-md p-3 flex flex-wrap items-center justify-between gap-2.5">
+          <div class="flex flex-wrap items-center gap-2">
+            <a id="btn-send-outlook-web" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-sky-700 text-white font-mono text-[11px] font-semibold hover:bg-sky-800 transition-colors">
+              <span>Outlook Web &nearr;</span>
+            </a>
+            <a id="btn-send-mailto" href="#" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded border border-sky-700/40 bg-sky-50 text-sky-900 font-mono text-[11px] font-semibold hover:bg-sky-100 transition-colors">
+              <span>App Outlook (Laptop)</span>
+            </a>
+            <a id="btn-send-gmail" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-navy text-white font-mono text-[11px] font-semibold hover:bg-ink transition-colors">
+              <span>Gmail Web &nearr;</span>
+            </a>
+            <a id="btn-send-wa" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-emerald-700 text-white font-mono text-[11px] font-semibold hover:bg-emerald-800 transition-colors">
+              <span>Kirim via WhatsApp &nearr;</span>
+            </a>
+          </div>
+          <span class="font-mono text-[10.5px] text-slateMuted">Lampirkan file PDF gabungan sebelum menekan Kirim.</span>
+        </div>
+
+        <div id="msg-subject-wrap" class="hidden space-y-1.5">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-[11px] font-semibold uppercase text-slateMuted">Subjek Email</span>
+            <button id="btn-copy-subject" type="button" class="px-2.5 py-1 rounded border border-hairline bg-surface font-mono text-[11px] font-semibold text-navy hover:border-navy">Salin Subjek</button>
+          </div>
+          <div id="msg-subject-box" class="bg-surface border border-hairline rounded-md p-3 font-mono text-xs text-ink select-all"></div>
+        </div>
+
+        <div class="space-y-1.5">
+          <div class="flex items-center justify-between gap-2">
+            <span class="font-mono text-[11px] font-semibold uppercase text-slateMuted">Isi Pesan Siap Kirim</span>
+            <div class="flex items-center gap-2">
+              <a id="btn-direct-launch" href="#" target="_blank" rel="noopener noreferrer" class="hidden px-2.5 py-1 rounded border border-copper/50 bg-amber-50 font-mono text-[11px] font-semibold text-copper hover:bg-amber-100">Buka Aplikasi</a>
+              <button id="btn-copy-body" type="button" class="px-3 py-1 rounded bg-navy text-white font-mono text-[11px] font-semibold hover:bg-ink">Salin Pesan</button>
+            </div>
+          </div>
+          <pre id="msg-body-box" class="bg-surface border border-hairline rounded-md p-4 text-xs sm:text-[13px] text-ink whitespace-pre-wrap font-sans leading-relaxed select-all"></pre>
+        </div>
+
+        <div id="msg-notes-box" class="text-xs text-slateMuted bg-surface border border-hairline rounded-md p-3"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADD / EDIT FORM MODAL -->
+  <div id="form-modal" role="dialog" aria-modal="true" aria-labelledby="form-modal-title" class="fixed inset-0 z-40 hidden items-center justify-center p-4 bg-ink/75 backdrop-blur-xs">
+    <div class="bg-paper border border-hairline rounded-md shadow-2xl w-full max-w-3xl max-h-[92vh] flex flex-col overflow-hidden">
+      <div class="px-5 py-3.5 bg-surface border-b border-hairline flex items-center justify-between">
+        <h2 id="form-modal-title" class="text-base sm:text-lg font-bold text-ink">Tambah Lamaran Baru</h2>
+        <button id="form-modal-close" type="button" aria-label="Tutup formulir" class="p-2 rounded-md border border-hairline bg-paper text-ink hover:border-navy">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M18 6l-12 12" /></svg>
+        </button>
+      </div>
+
+      <form id="app-form" class="p-5 overflow-y-auto space-y-4">
+        <input type="hidden" id="f-mode" value="create" />
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label for="f-id" class="block font-mono text-[11px] font-semibold text-slateMuted mb-1">ID Lamaran</label>
+            <input id="f-id" type="text" required class="w-full px-3 py-2 rounded-md border border-hairline bg-surface font-mono text-xs text-ink" />
+          </div>
+          <div>
+            <label for="f-created" class="block font-mono text-[11px] font-semibold text-slateMuted mb-1">Tanggal Rekap</label>
+            <input id="f-created" type="date" required class="w-full px-3 py-2 rounded-md border border-hairline bg-surface font-mono text-xs text-ink" />
+          </div>
+          <div>
+            <label for="f-applied" class="block font-mono text-[11px] font-semibold text-slateMuted mb-1">Tanggal Kirim</label>
+            <input id="f-applied" type="date" class="w-full px-3 py-2 rounded-md border border-hairline bg-surface font-mono text-xs text-ink" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="f-company" class="block font-mono text-[11px] font-semibold text-slateMuted mb-1">Perusahaan / Lembaga *</label>
+            <input id="f-company" type="text" required placeholder="Contoh: PT Maju Bersama" class="w-full px-3 py-2 rounded-md border border-hairline bg-surface text-sm text-ink" />
+          </div>
+          <div>
+            <label for="f-position" class="block font-mono text-[11px] font-semibold text-slateMuted mb-1">Posisi Dilamar *</label>
+            <input id="f-position" type="text" required placeholder="Contoh: IT Support / Data Admin" class="w-full px-3 py-2 rounded-md border border-hairline bg-surface text-sm text-ink" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label for="f-location" class="block font-mono text-[11px] font-semibold text-slateMuted mb-1">Lokasi</label>
+            <input id="f-location" type="text" placeholder="Malang / Remote" class="w-full px-3 py-2 rounded-md border border-hairline bg-surface text-sm text-ink" />
+          </div>
+          <div>
+            <label for="f-salary" class="block font-mono text-[11px] font-semibold text-slateMuted mb-1">Kisaran Gaji</label>
+            <input id="f-salary" type="text" placeholder="Rp 3.000.000 - Rp 4.500.000" class="w-full px-3 py-2 rounded-md border border-hairline bg-surface text-sm text-ink" />
+          </div>
+          <div>
+            <label for="f-status" class="block font-mono text-[11px] font-semibold text-slateMuted mb-1">Status</label>
+            <select id="f-status" class="w-full px-3 py-2 rounded-md border border-hairline bg-surface font-mono text-xs text-ink">
+              <option value="Draft">Draft</option>
+              <option value="Siap Kirim">Siap Kirim</option>
+              <option value="Terkirim">Terkirim</option>
+              <option value="Proses / Tes">Proses / Tes</option>
+              <option value="Wawancara">Wawancara</option>
+              <option value="Diterima">Diterima</option>
+              <option value="Ditolak">Ditolak</option>
+              <option value="Arsip">Arsip</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="f-channel" class="block font-mono text-[11px] font-semibold text-slateMuted mb-1">Platform Utama</label>
+            <select id="f-channel" class="w-full px-3 py-2 rounded-md border border-hairline bg-surface font-mono text-xs text-ink">
+              <option value="Email">Email</option>
+              <option value="WhatsApp">WhatsApp</option>
+              <option value="Glints">Glints</option>
+              <option value="LinkedIn">LinkedIn</option>
+              <option value="Lainnya">Lainnya</option>
+            </select>
+          </div>
+          <div>
+            <label for="f-contact" class="block font-mono text-[11px] font-semibold text-slateMuted mb-1">Portal / Kontak Lain</label>
+            <input id="f-contact" type="text" placeholder="URL Glints / LinkedIn / Catatan kontak" class="w-full px-3 py-2 rounded-md border border-hairline bg-surface text-sm text-ink" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="f-target-email" class="block font-mono text-[11px] font-semibold text-slateMuted mb-1">Alamat Email Tujuan</label>
+            <input id="f-target-email" type="email" placeholder="hrd@perusahaan.co.id" class="w-full px-3 py-2 rounded-md border border-hairline bg-surface text-sm text-ink" />
+          </div>
+          <div>
+            <label for="f-target-whatsapp" class="block font-mono text-[11px] font-semibold text-slateMuted mb-1">Nomor WhatsApp Tujuan</label>
+            <input id="f-target-whatsapp" type="text" placeholder="+62 812-3456-7890" class="w-full px-3 py-2 rounded-md border border-hairline bg-surface text-sm text-ink" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="f-docs" class="block font-mono text-[11px] font-semibold text-slateMuted mb-1">Berkas Diminta (pisah koma)</label>
+            <input id="f-docs" type="text" placeholder="CV, Ijazah, Transkrip" class="w-full px-3 py-2 rounded-md border border-hairline bg-surface text-xs text-ink" />
+          </div>
+          <div>
+            <label for="f-filename-rule" class="block font-mono text-[11px] font-semibold text-slateMuted mb-1">Ketentuan Nama File</label>
+            <input id="f-filename-rule" type="text" placeholder="Contoh: Nama_Posisi.pdf" class="w-full px-3 py-2 rounded-md border border-hairline bg-surface text-xs text-ink" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="f-keywords" class="block font-mono text-[11px] font-semibold text-slateMuted mb-1">Kata Kunci Lowongan (pisah koma)</label>
+            <input id="f-keywords" type="text" placeholder="Excel, SQL, IT Support" class="w-full px-3 py-2 rounded-md border border-hairline bg-surface text-xs text-ink" />
+          </div>
+          <div>
+            <label for="f-pdf" class="block font-mono text-[11px] font-semibold text-slateMuted mb-1">Path File PDF Gabungan</label>
+            <input id="f-pdf" type="text" placeholder="../assets/cv/Lamaran_....pdf" class="w-full px-3 py-2 rounded-md border border-hairline bg-surface font-mono text-xs text-ink" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="f-notes" class="block font-mono text-[11px] font-semibold text-slateMuted mb-1">Catatan Strategi &amp; Kalibrasi</label>
+            <input id="f-notes" type="text" placeholder="Catatan khusus untuk wawancara atau gaya bahasa..." class="w-full px-3 py-2 rounded-md border border-hairline bg-surface text-xs text-ink" />
+          </div>
+          <div>
+            <label for="f-benefits" class="block font-mono text-[11px] font-semibold text-slateMuted mb-1">Fasilitas / Benefit Didapatkan (pisah koma)</label>
+            <input id="f-benefits" type="text" placeholder="Lingkungan kolaboratif, Pelatihan, BPJS..." class="w-full px-3 py-2 rounded-md border border-hairline bg-surface text-xs text-ink" />
+          </div>
+        </div>
+
+        <div class="pt-2 border-t border-hairline space-y-3">
+          <p class="font-mono text-xs font-bold text-navy uppercase">Pesan Terpisah Per Platform</p>
+          <div>
+            <label for="f-email-sub" class="block font-mono text-[11px] font-semibold text-slateMuted mb-1">Subjek Email</label>
+            <input id="f-email-sub" type="text" class="w-full px-3 py-2 rounded-md border border-hairline bg-surface text-xs text-ink" />
+          </div>
+          <div>
+            <label for="f-email-body" class="block font-mono text-[11px] font-semibold text-slateMuted mb-1">Isi Email</label>
+            <textarea id="f-email-body" rows="4" class="w-full px-3 py-2 rounded-md border border-hairline bg-surface text-xs text-ink"></textarea>
+          </div>
+          <div>
+            <label for="f-wa" class="block font-mono text-[11px] font-semibold text-slateMuted mb-1">Pesan WhatsApp</label>
+            <textarea id="f-wa" rows="3" class="w-full px-3 py-2 rounded-md border border-hairline bg-surface text-xs text-ink"></textarea>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div>
+              <label for="f-glints" class="block font-mono text-[11px] font-semibold text-slateMuted mb-1">Pesan Glints</label>
+              <textarea id="f-glints" rows="3" class="w-full px-3 py-2 rounded-md border border-hairline bg-surface text-xs text-ink"></textarea>
+            </div>
+            <div>
+              <label for="f-linkedin" class="block font-mono text-[11px] font-semibold text-slateMuted mb-1">Pesan LinkedIn</label>
+              <textarea id="f-linkedin" rows="3" class="w-full px-3 py-2 rounded-md border border-hairline bg-surface text-xs text-ink"></textarea>
+            </div>
+            <div>
+              <label for="f-other" class="block font-mono text-[11px] font-semibold text-slateMuted mb-1">Sumber Lain / Portal</label>
+              <textarea id="f-other" rows="3" class="w-full px-3 py-2 rounded-md border border-hairline bg-surface text-xs text-ink"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-3 border-t border-hairline flex items-center justify-end gap-2.5">
+          <button id="btn-form-cancel" type="button" class="px-4 py-2 rounded-md border border-hairline bg-surface text-xs font-semibold text-ink hover:border-navy">Batal</button>
+          <button type="submit" class="px-5 py-2 rounded-md bg-navy text-white text-xs font-semibold hover:bg-ink">Simpan Lamaran</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var STORAGE_KEY = 'misbahudin_job_tracker_v1';
+      var store = { schema_version: '1.0', updated_at: '', applications: [] };
+      var useServerApi = false;
+      var activeMsgApp = null;
+      var activeMsgTab = 'email';
+      var lastFocus = null;
+
+      var statusStyles = {
+        'Draft': 'bg-slate-100 text-slate-700 border-slate-300',
+        'Siap Kirim': 'bg-amber-50 text-amber-800 border-amber-300',
+        'Terkirim': 'bg-blue-50 text-blue-800 border-blue-300',
+        'Proses / Tes': 'bg-indigo-50 text-indigo-800 border-indigo-300',
+        'Wawancara': 'bg-purple-50 text-purple-800 border-purple-300',
+        'Diterima': 'bg-emerald-50 text-emerald-800 border-emerald-300',
+        'Ditolak': 'bg-red-50 text-red-800 border-red-300',
+        'Arsip': 'bg-stone-100 text-stone-600 border-stone-300'
+      };
+
+      var toastEl = document.getElementById('toast');
+      var toastMsgEl = document.getElementById('toast-msg');
+      var toastTimer = null;
+
+      function showToast(msg) {
+        toastMsgEl.textContent = msg;
+        toastEl.classList.remove('opacity-0', 'translate-y-2');
+        toastEl.classList.add('opacity-100', 'translate-y-0');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () {
+          toastEl.classList.add('opacity-0', 'translate-y-2');
+          toastEl.classList.remove('opacity-100', 'translate-y-0');
+        }, 2300);
+      }
+
+      function copyString(text, label) {
+        if (!text) {
+          showToast('Konten kosong.');
+          return;
+        }
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(function () {
+            showToast(label + ' disalin.');
+          }).catch(function () {
+            fallbackCopy(text, label);
+          });
+        } else {
+          fallbackCopy(text, label);
+        }
+      }
+
+      function fallbackCopy(text, label) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showToast(label + ' disalin.');
+      }
+
+      function escapeHtml(str) {
+        return String(str || '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      function setStorageMode(isServer) {
+        useServerApi = isServer;
+        var dot = document.getElementById('storage-dot');
+        var lbl = document.getElementById('storage-label');
+        if (isServer) {
+          dot.className = 'w-2 h-2 rounded-full bg-emerald-600';
+          lbl.textContent = 'Sinkron Server JSON (api.php)';
+        } else {
+          dot.className = 'w-2 h-2 rounded-full bg-amber-500';
+          lbl.textContent = 'Mode Lokal (LocalStorage + Export)';
+        }
+      }
+
+      function loadData() {
+        return fetch('./api.php', { cache: 'no-store' })
+          .then(function (res) {
+            if (!res.ok) throw new Error('API unavailable');
+            return res.json();
+          })
+          .then(function (data) {
+            if (!data || !Array.isArray(data.applications)) throw new Error('Invalid API JSON');
+            store = data;
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+            setStorageMode(true);
+          })
+          .catch(function () {
+            setStorageMode(false);
+            var cached = localStorage.getItem(STORAGE_KEY);
+            if (cached) {
+              try {
+                var parsed = JSON.parse(cached);
+                if (parsed && Array.isArray(parsed.applications)) {
+                  store = parsed;
+                  return;
+                }
+              } catch (e) {}
+            }
+            return fetch('./applications.json', { cache: 'no-store' })
+              .then(function (r) { return r.json(); })
+              .then(function (jsonData) {
+                store = jsonData;
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+              })
+              .catch(function () {});
+          })
+          .finally(function () {
+            renderAll();
+          });
+      }
+
+      function persistData(toastText) {
+        store.updated_at = new Date().toISOString();
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+        if (useServerApi) {
+          fetch('./api.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(store)
+          })
+            .then(function (r) { return r.json(); })
+            .then(function (res) {
+              if (!res.ok) throw new Error(res.error || 'Gagal simpan');
+              showToast(toastText || 'Tersimpan ke tracker/applications.json');
+            })
+            .catch(function () {
+              showToast('Tersimpan di browser (gunakan Export JSON jika offline).');
+            });
+        } else {
+          showToast(toastText || 'Tersimpan di browser (klik Export JSON untuk simpan berkas).');
+        }
+      }
+
+      function renderDashboard() {
+        var apps = store.applications || [];
+        var counts = { total: apps.length, ready: 0, sent: 0, process: 0, accepted: 0, closed: 0 };
+        var channels = {};
+
+        apps.forEach(function (a) {
+          var st = a.status || 'Draft';
+          if (st === 'Draft' || st === 'Siap Kirim') counts.ready++;
+          else if (st === 'Terkirim') counts.sent++;
+          else if (st === 'Proses / Tes' || st === 'Wawancara') counts.process++;
+          else if (st === 'Diterima') counts.accepted++;
+          else counts.closed++;
+
+          var ch = a.primary_channel || 'Lainnya';
+          channels[ch] = (channels[ch] || 0) + 1;
+        });
+
+        document.getElementById('kpi-total').textContent = counts.total;
+        document.getElementById('kpi-ready').textContent = counts.ready;
+        document.getElementById('kpi-sent').textContent = counts.sent;
+        document.getElementById('kpi-process').textContent = counts.process;
+        document.getElementById('kpi-accepted').textContent = counts.accepted;
+        document.getElementById('kpi-closed').textContent = counts.closed;
+
+        var bar = document.getElementById('status-bar');
+        bar.innerHTML = '';
+        if (counts.total > 0) {
+          var segments = [
+            { val: counts.accepted, cls: 'bg-emerald-600' },
+            { val: counts.process, cls: 'bg-blue-600' },
+            { val: counts.sent, cls: 'bg-navy' },
+            { val: counts.ready, cls: 'bg-amber-600' },
+            { val: counts.closed, cls: 'bg-slate-400' }
+          ];
+          segments.forEach(function (seg) {
+            if (seg.val > 0) {
+              var div = document.createElement('div');
+              div.className = seg.cls + ' h-full';
+              div.style.width = ((seg.val / counts.total) * 100) + '%';
+              bar.appendChild(div);
+            }
+          });
+        }
+
+        var chEl = document.getElementById('channel-summary');
+        chEl.innerHTML = Object.keys(channels).map(function (k) {
+          return '<span><strong>' + escapeHtml(k) + ':</strong> ' + channels[k] + '</span>';
+        }).join('');
+      }
+
+      function renderTable() {
+        var q = (document.getElementById('search-input').value || '').trim().toLowerCase();
+        var stFilter = document.getElementById('filter-status').value;
+        var chFilter = document.getElementById('filter-channel').value;
+
+        var filtered = (store.applications || []).filter(function (a) {
+          if (stFilter && a.status !== stFilter) return false;
+          if (chFilter && a.primary_channel !== chFilter) return false;
+          if (!q) return true;
+          var hay = [
+            a.id, a.company, a.position, a.location, a.notes,
+            (a.keywords || []).join(' '), (a.benefits || []).join(' '),
+            a.target_email, a.target_whatsapp, a.target_contact
+          ].join(' ').toLowerCase();
+          return hay.indexOf(q) !== -1;
+        });
+
+        var tbody = document.getElementById('table-body');
+        var empty = document.getElementById('empty-state');
+        tbody.innerHTML = '';
+
+        if (!filtered.length) {
+          empty.classList.remove('hidden');
+          return;
+        }
+        empty.classList.add('hidden');
+
+        var statuses = ['Draft', 'Siap Kirim', 'Terkirim', 'Proses / Tes', 'Wawancara', 'Diterima', 'Ditolak', 'Arsip'];
+
+        filtered.forEach(function (a) {
+          var tr = document.createElement('tr');
+          tr.className = 'hover:bg-paper/60 transition-colors align-top';
+
+          var statusOpts = statuses.map(function (st) {
+            return '<option value="' + escapeHtml(st) + '"' + (a.status === st ? ' selected' : '') + '>' + escapeHtml(st) + '</option>';
+          }).join('');
+
+          var stClass = statusStyles[a.status] || statusStyles['Draft'];
+          var pdfCell = a.merged_pdf
+            ? '<a href="' + escapeHtml(a.merged_pdf) + '" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 px-2.5 py-1 rounded border border-hairline bg-paper font-mono text-[11px] font-semibold text-navy hover:border-navy">Buka PDF &nearr;</a>'
+            : '<span class="font-mono text-[11px] text-slateMuted">Belum ada</span>';
+
+          tr.innerHTML =
+            '<td class="py-3.5 px-4 whitespace-nowrap">' +
+              '<button type="button" data-action="view" data-id="' + escapeHtml(a.id) + '" class="font-mono text-xs font-bold text-navy hover:text-copper underline decoration-hairline underline-offset-4">' + escapeHtml(a.id) + '</button>' +
+              '<div class="font-mono text-[10.5px] text-slateMuted mt-1">' + escapeHtml(a.created_at || '-') + '</div>' +
+            '</td>' +
+            '<td class="py-3.5 px-4 min-w-[230px]">' +
+              '<div class="font-bold text-ink">' + escapeHtml(a.company) + '</div>' +
+              '<div class="text-xs font-semibold text-navy mt-0.5">' + escapeHtml(a.position) + (a.location ? ' &middot; ' + escapeHtml(a.location) : '') + '</div>' +
+              (a.salary_range ? '<div class="font-mono text-[11px] text-slateMuted mt-1">Gaji: ' + escapeHtml(a.salary_range) + '</div>' : '') +
+              ((a.benefits && a.benefits.length) ? '<div class="text-[11px] text-emerald-800 mt-0.5">Fasilitas: ' + escapeHtml(a.benefits.join(', ')) + '</div>' : '') +
+            '</td>' +
+            '<td class="py-3.5 px-4 min-w-[190px]">' +
+              '<span class="inline-block px-2 py-0.5 rounded bg-paper border border-hairline font-mono text-[11px] font-semibold text-ink">' + escapeHtml(a.primary_channel || '-') + '</span>' +
+              (a.target_email ? '<div class="text-xs text-navy mt-1 break-all">Email: ' + escapeHtml(a.target_email) + '</div>' : '') +
+              (a.target_whatsapp ? '<div class="text-xs text-emerald-800 mt-0.5 whitespace-nowrap">WA: ' + escapeHtml(a.target_whatsapp) + '</div>' : '') +
+              (a.target_contact ? '<div class="text-xs text-slateMuted mt-0.5 break-words max-w-[230px]">' + escapeHtml(a.target_contact) + '</div>' : '') +
+            '</td>' +
+            '<td class="py-3.5 px-4 whitespace-nowrap">' +
+              '<select data-action="status" data-id="' + escapeHtml(a.id) + '" aria-label="Ubah status ' + escapeHtml(a.id) + '" class="px-2 py-1 rounded border font-mono text-[11px] font-semibold ' + stClass + '">' + statusOpts + '</select>' +
+            '</td>' +
+            '<td class="py-3.5 px-4 whitespace-nowrap">' + pdfCell + '</td>' +
+            '<td class="py-3.5 px-4 whitespace-nowrap text-right">' +
+              '<div class="inline-flex flex-wrap justify-end items-center gap-1.5 font-mono text-[11px]">' +
+                '<a href="' + escapeHtml(buildWaUrl(a)) + '" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded bg-emerald-700 text-white font-semibold hover:bg-emerald-800" title="Buka WhatsApp dengan pesan siap kirim">Kirim WA</a>' +
+                '<a href="' + escapeHtml(buildOutlookWebUrl(a)) + '" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded bg-sky-700 text-white font-semibold hover:bg-sky-800" title="Buka Microsoft Outlook Web dengan subjek dan isi email siap kirim">Outlook Web</a>' +
+                '<a href="' + escapeHtml(buildMailtoUrl(a)) + '" class="px-2.5 py-1 rounded border border-sky-700/40 bg-sky-50 text-sky-900 font-semibold hover:bg-sky-100" title="Buka aplikasi Outlook / Mail bawaan laptop">App Outlook</a>' +
+                '<a href="' + escapeHtml(buildGmailUrl(a)) + '" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded bg-blue-700 text-white font-semibold hover:bg-blue-800" title="Buka Gmail Web">Gmail</a>' +
+                '<button type="button" data-action="view" data-id="' + escapeHtml(a.id) + '" class="px-2.5 py-1 rounded bg-navy text-white font-semibold hover:bg-ink">Pesan</button>' +
+                '<button type="button" data-action="edit" data-id="' + escapeHtml(a.id) + '" class="px-2.5 py-1 rounded border border-hairline bg-paper text-ink hover:border-navy">Edit</button>' +
+                '<button type="button" data-action="delete" data-id="' + escapeHtml(a.id) + '" class="px-2.5 py-1 rounded border border-red-200 bg-red-50 text-red-700 hover:bg-red-100">Hapus</button>' +
+              '</div>' +
+            '</td>';
+
+          tbody.appendChild(tr);
+        });
+      }
+
+      function renderAll() {
+        renderDashboard();
+        renderTable();
+      }
+
+      function findApp(id) {
+        return (store.applications || []).find(function (a) { return a.id === id; });
+      }
+
+      function normalizeWaDigits(raw) {
+        var digits = String(raw || '').replace(/[^0-9]/g, '');
+        if (digits.indexOf('08') === 0) digits = '62' + digits.slice(1);
+        return digits.length >= 9 ? digits : '';
+      }
+
+      function getEmailTarget(app) {
+        if (app.target_email) return app.target_email.trim();
+        if (app.target_contact && app.target_contact.indexOf('@') !== -1) return app.target_contact.trim();
+        return '';
+      }
+
+      function buildOutlookWebUrl(app) {
+        var emailObj = (app.messages && app.messages.email) || {};
+        var to = getEmailTarget(app);
+        return 'https://outlook.live.com/mail/0/deeplink/compose?' +
+          'to=' + encodeURIComponent(to) +
+          '&subject=' + encodeURIComponent(emailObj.subject || '') +
+          '&body=' + encodeURIComponent(emailObj.body || '');
+      }
+
+      function buildGmailUrl(app) {
+        var emailObj = (app.messages && app.messages.email) || {};
+        var to = getEmailTarget(app);
+        return 'https://mail.google.com/mail/?view=cm&fs=1' +
+          '&to=' + encodeURIComponent(to) +
+          '&su=' + encodeURIComponent(emailObj.subject || '') +
+          '&body=' + encodeURIComponent(emailObj.body || '');
+      }
+
+      function buildMailtoUrl(app) {
+        var emailObj = (app.messages && app.messages.email) || {};
+        var to = getEmailTarget(app);
+        return 'mailto:' + encodeURIComponent(to) +
+          '?subject=' + encodeURIComponent(emailObj.subject || '') +
+          '&body=' + encodeURIComponent(emailObj.body || '');
+      }
+
+      function buildWaUrl(app) {
+        var waText = (app.messages && app.messages.whatsapp) || '';
+        var digits = normalizeWaDigits(app.target_whatsapp || app.target_contact || '');
+        if (digits) {
+          return 'https://wa.me/' + digits + '?text=' + encodeURIComponent(waText);
+        }
+        return 'https://api.whatsapp.com/send?text=' + encodeURIComponent(waText);
+      }
+
+      /* MESSAGE VIEWER MODAL */
+      var msgModal = document.getElementById('msg-modal');
+      var msgModalClose = document.getElementById('msg-modal-close');
+
+      function openMessageModal(id) {
+        var app = findApp(id);
+        if (!app) return;
+        activeMsgApp = app;
+        lastFocus = document.activeElement;
+        document.getElementById('msg-modal-id').textContent = app.id + ' · ' + (app.status || 'Draft');
+        document.getElementById('msg-modal-title').textContent = app.company + ' — ' + app.position;
+
+        var metaBar = document.getElementById('msg-meta-bar');
+        var contactLines = [];
+        if (app.target_email) contactLines.push('<div><strong>Email:</strong> ' + escapeHtml(app.target_email) + '</div>');
+        if (app.target_whatsapp) contactLines.push('<div><strong>WhatsApp:</strong> ' + escapeHtml(app.target_whatsapp) + '</div>');
+        if (app.target_contact) contactLines.push('<div class="text-slateMuted">' + escapeHtml(app.target_contact) + '</div>');
+        metaBar.innerHTML =
+          '<div><span class="font-mono text-[10px] uppercase text-slateMuted block mb-0.5">Kontak Tujuan &amp; Ketentuan File</span>' +
+          '<div class="text-ink space-y-0.5">' + (contactLines.length ? contactLines.join('') : '<strong>-</strong>') + '</div>' +
+          '<div class="font-mono text-[11px] text-slateMuted mt-1">Nama file: ' + escapeHtml(app.filename_rule || 'Standar') + '</div></div>' +
+          '<div class="sm:text-right"><span class="font-mono text-[10px] uppercase text-slateMuted block">Berkas PDF Gabungan</span>' +
+          (app.merged_pdf
+            ? '<a href="' + escapeHtml(app.merged_pdf) + '" target="_blank" rel="noopener noreferrer" class="inline-block mt-0.5 font-mono text-xs font-semibold text-navy underline">Unduh / Buka Berkas PDF &nearr;</a>'
+            : '<span class="font-mono text-xs text-slateMuted">Belum digabung</span>') +
+          '</div>';
+
+        document.getElementById('btn-send-outlook-web').href = buildOutlookWebUrl(app);
+        document.getElementById('btn-send-gmail').href = buildGmailUrl(app);
+        document.getElementById('btn-send-mailto').href = buildMailtoUrl(app);
+        document.getElementById('btn-send-wa').href = buildWaUrl(app);
+
+        document.getElementById('msg-notes-box').innerHTML =
+          ((app.benefits && app.benefits.length)
+            ? '<div class="mb-1.5 text-emerald-800"><strong>Fasilitas / Benefit:</strong> ' + escapeHtml(app.benefits.join(' · ')) + '</div>'
+            : '') +
+          '<div><strong>Catatan Strategi:</strong> ' + escapeHtml(app.notes || 'Tidak ada catatan.') + '</div>';
+
+        var defaultTab = (app.primary_channel || 'Email').toLowerCase();
+        if (defaultTab === 'lainnya') defaultTab = 'other';
+        if (['email', 'whatsapp', 'glints', 'linkedin', 'other'].indexOf(defaultTab) === -1) defaultTab = 'email';
+        selectMessageTab(defaultTab);
+
+        msgModal.classList.remove('hidden');
+        msgModal.classList.add('flex');
+        msgModalClose.focus();
+      }
+
+      function selectMessageTab(tab) {
+        if (!activeMsgApp) return;
+        activeMsgTab = tab;
+        document.querySelectorAll('.msg-tab').forEach(function (btn) {
+          var active = btn.getAttribute('data-msg-tab') === tab;
+          btn.className = active
+            ? 'msg-tab px-3 py-1.5 rounded-t font-mono text-xs font-semibold border border-b-0 border-hairline bg-paper text-navy'
+            : 'msg-tab px-3 py-1.5 rounded-t font-mono text-xs font-medium text-slateMuted hover:text-ink';
+        });
+
+        var msgs = activeMsgApp.messages || {};
+        var subWrap = document.getElementById('msg-subject-wrap');
+        var subBox = document.getElementById('msg-subject-box');
+        var bodyBox = document.getElementById('msg-body-box');
+        var launchBtn = document.getElementById('btn-direct-launch');
+        launchBtn.classList.add('hidden');
+
+        if (tab === 'email') {
+          var emailObj = msgs.email || {};
+          subWrap.classList.remove('hidden');
+          subBox.textContent = emailObj.subject || '';
+          bodyBox.textContent = emailObj.body || '(Belum ada draf email)';
+          launchBtn.href = buildOutlookWebUrl(activeMsgApp);
+          launchBtn.textContent = 'Kirim via Outlook Web';
+          launchBtn.classList.remove('hidden');
+        } else {
+          subWrap.classList.add('hidden');
+          var textVal = msgs[tab] || '(Belum ada draf untuk platform ini)';
+          bodyBox.textContent = textVal;
+          if (tab === 'whatsapp') {
+            launchBtn.href = buildWaUrl(activeMsgApp);
+            launchBtn.textContent = 'Kirim via WhatsApp';
+            launchBtn.classList.remove('hidden');
+          }
+        }
+      }
+
+      function closeModal(modalEl) {
+        modalEl.classList.add('hidden');
+        modalEl.classList.remove('flex');
+        if (lastFocus && typeof lastFocus.focus === 'function') {
+          lastFocus.focus();
+          lastFocus = null;
+        }
+      }
+
+      document.querySelectorAll('.msg-tab').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          selectMessageTab(btn.getAttribute('data-msg-tab'));
+        });
+      });
+
+      document.getElementById('btn-copy-subject').addEventListener('click', function () {
+        copyString(document.getElementById('msg-subject-box').textContent, 'Subjek Email');
+      });
+
+      document.getElementById('btn-copy-body').addEventListener('click', function () {
+        copyString(document.getElementById('msg-body-box').textContent, 'Isi pesan');
+      });
+
+      msgModalClose.addEventListener('click', function () { closeModal(msgModal); });
+      msgModal.addEventListener('click', function (e) { if (e.target === msgModal) closeModal(msgModal); });
+
+      /* CREATE / EDIT MODAL */
+      var formModal = document.getElementById('form-modal');
+      var formModalClose = document.getElementById('form-modal-close');
+      var appForm = document.getElementById('app-form');
+
+      function getNextId() {
+        var maxNum = 0;
+        (store.applications || []).forEach(function (a) {
+          var m = /^APP-(\d+)$/i.exec(a.id || '');
+          if (m) maxNum = Math.max(maxNum, parseInt(m[1], 10));
+        });
+        var next = String(maxNum + 1);
+        while (next.length < 3) next = '0' + next;
+        return 'APP-' + next;
+      }
+
+      function openFormModal(id) {
+        lastFocus = document.activeElement;
+        appForm.reset();
+        var isEdit = !!id;
+        var app = isEdit ? findApp(id) : null;
+        document.getElementById('f-mode').value = isEdit ? 'edit' : 'create';
+        document.getElementById('form-modal-title').textContent = isEdit ? ('Edit Lamaran ' + id) : 'Tambah Lamaran Baru';
+        document.getElementById('f-id').readOnly = isEdit;
+
+        if (app) {
+          document.getElementById('f-id').value = app.id || '';
+          document.getElementById('f-created').value = app.created_at || '';
+          document.getElementById('f-applied').value = app.applied_at || '';
+          document.getElementById('f-company').value = app.company || '';
+          document.getElementById('f-position').value = app.position || '';
+          document.getElementById('f-location').value = app.location || '';
+          document.getElementById('f-salary').value = app.salary_range || '';
+          document.getElementById('f-status').value = app.status || 'Draft';
+          document.getElementById('f-channel').value = app.primary_channel || 'Email';
+          document.getElementById('f-target-email').value = app.target_email || '';
+          document.getElementById('f-target-whatsapp').value = app.target_whatsapp || '';
+          document.getElementById('f-contact').value = app.target_contact || '';
+          document.getElementById('f-docs').value = (app.required_docs || []).join(', ');
+          document.getElementById('f-filename-rule').value = app.filename_rule || '';
+          document.getElementById('f-keywords').value = (app.keywords || []).join(', ');
+          document.getElementById('f-pdf').value = app.merged_pdf || '';
+          document.getElementById('f-notes').value = app.notes || '';
+          document.getElementById('f-benefits').value = (app.benefits || []).join(', ');
+          var m = app.messages || {};
+          document.getElementById('f-email-sub').value = (m.email && m.email.subject) || '';
+          document.getElementById('f-email-body').value = (m.email && m.email.body) || '';
+          document.getElementById('f-wa').value = m.whatsapp || '';
+          document.getElementById('f-glints').value = m.glints || '';
+          document.getElementById('f-linkedin').value = m.linkedin || '';
+          document.getElementById('f-other').value = m.other || '';
+        } else {
+          document.getElementById('f-id').value = getNextId();
+          document.getElementById('f-created').value = new Date().toISOString().slice(0, 10);
+          document.getElementById('f-status').value = 'Siap Kirim';
+          document.getElementById('f-channel').value = 'Email';
+        }
+
+        formModal.classList.remove('hidden');
+        formModal.classList.add('flex');
+        document.getElementById('f-company').focus();
+      }
+
+      appForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var mode = document.getElementById('f-mode').value;
+        var idVal = document.getElementById('f-id').value.trim();
+        if (!idVal) return;
+
+        function splitCsv(val) {
+          return val.split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+        }
+
+        var item = {
+          id: idVal,
+          created_at: document.getElementById('f-created').value,
+          applied_at: document.getElementById('f-applied').value,
+          company: document.getElementById('f-company').value.trim(),
+          position: document.getElementById('f-position').value.trim(),
+          location: document.getElementById('f-location').value.trim(),
+          salary_range: document.getElementById('f-salary').value.trim(),
+          benefits: splitCsv(document.getElementById('f-benefits').value),
+          primary_channel: document.getElementById('f-channel').value,
+          target_email: document.getElementById('f-target-email').value.trim(),
+          target_whatsapp: document.getElementById('f-target-whatsapp').value.trim(),
+          target_contact: document.getElementById('f-contact').value.trim(),
+          status: document.getElementById('f-status').value,
+          required_docs: splitCsv(document.getElementById('f-docs').value),
+          filename_rule: document.getElementById('f-filename-rule').value.trim(),
+          keywords: splitCsv(document.getElementById('f-keywords').value),
+          merged_pdf: document.getElementById('f-pdf').value.trim(),
+          notes: document.getElementById('f-notes').value.trim(),
+          messages: {
+            email: {
+              subject: document.getElementById('f-email-sub').value.trim(),
+              body: document.getElementById('f-email-body').value.trim()
+            },
+            whatsapp: document.getElementById('f-wa').value.trim(),
+            glints: document.getElementById('f-glints').value.trim(),
+            linkedin: document.getElementById('f-linkedin').value.trim(),
+            other: document.getElementById('f-other').value.trim()
+          }
+        };
+
+        if (mode === 'edit') {
+          var idx = (store.applications || []).findIndex(function (a) { return a.id === idVal; });
+          if (idx !== -1) store.applications[idx] = item;
+        } else {
+          if (findApp(idVal)) {
+            showToast('ID ' + idVal + ' sudah ada.');
+            return;
+          }
+          store.applications.unshift(item);
+        }
+
+        closeModal(formModal);
+        renderAll();
+        persistData('Lamaran ' + idVal + ' berhasil disimpan.');
+      });
+
+      formModalClose.addEventListener('click', function () { closeModal(formModal); });
+      document.getElementById('btn-form-cancel').addEventListener('click', function () { closeModal(formModal); });
+      formModal.addEventListener('click', function (e) { if (e.target === formModal) closeModal(formModal); });
+
+      /* TABLE EVENTS & FILTERS */
+      document.getElementById('table-body').addEventListener('click', function (e) {
+        var btn = e.target.closest('button[data-action]');
+        if (!btn) return;
+        var action = btn.getAttribute('data-action');
+        var id = btn.getAttribute('data-id');
+        if (action === 'view') openMessageModal(id);
+        else if (action === 'edit') openFormModal(id);
+        else if (action === 'delete') {
+          var app = findApp(id);
+          if (!app) return;
+          if (window.confirm('Hapus lamaran ' + id + ' (' + app.company + ')?')) {
+            store.applications = store.applications.filter(function (a) { return a.id !== id; });
+            renderAll();
+            persistData('Lamaran ' + id + ' dihapus.');
+          }
+        }
+      });
+
+      document.getElementById('table-body').addEventListener('change', function (e) {
+        var sel = e.target.closest('select[data-action="status"]');
+        if (!sel) return;
+        var id = sel.getAttribute('data-id');
+        var app = findApp(id);
+        if (!app) return;
+        app.status = sel.value;
+        if (sel.value === 'Terkirim' && !app.applied_at) {
+          app.applied_at = new Date().toISOString().slice(0, 10);
+        }
+        renderAll();
+        persistData('Status ' + id + ' diubah ke ' + sel.value + '.');
+      });
+
+      document.getElementById('search-input').addEventListener('input', renderTable);
+      document.getElementById('filter-status').addEventListener('change', renderTable);
+      document.getElementById('filter-channel').addEventListener('change', renderTable);
+      document.getElementById('btn-add').addEventListener('click', function () { openFormModal(null); });
+
+      document.getElementById('btn-export').addEventListener('click', function () {
+        var blob = new Blob([JSON.stringify(store, null, 2)], { type: 'application/json' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'applications.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast('applications.json diunduh.');
+      });
+
+      document.getElementById('input-import').addEventListener('change', function (e) {
+        var file = e.target.files && e.target.files[0];
+        if (!file) return;
+        var reader = new FileReader();
+        reader.onload = function () {
+          try {
+            var parsed = JSON.parse(String(reader.result || '{}'));
+            if (!parsed || !Array.isArray(parsed.applications)) throw new Error('Invalid');
+            store = parsed;
+            renderAll();
+            persistData('Import JSON berhasil (' + store.applications.length + ' entri).');
+          } catch (err) {
+            showToast('File JSON tidak valid.');
+          }
+        };
+        reader.readAsText(file);
+        e.target.value = '';
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          if (!msgModal.classList.contains('hidden')) closeModal(msgModal);
+          if (!formModal.classList.contains('hidden')) closeModal(formModal);
+        }
+      });
+
+      loadData();
+    })();
+  </script>
+</body>
+</html>

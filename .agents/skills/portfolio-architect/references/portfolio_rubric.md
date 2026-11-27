@@ -17,7 +17,7 @@
 ### 1. DIMENSI 1: ATS MACHINE READABILITY & STRUCTURED DATA (Bobot: 20 Poin)
 | Skor | Kriteria Evaluasi |
 | :---: | :--- |
-| **18-20** | Memiliki Schema.org JSON-LD lengkap (`Person`, `jobTitle`, `knowsAbout`, `sameAs`), HTML5 semantic murni (`header`, `main`, `section`, `article`, `footer`), hierarki heading teratur (`h1` tunggal, `h2`, `h3`), dan seluruh teks dapat di-parse mesin tanpa ketergantungan JavaScript. |
+| **18-20** | Memiliki Schema.org JSON-LD lengkap (`Person`, `jobTitle`, `description` yang sinkron Tri-Level SSoT, `knowsAbout`, `sameAs`), HTML5 semantic murni (`header`, `main`, `section`, `article`, `footer`), hierarki heading teratur (`h1` tunggal, `h2`, `h3`), dan seluruh teks dapat di-parse mesin tanpa ketergantungan JavaScript. |
 | **14-17** | Semantic HTML5 lengkap dan teratur, namun JSON-LD belum lengkap atau masih kekurangan properti relasi `sameAs`/`knowsAbout`. |
 | **9-13** | Didominasi oleh `<div>` soup tanpa semantic tag yang tepat, atau teks penting disematkan di dalam gambar/SVG tanpa `alt` dan `aria-label`. |
 | **0-8** | Teks inti dirender di dalam Canvas atau dimuat secara terenkripsi; parser ATS mendeteksi dokumen sebagai halaman kosong. |
@@ -47,7 +47,7 @@
 ### 4. DIMENSI 4: GSAP MOTION & COMPOSITOR PERFORMANCE (Bobot: 20 Poin)
 | Skor | Kriteria Evaluasi |
 | :---: | :--- |
-| **18-20** | Seluruh animasi GSAP berjalan di compositor thread (`transform: translate3d/scale/rotate`, `opacity`). Zero layout thrashing (tidak menganimasikan `top/left/width/height`). ScrollTrigger menggunakan scrub/stagger alami tanpa scroll-jacking. Scrollbar dan scrolling terasa native dan responsif (60-120fps). |
+| **18-20** | Seluruh animasi GSAP dan efek pointer (termasuk spotlight card) berjalan di compositor thread (`transform: translate3d/scale/rotate`, `opacity`). Zero layout thrashing (tidak menganimasikan `top/left/width/height`, termasuk via CSS variable dinamis). ScrollTrigger menggunakan scrub/stagger alami tanpa scroll-jacking (60-120fps). |
 | **14-17** | Animasi halus dan estetis, namun terdapat sedikit kalkulasi layout berulang pada resize atau durasi animasi hover sedikit terlalu lambat (> 0.4s). |
 | **8-13** | Terdapat scroll-jacking buatan yang memperlambat laju mouse wheel recruiter, atau animasi sedikit patah-patah di perangkat mobile. |
 | **0-7** | Animasi memicu lonjakan CPU/GPU ekstrem, terjadi reflow brutal, atau animasi macet saat scroll cepat. |
@@ -57,7 +57,7 @@
 ### 5. DIMENSI 5: ACCESSIBILITY (WCAG 2.2) & PRINT STYLESHEET (Bobot: 15 Poin)
 | Skor | Kriteria Evaluasi |
 | :---: | :--- |
-| **14-15** | Mendukung penuh `prefers-reduced-motion` (animasi non-esensial dinonaktifkan otomatis). Kontras warna teks memenuhi WCAG AA (≥ 4.5:1). Navigasi keyboard memiliki focus ring jelas. Memiliki `@media print` sempurna yang mengubah halaman menjadi CV PDF 1-2 lembar bersih tanpa background/animasi. |
+| **14-15** | Mendukung penuh `prefers-reduced-motion` (animasi & counter non-esensial dilewati otomatis). Kontras warna teks memenuhi WCAG AA (≥ 4.5:1). Menyediakan Skip-to-Content (`#main-content`), `:focus-visible` ring jelas, restorasi fokus modal/lightbox, `tabular-nums` untuk angka metrik, dan `@media print` bersih 1-2 lembar. |
 | **10-13** | Kontras warna bagus dan print stylesheet ada, namun belum mengimplementasikan deteksi `prefers-reduced-motion` di JavaScript. |
 | **5-9** | Tidak ada print stylesheet (hasil cetak/PDF berantakan dengan tombol navbar dan background gelap bertumpuk), kontras teks redup sulit dibaca. |
 | **0-4** | Navigasi keyboard terperangkap (*focus trap*), warna teks tidak kontras, dan menyebabkan motion sickness bagi pengguna sensitif. |

@@ -1,5 +1,5 @@
 # Blueprint Case Study Portofolio Standar HRD & ATS (Google XYZ / STAR)
-> **Tujuan:** Menghasilkan deskripsi proyek teknis yang langsung memikat recruiter dan memiliki kata kunci relevan untuk algoritma ATS.
+> **Tujuan:** Menghasilkan deskripsi proyek teknis yang langsung memikat recruiter, mudah dipahami pembaca awam dalam sekali baca (ISO 24495-1), bernada humanis, dan menyisipkan kata kunci relevan untuk algoritma ATS maupun lowongan kerja spesifik (*lihat [`plain_language_writing_guide.md`](./plain_language_writing_guide.md)*).
 
 ---
 

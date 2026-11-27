@@ -11,3 +11,10 @@ Thumbs.db
 # Temporary & Backups
 index1.html
 *.tmp
+
+# Private Signatures, Job Application Bundles & Tracker Data
+assets/ttd.png
+assets/ttd_cropped.png
+assets/cv/Lamaran_*.pdf
+assets/cv/Surat_Lamaran_*.pdf
+tracker/applications.json

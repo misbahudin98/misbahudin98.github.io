@@ -1,11 +1,9 @@
 ---
 name: prompt-architect
 description: >-
-  Audits, evaluates, refines, and synthesizes international-grade AI prompts based on
-  global best practices (Anthropic XML, OpenAI Delimited, DeepMind Framing) and
-  enterprise deterministic invariants (Anti-Slop, SDD, 4-Visual-State UI, Zero-Hallucination).
-  Explicitly triggered by tags '@prompt', '@pa', '@prompt-architect', '#prompt', '#pa', or whenever the user
-  asks to review, evaluate, score, optimize, or craft a prompt.
+  Audits, evaluates, and synthesizes enterprise AI prompts using Anthropic XML, OpenAI Delimited,
+  and deterministic invariants. Triggered by '@prompt', '@pa', '@prompt-architect', '#prompt',
+  '#pa', or prompt optimization requests. Excludes web UI/CSS portfolio design.
 ---
 
 # Prompt Architect: International Prompt Engineering & Audit Engine

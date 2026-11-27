@@ -1,12 +1,9 @@
 ---
 name: portfolio-architect
 description: >-
-  Audits, evaluates, refines, and synthesizes international-grade developer portfolio websites
-  that balance ATS-friendliness (Schema.org, Semantic HTML, Clean Print PDF), HRD 6-second scan
-  usability (Above-the-fold clarity, STAR proof of work), and 60fps GSAP motion performance
-  (compositor-only transforms, prefers-reduced-motion, zero layout thrashing).
-  Triggered by tags '@portfolio', '@portfolio-architect', or whenever the user asks to review,
-  audit, benchmark, or add projects to their portfolio.
+  Audits, refines, and builds developer portfolios for ATS Schema, HRD 6-second scan, 60fps
+  GSAP motion, and WCAG 2.2 accessibility. Triggered by '@portfolio', '@portfolio-architect', or
+  portfolio UI/UX and project requests. Excludes general AI prompt crafting or agent governance.
 ---
 
 # Portfolio Architect: International Engineering & Usability Engine
@@ -23,10 +20,12 @@ Rujuk berkas modular berikut saat mengeksekusi tugas khusus:
 * **Panduan UI/UX Web3, Motion & Responsive:** [`references/web3_motion_responsive_guide.md`](./references/web3_motion_responsive_guide.md)
 * **Katalog Desain & Resep Motion:** [`references/design_and_motion_archetypes.md`](./references/design_and_motion_archetypes.md)
 * **Formula Executive Summary (Standar Harvard & Google):** [`references/executive_summary_formula.md`](./references/executive_summary_formula.md)
+* **Panduan Penulisan Lugas, Humanis & Ramah Awam (ISO 24495-1 + JD Keywords):** [`references/plain_language_writing_guide.md`](./references/plain_language_writing_guide.md)
 * **Template Studi Kasus Proyek (STAR / Google XYZ):** [`references/case_study_template.md`](./references/case_study_template.md)
 * **Contoh Studi Kasus Emas (Benchmark):** [`examples/portfolio_case_study_example.md`](./examples/portfolio_case_study_example.md)
 * **Skrip Auditor Otomatis (PowerShell):** [`scripts/audit-portfolio.ps1`](./scripts/audit-portfolio.ps1)
 * **Aturan Invariant Proyek (Wajib Patuh):** [`.agents/rules/portfolio_invariants.md`](../../rules/portfolio_invariants.md)
+* **Memori Master CV & Proyek Lokal (SSoT):** [`docs/cv_memory_ssot.md`](../../../docs/cv_memory_ssot.md)
 
 ---
 
@@ -63,9 +62,11 @@ Gunakan alur kerja ini ketika pengguna ingin menambahkan proyek baru ke dalam po
 1. **Gunakan Formula STAR & Google XYZ:**
    Tuliskan deskripsi proyek mengikuti panduan di [`references/case_study_template.md`](./references/case_study_template.md).
    - *Formula:* "Mencapai [Hasil Terukur X] dengan menerapkan [Arsitektur/Tech Stack Y] untuk menyelesaikan [Tantangan Bisnis Z]".
-2. **Kelompokkan Tag Taksonomi ATS:**
-   Sertakan kata kunci teknis yang dicari oleh bot pencari kerja (misal: *OAuth 2.0, ETL Pipelines, RESTful API, Tailwnd CSS, MySQL Normalization*).
-3. **Sediakan Tautan Ganda Kredibel:**
+2. **Terapkan Bahasa Lugas, Ramah Awam & Humanis:**
+   Ikuti [`references/plain_language_writing_guide.md`](./references/plain_language_writing_guide.md) (ISO 24495-1): kalimat aktif 12–20 kata, jelaskan manfaat teknis dalam bahasa sehari-hari (*Feynman Bridge*), dan hindari klise robotik.
+3. **Kelompokkan & Sisipkan Tag Taksonomi ATS / Kata Kunci Lowongan:**
+   Sertakan kata kunci teknis yang dicari bot ATS serta sesuaikan secara organik dengan 5–10 kata kunci lowongan kerja (*JD alignment*) tanpa *keyword stuffing*.
+4. **Sediakan Tautan Ganda Kredibel:**
    - Wajib ada tautan **Live Demo** atau interaktif preview.
    - Wajib ada tautan **GitHub Repository** dengan keterangan lisensi atau status repositori.
 
@@ -76,18 +77,18 @@ Gunakan alur kerja ini ketika pengguna ingin menambahkan proyek baru ke dalam po
 Gunakan alur kerja ini saat memoles atau mengimplementasikan animasi interaktif.
 
 1. **Terapkan Invariant GPU Compositor:**
-   Pastikan setiap baris animasi GSAP hanya menyentuh `transform` (`x`, `y`, `scale`, `rotation`) dan `opacity`. Ganti animasi `width/height` menjadi `scaleX/scaleY`.
+   Pastikan setiap baris animasi GSAP dan efek kursor hanya menyentuh `transform` (`x`, `y`, `scale`, `rotation`, `translate3d`) dan `opacity`. Ganti animasi `width/height` menjadi `scaleX/scaleY`, serta hindari `top`/`left` CSS variables pada spotlight hover.
 2. **Wajib Dukung `prefers-reduced-motion`:**
    ```javascript
    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
    if (!prefersReducedMotion) {
-     // Jalankan efek stagger dan ScrollTrigger
+     // Jalankan efek stagger, rolling counters, dan ScrollTrigger
    } else {
      // Lewatkan animasi, set status akhir instan
    }
    ```
-3. **Pembersihan ScrollTrigger:**
-   Pastikan tidak ada double-registration listener saat navigasi berpindah halaman atau resize dinamis.
+3. **Higienitas Fokus & Pembersihan ScrollTrigger (WCAG 2.2):**
+   Pastikan tautan *Skip-to-Content* (`#main-content`), gaya `:focus-visible`, pengembalian fokus modal lightbox saat ditutup, serta manajemen `ScrollTrigger` tanpa double-registration listener tetap terjaga.
 
 ---
 
@@ -102,9 +103,10 @@ Gunakan alur kerja ini ketika pengguna ingin merumuskan atau memperbarui ringkas
    - *Pilar 2 (Stack):* Tanda tangan arsitektur teknis dan ekosistem spesialisasi.
    - *Pilar 3 (Impact):* Metrik skala kumulatif karir terbesar (data/users/uptime).
    - *Pilar 4 (Trajectory):* Arah masalah bisnis & performa yang siap dituntaskan.
-3. **Audit Anti-Slop (Harvard Checklist):**
-   - Pastikan tidak ada kata ganti orang pertama (*saya, aku, I, me, my*).
-   - Pastikan tidak ada kata sifat tanpa data (*passionate, hardworking, fast learner*).
+3. **Audit Anti-Slop & Uji Baca Awam (Harvard + ISO 24495-1):**
+   - Pastikan tidak ada kata ganti orang pertama (*saya, aku, I, me, my*) pada ringkasan eksekutif formal.
+   - Pastikan tidak ada kata sifat tanpa data (*passionate, hardworking, fast learner, synergy*).
+   - Terapkan [`references/plain_language_writing_guide.md`](./references/plain_language_writing_guide.md): kalimat singkat (12–20 kata), istilah teknis terjembatani manfaatnya bagi pembaca awam/HRD, nada humanis, dan sisipkan kata kunci spesifik lowongan kerja (*JD*) jika tersedia.
 4. **Verifikasi Sinkronisasi Tri-Level (SSoT):**
    Sinkronkan hasil rumusan ke:
    - `<section id="hero">` teks visual (DOM).
@@ -119,6 +121,7 @@ Gunakan alur kerja ini ketika pengguna ingin mengubah gaya visual, menyusun ulan
 
 1. **Pemilihan Arketipe Desain:**
    Pilih salah satu arketipe dari [`references/design_and_motion_archetypes.md`](./references/design_and_motion_archetypes.md) sesuai target audiens:
+   - *Warm Swiss Architectural Blueprint (Standar Produksi Aktif):* Kanvas kertas hangat `#F6F4EF`, Navy `#1B365D`, Copper `#B45309`, `tabular-nums`, dan grid editorial 12 kolom.
    - *Dark Obsidian / Linear-Vercel Tech:* Untuk software engineer, devtools, dan B2B enterprise.
    - *Bento Grid Layout:* Untuk visualisasi fitur modular dan kartu proyek kaya dimensi.
    - *Swiss Typographic Style:* Untuk keterbacaan teks murni, arsitektur sistem, dan dokumentasi.
@@ -126,11 +129,11 @@ Gunakan alur kerja ini ketika pengguna ingin mengubah gaya visual, menyusun ulan
    - *Warm Editorial:* Untuk portofolio riset komputasi, tulisan teknis, dan institusi akademik.
 2. **Implementasi Resep Motion (Compositor-Safe):**
    Gunakan resep baku yang terbukti aman terhadap Core Web Vitals:
-   - *Spotlight Cards* untuk efek hover interaktif.
+   - *Spotlight Cards (`translate3d`)* dengan proteksi `(hover: hover)` + `requestAnimationFrame`.
    - *Magnetic Buttons* dengan fisika GSAP elastis.
    - *Staggered Entrance* dengan durasi 0.3s - 0.5s dan jeda stagger 0.05s - 0.08s.
-   - *Animated Counters* untuk pembuktian metrik skala numerik.
+   - *Animated Counters (`tabular-nums`)* dengan bypass instan saat `prefers-reduced-motion` aktif.
 3. **Pengujian Kepatuhan Invariant:**
-   - Pastikan hanya menggunakan `transform` dan `opacity` (bebas reflow layout).
-   - Pastikan penanganan `window.matchMedia('(prefers-reduced-motion: reduce)')` aktif.
+   - Pastikan hanya menggunakan `transform` dan `opacity` (bebas reflow layout, nol `top`/`left` dinamis).
+   - Pastikan penanganan `window.matchMedia('(prefers-reduced-motion: reduce)')`, Skip-to-Content, `:focus-visible`, dan sinkronisasi `design.md` aktif.
    - Jalankan `audit-portfolio.ps1` untuk memastikan skor tetap Tier 1 (100/100).

@@ -12,6 +12,7 @@ Untuk mencegah degradasi performa model (*attention degradation*), kebingungan *
 1. Setiap *skill* wajib memiliki tag pemicu utama yang unik dan terisolasi:
    - `@portfolio` / `@portfolio-architect` -> Khusus rekayasa & audit web portofolio.
    - `@prompt` / `@pa` / `@prompt-architect` -> Khusus rekayasa & audit prompt AI / evaluasi sistem agen.
+   - `@lamaran` / `@apply` -> Khusus manajemen rekap lamaran kerja JSON, pesan multi-platform, dan penggabungan berkas PDF lamaran.
 2. Dilarang keras membuat dua *skill* atau aturan pemicu yang merespons kata kunci pemicu yang sama tanpa hierarki yang jelas.
 3. Deskripsi pemicu pada *frontmatter* `SKILL.md` wajib mendefinisikan apa yang ditangani **DAN** membatasi apa yang tidak ditangani (*negative boundary*).
 
@@ -59,5 +60,6 @@ Untuk mematuhi arsitektur Antigravity:
 | :--- | :--- | :--- | :--- |
 | **Portofolio Developer** | `portfolio-architect` | `@portfolio`, `@portfolio-architect` | `.agents/rules/portfolio_invariants.md` |
 | **Rekayasa Prompt & Tata Kelola Agen** | `prompt-architect` | `@prompt`, `@pa`, `@prompt-architect` | `.agents/rules/skill_governance.md` |
+| **Pelacak & Bundler Lamaran Kerja** | `job-application-tracker` | `@lamaran`, `@apply` | `.agents/rules/lamaran_trigger.md` |
 
 Jika Anda hendak menambahkan *skill* baru di masa mendatang (misal: `seo-architect`, `performance-architect`), wajib mendaftarkannya terlebih dahulu pada tabel matriks di atas dan memastikan tag pemicunya tidak bertabrakan.

@@ -66,6 +66,18 @@
 
 ---
 
+### Arketipe 6: Warm Swiss Architectural Blueprint (Standar Produksi Aktif)
+* **Karakter Kunci:** Sintesis antara rasionalisme Swiss Grid, kehangatan editorial kertas premium (*zero eye-strain* bagi HRD), dan presisi *dark canvas* khusus untuk studi kasus data/spreadsheet.
+* **Palet Warna Kanonikal:**
+  - Kanvas Terang (`--paper`): `#F6F4EF` | Permukaan Kartu (`--surface`): `#FFFFFF` | Garis Hairline: `#DCD9D0`
+  - Teks Utama (`--ink`): `#0F172A` | Primer Navy (`--navy`): `#1B365D` | Sekunder (`--slate`): `#475569`
+  - Aksen Sinyal (`--copper`): `#B45309` | Aksen Gelap (`--copper-bright`): `#D97706`
+  - Kanvas Studi Kasus Gelap (`--dark-canvas`): `#0B1320` | Permukaan Gelap: `#131E30`
+* **Tipografi:** `Plus Jakarta Sans` (display/body) + `JetBrains Mono` dengan `font-variant-numeric: tabular-nums` untuk KPI dan angka finansial.
+* **Komponen Khas:** Grid editorial 12 kolom dengan garis pembatas `1px`, potret monokrom hangat (*desaturated-to-color hover*), strip metrik 4 kolom, bilah progres baca tipis 2px, serta transisi babak terang-ke-gelap pada studi kasus ETL Excel.
+
+---
+
 ## 2. STANDAR FISIKA MOTION & DURASI INTERAKSI (DISNEY UI LAWS)
 
 1. **Durasi Mikro-Interaksi (150ms – 250ms):**
@@ -83,11 +95,11 @@
 
 ## 3. RESEP KODE MOTION BERPERFORMA TINGGI (COMPOSITOR-SAFE)
 
-### Resep 1: Spotlight Hover Card (Linear/Vercel Effect)
-Efek radial glow yang mengikuti kursor mouse tanpa memicu reflow DOM:
+### Resep 1: Spotlight Hover Card (Linear/Vercel Effect — GPU Compositor-Safe)
+Efek radial glow yang mengikuti kursor mouse murni menggunakan `translate3d` tanpa memicu layout reflow (`top`/`left`):
 
 ```css
-/* CSS */
+/* CSS — Zero Layout Thrashing via translate3d */
 .spotlight-card {
   position: relative;
   overflow: hidden;
@@ -95,16 +107,17 @@ Efek radial glow yang mengikuti kursor mouse tanpa memicu reflow DOM:
 .spotlight-card::before {
   content: '';
   position: absolute;
-  top: var(--mouse-y, -1000px);
-  left: var(--mouse-x, -1000px);
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  width: 440px;
+  height: 440px;
+  background: radial-gradient(circle, rgba(27, 54, 93, 0.08) 0%, transparent 68%);
+  transform: translate3d(calc(var(--mouse-x, -1000px) - 50%), calc(var(--mouse-y, -1000px) - 50%), 0);
+  will-change: transform, opacity;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.3s ease;
-  z-index: 1;
+  z-index: 20;
 }
 .spotlight-card:hover::before {
   opacity: 1;
@@ -112,14 +125,23 @@ Efek radial glow yang mengikuti kursor mouse tanpa memicu reflow DOM:
 ```
 
 ```javascript
-// JavaScript Listener
+// JavaScript Listener — Hover-capable & Reduced-Motion Guard + rAF Throttle
 function initSpotlightCards() {
+  if (!window.matchMedia('(hover: hover)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   document.querySelectorAll('.spotlight-card').forEach(card => {
+    let rafId = null;
     card.addEventListener('mousemove', e => {
-      const rect = card.getBoundingClientRect();
-      card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-      card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
-    });
+      if (rafId) return;
+      const clientX = e.clientX;
+      const clientY = e.clientY;
+      rafId = requestAnimationFrame(() => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mouse-x', `${clientX - rect.left}px`);
+        card.style.setProperty('--mouse-y', `${clientY - rect.top}px`);
+        rafId = null;
+      });
+    }, { passive: true });
   });
 }
 ```
@@ -259,3 +281,18 @@ function initDecorativeParallax() {
    - ❌ DILARANG keras menganimasikan: `width`, `height`, `top`, `left`, `margin`, `padding`.
 3. **Anti Scroll-Jacking:**
    - Dilarang membajak event scroll mouse wheel browser yang mengunci kecepatan gerak pengguna. Animasi harus bereaksi terhadap scroll alami, bukan memaksakan scroll buatan yang memperlambat recruiter.
+
+---
+
+## 5. REFERENSI KREDIBEL UI/UX PORTOFOLIO RAMAH HRD
+
+1. **Nielsen Norman Group (NN/g) — 6-Second Scan & Layer-Cake Scanning Pattern:**
+   - Recruiter dan HRD memindai halaman secara cepat berdasarkan *heading*, *sub-heading*, dan angka tebal (*layer-cake pattern*). Oleh karena itu, hierarki `H1 -> H2 -> H3`, label bernomor (`01`–`06`), dan penebalan metrik dampak adalah kewajiban struktural.
+2. **Baymard Institute — Ergonomi Modal, Focus & Touch Targets:**
+   - Modal/lightbox wajib memindahkan fokus masuk ke elemen kontrol modal saat terbuka, mendukung penutupan via `Escape` dan klik latar, serta mengembalikan fokus ke tombol pemicu asal saat ditutup agar pengguna keyboard tidak tersesat.
+3. **Edward Tufte — High Data-to-Ink Ratio:**
+   - Hilangkan *chartjunk* dan dekorasi yang tidak membawa informasi. Gunakan garis tipis `1px`, spasi negatif lega, dan `tabular-nums` pada angka metrik.
+4. **Dieter Rams & Josef Müller-Brockmann — Restraint & Grid Equilibrium:**
+   - Batasi palet warna ke 60% kanvas tenang, 30% permukaan terstruktur, dan ≤ 10% warna sinyal (*copper/navy*) agar mata HRD tidak lelah dan CTA utama (*Unduh CV PDF*) langsung menonjol.
+5. **Apple HIG & W3C WCAG 2.2 AA/AAA — Purposeful Motion & Vestibular Safety:**
+   - Setiap efek *micro-delight* (parallax dekoratif, spotlight, magnetic button, rolling counter) wajib menghormati `prefers-reduced-motion: reduce` dan dibatasi pada properti GPU compositor (`transform`, `opacity`).

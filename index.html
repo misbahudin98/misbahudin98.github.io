@@ -28,6 +28,7 @@
     "email": "mailto:misbah.udin@outlook.co.id",
     "telephone": "+62-822-3282-8065",
     "jobTitle": "IT Operations, Database & Data Systems, Full Stack Web Developer",
+    "description": "Portofolio profesional Misbahudin, S.Tr.Kom. Lulusan D4 Teknik Informatika Politeknik Negeri Malang berpengalaman lebih dari 3,5 tahun di bidang IT Operations, Database MySQL, Pengolahan Data Microsoft Excel, Administrasi Operasional, dan Pengembangan Web Laravel.",
     "knowsAbout": [
       "IT Operations",
       "Database Administration",
@@ -310,19 +311,71 @@
       background-color: rgba(217, 119, 6, 0.14);
     }
 
-    /* Spotlight Radial Hover Glow (Compositor-friendly) */
+    /* Global Keyboard Focus Ring (WCAG 2.2 AA/AAA) */
+    :focus-visible {
+      outline: 2px solid var(--copper);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    /* Vertical Numeral Alignment for KPI & Financial Data */
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+
+    #studi-kasus-excel table {
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Smooth Sheet Panel Transition (Chapter 03 Excel Workbook) */
+    @keyframes sheetReveal {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .sheet-panel:not(.hidden) {
+      animation: sheetReveal 0.24s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    /* Formula Bar Micro-Flash Feedback */
+    #formula-bar-text {
+      transition: color 0.22s ease, opacity 0.22s ease;
+    }
+    #formula-bar-text.is-updating {
+      color: #FFFFFF;
+      opacity: 0.72;
+    }
+
+    /* Tactile Editorial Card Hover Elevation (Compositor-Safe) */
+    .editorial-card {
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    @media (hover: hover) {
+      .editorial-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 24px -12px rgba(15, 23, 42, 0.16);
+      }
+    }
+
+    /* Spotlight Radial Hover Glow (Zero Layout Thrashing via translate3d) */
     .spotlight-card {
       position: relative;
     }
     .spotlight-card::before {
       content: '';
       position: absolute;
-      top: var(--mouse-y, -1000px);
-      left: var(--mouse-x, -1000px);
+      top: 0;
+      left: 0;
       width: 440px;
       height: 440px;
       background: radial-gradient(circle, rgba(27, 54, 93, 0.08) 0%, transparent 68%);
-      transform: translate(-50%, -50%);
+      transform: translate3d(calc(var(--mouse-x, -1000px) - 50%), calc(var(--mouse-y, -1000px) - 50%), 0);
+      will-change: transform, opacity;
       pointer-events: none;
       opacity: 0;
       transition: opacity 0.3s ease;
@@ -343,6 +396,9 @@
         animation-duration: 0.01ms !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
+      }
+      .editorial-card:hover {
+        transform: none !important;
       }
       .parallax-media {
         height: 100%;
@@ -399,6 +455,11 @@
   </style>
 </head>
 <body class="font-sans bg-paper text-ink selection:bg-navy selection:text-white">
+
+  <!-- Skip-to-Content Keyboard Bypass (WCAG 2.2 AA) -->
+  <a href="#main-content" class="no-print sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:rounded-md focus:bg-navy focus:text-white focus:font-mono focus:text-xs focus:shadow-lg">
+    Langsung ke konten utama
+  </a>
 
   <!-- Non-blocking Toast Notification -->
   <div id="toast-box" role="status" aria-live="polite" class="no-print fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 translate-y-3 transition-all duration-300">
@@ -501,7 +562,7 @@
     </a>
   </aside>
 
-  <main>
+  <main id="main-content" tabindex="-1">
 
     <!-- =========================================================
          CHAPTER 01: PEMBUKA (HERO)
@@ -557,6 +618,10 @@
                 <a href="#studi-kasus-excel" class="magnetic-btn inline-flex items-center gap-2 px-5 py-3 rounded-md bg-surface border border-hairline text-ink text-sm font-semibold hover:border-navy transition-colors">
                   <span>Lihat Studi Kasus Data Excel</span>
                   <svg class="w-4 h-4 text-copper" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                </a>
+                <a href="#kontak" class="inline-flex items-center gap-1.5 px-2.5 py-2 font-mono text-xs font-semibold text-navy hover:text-copper underline decoration-hairline underline-offset-4 transition-colors">
+                  <span>Hubungi Langsung</span>
+                  <span aria-hidden="true">&rarr;</span>
                 </a>
               </div>
               <p class="font-mono text-[11px] text-slateMuted">
@@ -626,25 +691,25 @@
           <div class="grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-hairline border-b border-hairline bg-surface/80">
             <div class="metric-card p-5 sm:p-6 cursor-pointer hover:bg-surface active:scale-[0.99] transition-all" title="Klik untuk memutar ulang animasi metrik">
               <div class="mask-wrap">
-                <p class="masked-metric font-mono text-2xl sm:text-3xl font-semibold text-navy" data-count-target="3.5" data-count-format="decimal-tahun">3,5+ Tahun</p>
+                <p class="masked-metric tabular-nums font-mono text-2xl sm:text-3xl font-semibold text-navy" data-count-target="3.5" data-count-format="decimal-tahun">3,5+ Tahun</p>
               </div>
               <p class="font-mono text-[11px] uppercase tracking-wider text-slateMuted mt-1.5">Pengalaman Operasional &amp; Sistem</p>
             </div>
             <div class="metric-card p-5 sm:p-6 border-l border-hairline lg:border-l-0 cursor-pointer hover:bg-surface active:scale-[0.99] transition-all" title="Klik untuk memutar ulang animasi metrik">
               <div class="mask-wrap">
-                <p class="masked-metric font-mono text-2xl sm:text-3xl font-semibold text-ink" data-count-target="12117" data-count-format="thousands-data">12.117 Data</p>
+                <p class="masked-metric tabular-nums font-mono text-2xl sm:text-3xl font-semibold text-ink" data-count-target="12117" data-count-format="thousands-data">12.117 Data</p>
               </div>
               <p class="font-mono text-[11px] uppercase tracking-wider text-slateMuted mt-1.5">Migrasi &amp; Pembersihan 0% Data Loss</p>
             </div>
             <div class="metric-card p-5 sm:p-6 cursor-pointer hover:bg-surface active:scale-[0.99] transition-all" title="Klik untuk memutar ulang animasi metrik">
               <div class="mask-wrap">
-                <p class="masked-metric font-mono text-2xl sm:text-3xl font-semibold text-copper" data-count-target="100" data-count-format="percent">100%</p>
+                <p class="masked-metric tabular-nums font-mono text-2xl sm:text-3xl font-semibold text-copper" data-count-target="100" data-count-format="percent">100%</p>
               </div>
               <p class="font-mono text-[11px] uppercase tracking-wider text-slateMuted mt-1.5">Validitas Data Instansi &amp; Keuangan</p>
             </div>
             <div class="metric-card p-5 sm:p-6 border-l border-hairline lg:border-l-0 cursor-pointer hover:bg-surface active:scale-[0.99] transition-all" title="Klik untuk memutar ulang animasi metrik">
               <div class="mask-wrap">
-                <p class="masked-metric font-mono text-2xl sm:text-3xl font-semibold text-ink" data-count-target="250" data-count-format="int-plus">250+</p>
+                <p class="masked-metric tabular-nums font-mono text-2xl sm:text-3xl font-semibold text-ink" data-count-target="250" data-count-format="int-plus">250+</p>
               </div>
               <p class="font-mono text-[11px] uppercase tracking-wider text-slateMuted mt-1.5">Pengujian Otomatis PHPUnit</p>
             </div>
@@ -690,8 +755,8 @@
           <div class="space-y-10 sm:space-y-12">
 
             <!-- ROLE 1 (NEWEST): September 2026 - Sekarang -->
-            <article class="relative bg-surface border border-hairline rounded-md p-6 sm:p-8 shadow-sm">
-              <span aria-hidden="true" class="absolute -left-[25px] sm:-left-[39px] top-7 w-3.5 h-3.5 rounded-full bg-copper ring-4 ring-paper"></span>
+            <article class="editorial-card group relative bg-surface border border-hairline rounded-md p-6 sm:p-8 shadow-sm hover:border-navy">
+              <span aria-hidden="true" class="absolute -left-[25px] sm:-left-[39px] top-7 w-3.5 h-3.5 rounded-full bg-copper ring-4 ring-paper transition-transform duration-300 group-hover:scale-125"></span>
 
               <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
                 <div class="lg:col-span-8">
@@ -709,11 +774,11 @@
                   <ul class="body-reveal space-y-3 text-sm text-slateMuted leading-relaxed">
                     <li class="flex items-start gap-2.5">
                       <span class="font-mono text-xs text-copper font-semibold mt-0.5">01</span>
-                      <span>Membangun aplikasi operasional kantor <strong class="text-ink font-semibold">Notaris &amp; PPAT</strong> berbasis Laravel 13 dan Svelte 5 (alur akta 7 tahap, pencatatan serta cetak otomatis buku repertorium dan klapper, pemisahan rekening kas kantor dengan uang titipan pajak negara <strong class="text-ink font-semibold">PPh &amp; BPHTB ber-NTPN</strong>).</span>
+                      <span>Membangun <strong class="text-ink font-semibold">SIM Notaris &amp; PPAT</strong> berbasis Laravel 13 dan Svelte 5 dengan <strong class="text-ink font-semibold">6 peran hak akses</strong>, Buku Register Berkas otomatis, pelacakan <strong class="text-ink font-semibold">arsip fisik</strong> (map/box/rak) &amp; pratinjau dokumen warkah, pemisahan kas kantor dari titipan pajak negara (<strong class="text-ink font-semibold">PPh, BPHTB &amp; PNBP ber-NTPN</strong>), serta cetak kuitansi dan invoice A4 otomatis.</span>
                     </li>
                     <li class="flex items-start gap-2.5">
                       <span class="font-mono text-xs text-copper font-semibold mt-0.5">02</span>
-                      <span>Mengembangkan Sistem Manajemen Pendidikan <strong class="text-ink font-semibold">SIM-PQTM</strong> (asrama santri, tahfidz, PKBM Kurikulum Merdeka) dengan input presensi massal, jurnal hafalan, serta perhitungan nilai dan cetak rapor otomatis langsung dari browser.</span>
+                      <span>Mengembangkan <strong class="text-ink font-semibold">SIM-PQTM (Modul LTQ &amp; Agenda Hafalan)</strong> berbasis Laravel 13 dan Svelte 5 untuk mengelola halaqah &amp; Rumah Tahfidz (termasuk ustadzah pengganti/badal &amp; anti-konflik anggota), jurnal setoran harian tahfidz (4 sesi) &amp; tahsin, ujian tasmi' 1&ndash;30 juz ber-syahadah, serta <strong class="text-ink font-semibold">portal pantau wali santri</strong>.</span>
                     </li>
                     <li class="flex items-start gap-2.5">
                       <span class="font-mono text-xs text-copper font-semibold mt-0.5">03</span>
@@ -741,7 +806,7 @@
                               <rect width="400" height="250" fill="#FAF9F6" />
                               <rect x="14" y="14" width="372" height="222" rx="3" fill="#FFFFFF" stroke="#DCD9D0" />
                               <rect x="14" y="14" width="372" height="28" fill="#1B365D" />
-                              <text x="26" y="32" fill="#FFFFFF" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">NOTARIS &amp; PPAT - ALUR AKTA 7 TAHAP</text>
+                              <text x="26" y="32" fill="#FFFFFF" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">SIM NOTARIS &amp; PPAT - REGISTER &amp; ESCROW</text>
                               <g font-family="JetBrains Mono, monospace" font-size="8.5">
                                 <rect x="28" y="56" width="44" height="22" rx="2" fill="#1B365D" /><text x="50" y="70" text-anchor="middle" fill="#FFF">01</text>
                                 <rect x="78" y="56" width="44" height="22" rx="2" fill="#1B365D" /><text x="100" y="70" text-anchor="middle" fill="#FFF">02</text>
@@ -752,25 +817,25 @@
                                 <rect x="328" y="56" width="44" height="22" rx="2" fill="#15803D" /><text x="350" y="70" text-anchor="middle" fill="#FFF">07</text>
                               </g>
                               <rect x="28" y="94" width="166" height="84" rx="3" fill="#F6F4EF" stroke="#DCD9D0" />
-                              <text x="38" y="114" fill="#1B365D" font-family="JetBrains Mono, monospace" font-size="9" font-weight="600">KAS KANTOR</text>
-                              <text x="38" y="132" fill="#475569" font-family="Plus Jakarta Sans, sans-serif" font-size="9">Buku Repertorium &amp; Klapper</text>
-                              <rect x="38" y="148" width="112" height="18" rx="2" fill="#1B365D" fill-opacity="0.1" />
-                              <text x="46" y="160" fill="#1B365D" font-family="JetBrains Mono, monospace" font-size="8">Cetak Otomatis</text>
+                              <text x="38" y="114" fill="#1B365D" font-family="JetBrains Mono, monospace" font-size="9" font-weight="600">KAS &amp; ARSIP</text>
+                              <text x="38" y="132" fill="#475569" font-family="Plus Jakarta Sans, sans-serif" font-size="9">Buku Register &amp; Lokasi Rak</text>
+                              <rect x="38" y="148" width="118" height="18" rx="2" fill="#1B365D" fill-opacity="0.1" />
+                              <text x="46" y="160" fill="#1B365D" font-family="JetBrains Mono, monospace" font-size="8">Kuitansi &amp; Invoice A4</text>
 
                               <rect x="206" y="94" width="166" height="84" rx="3" fill="#FEF3C7" fill-opacity="0.5" stroke="#B45309" stroke-opacity="0.4" />
-                              <text x="216" y="114" fill="#B45309" font-family="JetBrains Mono, monospace" font-size="9" font-weight="600">TITIPAN PAJAK</text>
-                              <text x="216" y="132" fill="#475569" font-family="Plus Jakarta Sans, sans-serif" font-size="9">PPh &amp; BPHTB Terverifikasi</text>
+                              <text x="216" y="114" fill="#B45309" font-family="JetBrains Mono, monospace" font-size="9" font-weight="600">ESCROW PAJAK</text>
+                              <text x="216" y="132" fill="#475569" font-family="Plus Jakarta Sans, sans-serif" font-size="9">PPh, BPHTB &amp; PNBP</text>
                               <rect x="216" y="148" width="114" height="18" rx="2" fill="#B45309" fill-opacity="0.15" />
                               <text x="224" y="160" fill="#B45309" font-family="JetBrains Mono, monospace" font-size="8">Kode NTPN Valid</text>
 
-                              <text x="28" y="218" fill="#475569" font-family="JetBrains Mono, monospace" font-size="8.5">Laravel 13 &middot; Svelte 5 &middot; 250+ PHPUnit</text>
+                              <text x="28" y="218" fill="#475569" font-family="JetBrains Mono, monospace" font-size="8.5">Laravel 13 &middot; Svelte 5 &middot; 121 PHPUnit</text>
                               <text x="372" y="218" text-anchor="end" fill="#64748B" font-family="JetBrains Mono, monospace" font-size="8">exp-freelance.jpg</text>
                             </svg>
                           </div>
                         </div>
                       </div>
                       <figcaption class="px-3.5 py-2.5 flex items-center justify-between gap-2 bg-paper border-t border-hairline">
-                        <span class="font-mono text-[11px] font-medium text-ink">Sistem Akta &amp; SIM-PQTM</span>
+                        <span class="font-mono text-[11px] font-medium text-ink">SIM Notaris &amp; SIM-PQTM</span>
                         <span class="font-mono text-[10px] text-copper group-hover:translate-x-0.5 transition-transform">Perbesar &rarr;</span>
                       </figcaption>
                     </button>
@@ -779,9 +844,9 @@
               </div>
             </article>
 
-            <!-- ROLE 2: Juni 2025 - Juli 2026 -->
-            <article class="relative bg-surface border border-hairline rounded-md p-6 sm:p-8 shadow-sm">
-              <span aria-hidden="true" class="absolute -left-[25px] sm:-left-[39px] top-7 w-3.5 h-3.5 rounded-full bg-navy ring-4 ring-paper"></span>
+            <!-- ROLE 2: Juli 2025 - Juli 2026 -->
+            <article class="editorial-card group relative bg-surface border border-hairline rounded-md p-6 sm:p-8 shadow-sm hover:border-navy">
+              <span aria-hidden="true" class="absolute -left-[25px] sm:-left-[39px] top-7 w-3.5 h-3.5 rounded-full bg-navy ring-4 ring-paper transition-transform duration-300 group-hover:scale-125"></span>
 
               <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
                 <div class="lg:col-span-8">
@@ -792,7 +857,7 @@
                       <p class="text-sm font-semibold text-navy mt-0.5">SMKS Taruna Bhakti Malang</p>
                     </div>
                     <time class="font-mono text-xs font-semibold text-ink bg-paper border border-hairline px-3 py-1 rounded-sm self-start whitespace-nowrap">
-                      Juni 2025 - Juli 2026
+                      Juli 2025 - Juli 2026
                     </time>
                   </div>
 
@@ -873,8 +938,8 @@
             </article>
 
             <!-- ROLE 3 (OLDEST): Juni 2021 - Januari 2025 -->
-            <article class="relative bg-surface border border-hairline rounded-md p-6 sm:p-8 shadow-sm">
-              <span aria-hidden="true" class="absolute -left-[25px] sm:-left-[39px] top-7 w-3.5 h-3.5 rounded-full bg-navy ring-4 ring-paper"></span>
+            <article class="editorial-card group relative bg-surface border border-hairline rounded-md p-6 sm:p-8 shadow-sm hover:border-navy">
+              <span aria-hidden="true" class="absolute -left-[25px] sm:-left-[39px] top-7 w-3.5 h-3.5 rounded-full bg-navy ring-4 ring-paper transition-transform duration-300 group-hover:scale-125"></span>
 
               <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
                 <div class="lg:col-span-8">
@@ -1860,7 +1925,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
           <!-- Project 1: Aplikasi Operasional Notaris & PPAT -->
-          <article class="spotlight-card group bg-surface border border-hairline rounded-md overflow-hidden hover:border-navy transition-colors shadow-sm flex flex-col">
+          <article class="spotlight-card editorial-card group bg-surface border border-hairline rounded-md overflow-hidden hover:border-navy transition-colors shadow-sm flex flex-col">
             <button type="button" data-lightbox-id="proj-notaris" class="lightbox-trigger text-left w-full flex-1 flex flex-col">
               <div class="px-3.5 py-2 bg-paper border-b border-hairline flex items-center justify-between">
                 <div class="flex items-center gap-1.5" aria-hidden="true">
@@ -1868,7 +1933,7 @@
                   <span class="w-2 h-2 rounded-full bg-hairline"></span>
                   <span class="w-2 h-2 rounded-full bg-hairline"></span>
                 </div>
-                <span class="font-mono text-[10px] text-slateMuted">notaris-ppat / alur-akta-7-tahap</span>
+                <span class="font-mono text-[10px] text-slateMuted">notaris-ppat / register-berkas-escrow</span>
                 <span class="font-mono text-[10px] text-copper">01</span>
               </div>
 
@@ -1877,7 +1942,7 @@
                   <img
                     data-asset-img="projectNotaris"
                     src="./assets/project-notaris.jpg"
-                    alt="Aplikasi Operasional Notaris dan PPAT"
+                    alt="SIM Notaris dan PPAT Enterprise Vault"
                     loading="lazy"
                     class="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-500"
                   />
@@ -1888,27 +1953,27 @@
                       <rect x="0" y="0" width="138" height="400" fill="#0F172A" />
                       <text x="18" y="34" fill="#F6F4EF" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700">NOTARIS OPS</text>
                       <rect x="14" y="54" width="110" height="26" rx="3" fill="#1B365D" />
-                      <text x="24" y="71" fill="#FFFFFF" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5" font-weight="600">Alur Akta (7)</text>
-                      <text x="24" y="106" fill="#94A3B8" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5">Buku Repertorium</text>
-                      <text x="24" y="132" fill="#94A3B8" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5">Buku Klapper</text>
+                      <text x="24" y="71" fill="#FFFFFF" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5" font-weight="600">Register Berkas</text>
+                      <text x="24" y="106" fill="#94A3B8" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5">Kanban &amp; SLA</text>
+                      <text x="24" y="132" fill="#94A3B8" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5">Arsip &amp; Warkah</text>
                       <text x="24" y="158" fill="#FDE68A" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5">Kas &amp; Pajak NTPN</text>
-                      <text x="160" y="36" fill="#0F172A" font-family="Plus Jakarta Sans, sans-serif" font-size="15" font-weight="700">Pemisahan Kas Kantor &amp; Titipan Pajak Negara</text>
+                      <text x="160" y="36" fill="#0F172A" font-family="Plus Jakarta Sans, sans-serif" font-size="15" font-weight="700">Pemisahan Kas Kantor &amp; Escrow Titipan Pajak</text>
                       <rect x="160" y="52" width="218" height="76" rx="4" fill="#FFFFFF" stroke="#DCD9D0" />
                       <text x="174" y="74" fill="#475569" font-family="JetBrains Mono, monospace" font-size="9.5">KAS OPERASIONAL KANTOR</text>
                       <text x="174" y="100" fill="#1B365D" font-family="JetBrains Mono, monospace" font-size="16" font-weight="700">Rp 84.500.000</text>
                       <rect x="394" y="52" width="222" height="76" rx="4" fill="#FFFFFF" stroke="#B45309" stroke-opacity="0.55" />
-                      <text x="408" y="74" fill="#B45309" font-family="JetBrains Mono, monospace" font-size="9.5">TITIPAN PAJAK (PPh &amp; BPHTB)</text>
+                      <text x="408" y="74" fill="#B45309" font-family="JetBrains Mono, monospace" font-size="9.5">ESCROW PAJAK (PPh, BPHTB, PNBP)</text>
                       <text x="408" y="100" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="16" font-weight="700">Rp 142.350.000</text>
                       <rect x="160" y="146" width="456" height="226" rx="4" fill="#FFFFFF" stroke="#DCD9D0" />
                       <rect x="160" y="146" width="456" height="30" fill="#F6F4EF" />
-                      <text x="174" y="165" fill="#475569" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">NO. AKTA      JENIS AKTA          TAHAP       STATUS NTPN</text>
+                      <text x="174" y="165" fill="#475569" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">NO. REGISTER     JENIS LAYANAN        STATUS       STATUS NTPN</text>
                       <line x1="160" y1="176" x2="616" y2="176" stroke="#DCD9D0" />
-                      <text x="174" y="206" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="10">AK-2026-041   AJB Tanah           Tahap 7/7   TERVERIFIKASI</text>
+                      <text x="174" y="206" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="10">PPAT-2026-0041   AJB Tanah            Selesai      TERVERIFIKASI</text>
                       <line x1="160" y1="222" x2="616" y2="222" stroke="#E2E8F0" />
-                      <text x="174" y="248" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="10">AK-2026-042   Pendirian PT        Tahap 5/7   MENUNGGU NTPN</text>
+                      <text x="174" y="248" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="10">NOT-2026-0042    Pendirian PT         Review       MENUNGGU NTPN</text>
                       <line x1="160" y1="264" x2="616" y2="264" stroke="#E2E8F0" />
-                      <text x="174" y="290" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="10">AK-2026-043   APHT Perbankan      Tahap 7/7   TERVERIFIKASI</text>
-                      <text x="174" y="332" fill="#15803D" font-family="JetBrains Mono, monospace" font-size="9.5">PHPUnit: 250+ Tests Passed &middot; Repertorium &amp; Klapper Siap Cetak</text>
+                      <text x="174" y="290" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="10">PPAT-2026-0043   APHT Perbankan       Selesai      TERVERIFIKASI</text>
+                      <text x="174" y="332" fill="#15803D" font-family="JetBrains Mono, monospace" font-size="9.5">PHPUnit: 121 Tests (1.148 Assertions) &middot; 6 Peran RBAC &middot; Kuitansi A4</text>
                       <text x="602" y="360" text-anchor="end" fill="#64748B" font-family="JetBrains Mono, monospace" font-size="9">assets/project-notaris.jpg</text>
                     </svg>
                   </div>
@@ -1917,16 +1982,17 @@
 
               <div class="p-6 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 class="text-lg sm:text-xl font-bold text-ink group-hover:text-navy transition-colors">Aplikasi Operasional Notaris &amp; PPAT</h3>
+                  <h3 class="text-lg sm:text-xl font-bold text-ink group-hover:text-navy transition-colors">SIM Notaris &amp; PPAT (Enterprise Vault)</h3>
                   <p class="body-reveal text-sm text-slateMuted mt-2 leading-relaxed">
-                    Mengatur alur akta 7 tahap, pencatatan serta cetak buku repertorium dan klapper otomatis, hingga pemisahan kas kantor dengan uang titipan pajak negara (PPh &amp; BPHTB ber-NTPN).
+                    Mengelola Buku Register Berkas otomatis, pelacakan arsip fisik (map/box/rak) &amp; pratinjau dokumen warkah, 6 peran hak akses, pemisahan kas kantor vs titipan pajak/PNBP ber-NTPN, hingga cetak kuitansi A4.
                   </p>
                 </div>
                 <div class="mt-5 pt-4 border-t border-hairline flex flex-wrap items-center justify-between gap-2">
                   <div class="flex flex-wrap gap-1.5 font-mono text-[10.5px] text-navy">
                     <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">Laravel 13</span>
                     <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">Svelte 5</span>
-                    <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">MySQL</span>
+                    <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">6 Peran RBAC</span>
+                    <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">Dual-Pocket Escrow</span>
                   </div>
                   <span class="font-mono text-[11px] font-semibold text-copper">Pratinjau Arsitektur &rarr;</span>
                 </div>
@@ -1936,12 +2002,12 @@
               <a href="https://github.com/misbahudin98" target="_blank" rel="noopener noreferrer" class="text-navy hover:text-copper font-semibold inline-flex items-center gap-1">
                 <span>Live Demo &amp; Code</span> &nearr;
               </a>
-              <span class="text-slateMuted text-[10.5px]">PHPUnit 250+ Passed</span>
+              <span class="text-slateMuted text-[10.5px]">121 Tests &middot; 1.148 Assertions</span>
             </div>
           </article>
 
-          <!-- Project 2: Sistem Manajemen Pendidikan SIM-PQTM -->
-          <article class="spotlight-card group bg-surface border border-hairline rounded-md overflow-hidden hover:border-navy transition-colors shadow-sm flex flex-col">
+          <!-- Project 2: SIM-PQTM: Modul LTQ & Agenda Hafalan -->
+          <article class="spotlight-card editorial-card group bg-surface border border-hairline rounded-md overflow-hidden hover:border-navy transition-colors shadow-sm flex flex-col">
             <button type="button" data-lightbox-id="proj-simpqtm" class="lightbox-trigger text-left w-full flex-1 flex flex-col">
               <div class="px-3.5 py-2 bg-paper border-b border-hairline flex items-center justify-between">
                 <div class="flex items-center gap-1.5" aria-hidden="true">
@@ -1949,7 +2015,7 @@
                   <span class="w-2 h-2 rounded-full bg-hairline"></span>
                   <span class="w-2 h-2 rounded-full bg-hairline"></span>
                 </div>
-                <span class="font-mono text-[10px] text-slateMuted">sim-pqtm / akademik-tahfidz-pkbm</span>
+                <span class="font-mono text-[10px] text-slateMuted">sim-pqtm / ltq-agenda-hafalan</span>
                 <span class="font-mono text-[10px] text-copper">02</span>
               </div>
 
@@ -1958,7 +2024,7 @@
                   <img
                     data-asset-img="projectSimPqtm"
                     src="./assets/project-simpqtm.jpg"
-                    alt="Sistem Manajemen Pendidikan SIM-PQTM"
+                    alt="SIM-PQTM Modul LTQ dan Agenda Hafalan"
                     loading="lazy"
                     class="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-500"
                   />
@@ -1967,31 +2033,31 @@
                     <svg viewBox="0 0 640 400" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
                       <rect width="640" height="400" fill="#FAF9F6" />
                       <rect x="0" y="0" width="640" height="52" fill="#1B365D" />
-                      <text x="24" y="31" fill="#FFFFFF" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700">SIM-PQTM &middot; ASRAMA SANTRI, TAHFIDZ &amp; PKBM KURIKULUM MERDEKA</text>
+                      <text x="24" y="31" fill="#FFFFFF" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700">SIM-PQTM &middot; MODUL LTQ TAHFIDZ, TAHSIN &amp; AGENDA HAFALAN</text>
                       <rect x="24" y="72" width="186" height="84" rx="4" fill="#FFFFFF" stroke="#DCD9D0" />
-                      <text x="38" y="96" fill="#B45309" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">PRESENSI MASSAL</text>
-                      <text x="38" y="122" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="18" font-weight="700">98,4%</text>
-                      <text x="38" y="142" fill="#475569" font-family="Plus Jakarta Sans, sans-serif" font-size="10">Kehadiran Harian Santri</text>
+                      <text x="38" y="96" fill="#B45309" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">JURNAL 4 SESI</text>
+                      <text x="38" y="122" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="18" font-weight="700">Ziyadah</text>
+                      <text x="38" y="142" fill="#475569" font-family="Plus Jakarta Sans, sans-serif" font-size="10">Muraja'ah, Talaqqi &amp; Tahsin</text>
 
                       <rect x="227" y="72" width="186" height="84" rx="4" fill="#FFFFFF" stroke="#DCD9D0" />
-                      <text x="241" y="96" fill="#1B365D" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">JURNAL HAFALAN</text>
-                      <text x="241" y="122" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="18" font-weight="700">30 Juz</text>
-                      <text x="241" y="142" fill="#475569" font-family="Plus Jakarta Sans, sans-serif" font-size="10">Setoran &amp; Murajaah Terukur</text>
+                      <text x="241" y="96" fill="#1B365D" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">UJIAN TASMI'</text>
+                      <text x="241" y="122" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="18" font-weight="700">1&ndash;30 Juz</text>
+                      <text x="241" y="142" fill="#475569" font-family="Plus Jakarta Sans, sans-serif" font-size="10">Bobot Dinamis &amp; Syahadah</text>
 
                       <rect x="430" y="72" width="186" height="84" rx="4" fill="#FFFFFF" stroke="#DCD9D0" />
-                      <text x="444" y="96" fill="#15803D" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">CETAK RAPOR</text>
-                      <text x="444" y="122" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="18" font-weight="700">Otomatis</text>
-                      <text x="444" y="142" fill="#475569" font-family="Plus Jakarta Sans, sans-serif" font-size="10">Langsung dari Browser</text>
+                      <text x="444" y="96" fill="#15803D" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">PORTAL WALI</text>
+                      <text x="444" y="122" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="18" font-weight="700">Real-Time</text>
+                      <text x="444" y="142" fill="#475569" font-family="Plus Jakarta Sans, sans-serif" font-size="10">Pantau Progres Anak</text>
 
                       <rect x="24" y="176" width="592" height="196" rx="4" fill="#FFFFFF" stroke="#DCD9D0" />
                       <rect x="24" y="176" width="592" height="30" fill="#F6F4EF" />
-                      <text x="40" y="195" fill="#475569" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">UNIT / KELAS       BIDANG STUDI           RATA-RATA    STATUS RAPOR</text>
+                      <text x="40" y="195" fill="#475569" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">SESI / HALAQAH     AGENDA HAFALAN          PREDIKAT     STATUS</text>
                       <line x1="24" y1="206" x2="616" y2="206" stroke="#DCD9D0" />
-                      <text x="40" y="236" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="10">PKBM Paket B       Informatika &amp; Umum     88,6         SIAP CETAK</text>
+                      <text x="40" y="236" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="10">Pagi (Subuh)       Ziyadah Hafalan Baru    Mutqin       TERCATAT</text>
                       <line x1="24" y1="254" x2="616" y2="254" stroke="#E2E8F0" />
-                      <text x="40" y="282" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="10">Asrama Tahfidz     Setoran &amp; Murajaah     91,2         SIAP CETAK</text>
+                      <text x="40" y="282" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="10">Siang &amp; Sore       Muraja'ah &amp; Tahsin      Mumtaz       TERCATAT</text>
                       <line x1="24" y1="300" x2="616" y2="300" stroke="#E2E8F0" />
-                      <text x="40" y="328" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="10">PKBM Paket C       Ekonomi &amp; Literasi     86,9         SIAP CETAK</text>
+                      <text x="40" y="328" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="10">Ujian Tasmi'       Sekali Duduk 5 Juz      Mumtaz       SYAHADAH</text>
                       <text x="600" y="360" text-anchor="end" fill="#64748B" font-family="JetBrains Mono, monospace" font-size="9">assets/project-simpqtm.jpg</text>
                     </svg>
                   </div>
@@ -2000,16 +2066,17 @@
 
               <div class="p-6 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 class="text-lg sm:text-xl font-bold text-ink group-hover:text-navy transition-colors">Sistem Manajemen Pendidikan SIM-PQTM</h3>
+                  <h3 class="text-lg sm:text-xl font-bold text-ink group-hover:text-navy transition-colors">SIM-PQTM: Modul LTQ &amp; Agenda Hafalan</h3>
                   <p class="body-reveal text-sm text-slateMuted mt-2 leading-relaxed">
-                    Platform yayasan pendidikan (asrama santri, tahfidz, PKBM Kurikulum Merdeka) dengan input presensi massal, jurnal hafalan, serta kalkulasi nilai dan cetak rapor otomatis dari browser.
+                    Sistem manajemen hafalan Al-Qur'an untuk mengelola halaqah &amp; Rumah Tahfidz (termasuk ustadzah badal), jurnal setoran harian tahfidz (4 sesi) &amp; tahsin, ujian tasmi' 1&ndash;30 juz ber-syahadah, serta portal pantau wali santri.
                   </p>
                 </div>
                 <div class="mt-5 pt-4 border-t border-hairline flex flex-wrap items-center justify-between gap-2">
                   <div class="flex flex-wrap gap-1.5 font-mono text-[10.5px] text-navy">
-                    <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">Laravel</span>
-                    <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">Presensi Massal</span>
-                    <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">Rapor Otomatis</span>
+                    <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">Laravel 13</span>
+                    <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">Svelte 5</span>
+                    <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">Jurnal Tahfidz &amp; Tahsin</span>
+                    <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">Portal Wali</span>
                   </div>
                   <span class="font-mono text-[11px] font-semibold text-copper">Pratinjau Arsitektur &rarr;</span>
                 </div>
@@ -2019,12 +2086,12 @@
               <a href="https://github.com/misbahudin98" target="_blank" rel="noopener noreferrer" class="text-navy hover:text-copper font-semibold inline-flex items-center gap-1">
                 <span>Live Demo &amp; Code</span> &nearr;
               </a>
-              <span class="text-slateMuted text-[10.5px]">98,4% Presensi Massal</span>
+              <span class="text-slateMuted text-[10.5px]">4 Sesi Harian &middot; Tasmi' 1&ndash;30 Juz</span>
             </div>
           </article>
 
           <!-- Project 3: Ekosistem SIM, PPDB & HRIS 3 Kampus -->
-          <article class="group bg-surface border border-hairline rounded-md overflow-hidden hover:border-navy transition-colors shadow-sm flex flex-col">
+          <article class="spotlight-card editorial-card group bg-surface border border-hairline rounded-md overflow-hidden hover:border-navy transition-colors shadow-sm flex flex-col">
             <button type="button" data-lightbox-id="proj-ppdb" class="lightbox-trigger text-left w-full flex-1 flex flex-col">
               <div class="px-3.5 py-2 bg-paper border-b border-hairline flex items-center justify-between">
                 <div class="flex items-center gap-1.5" aria-hidden="true">
@@ -2111,7 +2178,7 @@
           </article>
 
           <!-- Project 4: Pipeline ETL & Dashboard KPI Microsoft Excel -->
-          <article class="spotlight-card group bg-surface border border-hairline rounded-md overflow-hidden hover:border-navy transition-colors shadow-sm flex flex-col">
+          <article class="spotlight-card editorial-card group bg-surface border border-hairline rounded-md overflow-hidden hover:border-navy transition-colors shadow-sm flex flex-col">
             <button type="button" data-lightbox-id="proj-excel" class="lightbox-trigger text-left w-full flex-1 flex flex-col">
               <div class="px-3.5 py-2 bg-paper border-b border-hairline flex items-center justify-between">
                 <div class="flex items-center gap-1.5" aria-hidden="true">
@@ -2236,7 +2303,7 @@
         <div id="competency-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
 
           <!-- Pillar 1 -->
-          <div class="competency-card bg-surface border border-hairline rounded-md p-6 flex flex-col justify-between">
+          <div class="competency-card editorial-card bg-surface border border-hairline rounded-md p-6 flex flex-col justify-between">
             <div>
               <span class="font-mono text-xs text-copper font-semibold block mb-2">01</span>
               <h3 class="text-base font-bold text-ink mb-3">Data, Database &amp; Microsoft Excel</h3>
@@ -2251,7 +2318,7 @@
           </div>
 
           <!-- Pillar 2 -->
-          <div class="competency-card bg-surface border border-hairline rounded-md p-6 flex flex-col justify-between">
+          <div class="competency-card editorial-card bg-surface border border-hairline rounded-md p-6 flex flex-col justify-between">
             <div>
               <span class="font-mono text-xs text-navy font-semibold block mb-2">02</span>
               <h3 class="text-base font-bold text-ink mb-3">Backend &amp; Pengembangan Web</h3>
@@ -2266,7 +2333,7 @@
           </div>
 
           <!-- Pillar 3 -->
-          <div class="competency-card bg-surface border border-hairline rounded-md p-6 flex flex-col justify-between">
+          <div class="competency-card editorial-card bg-surface border border-hairline rounded-md p-6 flex flex-col justify-between">
             <div>
               <span class="font-mono text-xs text-navy font-semibold block mb-2">03</span>
               <h3 class="text-base font-bold text-ink mb-3">IT Operations, Jaringan &amp; Support</h3>
@@ -2281,14 +2348,14 @@
           </div>
 
           <!-- Pillar 4 -->
-          <div class="competency-card bg-surface border border-hairline rounded-md p-6 flex flex-col justify-between">
+          <div class="competency-card editorial-card bg-surface border border-hairline rounded-md p-6 flex flex-col justify-between">
             <div>
               <span class="font-mono text-xs text-navy font-semibold block mb-2">04</span>
               <h3 class="text-base font-bold text-ink mb-3">Administrasi Operasional &amp; Keuangan</h3>
               <ul class="body-reveal space-y-2 text-sm text-slateMuted">
                 <li>Pembukuan Dana BOS, PIP &amp; Prasejahtera</li>
-                <li>Pengarsipan Buku Repertorium &amp; Klapper</li>
-                <li>Pemisahan Kas &amp; Titipan Pajak PPh/BPHTB</li>
+                <li>Buku Register Berkas &amp; Pelacakan Arsip Fisik</li>
+                <li>Pemisahan Kas &amp; Titipan Pajak PPh/BPHTB/PNBP</li>
                 <li>Sinkronisasi Dapodik, Datadik &amp; e-Ijazah</li>
                 <li>Digitalisasi Formulir Kepegawaian (HRIS)</li>
               </ul>
@@ -2618,7 +2685,7 @@
         }, 2400);
       }
 
-      function copyText(text) {
+      function legacyCopyText(text) {
         try {
           var ta = document.createElement('textarea');
           ta.value = text;
@@ -2633,6 +2700,18 @@
         } catch (err) {
           showToast('Silakan salin manual: ' + text);
         }
+      }
+
+      function copyText(text) {
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(function () {
+            showToast(text + ' berhasil disalin.');
+          }).catch(function () {
+            legacyCopyText(text);
+          });
+          return;
+        }
+        legacyCopyText(text);
       }
 
       document.querySelectorAll('.copy-btn').forEach(function (btn) {
@@ -2673,16 +2752,16 @@
       var lightboxData = {
         'exp-freelance': {
           category: 'PENGALAMAN 01 - SEPTEMBER 2026 - SEKARANG',
-          title: 'Aplikasi Notaris & PPAT serta Sistem Pendidikan SIM-PQTM',
-          caption: 'Dokumentasi arsitektur sistem alur akta 7 tahap, pemisahan kas vs pajak negara, dan SIM-PQTM.',
+          title: 'SIM Notaris & PPAT serta SIM-PQTM (Modul LTQ)',
+          caption: 'Dokumentasi arsitektur Buku Register Berkas, 6 peran RBAC, escrow pajak/PNBP, serta Modul LTQ & Agenda Hafalan SIM-PQTM.',
           role: 'Full Stack Developer & Systems Engineer (Freelance)',
-          metrics: 'Alur akta 7 tahap, pemisahan kas vs pajak PPh/BPHTB ber-NTPN, 250+ PHPUnit, optimasi Error 1040',
-          summary: 'Membangun aplikasi operasional kantor Notaris & PPAT berbasis Laravel 13 dan Svelte 5 serta mengembangkan SIM-PQTM untuk asrama santri, tahfidz, dan PKBM Kurikulum Merdeka. Dilengkapi penanganan batas koneksi database shared hosting (Error 1040) dan 250+ pengujian otomatis PHPUnit.',
-          stack: ['Laravel 13', 'Svelte 5', 'MySQL', 'PHPUnit 250+', 'Optimasi Error 1040'],
+          metrics: '6 peran RBAC, Buku Register & arsip fisik, dual-pocket escrow ber-NTPN, Modul LTQ 4 sesi & Tasmi 1-30 Juz, 121 PHPUnit (Notaris) & 6 suite LTQ',
+          summary: 'Membangun SIM Notaris & PPAT Enterprise Vault berbasis Laravel 13 dan Svelte 5 serta mengembangkan SIM-PQTM berfokus pada Modul LTQ & Agenda Hafalan (halaqah & Rumah Tahfidz, ustadzah badal, jurnal setoran harian tahfidz & tahsin 4 sesi, ujian tasmi 1-30 juz ber-syahadah, dan portal pantau wali santri). Dilengkapi penanganan Error 1040 pada shared hosting dan 250+ pengujian otomatis PHPUnit lintas proyek.',
+          stack: ['Laravel 13', 'Svelte 5', 'MySQL / SQLite WAL', '6 Peran RBAC', 'Dual-Pocket Escrow', 'Modul LTQ Tahfidz & Tahsin', 'Optimasi Error 1040'],
           sourceSelector: '[data-lightbox-id="exp-freelance"]'
         },
         'exp-tarunabhakti': {
-          category: 'PENGALAMAN 02 - JUNI 2025 - JULI 2026',
+          category: 'PENGALAMAN 02 - JULI 2025 - JULI 2026',
           title: 'Operasional Sekolah, Keuangan & Jaringan SMKS Taruna Bhakti Malang',
           caption: 'Dokumentasi pengelolaan jaringan MikroTik hEX RB750Gr3, LAN printer sharing, dan sinkronisasi portal dinas.',
           role: 'TU & Bendahara (IT Support & Operasional Sekolah)',
@@ -2703,22 +2782,22 @@
         },
         'proj-notaris': {
           category: 'PROYEK 01 - OPERASIONAL HUKUM & KEUANGAN',
-          title: 'Aplikasi Operasional Notaris & PPAT',
-          caption: 'Pratinjau antarmuka Aplikasi Operasional Notaris & PPAT (assets/project-notaris.jpg).',
+          title: 'SIM Notaris & PPAT (Enterprise Vault)',
+          caption: 'Pratinjau antarmuka SIM Notaris & PPAT Enterprise Vault (assets/project-notaris.jpg).',
           role: 'Full Stack Developer & Systems Engineer',
-          metrics: 'Alur akta 7 tahap, cetak otomatis repertorium & klapper, pemisahan kas vs titipan pajak NTPN',
-          summary: 'Aplikasi berbasis Laravel 13, Svelte 5, dan MySQL yang mengotomatiskan alur akta 7 tahap, pencatatan serta pencetakan buku repertorium dan klapper, sekaligus memisahkan rekening kas kantor dari titipan pajak negara (PPh & BPHTB ber-NTPN).',
-          stack: ['Laravel 13', 'Svelte 5', 'MySQL', 'PHPUnit 250+ Tests'],
+          metrics: '6 peran RBAC, Buku Register Berkas (NOT/PPAT), arsip fisik (map/box/rak), dual-pocket escrow PPh/BPHTB/PNBP ber-NTPN, cetak kuitansi A4, 121 PHPUnit (1.148 assertions)',
+          summary: 'Platform operasional terpadu kantor Notaris & PPAT berbasis Laravel 13 Sanctum, Svelte 5 Runes, dan MySQL/SQLite WAL. Mencakup katalog master layanan dengan Snapshot Deep-Copy, Buku Register Berkas & papan Kanban, pelacakan arsip fisik (map/box/rak) & pratinjau dokumen warkah/minuta, pemisahan mutlak kas kantor dari escrow titipan pajak negara ber-NTPN, cetak kuitansi/invoice A4, serta ekspor CSV aman CWE-1236.',
+          stack: ['Laravel 13', 'Svelte 5', 'MySQL / SQLite WAL', '6 Peran RBAC', 'Dual-Pocket Escrow', '121 PHPUnit (1.148 Assertions)'],
           sourceSelector: '[data-lightbox-id="proj-notaris"]'
         },
         'proj-simpqtm': {
-          category: 'PROYEK 02 - SISTEM MANAJEMEN PENDIDIKAN',
-          title: 'Sistem Manajemen Pendidikan SIM-PQTM',
-          caption: 'Pratinjau antarmuka SIM-PQTM untuk asrama santri, tahfidz, dan PKBM (assets/project-simpqtm.jpg).',
+          category: 'PROYEK 02 - MODUL LTQ & AGENDA HAFALAN',
+          title: 'SIM-PQTM: Modul LTQ & Agenda Hafalan',
+          caption: 'Pratinjau antarmuka SIM-PQTM Modul LTQ Tahfidz, Tahsin & Agenda Hafalan (assets/project-simpqtm.jpg).',
           role: 'Full Stack Developer',
-          metrics: 'Presensi massal, jurnal hafalan tahfidz, kalkulasi nilai & cetak rapor otomatis dari browser',
-          summary: 'Sistem informasi yayasan pendidikan yang mengintegrasikan pengelolaan asrama santri, setoran tahfidz, dan PKBM Kurikulum Merdeka dengan alur input presensi massal dan cetak rapor otomatis.',
-          stack: ['Laravel', 'MySQL', 'Presensi Massal', 'Rapor Otomatis'],
+          metrics: 'Halaqah & Rumah Tahfidz (ustadzah badal), jurnal setoran 4 sesi (Ziyadah, Muraja\'ah, Talaqqi, Tahsin), ujian tasmi\' 1-30 juz & syahadah, portal wali santri',
+          summary: 'Modul LTQ Tahfidz & Tahsin untuk Yayasan Pendidikan Qur\'an Thaifah Manshurah (PQTM) berbasis Laravel 13 Sanctum dan Svelte 5. Mencakup pengelolaan halaqah & Rumah Tahfidz dengan anti-konflik anggota serta ustadzah pengganti (badal), buku jurnal setoran harian 4 sesi & input massal, ujian tasmi\' 1-30 juz dengan bobot nilai dinamis & approval syahadah, portal wali santri real-time, serta pembatasan akses per halaqah (BOLA defense).',
+          stack: ['Laravel 13', 'Svelte 5', 'Jurnal Tahfidz & Tahsin', 'Ujian Tasmi\' 1-30 Juz', 'Portal Wali Santri'],
           sourceSelector: '[data-lightbox-id="proj-simpqtm"]'
         },
         'proj-ppdb': {
@@ -2753,11 +2832,13 @@
       var modalSummary = document.getElementById('lightbox-summary');
       var modalStack = document.getElementById('lightbox-stack');
       var modalVisual = document.getElementById('lightbox-visual');
+      var lastFocusedEl = null;
 
       function openLightbox(id) {
         var data = lightboxData[id];
         if (!modal || !data) return;
 
+        lastFocusedEl = document.activeElement;
         modalCategory.textContent = data.category;
         modalTitle.textContent = data.title;
         modalCaption.textContent = data.caption;
@@ -2796,6 +2877,7 @@
         modal.classList.add('flex');
         requestAnimationFrame(function () {
           modal.classList.add('is-open');
+          if (modalClose) modalClose.focus();
         });
         document.body.style.overflow = 'hidden';
       }
@@ -2807,6 +2889,10 @@
           modal.classList.add('hidden');
           modal.classList.remove('flex');
           document.body.style.overflow = '';
+          if (lastFocusedEl && typeof lastFocusedEl.focus === 'function') {
+            lastFocusedEl.focus();
+            lastFocusedEl = null;
+          }
         }, 180);
       }
 
@@ -2903,6 +2989,17 @@
         });
       });
 
+      function flashFormulaBar() {
+        if (!formulaBarText) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        formulaBarText.classList.add('is-updating');
+        requestAnimationFrame(function () {
+          setTimeout(function () {
+            formulaBarText.classList.remove('is-updating');
+          }, 120);
+        });
+      }
+
       function setEtlColumn(colKey) {
         if (!etlFormulas[colKey]) return;
         currentEtlCol = colKey;
@@ -2919,6 +3016,7 @@
         if (activeSheet === 'etl' && formulaCellRef && formulaBarText) {
           formulaCellRef.textContent = etlFormulas[colKey].ref;
           formulaBarText.textContent = etlFormulas[colKey].formula;
+          flashFormulaBar();
         }
       }
 
@@ -3260,6 +3358,7 @@
         } else if (formulaCellRef && formulaBarText) {
           formulaCellRef.textContent = tabMeta[sheetKey].ref;
           formulaBarText.textContent = tabMeta[sheetKey].text;
+          flashFormulaBar();
         }
 
         if (sheetKey === 'dashboard') {
@@ -3348,13 +3447,17 @@
       /* -------------------------------------------------------
          6. TOP PROGRESS BAR & RIGHT CHAPTER RAIL THEME SYNC
       -------------------------------------------------------- */
+      var topNav = document.getElementById('top-nav');
       var progressBar = document.getElementById('scroll-progress-bar');
       var railItems = document.querySelectorAll('.rail-item');
       var navLinks = document.querySelectorAll('.nav-link');
 
       function updateScrollProgress() {
-        if (!progressBar) return;
         var scrollTop = window.scrollY || document.documentElement.scrollTop;
+        if (topNav) {
+          topNav.classList.toggle('shadow-sm', scrollTop > 16);
+        }
+        if (!progressBar) return;
         var docHeight = document.documentElement.scrollHeight - window.innerHeight;
         var ratio = docHeight > 0 ? Math.min(1, Math.max(0, scrollTop / docHeight)) : 0;
         progressBar.style.transform = 'scaleX(' + ratio + ')';
@@ -3411,8 +3514,9 @@
         return 1 - Math.pow(1 - x, 3);
       }
 
-      // Universal High-Precision 60fps Rolling Counter Engine (Always active & interactive)
+      // Universal High-Precision 60fps Rolling Counter Engine (Respects prefers-reduced-motion)
       function runHeroCounters() {
+        var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         var metricElements = document.querySelectorAll('.masked-metric');
         metricElements.forEach(function (el, index) {
           var target = parseFloat(el.getAttribute('data-count-target'));
@@ -3422,6 +3526,11 @@
           if (el._rafId) {
             cancelAnimationFrame(el._rafId);
             el._rafId = null;
+          }
+
+          if (prefersReduced) {
+            el.textContent = formatMetricValue(target, fmt);
+            return;
           }
 
           el.textContent = formatMetricValue(0, fmt);
@@ -3674,6 +3783,40 @@
               }
             });
           }
+
+          // 8. Staggered Entrance (0.08s) on Project Showcase Cards
+          var projectCards = gsap.utils.toArray('#proyek article');
+          if (projectCards.length) {
+            gsap.from(projectCards, {
+              opacity: 0,
+              y: 18,
+              duration: 0.45,
+              stagger: 0.08,
+              ease: 'power2.out',
+              clearProps: 'opacity,transform',
+              scrollTrigger: {
+                trigger: '#proyek',
+                start: 'top 78%',
+                once: true
+              }
+            });
+          }
+
+          // 9. Career Timeline Cards Entrance (Compositor-Only)
+          gsap.utils.toArray('#career-timeline article').forEach(function (card) {
+            gsap.from(card, {
+              opacity: 0,
+              y: 16,
+              duration: 0.45,
+              ease: 'power2.out',
+              clearProps: 'opacity,transform',
+              scrollTrigger: {
+                trigger: card,
+                start: 'top 86%',
+                once: true
+              }
+            });
+          });
         });
 
         // Desktop-Only Watermark Drift
@@ -3726,12 +3869,21 @@
       }
 
       function initSpotlightCards() {
+        if (!window.matchMedia('(hover: hover)').matches) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
         document.querySelectorAll('.spotlight-card').forEach(function (card) {
+          var rafId = null;
           card.addEventListener('mousemove', function (e) {
-            var rect = card.getBoundingClientRect();
-            card.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
-            card.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
-          });
+            if (rafId) return;
+            var clientX = e.clientX;
+            var clientY = e.clientY;
+            rafId = requestAnimationFrame(function () {
+              var rect = card.getBoundingClientRect();
+              card.style.setProperty('--mouse-x', (clientX - rect.left) + 'px');
+              card.style.setProperty('--mouse-y', (clientY - rect.top) + 'px');
+              rafId = null;
+            });
+          }, { passive: true });
         });
       }
 

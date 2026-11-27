@@ -14,35 +14,34 @@
 - **Email:** [misbah.udin@outlook.co.id](mailto:misbah.udin@outlook.co.id)
 - **LinkedIn:** [linkedin.com/in/misbahudin98](https://www.linkedin.com/in/misbahudin98/)
 - **GitHub:** [github.com/misbahudin98](https://github.com/misbahudin98)
-- **Direct Resume Download:** [cv.pdf](cv.pdf)
-- **Live Portfolio:** [misbahudin98.netlify.app](https://misbahudin98.netlify.app) / [misbahudin.com](https://misbahudin.com)
+- **Direct Resume Download:** [CV_Misbahudin_Portofolio_Umum.pdf](./assets/cv/CV_Misbahudin_Portofolio_Umum.pdf) / [cv.pdf](cv.pdf)
+- **Live Portfolio (Canonical):** [https://misbahudin98.github.io/](https://misbahudin98.github.io/)
 
 ---
 
 ## 🛠️ Core Technology Stack (CV SSoT)
 - **Backend & Database:** PHP 8.x, Laravel 13, Laravel Sanctum, Laravel Passport (OAuth 2.0), RESTful API, MySQL (3NF Normalization, Foreign Key Constraints, Indexing), Data Migration (ETL Pipeline 12,000+ records).
-- **Frontend & UI:** Svelte 5 (Runes), Tailwind CSS (v4), JavaScript (ES6+), GSAP 3.12 (ScrollTrigger 60fps compositor-only parallax), HTML5 Semantic DOM, CSS3, Accessible UI (WCAG 2.2 AA / AAA).
+- **Frontend & UI:** Svelte 5 (Runes), Tailwind CSS (v4), JavaScript (ES6+), GSAP 3.12.5 (ScrollTrigger 60fps compositor-only motion & GPU `translate3d` spotlight cards), Chart.js 4.4.3, HTML5 Semantic DOM, CSS3, Accessible UI (WCAG 2.2 AA / AAA).
 - **Workflow AI & Tooling:** Prompt Engineering Terstruktur (XML/Anthropic System Standards), AI Pair-Programming (Antigravity CLI), Optimasi Konteks LLM (llms.txt), Git/GitHub, Vite, Composer.
-- **Testing & Quality:** PHPUnit (Automated Unit & Feature Testing, 104 automated tests, 994 assertions, 100% pass), Test-Driven Development (TDD), PSR-12 / PER Coding Style 2.0.
+- **Testing & Quality:** PHPUnit (Automated Unit & Feature Testing: 121 passed / 1,148 assertions on SIM Notaris & PPAT; 250+ automated tests across projects, 100% pass), Test-Driven Development (TDD), PSR-12 / PER Coding Style 2.0.
 - **Server, Infrastructure & IT Support:** Server Optimization (Resolving Error 1040 / Too Many Connections on 25-connection shared hosting via Little's Law L <= 0.16 and NVMe file-based session Inode GC), Network Engineering (MikroTik RouterOS hEX RB750Gr3, QoS Simple Queue Bandwidth Management, Bufferbloat Elimination for 60+ Concurrent Users), Centralized LAN Printer Sharing (eliminating USB flash drive dependencies & printer procurement costs), PC Hardware Troubleshooting (Intel Celeron / low-spec tuning), Dapodik & Asesmen Nasional (ANBK/Sulinjar/TKA).
 
 ---
 
 ## 🏆 Signature Projects & Impact (STAR Formula)
 
-### 1. Aplikasi Operasional Kantor Notaris & PPAT (irwan-baddu)
-- **Context:** Core operational system for Notary & PPAT Irwan Baddu handling 7-stage deed processing, automatic reporting, and escrow tax compliance.
-- **Action:** Engineered architecture using Laravel 13 Sanctum and Svelte 5 (Runes), automated deed registration with periodic repertorium/klapper numbering, tracked physical warkah files in archive racks, architected interactive multi-temporal executive analytics (Weekly, Monthly, Quarterly Q1–Q4, Semester S1–S2, Yearly, All-Time) with client-side in-memory CSV export (BOM UTF-8, CWE-1236 immune), and enforced dual-pocket ledger financial segregation between office operational accounts and state tax escrow accounts (PPh & BPHTB with 16-digit validated NTPN codes).
-- **Impact:** 100% green test suite (104 tests, 994 assertions); zero discrepancy in tax escrow auditing; sub-0.1ms client-side report filtering; 60% reduction in draft deed preparation cycle time; immune to Error 1040 on 25-connection MySQL limit.
-- **Stack:** Laravel 13, Svelte 5 (Runes), Tailwind CSS v4, MySQL 3NF, SQLite WAL, Multi-Temporal Analytics, In-Memory CSV Export, NTPN Validation, PHPUnit.
-- **Live Platform:** [https://irwanbaddu.id](https://irwanbaddu.id)
+### 1. SIM Notaris & PPAT — Enterprise Vault v6.31.0 (notaris)
+- **Context:** Unified corporate operational system for Notary & PPAT offices handling service registration, physical archive tracking, multi-role statutory approval, and state tax escrow compliance.
+- **Action:** Engineered 2-tier architecture using Laravel 13 Sanctum and Svelte 5 (Runes) with 6 canonical RBAC roles, automated register numbering (`NOT-YYYY-XXXX` / `PPAT-YYYY-XXXX`), Snapshot Deep-Copy service master templates, Kanban & 0–100% progress tracking, physical archive locator (Map, Box, Rack, Row), 15MB document upload/preview viewer (`salinan_minuta`, `persyaratan`, `berkas_tambahan`), dual-pocket ledger separating office honorarium from state tax/PNBP escrow (BPHTB, PPh Final, PNBP BPN/AHU/Fidusia with NTPN/Bapenda validation), A4 receipt/invoice printing, and CWE-1236-immune UTF-8 BOM CSV export.
+- **Impact:** 100% green test suite (121 automated tests, 1,148 assertions); 0 error / 0 a11y warning static build; ~65ms average latency (P99 < 150ms); zero discrepancy in tax escrow auditing; immune to Error 1040 on 25-connection MySQL limit (`L <= 0.16`, `SESSION_DRIVER=file`).
+- **Stack:** Laravel 13 Sanctum, Svelte 5 (Runes), Tailwind CSS v4, MySQL / SQLite WAL, 6-Role RBAC, Snapshot Deep-Copy, Dual-Pocket Escrow, NTPN Validation, PHPUnit.
 - **Repository:** [https://github.com/misbahudin98/notaris](https://github.com/misbahudin98/notaris)
 
-### 2. SIM-PQTM: Sistem Manajemen Pendidikan Yayasan & Rapor Digital (yayasan-pqtm)
-- **Context:** Centralized institutional management platform for Yayasan Pondok Quran Terpadu Malang across 3 educational units (Santri Boarding, LTQ, and PKBM Kurikulum Merdeka).
-- **Action:** Built web system with bulk daily student attendance logging, Quran memorization mutaba'ah tracking, automated grade calculation based on learning outcomes, and in-browser official report card printing.
-- **Impact:** Daily mass attendance logging reduced to <2 minutes; instant report card printing compliant with Kemendikbud standards; zero external PDF licensing cost.
-- **Stack:** Laravel, Svelte 5, MySQL, Kurikulum Merdeka Standards, Browser Print Engine.
+### 2. SIM-PQTM: Modul LTQ Tahfidz & Tahsin / Agenda Hafalan (yayasan-pqtm)
+- **Context:** Dedicated Quranic memorization & recitation tracking module (Lembaga Tahsin & Tahfidz Qur'an / LTQ) for Yayasan Pendidikan Qur'an Thaifah Manshurah (PQTM), managing daily halaqah agendas, tahsin/tahfidz journals, tasmi' examinations, and guardian monitoring.
+- **Action:** Engineered module using Laravel 13 Sanctum, Svelte 5 (Runes), and MySQL/SQLite WAL covering Halaqah & Rumah Tahfidz management (anti-conflict student assignment per academic year + Ustadzah Badal substitute teacher tracking), 4-session daily memorization & tahsin journal logging (`Ziyadah`, `Muraja'ah`, `Talaqqi`) with atomic bulk input, 1–30 Juz Tasmi' graduation exams with dynamic scoring weights and Mudir/Admin Syahadah approval locking, real-time Guardian Portal (`/wali/tahfidz`), and strict halaqah-scoped authorization (BOLA defense).
+- **Impact:** Verified by 6 dedicated LTQ PHPUnit test suites (part of 160 passed tests / 1,606 assertions in the repo); 0 error / 0 a11y warning Svelte 5 static build; real-time parent transparency; immune to Error 1040 on 25-connection shared hosting (`L <= 0.16`).
+- **Stack:** Laravel 13 Sanctum, Svelte 5 (Runes), Tailwind CSS v4, MySQL / SQLite WAL, Halaqah & Badal Workflow, Tasmi' Dynamic Scoring, Portal Wali Santri, PHPUnit.
 - **Repository:** Private Client System (Internal Production Architecture)
 
 ### 3. Twinnie Group: Ekosistem Web Layanan Kesehatan Integratif (twinnie-group)
@@ -78,7 +77,7 @@ This workspace incorporates an international-standard agentic pair-programming s
 ### 1. Active Skills Registry
 - [`portfolio-architect`](.agents/skills/portfolio-architect/SKILL.md):
   - **Trigger Tags:** `@portfolio`, `@portfolio-architect`, `#portfolio`
-  - **Domain Scope:** Developer portfolio audits, ATS Schema validation, 60fps GSAP motion recipes, STAR case-study templates, and Web3/Motion defensive UI/UX.
+  - **Domain Scope:** Developer portfolio audits, ATS Schema validation, 60fps GSAP motion recipes, ISO 24495-1 plain-language STAR case-study templates, and Web3/Motion defensive UI/UX.
   - **Key Invariants:** [`.agents/rules/portfolio_invariants.md`](.agents/rules/portfolio_invariants.md)
   - **CLI Helper:** `powershell -ExecutionPolicy Bypass -File ".agents/skills/portfolio-architect/scripts/audit-portfolio.ps1"`
 
@@ -87,6 +86,31 @@ This workspace incorporates an international-standard agentic pair-programming s
   - **Domain Scope:** Enterprise prompt engineering, Anthropic XML-delimited prompt synthesis, prompt smell audits (anti-slop), and agent customization governance.
   - **Key Invariants:** [`.agents/rules/skill_governance.md`](.agents/rules/skill_governance.md)
   - **CLI Helper:** `powershell -ExecutionPolicy Bypass -File ".agents/skills/prompt-architect/scripts/audit-skills.ps1"`
+
+- [`job-application-tracker`](.agents/skills/job-application-tracker/SKILL.md):
+  - **Trigger Tags:** `@lamaran`, `@apply`
+  - **Domain Scope:** End-to-end job application intake & tracking in `tracker/applications.json`, extraction of salary/benefits/target email/target WhatsApp, humanist per-platform message drafting (Email, WhatsApp official & info-desk, Glints, LinkedIn, Other), tailored CV + conditional Surat Lamaran (with `assets/ttd_cropped.png`) + single-PDF bundling ending with `assets/cv/berkas - tanpa sensitif.pdf`.
+  - **Key Invariants:** [`.agents/rules/lamaran_trigger.md`](.agents/rules/lamaran_trigger.md)
+  - **CLI Helper:** `python ".agents/skills/job-application-tracker/scripts/merge-application-pdf.py"`
+
+### 2. End-to-End Job Application & Skill Usage Workflow
+When processing a new job vacancy or refining career materials, agents combine skills cleanly without domain collision:
+1. **Profile & Portfolio Alignment (`@portfolio`):** Keep [`docs/cv_memory_ssot.md`](docs/cv_memory_ssot.md) and [`index.html`](index.html) accurate, ATS-friendly, and free of AI cliché wording using plain-language writing standards.
+2. **Instruction & Tone Quality (`@prompt`):** Enforce anti-slop humanist phrasing, structured output contracts, and MECE skill compliance.
+3. **Vacancy Intake -> JSON -> Bundled PDF -> 1-Click Send (`@lamaran`):**
+   - **Intake & Extract:** Parse company, role, salary, `benefits` (facilities), `target_email`, `target_whatsapp`, required documents, and filename rules.
+   - **Per-Platform Messages & JSON Log:** Generate distinct humanist messages per channel (Email subject+body, WhatsApp including non-official info contacts, Glints, LinkedIn, Other) and store under a sequential ID (`APP-001`, `APP-002`, ...) in [`tracker/applications.json`](tracker/applications.json).
+   - **PDF Bundling:** Build a role-matched CV (plus Surat Lamaran stamped with `assets/ttd_cropped.png` and/or Portfolio only when requested), then append [`assets/cv/berkas - tanpa sensitif.pdf`](./assets/cv/berkas%20-%20tanpa%20sensitif.pdf) strictly at the end via `merge-application-pdf.py`.
+   - **Interactive Web Dashboard:** Manage records (Add/Edit/Delete/Status/Export/Import JSON) via [`tracker/index.html`](tracker/index.html) backed by [`tracker/api.php`](tracker/api.php), and trigger 1-click sends via **Kirim WA**, **Outlook Web**, **App Outlook (Mailto)**, or **Gmail Web**.
+
+### 3. Initial Setup & Private Local Prerequisites
+Before using this repository as a personal portfolio and automated job-application workspace (or after cloning to a new machine), configure these 6 items (`assets/ttd.png`, `assets/ttd_cropped.png`, generated `Lamaran_*.pdf`/`Surat_Lamaran_*.pdf`, and `tracker/applications.json` are excluded from Git via `.gitignore`):
+1. **CV Master Memory (`docs/cv_memory_ssot.md`):** Populate career history, production projects, education, and technical skills (without sensitive NIK/SK/DOB data) as the source of truth for tailored CVs and messages.
+2. **Portfolio Web & Assets (`index.html`, `assets/`, Canonical Link):** Update personal details, projects, screenshots, and contact channels in `index.html`, and align the official portfolio URL in `.agents/rules/lamaran_trigger.md` and `docs/cv_memory_ssot.md`.
+3. **Signature Images (`assets/ttd.png` & `assets/ttd_cropped.png`):** Place transparent PNG signature files locally (gitignored); inserted automatically only when a job vacancy requests a formal Surat Lamaran.
+4. **Combined Attachments & Base CV (`assets/cv/berkas - tanpa sensitif.pdf`, `assets/cv/CV_Misbahudin_Portofolio_Umum.pdf`, `cv.pdf`):** Store non-sensitive diplomas/transcripts/certificates in `berkas - tanpa sensitif.pdf` so `merge-application-pdf.py` always appends it at the end.
+5. **Local Tracker Database (`tracker/applications.json`):** Gitignored so salaries, benefits, HR emails, and WhatsApp contacts stay private; initialize on a new device with `{"applications": []}` or add the first entry via `tracker/index.html` / `@lamaran`.
+6. **Local Runtime Tools:** PHP 8+ (e.g., Laragon) so `tracker/index.html` persists edits directly via `tracker/api.php` (offline `localStorage` + Export/Import JSON also works), plus Python 3 with `pypdf` for `merge-application-pdf.py`.
 
 ---
 
@@ -116,12 +140,22 @@ powershell -ExecutionPolicy Bypass -File ".agents/skills/portfolio-architect/scr
 ---
 
 ## 📂 Key File Manifest
-- [`index.html`](index.html): Main portfolio production markup, JSON-LD Schema, GSAP parallax engine, and styling.
-- [`cv.pdf`](cv.pdf): Verified human ATS curriculum vitae available for direct download.
-- [`README.md`](README.md): Comprehensive human documentation and system runbook.
+- [`index.html`](index.html): Main 6-chapter Warm Swiss Editorial portfolio markup, JSON-LD Schema, interactive 4-stage Excel ETL Pipeline showcase, and GSAP motion engine.
+- [`design.md`](design.md): Single Source of Truth (SSoT) for visual tokens, typography, 6-chapter architecture, and GSAP compositor choreography.
+- [`docs/cv_memory_ssot.md`](docs/cv_memory_ssot.md): Sanitized, Git-versioned CV Master Memory SSoT (career history, Notaris & Excel ETL details, education, and CV formatting rules; excludes NIK/SK/DOB).
+- [`tracker/index.html`](tracker/index.html): Interactive Job Application Tracker web dashboard (KPI metrics, search/filter, manual CRUD, platform message modal, Export/Import JSON, and 1-click WA/Outlook Web/App Outlook/Gmail send buttons).
+- [`tracker/api.php`](tracker/api.php): Local PHP REST endpoint syncing CRUD updates cleanly into `tracker/applications.json`.
+- [`tracker/applications.json`](tracker/applications.json): Structured JSON repository storing sequential application records (`APP-001`, etc.), benefits, contacts (`target_email`, `target_whatsapp`), and per-platform humanist messages.
+- [`assets/ttd_cropped.png`](assets/ttd_cropped.png): Cropped transparent signature asset automatically inserted when a job posting requires a formal Surat Lamaran.
+- [`assets/cv/CV_Misbahudin_Portofolio_Umum.pdf`](./assets/cv/CV_Misbahudin_Portofolio_Umum.pdf): Verified primary human ATS curriculum vitae available for direct download.
+- [`assets/cv/berkas - tanpa sensitif.pdf`](./assets/cv/berkas%20-%20tanpa%20sensitif.pdf): Supporting attachment packet appended strictly at the end of merged job-application PDFs.
+- [`cv.pdf`](cv.pdf): Root-level ATS curriculum vitae copy.
+- [`README.md`](README.md): Comprehensive human documentation, layman-friendly job application workflow guide, and system runbook.
 - [`llms.txt`](llms.txt): This AI-accelerated index and executive summary file.
 - [`assets/`](assets/): Production screenshot & video artifacts (`irwan-baddu.png`, `irwan-baddu1.png`, `yayasan-pqtm.jpg`, `yayasan-pesantren.jpg`, `ppdb.jpg`, `santri.png`, `sdm1.png`, `smk-taruna-bhakti.jpeg`, `smk-taruna-bhakti.mp4`, `taruna-bhakti-2.jpeg`, `arrohmah.jpeg`, `arrohmah1.jpeg`, `arrohmah2.jpeg`, `twinnie-group.jpg`).
 - [`netlify.toml`](netlify.toml): Security headers, cache policies, and Netlify deployment configuration.
 - [`docs/etl_data_engineering_vs_data_analysis.md`](docs/etl_data_engineering_vs_data_analysis.md): Master architectural whitepaper on ETL dual-perspective: Data Engineering vs Data Analysis.
-- [`.agents/rules/portfolio_invariants.md`](.agents/rules/portfolio_invariants.md): Hard invariants for web portfolio (ATS, GSAP, Parallax, WCAG 2.2 AA).
+- [`.agents/rules/portfolio_invariants.md`](.agents/rules/portfolio_invariants.md): Hard invariants for web portfolio (ATS, GSAP, Parallax, Plain Language ISO 24495-1, WCAG 2.2 AA).
+- [`.agents/rules/lamaran_trigger.md`](.agents/rules/lamaran_trigger.md): Reactive rules for `@lamaran`/`@apply` intake, signature placement, PDF merging, and tracker persistence.
 - [`.agents/rules/skill_governance.md`](.agents/rules/skill_governance.md): Absolute constitution governing skill boundaries and zero collision.
+- [`.agents/skills/job-application-tracker/SKILL.md`](.agents/skills/job-application-tracker/SKILL.md): Runbook for end-to-end job application drafting, PDF merging, and JSON tracking.
