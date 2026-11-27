@@ -31,7 +31,7 @@ Portofolio ini mengusung arketipe **Warm Swiss Architectural Blueprint** — mem
 | **01** | `#profil` | Light (`#F6F4EF`) | Identitas, spesialisasi, status siap kerja, CTA CV PDF + kontak, potret editorial, & 4 metrik kunci (`tabular-nums`). |
 | **02** | `#pengalaman` | Light (`#F6F4EF`) | Linimasa karier kronologis mundur (Terbaru ke Terdahulu) dengan garis progres *scrubbed* & pratinjau dokumentasi. |
 | **03** | `#studi-kasus-excel` | Dark (`#0B1320`) | Studi kasus interaktif *Pipeline ETL & Dashboard KPI Excel* 4 tahap (Desktop Scrollytelling + Mobile Snap Carousel + Chart.js). |
-| **04** | `#proyek` | Light (`#F6F4EF`) | Galeri 2×2 proyek produksi dengan *spotlight card*, tautan GitHub/Demo, stack pills, dan pratinjau Lightbox. |
+| **04** | `#proyek` | Light (`#F6F4EF`) | Galeri 2×3 proyek produksi & open-source (`SIM Notaris`, `SIM-PQTM`, `PPDB/HRIS`, `Excel ETL`, `Twinnie Group`, `Job Tracker`) dengan *spotlight 3D tilt* & Lightbox. |
 | **05** | `#keahlian` | Light (`#F6F4EF`) | Matriks kompetensi 4 pilar (Data/Excel, Backend/Web, IT Ops/Jaringan, Administrasi/Keuangan) & latar pendidikan ATS-clear. |
 | **06** | `#kontak` | Surface (`#FFFFFF`) | Footer editorial dengan CTA CV PDF, WhatsApp, tombol salin instan (*Clipboard API*), serta tautan LinkedIn & GitHub utuh. |
 
@@ -60,26 +60,29 @@ Portofolio ini mengusung arketipe **Warm Swiss Architectural Blueprint** — mem
 
 ## 4. KOREOGRAFI MOTION GSAP 3.12 & COMPOSITOR SAFETY
 
-Seluruh animasi dikelola oleh `initStoryMotion()` menggunakan `GSAP 3.12.5` + `ScrollTrigger` dengan prinsip **GPU Compositor-Only** (`transform`, `opacity`, `clip-path`):
+Seluruh animasi dikelola oleh `initStoryMotion()` menggunakan `GSAP 3.12.5` + `ScrollTrigger` + `Flip` dengan prinsip **GPU Compositor-Only** (`transform`, `opacity`, `clip-path`):
 
-1. **Masked Headline & Metric Reveal (`.masked-title`, `.masked-metric`):**
-   - Slide-up halus dari dalam `.mask-wrap` (`yPercent: 105 -> 0`, `0.7s–0.75s`, `power3.out`, `clearProps: 'transform'`).
+1. **Masked Headline Reveal (`.masked-title`):**
+   - Slide-up halus dari dalam `.mask-wrap` (`yPercent: 105 -> 0`, `0.75s`, `power3.out`, `clearProps: 'transform'`).
 2. **Hairline Rule Drawing (`.hairline-rule`):**
    - Garis pembatas 1px tumbuh dari kiri (`scaleX: 0 -> 1`, `origin-left`, `0.75s`, `power2.out`).
-3. **Curtain Image Reveal (`.curtain-frame`):**
-   - Penyingkapan frame gambar dengan `clipPath: inset(12% 0% 0% 0%) -> inset(0% 0% 0% 0%)` (`0.8s`, `power3.out`).
-4. **Scrubbed Career Timeline Spine (`#timeline-progress-line`):**
-   - Garis vertikal `scaleY: 0 -> 1` tersinkronisasi alami dengan scroll (`scrub: 0.35`, nol *scroll-jacking*).
-5. **Scrollytelling & Mobile Snap Carousel (Chapter 03):**
-   - Desktop (`>= 1024px`): `ScrollTrigger` menukar tab workbook Excel (`raw` → `master` → `etl` → `dashboard`) sesuai langkah yang dibaca.
+3. **Curtain Image Reveal & Inner-Image Editorial Parallax (`.curtain-frame`, `.parallax-media`):**
+   - Penyingkapan frame gambar dengan `clipPath: inset(12% 0% 0% 0%) -> inset(0% 0% 0% 0%)` (`0.8s`, `power3.out`), dipadukan dengan *Inner-Image Parallax* (`scale: 1.09`, `yPercent: -5 -> 5`, `scrub: 0.45`) pada viewport desktop tanpa menggeser bingkai (`CLS = 0`).
+4. **Scrubbed Career Timeline Spine & Active-Node Pulse (`#timeline-progress-line`, `.timeline-node`):**
+   - Garis vertikal `scaleY: 0 -> 1` tersinkronisasi alami dengan scroll (`scrub: 0.35`), disertai efek *Active-Node Pulse* (cincin tembaga berdenyut dan highlight border kartu pengalaman) saat setiap milestone berada di zona baca aktif.
+5. **Scrollytelling, GSAP `Flip` Tab Indicator, Formula Live Decode & Row Stagger (Chapter 03):**
+   - Desktop (`>= 1024px`): `ScrollTrigger` menukar tab workbook Excel (`raw` → `master` → `etl` → `dashboard`) dengan indikator garis aktif **GSAP `Flip`** yang meluncur antar-tab, *micro-stagger* baris/KPI (`0.025s`), dan *Formula Bar Live Decode* (`clipPath` wipe kiri-ke-kanan + sorot kolom tabel).
    - Mobile (`< 1024px`): *CSS Scroll Snap Carousel* dengan indikator titik dan tombol navigasi sentuh.
-6. **GPU `translate3d` Spotlight Cards & Magnetic CTAs:**
-   - `.spotlight-card::before` memposisikan cahaya radial melalui `transform: translate3d(calc(var(--mouse-x) - 50%), calc(var(--mouse-y) - 50%), 0)` (nol *reflow* `top`/`left`), dijaga `(hover: hover)`, `prefers-reduced-motion`, dan `requestAnimationFrame`.
+6. **GPU `translate3d` Spotlight Cards, Micro 3D Tilt (`gsap.quickTo`) & Magnetic CTAs:**
+   - `.spotlight-card` memadukan cahaya radial `translate3d` dengan kemiringan perspektif 3D halus maksimal **`±3°`** via `gsap.quickTo` (`transformPerspective: 900`, desktop hover-only).
    - `.magnetic-btn` memberi tarikan elastis mikro hanya pada perangkat desktop non-reduced-motion.
-7. **60fps Rolling Telemetry Counters (`runHeroCounters`) & Reduced-Motion Bypass:**
-   - Menghitung angka metrik dengan `easeOutCubic` (`0.58s–0.66s`) dan langsung menampilkan nilai akhir tanpa animasi apabila `(prefers-reduced-motion: reduce)` aktif.
-8. **Staggered Cards (`.competency-card`, `#proyek article`):**
-   - Kemunculan berjenjang (`stagger: 0.06s–0.08s`, `y: 14–18 -> 0`, `once: true`) dengan `clearProps` setelah selesai.
+7. **Auto-Reactivating `1.0s` Rolling Telemetry Counters (`runHeroCounters`, `setupHeroCounterAutoObserver`, `.metric-bar`):**
+   - Menggunakan mesin `requestAnimationFrame` murni (`duration: 1000ms`, stagger `70ms`, `easeOutCubic`) yang berjalan tepat setelah `window.load` (`+180ms`) dan otomatis me-reset angka ke `0` saat strip keluar viewport lalu menghitung naik kembali `0 -> target` beserta progress bar `.metric-bar` (`scaleX: 0 -> 1`) setiap kali pengguna scroll kembali ke Hero via **`IntersectionObserver`** (tanpa memerlukan tombol manual).
+8. **Project Card Boundaries (`.project-card`, `.project-media-well`), Lightbox Reveal & Tactile Buttons (`.btn-tactile`):**
+   - Setiap kartu proyek di `#proyek` memiliki border tegas `#C8C3B8`, elevation shadow, dan media well `#ECE8DF` untuk pemisahan visual antar-proyek yang jelas, dilengkapi poster tipografi Swiss bersih untuk Proyek 04 & 06.
+   - Modal Lightbox dibuka/ditutup dengan transisi GSAP `clipPath` + `scale` halus dengan restorasi fokus penuh.
+   - `.copy-btn` bermorfosis sementara menjadi ikon centang hijau `"Tersalin!"` dengan pegas `back.out(2.2)` selama `1.8s` serta menampilkan toast konfirmasi.
+   - Seluruh tombol aksi primer, sekunder, dan pratinjau kartu menggunakan `.btn-tactile` dengan border, bayangan taktil, elevasi hover `-1px`, dan efek tekan `scale(0.98)`.
 
 ---
 

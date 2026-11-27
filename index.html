@@ -115,9 +115,10 @@
     };
   </script>
 
-  <!-- GSAP 3 + ScrollTrigger & Chart.js CDN -->
+  <!-- GSAP 3 + ScrollTrigger + Flip & Chart.js CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js" defer></script>
 
   <style>
@@ -390,6 +391,154 @@
       will-change: transform;
     }
 
+    /* Hero Telemetry Progress Bar (Compositor-Only scaleX) */
+    .metric-card {
+      position: relative;
+      overflow: hidden;
+    }
+    .metric-bar {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 2.5px;
+      width: 100%;
+      transform-origin: left center;
+      transform: scaleX(0);
+      will-change: transform;
+      opacity: 0.9;
+    }
+
+    /* Timeline Active-Node Pulse (Chapter 02) */
+    .timeline-node::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 9999px;
+      border: 2px solid #B45309;
+      opacity: 0;
+      pointer-events: none;
+    }
+    @keyframes nodePulse {
+      0% {
+        transform: scale(0.95);
+        opacity: 0.78;
+      }
+      100% {
+        transform: scale(2.15);
+        opacity: 0;
+      }
+    }
+    .timeline-node.is-active::after {
+      animation: nodePulse 1.8s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+    }
+    #career-timeline article.is-active-milestone {
+      border-color: rgba(180, 83, 9, 0.55);
+    }
+
+    /* GSAP Flip Active Tab Indicator & Formula Bar Live Decode (Chapter 03) */
+    .excel-tab-indicator {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 2px;
+      background-color: #D97706;
+      pointer-events: none;
+      will-change: transform;
+    }
+    #formula-bar-text.is-decoding::after {
+      content: '▋';
+      margin-left: 3px;
+      color: #D97706;
+      opacity: 0.9;
+    }
+
+    /* Distinct Architectural Project Cards & Recessed Media Well (Chapter 04) */
+    .project-card {
+      background-color: #FFFFFF;
+      border: 1px solid #C8C3B8;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 18px -4px rgba(15, 23, 42, 0.09), 0 1px 3px rgba(15, 23, 42, 0.06);
+    }
+    @media (hover: hover) {
+      .project-card:hover {
+        border-color: #1B365D;
+        box-shadow: 0 16px 32px -12px rgba(15, 23, 42, 0.16), 0 2px 6px rgba(15, 23, 42, 0.06);
+      }
+    }
+    .project-media-well {
+      padding: 0.75rem;
+      background-color: #ECE8DF;
+      border-bottom: 1px solid #D5D0C5;
+    }
+
+    /* Subtle 3D Tilt Context & Copy Button Morphed State */
+    .spotlight-card {
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+    .copy-btn.is-copied {
+      border-color: #15803D !important;
+      color: #FFFFFF !important;
+      background-color: #15803D !important;
+    }
+
+    /* Tactile Physical Button System (Compositor-Only micro-elevation & press feedback) */
+    .btn-tactile {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.375rem;
+      border-radius: 0.375rem;
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+      border-width: 1px;
+      border-style: solid;
+      transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+    }
+    @media (hover: hover) {
+      .btn-tactile:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 14px -6px rgba(15, 23, 42, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+      }
+    }
+    .btn-tactile:active {
+      transform: translateY(0) scale(0.98);
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.12);
+    }
+    .btn-tactile-primary {
+      background-color: #1B365D;
+      border-color: #1B365D;
+      color: #FFFFFF;
+    }
+    .btn-tactile-primary:hover {
+      background-color: #0F172A;
+      border-color: #0F172A;
+      color: #FFFFFF;
+    }
+    .btn-tactile-secondary {
+      background-color: #FFFFFF;
+      border-color: #DCD9D0;
+      color: #0F172A;
+    }
+    .btn-tactile-secondary:hover {
+      border-color: #1B365D;
+      color: #1B365D;
+      background-color: #FAF9F6;
+    }
+    .btn-tactile-accent {
+      background-color: rgba(180, 83, 9, 0.08);
+      border-color: rgba(180, 83, 9, 0.35);
+      color: #B45309;
+    }
+    .btn-tactile-accent:hover {
+      background-color: #B45309;
+      border-color: #B45309;
+      color: #FFFFFF;
+    }
+
     /* Respect Reduced Motion Preferences */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -397,12 +546,21 @@
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
       }
-      .editorial-card:hover {
+      .editorial-card:hover,
+      .btn-tactile:hover,
+      .btn-tactile:active {
         transform: none !important;
       }
       .parallax-media {
         height: 100%;
         margin-top: 0;
+      }
+      .metric-bar {
+        transform: scaleX(1) !important;
+      }
+      .timeline-node.is-active::after {
+        animation: none !important;
+        opacity: 0 !important;
       }
     }
 
@@ -611,15 +769,15 @@
             <!-- Primary CTA (Single Universal CV) + Secondary CTA -->
             <div class="body-reveal pt-2 space-y-2.5">
               <div class="flex flex-wrap items-center gap-3">
-                <a data-asset-href="cvPdf" href="./assets/cv/CV_Misbahudin_Portofolio_Umum.pdf" download class="magnetic-btn inline-flex items-center gap-2.5 px-5 py-3 rounded-md bg-navy text-white text-sm font-semibold hover:bg-ink transition-colors">
+                <a data-asset-href="cvPdf" href="./assets/cv/CV_Misbahudin_Portofolio_Umum.pdf" download class="magnetic-btn btn-tactile btn-tactile-primary px-5 py-3 text-sm">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" /></svg>
                   <span>Unduh CV (PDF)</span>
                 </a>
-                <a href="#studi-kasus-excel" class="magnetic-btn inline-flex items-center gap-2 px-5 py-3 rounded-md bg-surface border border-hairline text-ink text-sm font-semibold hover:border-navy transition-colors">
+                <a href="#studi-kasus-excel" class="magnetic-btn btn-tactile btn-tactile-secondary px-5 py-3 text-sm">
                   <span>Lihat Studi Kasus Data Excel</span>
                   <svg class="w-4 h-4 text-copper" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
                 </a>
-                <a href="#kontak" class="inline-flex items-center gap-1.5 px-2.5 py-2 font-mono text-xs font-semibold text-navy hover:text-copper underline decoration-hairline underline-offset-4 transition-colors">
+                <a href="#kontak" class="btn-tactile btn-tactile-accent px-4 py-3 font-mono text-xs">
                   <span>Hubungi Langsung</span>
                   <span aria-hidden="true">&rarr;</span>
                 </a>
@@ -685,7 +843,7 @@
           </div>
         </div>
 
-        <!-- Bottom 4-Column Swiss Metric Strip with Count-Up -->
+        <!-- Bottom 4-Column Swiss Metric Strip with Auto-Reactivating 1.0s Counter -->
         <div id="hero-metrics-strip" class="mt-14 sm:mt-16">
           <div class="hairline-rule h-px w-full bg-hairline"></div>
           <div class="grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-hairline border-b border-hairline bg-surface/80">
@@ -694,24 +852,28 @@
                 <p class="masked-metric tabular-nums font-mono text-2xl sm:text-3xl font-semibold text-navy" data-count-target="3.5" data-count-format="decimal-tahun">3,5+ Tahun</p>
               </div>
               <p class="font-mono text-[11px] uppercase tracking-wider text-slateMuted mt-1.5">Pengalaman Operasional &amp; Sistem</p>
+              <span aria-hidden="true" class="metric-bar bg-navy"></span>
             </div>
             <div class="metric-card p-5 sm:p-6 border-l border-hairline lg:border-l-0 cursor-pointer hover:bg-surface active:scale-[0.99] transition-all" title="Klik untuk memutar ulang animasi metrik">
               <div class="mask-wrap">
                 <p class="masked-metric tabular-nums font-mono text-2xl sm:text-3xl font-semibold text-ink" data-count-target="12117" data-count-format="thousands-data">12.117 Data</p>
               </div>
               <p class="font-mono text-[11px] uppercase tracking-wider text-slateMuted mt-1.5">Migrasi &amp; Pembersihan 0% Data Loss</p>
+              <span aria-hidden="true" class="metric-bar bg-ink"></span>
             </div>
             <div class="metric-card p-5 sm:p-6 cursor-pointer hover:bg-surface active:scale-[0.99] transition-all" title="Klik untuk memutar ulang animasi metrik">
               <div class="mask-wrap">
                 <p class="masked-metric tabular-nums font-mono text-2xl sm:text-3xl font-semibold text-copper" data-count-target="100" data-count-format="percent">100%</p>
               </div>
               <p class="font-mono text-[11px] uppercase tracking-wider text-slateMuted mt-1.5">Validitas Data Instansi &amp; Keuangan</p>
+              <span aria-hidden="true" class="metric-bar bg-copper"></span>
             </div>
             <div class="metric-card p-5 sm:p-6 border-l border-hairline lg:border-l-0 cursor-pointer hover:bg-surface active:scale-[0.99] transition-all" title="Klik untuk memutar ulang animasi metrik">
               <div class="mask-wrap">
                 <p class="masked-metric tabular-nums font-mono text-2xl sm:text-3xl font-semibold text-ink" data-count-target="250" data-count-format="int-plus">250+</p>
               </div>
               <p class="font-mono text-[11px] uppercase tracking-wider text-slateMuted mt-1.5">Pengujian Otomatis PHPUnit</p>
+              <span aria-hidden="true" class="metric-bar bg-ink"></span>
             </div>
           </div>
         </div>
@@ -836,7 +998,7 @@
                       </div>
                       <figcaption class="px-3.5 py-2.5 flex items-center justify-between gap-2 bg-paper border-t border-hairline">
                         <span class="font-mono text-[11px] font-medium text-ink">SIM Notaris &amp; SIM-PQTM</span>
-                        <span class="font-mono text-[10px] text-copper group-hover:translate-x-0.5 transition-transform">Perbesar &rarr;</span>
+                        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface border border-hairline font-mono text-[10px] font-semibold text-navy shadow-2xs group-hover:bg-navy group-hover:text-white group-hover:border-navy transition-colors">Perbesar &rarr;</span>
                       </figcaption>
                     </button>
                   </figure>
@@ -929,7 +1091,7 @@
                       </div>
                       <figcaption class="px-3.5 py-2.5 flex items-center justify-between gap-2 bg-paper border-t border-hairline">
                         <span class="font-mono text-[11px] font-medium text-ink">Jaringan MikroTik &amp; Portal Dinas</span>
-                        <span class="font-mono text-[10px] text-copper group-hover:translate-x-0.5 transition-transform">Perbesar &rarr;</span>
+                        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface border border-hairline font-mono text-[10px] font-semibold text-navy shadow-2xs group-hover:bg-navy group-hover:text-white group-hover:border-navy transition-colors">Perbesar &rarr;</span>
                       </figcaption>
                     </button>
                   </figure>
@@ -1031,7 +1193,7 @@
                       </div>
                       <figcaption class="px-3.5 py-2.5 flex items-center justify-between gap-2 bg-paper border-t border-hairline">
                         <span class="font-mono text-[11px] font-medium text-ink">Arsitektur 12.117 Data &amp; 3 Kampus</span>
-                        <span class="font-mono text-[10px] text-copper group-hover:translate-x-0.5 transition-transform">Perbesar &rarr;</span>
+                        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface border border-hairline font-mono text-[10px] font-semibold text-navy shadow-2xs group-hover:bg-navy group-hover:text-white group-hover:border-navy transition-colors">Perbesar &rarr;</span>
                       </figcaption>
                     </button>
                   </figure>
@@ -1160,17 +1322,18 @@
               </div>
 
               <!-- 4 Clickable Sheet Tabs -->
-              <div role="tablist" aria-label="Tab Lembar Kerja Excel" class="flex overflow-x-auto sheet-scroll bg-[#0E1726] border-b border-darkLine px-2 pt-2 gap-1">
-                <button type="button" role="tab" data-tab="raw" aria-selected="true" class="excel-tab px-3.5 py-2 rounded-t font-mono text-xs whitespace-nowrap transition-colors bg-darkSurface text-copperBright border-t-2 border-x border-t-copperBright border-x-darkLine font-semibold">
+              <div role="tablist" aria-label="Tab Lembar Kerja Excel" class="relative flex overflow-x-auto sheet-scroll bg-[#0E1726] border-b border-darkLine px-2 pt-2 gap-1">
+                <button type="button" role="tab" data-tab="raw" aria-selected="true" class="excel-tab relative px-3.5 py-2 rounded-t font-mono text-xs whitespace-nowrap transition-colors bg-darkSurface text-copperBright border-t-2 border-x border-t-copperBright border-x-darkLine font-semibold">
                   1_Raw_Data_Mentah
+                  <span id="excel-tab-indicator" aria-hidden="true" class="excel-tab-indicator"></span>
                 </button>
-                <button type="button" role="tab" data-tab="master" aria-selected="false" class="excel-tab px-3.5 py-2 rounded-t font-mono text-xs whitespace-nowrap transition-colors text-slate-400 hover:text-paper border-t-2 border-transparent">
+                <button type="button" role="tab" data-tab="master" aria-selected="false" class="excel-tab relative px-3.5 py-2 rounded-t font-mono text-xs whitespace-nowrap transition-colors text-slate-400 hover:text-paper border-t-2 border-transparent">
                   2_Master_Referensi
                 </button>
-                <button type="button" role="tab" data-tab="etl" aria-selected="false" class="excel-tab px-3.5 py-2 rounded-t font-mono text-xs whitespace-nowrap transition-colors text-slate-400 hover:text-paper border-t-2 border-transparent">
+                <button type="button" role="tab" data-tab="etl" aria-selected="false" class="excel-tab relative px-3.5 py-2 rounded-t font-mono text-xs whitespace-nowrap transition-colors text-slate-400 hover:text-paper border-t-2 border-transparent">
                   3_Data_Bersih_ETL
                 </button>
-                <button type="button" role="tab" data-tab="dashboard" aria-selected="false" class="excel-tab px-3.5 py-2 rounded-t font-mono text-xs whitespace-nowrap transition-colors text-slate-400 hover:text-paper border-t-2 border-transparent">
+                <button type="button" role="tab" data-tab="dashboard" aria-selected="false" class="excel-tab relative px-3.5 py-2 rounded-t font-mono text-xs whitespace-nowrap transition-colors text-slate-400 hover:text-paper border-t-2 border-transparent">
                   4_Dashboard_Visual
                 </button>
               </div>
@@ -1909,73 +2072,75 @@
           </div>
           <div class="lg:col-span-5 lg:text-right">
             <p class="body-reveal text-sm text-slateMuted leading-relaxed">
-              Setiap kartu memuat tangkapan layar dari folder aset lokal beserta ringkasan dampak terukur. Klik kartu untuk membuka tampilan penuh atau telusuri repositori langsung.
+              Sistem internal klien ditampilkan lewat pratinjau arsitektur untuk menjaga kerahasiaan kode, sedangkan proyek terbuka dilengkapi tautan demo dan source code langsung.
             </p>
             <div class="mt-3 flex lg:justify-end items-center gap-2">
-              <a href="https://github.com/misbahudin98" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-sm bg-surface border border-hairline font-mono text-[11px] text-ink hover:border-navy transition-colors">
+              <a href="https://github.com/misbahudin98" target="_blank" rel="noopener noreferrer" class="btn-tactile btn-tactile-secondary px-3.5 py-2 font-mono text-[11px]">
                 <svg class="w-3.5 h-3.5 text-navy" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-                <span>Live Demo &amp; Repositori GitHub &rarr;</span>
+                <span>Profil GitHub (@misbahudin98) &rarr;</span>
               </a>
             </div>
           </div>
         </div>
         <div class="hairline-rule h-px w-full bg-hairline mb-12"></div>
 
-        <!-- 2x2 Architectural Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- 2x3 Architectural Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
 
           <!-- Project 1: Aplikasi Operasional Notaris & PPAT -->
-          <article class="spotlight-card editorial-card group bg-surface border border-hairline rounded-md overflow-hidden hover:border-navy transition-colors shadow-sm flex flex-col">
+          <article class="spotlight-card editorial-card project-card group overflow-hidden transition-colors flex flex-col">
             <button type="button" data-lightbox-id="proj-notaris" class="lightbox-trigger text-left w-full flex-1 flex flex-col">
-              <div class="px-3.5 py-2 bg-paper border-b border-hairline flex items-center justify-between">
+              <div class="px-4 py-2.5 bg-paper border-b border-hairline flex items-center justify-between">
                 <div class="flex items-center gap-1.5" aria-hidden="true">
                   <span class="w-2 h-2 rounded-full bg-hairline"></span>
                   <span class="w-2 h-2 rounded-full bg-hairline"></span>
                   <span class="w-2 h-2 rounded-full bg-hairline"></span>
                 </div>
                 <span class="font-mono text-[10px] text-slateMuted">notaris-ppat / register-berkas-escrow</span>
-                <span class="font-mono text-[10px] text-copper">01</span>
+                <span class="font-mono text-[10px] text-copper font-semibold">01</span>
               </div>
 
-              <div class="curtain-frame aspect-[16/10] w-full border-b border-hairline overflow-hidden">
-                <div class="parallax-media relative w-full h-full">
-                  <img
-                    data-asset-img="projectNotaris"
-                    src="./assets/project-notaris.jpg"
-                    alt="SIM Notaris dan PPAT Enterprise Vault"
-                    loading="lazy"
-                    class="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-500"
-                  />
-                  <!-- Architectural UI Wireframe SVG Fallback -->
-                  <div class="img-fallback hidden absolute inset-0 bg-[#FAF9F6]">
-                    <svg viewBox="0 0 640 400" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                      <rect width="640" height="400" fill="#FAF9F6" />
-                      <rect x="0" y="0" width="138" height="400" fill="#0F172A" />
-                      <text x="18" y="34" fill="#F6F4EF" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700">NOTARIS OPS</text>
-                      <rect x="14" y="54" width="110" height="26" rx="3" fill="#1B365D" />
-                      <text x="24" y="71" fill="#FFFFFF" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5" font-weight="600">Register Berkas</text>
-                      <text x="24" y="106" fill="#94A3B8" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5">Kanban &amp; SLA</text>
-                      <text x="24" y="132" fill="#94A3B8" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5">Arsip &amp; Warkah</text>
-                      <text x="24" y="158" fill="#FDE68A" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5">Kas &amp; Pajak NTPN</text>
-                      <text x="160" y="36" fill="#0F172A" font-family="Plus Jakarta Sans, sans-serif" font-size="15" font-weight="700">Pemisahan Kas Kantor &amp; Escrow Titipan Pajak</text>
-                      <rect x="160" y="52" width="218" height="76" rx="4" fill="#FFFFFF" stroke="#DCD9D0" />
-                      <text x="174" y="74" fill="#475569" font-family="JetBrains Mono, monospace" font-size="9.5">KAS OPERASIONAL KANTOR</text>
-                      <text x="174" y="100" fill="#1B365D" font-family="JetBrains Mono, monospace" font-size="16" font-weight="700">Rp 84.500.000</text>
-                      <rect x="394" y="52" width="222" height="76" rx="4" fill="#FFFFFF" stroke="#B45309" stroke-opacity="0.55" />
-                      <text x="408" y="74" fill="#B45309" font-family="JetBrains Mono, monospace" font-size="9.5">ESCROW PAJAK (PPh, BPHTB, PNBP)</text>
-                      <text x="408" y="100" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="16" font-weight="700">Rp 142.350.000</text>
-                      <rect x="160" y="146" width="456" height="226" rx="4" fill="#FFFFFF" stroke="#DCD9D0" />
-                      <rect x="160" y="146" width="456" height="30" fill="#F6F4EF" />
-                      <text x="174" y="165" fill="#475569" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">NO. REGISTER     JENIS LAYANAN        STATUS       STATUS NTPN</text>
-                      <line x1="160" y1="176" x2="616" y2="176" stroke="#DCD9D0" />
-                      <text x="174" y="206" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="10">PPAT-2026-0041   AJB Tanah            Selesai      TERVERIFIKASI</text>
-                      <line x1="160" y1="222" x2="616" y2="222" stroke="#E2E8F0" />
-                      <text x="174" y="248" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="10">NOT-2026-0042    Pendirian PT         Review       MENUNGGU NTPN</text>
-                      <line x1="160" y1="264" x2="616" y2="264" stroke="#E2E8F0" />
-                      <text x="174" y="290" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="10">PPAT-2026-0043   APHT Perbankan       Selesai      TERVERIFIKASI</text>
-                      <text x="174" y="332" fill="#15803D" font-family="JetBrains Mono, monospace" font-size="9.5">PHPUnit: 121 Tests (1.148 Assertions) &middot; 6 Peran RBAC &middot; Kuitansi A4</text>
-                      <text x="602" y="360" text-anchor="end" fill="#64748B" font-family="JetBrains Mono, monospace" font-size="9">assets/project-notaris.jpg</text>
-                    </svg>
+              <div class="project-media-well">
+                <div class="curtain-frame aspect-[16/10] w-full rounded-lg border border-slate-900/10 overflow-hidden shadow-xs">
+                  <div class="parallax-media relative w-full h-full">
+                    <img
+                      data-asset-img="projectNotaris"
+                      src="./assets/project-notaris.jpg"
+                      alt="SIM Notaris dan PPAT Enterprise Vault"
+                      loading="lazy"
+                      class="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-500"
+                    />
+                    <!-- Architectural UI Wireframe SVG Fallback -->
+                    <div class="img-fallback hidden absolute inset-0 bg-[#FAF9F6]">
+                      <svg viewBox="0 0 640 400" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="640" height="400" fill="#FAF9F6" />
+                        <rect x="0" y="0" width="138" height="400" fill="#0F172A" />
+                        <text x="18" y="34" fill="#F6F4EF" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700">NOTARIS OPS</text>
+                        <rect x="14" y="54" width="110" height="26" rx="3" fill="#1B365D" />
+                        <text x="24" y="71" fill="#FFFFFF" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5" font-weight="600">Register Berkas</text>
+                        <text x="24" y="106" fill="#94A3B8" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5">Kanban &amp; SLA</text>
+                        <text x="24" y="132" fill="#94A3B8" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5">Arsip &amp; Warkah</text>
+                        <text x="24" y="158" fill="#FDE68A" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5">Kas &amp; Pajak NTPN</text>
+                        <text x="160" y="36" fill="#0F172A" font-family="Plus Jakarta Sans, sans-serif" font-size="15" font-weight="700">Pemisahan Kas Kantor &amp; Escrow Titipan Pajak</text>
+                        <rect x="160" y="52" width="218" height="76" rx="4" fill="#FFFFFF" stroke="#DCD9D0" />
+                        <text x="174" y="74" fill="#475569" font-family="JetBrains Mono, monospace" font-size="9.5">KAS OPERASIONAL KANTOR</text>
+                        <text x="174" y="100" fill="#1B365D" font-family="JetBrains Mono, monospace" font-size="16" font-weight="700">Rp 84.500.000</text>
+                        <rect x="394" y="52" width="222" height="76" rx="4" fill="#FFFFFF" stroke="#B45309" stroke-opacity="0.55" />
+                        <text x="408" y="74" fill="#B45309" font-family="JetBrains Mono, monospace" font-size="9.5">ESCROW PAJAK (PPh, BPHTB, PNBP)</text>
+                        <text x="408" y="100" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="16" font-weight="700">Rp 142.350.000</text>
+                        <rect x="160" y="146" width="456" height="226" rx="4" fill="#FFFFFF" stroke="#DCD9D0" />
+                        <rect x="160" y="146" width="456" height="30" fill="#F6F4EF" />
+                        <text x="174" y="165" fill="#475569" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">NO. REGISTER     JENIS LAYANAN        STATUS       STATUS NTPN</text>
+                        <line x1="160" y1="176" x2="616" y2="176" stroke="#DCD9D0" />
+                        <text x="174" y="206" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="10">PPAT-2026-0041   AJB Tanah            Selesai      TERVERIFIKASI</text>
+                        <line x1="160" y1="222" x2="616" y2="222" stroke="#E2E8F0" />
+                        <text x="174" y="248" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="10">NOT-2026-0042    Pendirian PT         Review       MENUNGGU NTPN</text>
+                        <line x1="160" y1="264" x2="616" y2="264" stroke="#E2E8F0" />
+                        <text x="174" y="290" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="10">PPAT-2026-0043   APHT Perbankan       Selesai      TERVERIFIKASI</text>
+                        <text x="174" y="332" fill="#15803D" font-family="JetBrains Mono, monospace" font-size="9.5">PHPUnit: 121 Tests (1.148 Assertions) &middot; 6 Peran RBAC &middot; Kuitansi A4</text>
+                        <text x="602" y="360" text-anchor="end" fill="#64748B" font-family="JetBrains Mono, monospace" font-size="9">assets/project-notaris.jpg</text>
+                      </svg>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1994,72 +2159,72 @@
                     <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">6 Peran RBAC</span>
                     <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">Dual-Pocket Escrow</span>
                   </div>
-                  <span class="font-mono text-[11px] font-semibold text-copper">Pratinjau Arsitektur &rarr;</span>
+                  <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md border border-copper/35 bg-amber-50/70 font-mono text-[10.5px] font-semibold text-copper shadow-2xs group-hover:bg-copper group-hover:text-white group-hover:border-copper transition-colors">Pratinjau Arsitektur &rarr;</span>
                 </div>
               </div>
             </button>
-            <div class="px-6 py-2.5 bg-paper/90 border-t border-hairline flex items-center justify-between font-mono text-[11px]">
-              <a href="https://github.com/misbahudin98" target="_blank" rel="noopener noreferrer" class="text-navy hover:text-copper font-semibold inline-flex items-center gap-1">
-                <span>Live Demo &amp; Code</span> &nearr;
-              </a>
+            <div class="px-6 py-3 bg-paper/95 border-t border-hairline flex items-center justify-between font-mono text-[11px]">
+              <span class="text-slateMuted font-medium">Sistem Produksi Klien &middot; Repositori Privat</span>
               <span class="text-slateMuted text-[10.5px]">121 Tests &middot; 1.148 Assertions</span>
             </div>
           </article>
 
           <!-- Project 2: SIM-PQTM: Modul LTQ & Agenda Hafalan -->
-          <article class="spotlight-card editorial-card group bg-surface border border-hairline rounded-md overflow-hidden hover:border-navy transition-colors shadow-sm flex flex-col">
+          <article class="spotlight-card editorial-card project-card group overflow-hidden transition-colors flex flex-col">
             <button type="button" data-lightbox-id="proj-simpqtm" class="lightbox-trigger text-left w-full flex-1 flex flex-col">
-              <div class="px-3.5 py-2 bg-paper border-b border-hairline flex items-center justify-between">
+              <div class="px-4 py-2.5 bg-paper border-b border-hairline flex items-center justify-between">
                 <div class="flex items-center gap-1.5" aria-hidden="true">
                   <span class="w-2 h-2 rounded-full bg-hairline"></span>
                   <span class="w-2 h-2 rounded-full bg-hairline"></span>
                   <span class="w-2 h-2 rounded-full bg-hairline"></span>
                 </div>
                 <span class="font-mono text-[10px] text-slateMuted">sim-pqtm / ltq-agenda-hafalan</span>
-                <span class="font-mono text-[10px] text-copper">02</span>
+                <span class="font-mono text-[10px] text-copper font-semibold">02</span>
               </div>
 
-              <div class="curtain-frame aspect-[16/10] w-full border-b border-hairline overflow-hidden">
-                <div class="parallax-media relative w-full h-full">
-                  <img
-                    data-asset-img="projectSimPqtm"
-                    src="./assets/project-simpqtm.jpg"
-                    alt="SIM-PQTM Modul LTQ dan Agenda Hafalan"
-                    loading="lazy"
-                    class="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-500"
-                  />
-                  <!-- Architectural UI Wireframe SVG Fallback -->
-                  <div class="img-fallback hidden absolute inset-0 bg-[#FAF9F6]">
-                    <svg viewBox="0 0 640 400" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                      <rect width="640" height="400" fill="#FAF9F6" />
-                      <rect x="0" y="0" width="640" height="52" fill="#1B365D" />
-                      <text x="24" y="31" fill="#FFFFFF" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700">SIM-PQTM &middot; MODUL LTQ TAHFIDZ, TAHSIN &amp; AGENDA HAFALAN</text>
-                      <rect x="24" y="72" width="186" height="84" rx="4" fill="#FFFFFF" stroke="#DCD9D0" />
-                      <text x="38" y="96" fill="#B45309" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">JURNAL 4 SESI</text>
-                      <text x="38" y="122" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="18" font-weight="700">Ziyadah</text>
-                      <text x="38" y="142" fill="#475569" font-family="Plus Jakarta Sans, sans-serif" font-size="10">Muraja'ah, Talaqqi &amp; Tahsin</text>
+              <div class="project-media-well">
+                <div class="curtain-frame aspect-[16/10] w-full rounded-lg border border-slate-900/10 overflow-hidden shadow-xs">
+                  <div class="parallax-media relative w-full h-full">
+                    <img
+                      data-asset-img="projectSimPqtm"
+                      src="./assets/project-simpqtm.jpg"
+                      alt="SIM-PQTM Modul LTQ dan Agenda Hafalan"
+                      loading="lazy"
+                      class="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-500"
+                    />
+                    <!-- Architectural UI Wireframe SVG Fallback -->
+                    <div class="img-fallback hidden absolute inset-0 bg-[#FAF9F6]">
+                      <svg viewBox="0 0 640 400" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="640" height="400" fill="#FAF9F6" />
+                        <rect x="0" y="0" width="640" height="52" fill="#1B365D" />
+                        <text x="24" y="31" fill="#FFFFFF" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700">SIM-PQTM &middot; MODUL LTQ TAHFIDZ, TAHSIN &amp; AGENDA HAFALAN</text>
+                        <rect x="24" y="72" width="186" height="84" rx="4" fill="#FFFFFF" stroke="#DCD9D0" />
+                        <text x="38" y="96" fill="#B45309" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">JURNAL 4 SESI</text>
+                        <text x="38" y="122" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="18" font-weight="700">Ziyadah</text>
+                        <text x="38" y="142" fill="#475569" font-family="Plus Jakarta Sans, sans-serif" font-size="10">Muraja'ah, Talaqqi &amp; Tahsin</text>
 
-                      <rect x="227" y="72" width="186" height="84" rx="4" fill="#FFFFFF" stroke="#DCD9D0" />
-                      <text x="241" y="96" fill="#1B365D" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">UJIAN TASMI'</text>
-                      <text x="241" y="122" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="18" font-weight="700">1&ndash;30 Juz</text>
-                      <text x="241" y="142" fill="#475569" font-family="Plus Jakarta Sans, sans-serif" font-size="10">Bobot Dinamis &amp; Syahadah</text>
+                        <rect x="227" y="72" width="186" height="84" rx="4" fill="#FFFFFF" stroke="#DCD9D0" />
+                        <text x="241" y="96" fill="#1B365D" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">UJIAN TASMI'</text>
+                        <text x="241" y="122" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="18" font-weight="700">1&ndash;30 Juz</text>
+                        <text x="241" y="142" fill="#475569" font-family="Plus Jakarta Sans, sans-serif" font-size="10">Bobot Dinamis &amp; Syahadah</text>
 
-                      <rect x="430" y="72" width="186" height="84" rx="4" fill="#FFFFFF" stroke="#DCD9D0" />
-                      <text x="444" y="96" fill="#15803D" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">PORTAL WALI</text>
-                      <text x="444" y="122" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="18" font-weight="700">Real-Time</text>
-                      <text x="444" y="142" fill="#475569" font-family="Plus Jakarta Sans, sans-serif" font-size="10">Pantau Progres Anak</text>
+                        <rect x="430" y="72" width="186" height="84" rx="4" fill="#FFFFFF" stroke="#DCD9D0" />
+                        <text x="444" y="96" fill="#15803D" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">PORTAL WALI</text>
+                        <text x="444" y="122" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="18" font-weight="700">Real-Time</text>
+                        <text x="444" y="142" fill="#475569" font-family="Plus Jakarta Sans, sans-serif" font-size="10">Pantau Progres Anak</text>
 
-                      <rect x="24" y="176" width="592" height="196" rx="4" fill="#FFFFFF" stroke="#DCD9D0" />
-                      <rect x="24" y="176" width="592" height="30" fill="#F6F4EF" />
-                      <text x="40" y="195" fill="#475569" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">SESI / HALAQAH     AGENDA HAFALAN          PREDIKAT     STATUS</text>
-                      <line x1="24" y1="206" x2="616" y2="206" stroke="#DCD9D0" />
-                      <text x="40" y="236" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="10">Pagi (Subuh)       Ziyadah Hafalan Baru    Mutqin       TERCATAT</text>
-                      <line x1="24" y1="254" x2="616" y2="254" stroke="#E2E8F0" />
-                      <text x="40" y="282" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="10">Siang &amp; Sore       Muraja'ah &amp; Tahsin      Mumtaz       TERCATAT</text>
-                      <line x1="24" y1="300" x2="616" y2="300" stroke="#E2E8F0" />
-                      <text x="40" y="328" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="10">Ujian Tasmi'       Sekali Duduk 5 Juz      Mumtaz       SYAHADAH</text>
-                      <text x="600" y="360" text-anchor="end" fill="#64748B" font-family="JetBrains Mono, monospace" font-size="9">assets/project-simpqtm.jpg</text>
-                    </svg>
+                        <rect x="24" y="176" width="592" height="196" rx="4" fill="#FFFFFF" stroke="#DCD9D0" />
+                        <rect x="24" y="176" width="592" height="30" fill="#F6F4EF" />
+                        <text x="40" y="195" fill="#475569" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">SESI / HALAQAH     AGENDA HAFALAN          PREDIKAT     STATUS</text>
+                        <line x1="24" y1="206" x2="616" y2="206" stroke="#DCD9D0" />
+                        <text x="40" y="236" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="10">Pagi (Subuh)       Ziyadah Hafalan Baru    Mutqin       TERCATAT</text>
+                        <line x1="24" y1="254" x2="616" y2="254" stroke="#E2E8F0" />
+                        <text x="40" y="282" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="10">Siang &amp; Sore       Muraja'ah &amp; Tahsin      Mumtaz       TERCATAT</text>
+                        <line x1="24" y1="300" x2="616" y2="300" stroke="#E2E8F0" />
+                        <text x="40" y="328" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="10">Ujian Tasmi'       Sekali Duduk 5 Juz      Mumtaz       SYAHADAH</text>
+                        <text x="600" y="360" text-anchor="end" fill="#64748B" font-family="JetBrains Mono, monospace" font-size="9">assets/project-simpqtm.jpg</text>
+                      </svg>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -2078,76 +2243,76 @@
                     <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">Jurnal Tahfidz &amp; Tahsin</span>
                     <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">Portal Wali</span>
                   </div>
-                  <span class="font-mono text-[11px] font-semibold text-copper">Pratinjau Arsitektur &rarr;</span>
+                  <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md border border-copper/35 bg-amber-50/70 font-mono text-[10.5px] font-semibold text-copper shadow-2xs group-hover:bg-copper group-hover:text-white group-hover:border-copper transition-colors">Pratinjau Arsitektur &rarr;</span>
                 </div>
               </div>
             </button>
-            <div class="px-6 py-2.5 bg-paper/90 border-t border-hairline flex items-center justify-between font-mono text-[11px]">
-              <a href="https://github.com/misbahudin98" target="_blank" rel="noopener noreferrer" class="text-navy hover:text-copper font-semibold inline-flex items-center gap-1">
-                <span>Live Demo &amp; Code</span> &nearr;
-              </a>
+            <div class="px-6 py-3 bg-paper/95 border-t border-hairline flex items-center justify-between font-mono text-[11px]">
+              <span class="text-slateMuted font-medium">Sistem Internal Lembaga &middot; Repositori Privat</span>
               <span class="text-slateMuted text-[10.5px]">4 Sesi Harian &middot; Tasmi' 1&ndash;30 Juz</span>
             </div>
           </article>
 
           <!-- Project 3: Ekosistem SIM, PPDB & HRIS 3 Kampus -->
-          <article class="spotlight-card editorial-card group bg-surface border border-hairline rounded-md overflow-hidden hover:border-navy transition-colors shadow-sm flex flex-col">
+          <article class="spotlight-card editorial-card project-card group overflow-hidden transition-colors flex flex-col">
             <button type="button" data-lightbox-id="proj-ppdb" class="lightbox-trigger text-left w-full flex-1 flex flex-col">
-              <div class="px-3.5 py-2 bg-paper border-b border-hairline flex items-center justify-between">
+              <div class="px-4 py-2.5 bg-paper border-b border-hairline flex items-center justify-between">
                 <div class="flex items-center gap-1.5" aria-hidden="true">
                   <span class="w-2 h-2 rounded-full bg-hairline"></span>
                   <span class="w-2 h-2 rounded-full bg-hairline"></span>
                   <span class="w-2 h-2 rounded-full bg-hairline"></span>
                 </div>
                 <span class="font-mono text-[10px] text-slateMuted">sim-ppdb-hris / 3-kampus</span>
-                <span class="font-mono text-[10px] text-copper">03</span>
+                <span class="font-mono text-[10px] text-copper font-semibold">03</span>
               </div>
 
-              <div class="curtain-frame aspect-[16/10] w-full border-b border-hairline overflow-hidden">
-                <div class="parallax-media relative w-full h-full">
-                  <img
-                    data-asset-img="projectPpdb"
-                    src="./assets/project-ppdb.jpg"
-                    alt="Ekosistem SIM, PPDB dan HRIS 3 Kampus"
-                    loading="lazy"
-                    class="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-500"
-                  />
-                  <!-- Architectural UI Wireframe SVG Fallback -->
-                  <div class="img-fallback hidden absolute inset-0 bg-[#FAF9F6]">
-                    <svg viewBox="0 0 640 400" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                      <rect width="640" height="400" fill="#FAF9F6" />
-                      <rect x="0" y="0" width="640" height="52" fill="#0F172A" />
-                      <text x="24" y="31" fill="#F6F4EF" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700">EKOSISTEM SIM, PPDB &amp; HRIS &middot; 3 KAMPUS (&gt;10.000 PENGGUNA)</text>
-                      <rect x="24" y="76" width="174" height="122" rx="4" fill="#FFFFFF" stroke="#DCD9D0" />
-                      <text x="38" y="100" fill="#475569" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">MIGRASI ARSIP</text>
-                      <text x="38" y="128" fill="#1B365D" font-family="JetBrains Mono, monospace" font-size="22" font-weight="700">12.117</text>
-                      <text x="38" y="148" fill="#15803D" font-family="JetBrains Mono, monospace" font-size="9.5">0% Data Loss</text>
-                      <text x="38" y="172" fill="#475569" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5">9.312 Santri &middot; 2.005 Staf &middot; 800 PPDB</text>
+              <div class="project-media-well">
+                <div class="curtain-frame aspect-[16/10] w-full rounded-lg border border-slate-900/10 overflow-hidden shadow-xs">
+                  <div class="parallax-media relative w-full h-full">
+                    <img
+                      data-asset-img="projectPpdb"
+                      src="./assets/project-ppdb.jpg"
+                      alt="Ekosistem SIM, PPDB dan HRIS 3 Kampus"
+                      loading="lazy"
+                      class="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-500"
+                    />
+                    <!-- Architectural UI Wireframe SVG Fallback -->
+                    <div class="img-fallback hidden absolute inset-0 bg-[#FAF9F6]">
+                      <svg viewBox="0 0 640 400" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="640" height="400" fill="#FAF9F6" />
+                        <rect x="0" y="0" width="640" height="52" fill="#0F172A" />
+                        <text x="24" y="31" fill="#F6F4EF" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700">EKOSISTEM SIM, PPDB &amp; HRIS &middot; 3 KAMPUS (&gt;10.000 PENGGUNA)</text>
+                        <rect x="24" y="76" width="174" height="122" rx="4" fill="#FFFFFF" stroke="#DCD9D0" />
+                        <text x="38" y="100" fill="#475569" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">MIGRASI ARSIP</text>
+                        <text x="38" y="128" fill="#1B365D" font-family="JetBrains Mono, monospace" font-size="22" font-weight="700">12.117</text>
+                        <text x="38" y="148" fill="#15803D" font-family="JetBrains Mono, monospace" font-size="9.5">0% Data Loss</text>
+                        <text x="38" y="172" fill="#475569" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5">9.312 Santri &middot; 2.005 Staf &middot; 800 PPDB</text>
 
-                      <rect x="218" y="76" width="194" height="122" rx="4" fill="#FFFFFF" stroke="#B45309" stroke-opacity="0.55" />
-                      <text x="232" y="100" fill="#B45309" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">FORMAT PENOMORAN VA</text>
-                      <rect x="232" y="114" width="166" height="30" rx="3" fill="#FEF3C7" />
-                      <text x="315" y="133" text-anchor="middle" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700">8801 - KMP - 00241</text>
-                      <text x="232" y="168" fill="#475569" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5">Selaras dengan nomor VA riil</text>
-                      <text x="232" y="184" fill="#475569" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5">pada sistem bank / keuangan</text>
+                        <rect x="218" y="76" width="194" height="122" rx="4" fill="#FFFFFF" stroke="#B45309" stroke-opacity="0.55" />
+                        <text x="232" y="100" fill="#B45309" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">FORMAT PENOMORAN VA</text>
+                        <rect x="232" y="114" width="166" height="30" rx="3" fill="#FEF3C7" />
+                        <text x="315" y="133" text-anchor="middle" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700">8801 - KMP - 00241</text>
+                        <text x="232" y="168" fill="#475569" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5">Selaras dengan nomor VA riil</text>
+                        <text x="232" y="184" fill="#475569" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5">pada sistem bank / keuangan</text>
 
-                      <rect x="432" y="76" width="184" height="122" rx="4" fill="#1B365D" />
-                      <text x="446" y="100" fill="#FDE68A" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">ALUR 3 KAMPUS</text>
-                      <text x="446" y="126" fill="#FFFFFF" font-family="Plus Jakarta Sans, sans-serif" font-size="11">Baby School &amp; TK</text>
-                      <text x="446" y="148" fill="#FFFFFF" font-family="Plus Jakarta Sans, sans-serif" font-size="11">SD &amp; SMP Boarding</text>
-                      <text x="446" y="170" fill="#FFFFFF" font-family="Plus Jakarta Sans, sans-serif" font-size="11">SMA &amp; HRIS Pegawai</text>
+                        <rect x="432" y="76" width="184" height="122" rx="4" fill="#1B365D" />
+                        <text x="446" y="100" fill="#FDE68A" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">ALUR 3 KAMPUS</text>
+                        <text x="446" y="126" fill="#FFFFFF" font-family="Plus Jakarta Sans, sans-serif" font-size="11">Baby School &amp; TK</text>
+                        <text x="446" y="148" fill="#FFFFFF" font-family="Plus Jakarta Sans, sans-serif" font-size="11">SD &amp; SMP Boarding</text>
+                        <text x="446" y="170" fill="#FFFFFF" font-family="Plus Jakarta Sans, sans-serif" font-size="11">SMA &amp; HRIS Pegawai</text>
 
-                      <rect x="24" y="218" width="592" height="154" rx="4" fill="#FFFFFF" stroke="#DCD9D0" />
-                      <text x="40" y="244" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700">BACKEND LARAVEL PASSPORT (OAUTH 2.0) &amp; FORMULIR DIGITAL</text>
-                      <g font-family="JetBrains Mono, monospace" font-size="9.5">
-                        <rect x="40" y="262" width="130" height="32" rx="3" fill="#F6F4EF" stroke="#DCD9D0" /><text x="105" y="282" text-anchor="middle" fill="#1B365D">MySQL 3NF</text>
-                        <rect x="182" y="262" width="130" height="32" rx="3" fill="#F6F4EF" stroke="#DCD9D0" /><text x="247" y="282" text-anchor="middle" fill="#1B365D">OAuth 2.0</text>
-                        <rect x="324" y="262" width="130" height="32" rx="3" fill="#F6F4EF" stroke="#DCD9D0" /><text x="389" y="282" text-anchor="middle" fill="#1B365D">WA &amp; Email Gate</text>
-                        <rect x="466" y="262" width="134" height="32" rx="3" fill="#F6F4EF" stroke="#DCD9D0" /><text x="533" y="282" text-anchor="middle" fill="#1B365D">HRIS Digital</text>
-                      </g>
-                      <text x="40" y="332" fill="#475569" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5">Menuntaskan selisih catatan lintas Humas, Keuangan, dan Tata Usaha.</text>
-                      <text x="600" y="358" text-anchor="end" fill="#64748B" font-family="JetBrains Mono, monospace" font-size="9">assets/project-ppdb.jpg</text>
-                    </svg>
+                        <rect x="24" y="218" width="592" height="154" rx="4" fill="#FFFFFF" stroke="#DCD9D0" />
+                        <text x="40" y="244" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700">BACKEND LARAVEL PASSPORT (OAUTH 2.0) &amp; FORMULIR DIGITAL</text>
+                        <g font-family="JetBrains Mono, monospace" font-size="9.5">
+                          <rect x="40" y="262" width="130" height="32" rx="3" fill="#F6F4EF" stroke="#DCD9D0" /><text x="105" y="282" text-anchor="middle" fill="#1B365D">MySQL 3NF</text>
+                          <rect x="182" y="262" width="130" height="32" rx="3" fill="#F6F4EF" stroke="#DCD9D0" /><text x="247" y="282" text-anchor="middle" fill="#1B365D">OAuth 2.0</text>
+                          <rect x="324" y="262" width="130" height="32" rx="3" fill="#F6F4EF" stroke="#DCD9D0" /><text x="389" y="282" text-anchor="middle" fill="#1B365D">WA &amp; Email Gate</text>
+                          <rect x="466" y="262" width="134" height="32" rx="3" fill="#F6F4EF" stroke="#DCD9D0" /><text x="533" y="282" text-anchor="middle" fill="#1B365D">HRIS Digital</text>
+                        </g>
+                        <text x="40" y="332" fill="#475569" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5">Menuntaskan selisih catatan lintas Humas, Keuangan, dan Tata Usaha.</text>
+                        <text x="600" y="358" text-anchor="end" fill="#64748B" font-family="JetBrains Mono, monospace" font-size="9">assets/project-ppdb.jpg</text>
+                      </svg>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -2165,86 +2330,70 @@
                     <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">12.117 Data Migrasi</span>
                     <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">Format VA Otomatis</span>
                   </div>
-                  <span class="font-mono text-[11px] font-semibold text-copper">Pratinjau Arsitektur &rarr;</span>
+                  <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md border border-copper/35 bg-amber-50/70 font-mono text-[10.5px] font-semibold text-copper shadow-2xs group-hover:bg-copper group-hover:text-white group-hover:border-copper transition-colors">Pratinjau Arsitektur &rarr;</span>
                 </div>
               </div>
             </button>
-            <div class="px-6 py-2.5 bg-paper/90 border-t border-hairline flex items-center justify-between font-mono text-[11px]">
-              <a href="https://github.com/misbahudin98" target="_blank" rel="noopener noreferrer" class="text-navy hover:text-copper font-semibold inline-flex items-center gap-1">
-                <span>Live Demo &amp; Code</span> &nearr;
-              </a>
+            <div class="px-6 py-3 bg-paper/95 border-t border-hairline flex items-center justify-between font-mono text-[11px]">
+              <span class="text-slateMuted font-medium">Sistem Produksi 3 Kampus &middot; Repositori Privat</span>
               <span class="text-slateMuted text-[10.5px]">12.117 Data 0% Loss</span>
             </div>
           </article>
 
           <!-- Project 4: Pipeline ETL & Dashboard KPI Microsoft Excel -->
-          <article class="spotlight-card editorial-card group bg-surface border border-hairline rounded-md overflow-hidden hover:border-navy transition-colors shadow-sm flex flex-col">
+          <article class="spotlight-card editorial-card project-card group overflow-hidden transition-colors flex flex-col">
             <button type="button" data-lightbox-id="proj-excel" class="lightbox-trigger text-left w-full flex-1 flex flex-col">
-              <div class="px-3.5 py-2 bg-paper border-b border-hairline flex items-center justify-between">
+              <div class="px-4 py-2.5 bg-paper border-b border-hairline flex items-center justify-between">
                 <div class="flex items-center gap-1.5" aria-hidden="true">
                   <span class="w-2 h-2 rounded-full bg-hairline"></span>
                   <span class="w-2 h-2 rounded-full bg-hairline"></span>
                   <span class="w-2 h-2 rounded-full bg-hairline"></span>
                 </div>
                 <span class="font-mono text-[10px] text-slateMuted">excel-pipeline / 4_Dashboard_Visual</span>
-                <span class="font-mono text-[10px] text-copper">04</span>
+                <span class="font-mono text-[10px] text-copper font-semibold">04</span>
               </div>
 
-              <div class="curtain-frame aspect-[16/10] w-full border-b border-hairline overflow-hidden">
-                <div class="parallax-media relative w-full h-full">
-                  <img
-                    data-asset-img="projectExcelDashboard"
-                    src="./assets/project-excel-dashboard.jpg"
-                    alt="Pipeline ETL dan Dashboard KPI Microsoft Excel"
-                    loading="lazy"
-                    class="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-500"
-                  />
-                  <!-- Architectural UI Wireframe SVG Fallback -->
-                  <div class="img-fallback hidden absolute inset-0 bg-[#0B1320]">
-                    <svg viewBox="0 0 640 400" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                      <rect width="640" height="400" fill="#0B1320" />
-                      <rect x="0" y="0" width="640" height="48" fill="#131E30" />
-                      <text x="24" y="29" fill="#F6F4EF" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700">4_DASHBOARD_VISUAL &middot; MICROSOFT EXCEL PIPELINE</text>
-                      <!-- 4 KPI tiles -->
-                      <rect x="24" y="66" width="140" height="64" rx="4" fill="#131E30" stroke="#243247" />
-                      <text x="36" y="86" fill="#94A3B8" font-family="JetBrains Mono, monospace" font-size="8.5">LOG DIPROSES</text>
-                      <text x="36" y="114" fill="#F6F4EF" font-family="JetBrains Mono, monospace" font-size="19" font-weight="700">60</text>
+              <div class="project-media-well">
+                <div class="curtain-frame aspect-[16/10] w-full rounded-lg border border-slate-900/10 overflow-hidden shadow-xs">
+                  <div class="parallax-media relative w-full h-full">
+                    <img
+                      data-asset-img="projectExcelDashboard"
+                      src="./assets/project-excel-dashboard.jpg"
+                      alt="Tampilan Asli Pipeline ETL dan Dashboard KPI Microsoft Excel"
+                      loading="lazy"
+                      class="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-500"
+                    />
+                    <div class="img-fallback hidden absolute inset-0 bg-[#0B1320] text-paper p-5 sm:p-6 flex flex-col justify-between">
+                      <div class="flex items-center justify-between gap-2">
+                        <span class="font-mono text-[10px] tracking-widest uppercase text-amber-300 font-semibold">MICROSOFT EXCEL &middot; 5-TAB ETL PIPELINE</span>
+                        <span class="px-2 py-0.5 rounded bg-white/10 border border-white/15 font-mono text-[9.5px] text-emerald-300">100% Formula</span>
+                      </div>
 
-                      <rect x="174" y="66" width="140" height="64" rx="4" fill="#131E30" stroke="#243247" />
-                      <text x="186" y="86" fill="#94A3B8" font-family="JetBrains Mono, monospace" font-size="8.5">DATA VALID</text>
-                      <text x="186" y="114" fill="#4ADE80" font-family="JetBrains Mono, monospace" font-size="19" font-weight="700">91,7%</text>
+                      <div class="grid grid-cols-3 gap-2.5 sm:gap-3 my-auto py-3">
+                        <div class="p-3 rounded-md bg-white/[0.06] border border-white/10">
+                          <span class="block font-mono text-[9px] text-slate-400 uppercase">Log Diproses</span>
+                          <span class="block tabular-nums font-mono text-xl sm:text-2xl font-bold text-white mt-0.5">60</span>
+                        </div>
+                        <div class="p-3 rounded-md bg-white/[0.06] border border-white/10">
+                          <span class="block font-mono text-[9px] text-slate-400 uppercase">Data Valid</span>
+                          <span class="block tabular-nums font-mono text-xl sm:text-2xl font-bold text-emerald-400 mt-0.5">91,7%</span>
+                        </div>
+                        <div class="p-3 rounded-md bg-white/[0.06] border border-amber-400/30">
+                          <span class="block font-mono text-[9px] text-amber-200 uppercase">Realisasi</span>
+                          <span class="block tabular-nums font-mono text-lg sm:text-xl font-bold text-amber-300 mt-1">Rp 742,6 Jt</span>
+                        </div>
+                      </div>
 
-                      <rect x="324" y="66" width="140" height="64" rx="4" fill="#131E30" stroke="#243247" />
-                      <text x="336" y="86" fill="#94A3B8" font-family="JetBrains Mono, monospace" font-size="8.5">REALISASI</text>
-                      <text x="336" y="114" fill="#F6F4EF" font-family="JetBrains Mono, monospace" font-size="13.5" font-weight="700">Rp 742,6 Jt</text>
-
-                      <rect x="474" y="66" width="142" height="64" rx="4" fill="#131E30" stroke="#D97706" stroke-opacity="0.6" />
-                      <text x="486" y="86" fill="#FDE68A" font-family="JetBrains Mono, monospace" font-size="8.5">PIUTANG AKTIF</text>
-                      <text x="486" y="114" fill="#D97706" font-family="JetBrains Mono, monospace" font-size="13.5" font-weight="700">Rp 51,6 Jt</text>
-
-                      <!-- Mini Chart Panel -->
-                      <rect x="24" y="148" width="380" height="224" rx="4" fill="#131E30" stroke="#243247" />
-                      <text x="40" y="174" fill="#CBD5E1" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">TREN TAGIHAN VS REALISASI (JAN - JUN 2026)</text>
-                      <g>
-                        <rect x="48" y="246" width="18" height="94" fill="#475569" /><rect x="68" y="254" width="18" height="86" fill="#3B82F6" />
-                        <rect x="104" y="240" width="18" height="100" fill="#475569" /><rect x="124" y="250" width="18" height="90" fill="#3B82F6" />
-                        <rect x="160" y="232" width="18" height="108" fill="#475569" /><rect x="180" y="242" width="18" height="98" fill="#3B82F6" />
-                        <rect x="216" y="238" width="18" height="102" fill="#475569" /><rect x="236" y="248" width="18" height="92" fill="#3B82F6" />
-                        <rect x="272" y="226" width="18" height="114" fill="#475569" /><rect x="292" y="238" width="18" height="102" fill="#3B82F6" />
-                        <rect x="328" y="228" width="18" height="112" fill="#475569" /><rect x="348" y="242" width="18" height="98" fill="#3B82F6" />
-                      </g>
-                      <text x="48" y="356" fill="#94A3B8" font-family="JetBrains Mono, monospace" font-size="8.5">Jan     Feb     Mar     Apr     Mei     Jun</text>
-
-                      <!-- Formula Audit Card -->
-                      <rect x="420" y="148" width="196" height="224" rx="4" fill="#131E30" stroke="#243247" />
-                      <text x="434" y="174" fill="#FDE68A" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">FORMULA AKTIF</text>
-                      <text x="434" y="204" fill="#E2E8F0" font-family="JetBrains Mono, monospace" font-size="9">&middot; PROPER(TRIM(...))</text>
-                      <text x="434" y="228" fill="#E2E8F0" font-family="JetBrains Mono, monospace" font-size="9">&middot; VLOOKUP 3NF</text>
-                      <text x="434" y="252" fill="#E2E8F0" font-family="JetBrains Mono, monospace" font-size="9">&middot; COUNTIF Duplikat</text>
-                      <text x="434" y="276" fill="#E2E8F0" font-family="JetBrains Mono, monospace" font-size="9">&middot; SUMIFS / COUNTIFS</text>
-                      <text x="434" y="300" fill="#4ADE80" font-family="JetBrains Mono, monospace" font-size="9">&middot; Pivot Table &amp; Chart</text>
-                      <text x="602" y="358" text-anchor="end" fill="#94A3B8" font-family="JetBrains Mono, monospace" font-size="8.5">project-excel-dashboard.jpg</text>
-                    </svg>
+                      <div class="flex flex-wrap items-center gap-1.5 font-mono text-[9.5px] text-slate-300 pt-2 border-t border-white/10">
+                        <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10">1_Raw</span>
+                        <span aria-hidden="true" class="text-amber-400">&rarr;</span>
+                        <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10">2_Master 3NF</span>
+                        <span aria-hidden="true" class="text-amber-400">&rarr;</span>
+                        <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10">3_ETL Formula</span>
+                        <span aria-hidden="true" class="text-amber-400">&rarr;</span>
+                        <span class="px-2 py-0.5 rounded bg-amber-500/20 border border-amber-400/40 text-amber-200">4_Dashboard KPI</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -2263,17 +2412,177 @@
                     <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">Chart</span>
                     <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">Rekonsiliasi</span>
                   </div>
-                  <span class="font-mono text-[11px] font-semibold text-copper">Pratinjau Arsitektur &rarr;</span>
+                  <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md border border-copper/35 bg-amber-50/70 font-mono text-[10.5px] font-semibold text-copper shadow-2xs group-hover:bg-copper group-hover:text-white group-hover:border-copper transition-colors">Pratinjau Arsitektur &rarr;</span>
                 </div>
               </div>
             </button>
-            <div class="px-6 py-2.5 bg-paper/90 border-t border-hairline flex items-center justify-between font-mono text-[11px]">
-              <a data-asset-href="excelFile" href="./assets/files/Portofolio_Data_Pipeline_Dashboard_Misbahudin.xlsx" download class="text-navy hover:text-copper font-semibold inline-flex items-center gap-1.5">
-                <svg class="w-3.5 h-3.5 text-copper" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" /></svg>
-                <span>Unduh File Excel (.xlsx)</span>
+            <div class="px-6 py-3 bg-paper/95 border-t border-hairline flex flex-wrap items-center justify-between gap-2 font-mono text-[11px]">
+              <a data-asset-href="excelFile" href="./assets/files/Portofolio_Data_Pipeline_Dashboard_Misbahudin.xlsx" download class="btn-tactile btn-tactile-primary px-3 py-1.5 font-mono text-[11px]">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" /></svg>
+                <span>Unduh Excel (.xlsx)</span>
               </a>
-              <a href="https://github.com/misbahudin98" target="_blank" rel="noopener noreferrer" class="text-copper hover:underline font-semibold inline-flex items-center gap-1">
-                <span>Live Demo &amp; Preview</span> &nearr;
+              <a href="#studi-kasus-excel" class="btn-tactile btn-tactile-secondary px-3 py-1.5 font-mono text-[11px]">
+                <span>Lihat Simulasi Interaktif</span> &uarr;
+              </a>
+            </div>
+          </article>
+
+          <!-- Project 5: Twinnie Group -->
+          <article class="spotlight-card editorial-card project-card group overflow-hidden transition-colors flex flex-col">
+            <button type="button" data-lightbox-id="proj-twinnie" class="lightbox-trigger text-left w-full flex-1 flex flex-col">
+              <div class="px-4 py-2.5 bg-paper border-b border-hairline flex items-center justify-between">
+                <div class="flex items-center gap-1.5" aria-hidden="true">
+                  <span class="w-2 h-2 rounded-full bg-hairline"></span>
+                  <span class="w-2 h-2 rounded-full bg-hairline"></span>
+                  <span class="w-2 h-2 rounded-full bg-hairline"></span>
+                </div>
+                <span class="font-mono text-[10px] text-slateMuted">misbahudin98.github.io / twinnie-group</span>
+                <span class="font-mono text-[10px] text-copper font-semibold">05</span>
+              </div>
+
+              <div class="project-media-well">
+                <div class="curtain-frame aspect-[16/10] w-full rounded-lg border border-slate-900/10 overflow-hidden shadow-xs">
+                  <div class="parallax-media relative w-full h-full">
+                    <img
+                      data-asset-img="projectTwinnie"
+                      src="./assets/twinnie-group.jpg"
+                      alt="Twinnie Group Ekosistem Web Layanan Kesehatan Integratif"
+                      loading="lazy"
+                      class="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-500"
+                    />
+                    <!-- Architectural UI Wireframe SVG Fallback -->
+                    <div class="img-fallback hidden absolute inset-0 bg-[#FAF9F6]">
+                      <svg viewBox="0 0 640 400" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="640" height="400" fill="#FAF9F6" />
+                        <rect x="0" y="0" width="640" height="48" fill="#1B365D" />
+                        <text x="24" y="29" fill="#FFFFFF" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700">TWINNIE GROUP &middot; LAYANAN KESEHATAN KELUARGA INTEGRATIF</text>
+                        <rect x="24" y="68" width="186" height="84" rx="4" fill="#FFFFFF" stroke="#DCD9D0" />
+                        <text x="38" y="92" fill="#B45309" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">PERFORMA STATIS</text>
+                        <text x="38" y="120" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="18" font-weight="700">FCP &lt; 1,0s</text>
+                        <text x="38" y="138" fill="#475569" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5">Zero Server Overhead</text>
+                        <rect x="227" y="68" width="186" height="84" rx="4" fill="#FFFFFF" stroke="#DCD9D0" />
+                        <text x="241" y="92" fill="#1B365D" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">AKSESIBILITAS</text>
+                        <text x="241" y="120" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="18" font-weight="700">WCAG 2.1 AA</text>
+                        <text x="241" y="138" fill="#475569" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5">Semantic HTML5 &amp; Schema</text>
+                        <rect x="430" y="68" width="186" height="84" rx="4" fill="#FFFFFF" stroke="#DCD9D0" />
+                        <text x="444" y="92" fill="#15803D" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600">RESERVASI CEPAT</text>
+                        <text x="444" y="120" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="18" font-weight="700">WA Booking</text>
+                        <text x="444" y="138" fill="#475569" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5">Deep-Link Tanpa Gagal</text>
+                        <rect x="24" y="172" width="592" height="196" rx="4" fill="#FFFFFF" stroke="#DCD9D0" />
+                        <text x="40" y="206" fill="#0F172A" font-family="Plus Jakarta Sans, sans-serif" font-size="13" font-weight="700">Baby Spa &middot; Akupunktur TCM &middot; Psikologi Keluarga &middot; Kemitraan Syariah</text>
+                        <text x="40" y="236" fill="#475569" font-family="Plus Jakarta Sans, sans-serif" font-size="11">Arsitektur statis ringan dengan optimasi jaringan 4G di Malang Raya.</text>
+                        <text x="600" y="352" text-anchor="end" fill="#64748B" font-family="JetBrains Mono, monospace" font-size="9">assets/twinnie-group.jpg</text>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-6 flex-1 flex flex-col justify-between">
+                <div>
+                  <h3 class="text-lg sm:text-xl font-bold text-ink group-hover:text-navy transition-colors">Twinnie Group: Web Kesehatan Integratif</h3>
+                  <p class="body-reveal text-sm text-slateMuted mt-2 leading-relaxed">
+                    Platform web layanan kesehatan keluarga di Malang Raya (Baby Spa, Akupunktur/TCM, Psikologi, &amp; Kemitraan Syariah) dengan arsitektur statis berkecepatan tinggi (<strong class="text-ink font-semibold">FCP &lt; 1,0 detik</strong>), standar WCAG 2.1 AA, serta alur reservasi WhatsApp otomatis.
+                  </p>
+                </div>
+                <div class="mt-5 pt-4 border-t border-hairline flex flex-wrap items-center justify-between gap-2">
+                  <div class="flex flex-wrap gap-1.5 font-mono text-[10.5px] text-navy">
+                    <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">HTML5 Semantik</span>
+                    <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">Tailwind CSS</span>
+                    <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">Vanilla JS</span>
+                    <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">WA Booking</span>
+                  </div>
+                  <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md border border-copper/35 bg-amber-50/70 font-mono text-[10.5px] font-semibold text-copper shadow-2xs group-hover:bg-copper group-hover:text-white group-hover:border-copper transition-colors">Pratinjau Arsitektur &rarr;</span>
+                </div>
+              </div>
+            </button>
+            <div class="px-6 py-3 bg-paper/95 border-t border-hairline flex flex-wrap items-center justify-between gap-2 font-mono text-[11px]">
+              <a href="https://misbahudin98.github.io/twinnie-group/" target="_blank" rel="noopener noreferrer" class="btn-tactile btn-tactile-primary px-3 py-1.5 font-mono text-[11px]">
+                <span>Buka Live Demo</span> &nearr;
+              </a>
+              <span class="text-slateMuted text-[10.5px]">FCP &lt; 1,0s &middot; WCAG 2.1 AA</span>
+            </div>
+          </article>
+
+          <!-- Project 6 (Public Open-Source in This Repo): Job Application Tracker & Multi-Platform Messaging Hub -->
+          <article class="spotlight-card editorial-card project-card group overflow-hidden transition-colors flex flex-col">
+            <button type="button" data-lightbox-id="proj-tracker" class="lightbox-trigger text-left w-full flex-1 flex flex-col">
+              <div class="px-4 py-2.5 bg-paper border-b border-hairline flex items-center justify-between">
+                <div class="flex items-center gap-1.5" aria-hidden="true">
+                  <span class="w-2 h-2 rounded-full bg-hairline"></span>
+                  <span class="w-2 h-2 rounded-full bg-hairline"></span>
+                  <span class="w-2 h-2 rounded-full bg-hairline"></span>
+                </div>
+                <span class="font-mono text-[10px] text-slateMuted">misbahudin98.github.io / tracker</span>
+                <span class="font-mono text-[10px] text-copper font-semibold">06 / OPEN SOURCE</span>
+              </div>
+
+              <div class="project-media-well">
+                <div class="curtain-frame aspect-[16/10] w-full rounded-lg border border-slate-900/10 overflow-hidden shadow-xs">
+                  <div class="parallax-media relative w-full h-full">
+                    <img
+                      data-asset-img="projectTracker"
+                      src="./assets/project-tracker.jpg"
+                      alt="Tampilan Asli Job Application Tracker dan Multi-Platform Messaging Hub"
+                      loading="lazy"
+                      class="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-500"
+                    />
+                    <div class="img-fallback hidden absolute inset-0 bg-gradient-to-br from-[#1B365D] via-[#132645] to-[#0B1320] text-paper p-5 sm:p-6 flex flex-col justify-between">
+                      <div class="flex items-center justify-between gap-2">
+                        <span class="font-mono text-[10px] tracking-widest uppercase text-amber-300 font-semibold">OPEN SOURCE REPO TOOL</span>
+                        <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-400/40 font-mono text-[9.5px] text-emerald-200">
+                          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Live Demo Aktif
+                        </span>
+                      </div>
+
+                      <div class="my-auto py-2">
+                        <h4 class="text-xl sm:text-2xl font-extrabold tracking-tight text-white">Job Application Tracker</h4>
+                        <p class="text-xs sm:text-sm text-slate-300 mt-1">JSON + PHP CRUD, Filter Status &amp; Pengiriman Lamaran 1-Klik</p>
+                      </div>
+
+                      <div class="grid grid-cols-3 gap-2 font-mono text-[9.5px]">
+                        <div class="p-2.5 rounded bg-white/10 border border-white/15">
+                          <span class="block text-amber-300 font-semibold">5 Platform</span>
+                          <span class="block text-slate-300 mt-0.5">Pesan Humanis</span>
+                        </div>
+                        <div class="p-2.5 rounded bg-white/10 border border-white/15">
+                          <span class="block text-emerald-300 font-semibold">1-Klik Kirim</span>
+                          <span class="block text-slate-300 mt-0.5">WA/Outlook/Gmail</span>
+                        </div>
+                        <div class="p-2.5 rounded bg-white/10 border border-white/15">
+                          <span class="block text-sky-300 font-semibold">Merge PDF</span>
+                          <span class="block text-slate-300 mt-0.5">+ TTD Otomatis</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-6 flex-1 flex flex-col justify-between">
+                <div>
+                  <h3 class="text-lg sm:text-xl font-bold text-ink group-hover:text-navy transition-colors">Job Application Tracker &amp; Messaging Hub</h3>
+                  <p class="body-reveal text-sm text-slateMuted mt-2 leading-relaxed">
+                    Aplikasi CRUD JSON/PHP &amp; <span class="font-mono text-xs text-ink">LocalStorage</span> untuk merekap gaji, fasilitas, email, &amp; WA, menyusun pesan humanis berbeda tiap platform, serta tombol kirim 1-klik ke <strong class="text-ink font-semibold">WA, Outlook Web, App Outlook, &amp; Gmail</strong>.
+                  </p>
+                </div>
+
+                <div class="mt-5 pt-4 border-t border-hairline flex flex-wrap items-center justify-between gap-2">
+                  <div class="flex flex-wrap gap-1.5 font-mono text-[10.5px] text-navy">
+                    <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">HTML5 &amp; Tailwind</span>
+                    <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">PHP JSON API</span>
+                    <span class="px-2 py-0.5 rounded-sm bg-paper border border-hairline">1-Klik WA / Outlook / Gmail</span>
+                  </div>
+                  <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md border border-copper/35 bg-amber-50/70 font-mono text-[10.5px] font-semibold text-copper shadow-2xs group-hover:bg-copper group-hover:text-white group-hover:border-copper transition-colors">Pratinjau Arsitektur &rarr;</span>
+                </div>
+              </div>
+            </button>
+            <div class="px-6 py-3 bg-paper/95 border-t border-hairline flex flex-wrap items-center justify-between gap-2 font-mono text-[11px]">
+              <a href="https://misbahudin98.github.io/tracker/" target="_blank" rel="noopener noreferrer" class="btn-tactile btn-tactile-primary px-3 py-1.5 font-mono text-[11px]">
+                <span>Buka Live Demo</span> &nearr;
+              </a>
+              <a href="https://github.com/misbahudin98/misbahudin98.github.io/tree/main/tracker" target="_blank" rel="noopener noreferrer" class="btn-tactile btn-tactile-secondary px-3 py-1.5 font-mono text-[11px]">
+                <span>Source Code GitHub</span> &nearr;
               </a>
             </div>
           </article>
@@ -2438,11 +2747,11 @@
 
         <div class="lg:col-span-5 lg:flex lg:flex-col lg:items-end space-y-2.5">
           <div class="flex flex-wrap gap-3">
-            <a data-asset-href="cvPdf" href="./assets/cv/CV_Misbahudin_Portofolio_Umum.pdf" download class="inline-flex items-center gap-2.5 px-5 py-3 rounded-md bg-navy text-white text-sm font-semibold hover:bg-ink transition-colors">
+            <a data-asset-href="cvPdf" href="./assets/cv/CV_Misbahudin_Portofolio_Umum.pdf" download class="btn-tactile btn-tactile-primary px-5 py-3 text-sm">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" /></svg>
               <span>Unduh CV (PDF)</span>
             </a>
-            <a href="https://wa.me/6282232828065" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-3 rounded-md bg-paper border border-hairline text-ink text-sm font-semibold hover:border-navy transition-colors">
+            <a href="https://wa.me/6282232828065" target="_blank" rel="noopener noreferrer" class="btn-tactile btn-tactile-secondary px-5 py-3 text-sm">
               <span>Chat WhatsApp</span>
             </a>
           </div>
@@ -2469,7 +2778,7 @@
             <span class="inline-flex items-center whitespace-nowrap">
               <span class="text-slateMuted font-semibold">WhatsApp:</span>
               <a href="https://wa.me/6282232828065" target="_blank" rel="noopener noreferrer" class="text-navy hover:text-copper ml-1 transition-colors">+62 822-3282-8065</a>
-              <button type="button" data-copy="+62 822-3282-8065" class="no-print copy-btn ml-2 px-1.5 py-0.5 rounded-sm bg-paper border border-hairline text-[10px] text-slateMuted hover:text-ink transition-colors">Salin</button>
+              <button type="button" data-copy="+62 822-3282-8065" class="no-print copy-btn btn-tactile btn-tactile-secondary ml-2 px-2.5 py-0.5 text-[10px]">Salin</button>
             </span>
           </div>
           <div class="overflow-x-auto">
@@ -2482,7 +2791,7 @@
             <span class="inline-flex items-center whitespace-nowrap">
               <span class="text-slateMuted font-semibold">Email:</span>
               <a href="mailto:misbah.udin@outlook.co.id" class="text-navy hover:text-copper ml-1 transition-colors">misbah.udin@outlook.co.id</a>
-              <button type="button" data-copy="misbah.udin@outlook.co.id" class="no-print copy-btn ml-2 px-1.5 py-0.5 rounded-sm bg-paper border border-hairline text-[10px] text-slateMuted hover:text-ink transition-colors">Salin</button>
+              <button type="button" data-copy="misbah.udin@outlook.co.id" class="no-print copy-btn btn-tactile btn-tactile-secondary ml-2 px-2.5 py-0.5 text-[10px]">Salin</button>
             </span>
           </div>
           <div class="overflow-x-auto">
@@ -2597,6 +2906,14 @@
         projectExcelDashboard: {
           primary: './assets/project-excel-dashboard.jpg',
           fallback: './assets/img/projects/excel-dashboard.webp'
+        },
+        projectTwinnie: {
+          primary: './assets/twinnie-group.jpg',
+          fallback: './assets/twinnie-logo.jpg'
+        },
+        projectTracker: {
+          primary: './assets/project-tracker.jpg',
+          fallback: ''
         }
       }
     };
@@ -2613,7 +2930,9 @@
         projectNotaris: PORTFOLIO_ASSETS.projectImages.projectNotaris,
         projectSimPqtm: PORTFOLIO_ASSETS.projectImages.projectSimPqtm,
         projectPpdb: PORTFOLIO_ASSETS.projectImages.projectPpdb,
-        projectExcelDashboard: PORTFOLIO_ASSETS.projectImages.projectExcelDashboard
+        projectExcelDashboard: PORTFOLIO_ASSETS.projectImages.projectExcelDashboard,
+        projectTwinnie: PORTFOLIO_ASSETS.projectImages.projectTwinnie,
+        projectTracker: PORTFOLIO_ASSETS.projectImages.projectTracker
       };
 
       // Bind download links
@@ -2717,7 +3036,30 @@
       document.querySelectorAll('.copy-btn').forEach(function (btn) {
         btn.addEventListener('click', function () {
           var val = btn.getAttribute('data-copy');
-          if (val) copyText(val);
+          if (!val) return;
+          copyText(val);
+
+          if (!btn.dataset.origHtml) {
+            btn.dataset.origHtml = btn.innerHTML;
+          }
+          clearTimeout(btn._copyResetTimer);
+
+          btn.classList.add('is-copied');
+          btn.innerHTML =
+            '<svg class="w-4 h-4 text-emerald-700" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">' +
+            '<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>' +
+            '<span class="font-semibold">Tersalin!</span>';
+
+          if (typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            gsap.fromTo(btn, { scale: 0.92 }, { scale: 1, duration: 0.35, ease: 'back.out(2.2)', clearProps: 'transform' });
+          }
+
+          btn._copyResetTimer = setTimeout(function () {
+            btn.classList.remove('is-copied');
+            if (btn.dataset.origHtml) {
+              btn.innerHTML = btn.dataset.origHtml;
+            }
+          }, 1800);
         });
       });
 
@@ -2819,6 +3161,26 @@
           summary: 'Workbook 5 tab berbasis 100% formula standar Microsoft Excel (PROPER, TRIM, VLOOKUP, COUNTIF, SUMIFS, COUNTIFS, Pivot Table, Chart, Data Validation, dan Conditional Formatting) yang menjaga data mentah tetap utuh untuk jejak audit.',
           stack: ['Microsoft Excel', 'VLOOKUP', 'Pivot Table', 'Chart', 'SUMIFS / COUNTIFS', 'Rekonsiliasi Keuangan'],
           sourceSelector: 'article [data-lightbox-id="proj-excel"]'
+        },
+        'proj-twinnie': {
+          category: 'PROYEK 05 - LAYANAN KESEHATAN INTEGRATIF',
+          title: 'Twinnie Group: Web Kesehatan Integratif',
+          caption: 'Pratinjau platform web Twinnie Group — Live Demo: misbahudin98.github.io/twinnie-group/ (assets/twinnie-group.jpg).',
+          role: 'Front End Developer & UI Architect',
+          metrics: 'Sub-second FCP (< 1,0 detik) pada jaringan 4G, WCAG 2.1 AA, Zero Server Cost, WhatsApp Booking Deep-Link',
+          summary: 'Platform web statis berkecepatan tinggi untuk layanan kesehatan keluarga integratif di Malang Raya (Baby Spa, Akupunktur/TCM, Psikologi Keluarga, dan Kemitraan Syariah) dengan struktur HTML5 semantik, JSON-LD Schema, dan reservasi WhatsApp tanpa kegagalan alur.',
+          stack: ['HTML5 Semantik', 'Tailwind CSS', 'Vanilla JS', 'WCAG 2.1 AA', 'WhatsApp Booking'],
+          sourceSelector: '[data-lightbox-id="proj-twinnie"]'
+        },
+        'proj-tracker': {
+          category: 'PROYEK 06 - OPEN SOURCE WORKSPACE TOOL',
+          title: 'Job Application Tracker & Multi-Platform Messaging Hub',
+          caption: 'Dasbor pencatatan lamaran kerja terbuka di misbahudin98.github.io/tracker/ (mode demo publik aman tanpa data pribadi).',
+          role: 'Full Stack Developer & Workflow Architect',
+          metrics: 'CRUD JSON via api.php & LocalStorage, pesan humanis 5 platform, kirim 1-klik WA/Outlook/Gmail, merge PDF otomatis (.py)',
+          summary: 'Aplikasi web untuk merekap lowongan kerja (gaji, fasilitas/benefit, email & WhatsApp HRD), menyimpan riwayat ke JSON, memisahkan redaksi pesan humanis per platform (Email, WhatsApp, Glints, LinkedIn), serta mengirim langsung lewat WhatsApp, Outlook Web, App Outlook, atau Gmail. Di repositori publik GitHub Pages, halaman ini berjalan dalam Mode Demo Aman sedangkan data pribadi & tanda tangan dilindungi .gitignore.',
+          stack: ['HTML5 & Tailwind CSS', 'Vanilla JavaScript', 'PHP 8 JSON API', 'Python PDF Merger', 'Export / Import JSON'],
+          sourceSelector: '[data-lightbox-id="proj-tracker"]'
         }
       };
 
@@ -2873,10 +3235,19 @@
           modalStack.appendChild(badge);
         });
 
+        var panel = modal.querySelector('.lightbox-panel');
+        var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         modal.classList.remove('hidden');
         modal.classList.add('flex');
         requestAnimationFrame(function () {
           modal.classList.add('is-open');
+          if (panel && typeof gsap !== 'undefined' && !reducedMotion) {
+            gsap.fromTo(
+              panel,
+              { opacity: 0, scale: 0.95, y: 14, clipPath: 'inset(6% 0% 0% 0% round 6px)' },
+              { opacity: 1, scale: 1, y: 0, clipPath: 'inset(0% 0% 0% 0% round 6px)', duration: 0.34, ease: 'power3.out', clearProps: 'clipPath,transform' }
+            );
+          }
           if (modalClose) modalClose.focus();
         });
         document.body.style.overflow = 'hidden';
@@ -2884,16 +3255,37 @@
 
       function closeLightbox() {
         if (!modal) return;
-        modal.classList.remove('is-open');
-        setTimeout(function () {
+        var panel = modal.querySelector('.lightbox-panel');
+        var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        function finalizeClose() {
+          modal.classList.remove('is-open');
           modal.classList.add('hidden');
           modal.classList.remove('flex');
           document.body.style.overflow = '';
+          if (panel && typeof gsap !== 'undefined') {
+            gsap.set(panel, { clearProps: 'clipPath,transform,opacity' });
+          }
           if (lastFocusedEl && typeof lastFocusedEl.focus === 'function') {
             lastFocusedEl.focus();
             lastFocusedEl = null;
           }
-        }, 180);
+        }
+
+        if (panel && typeof gsap !== 'undefined' && !reducedMotion) {
+          gsap.to(panel, {
+            opacity: 0,
+            scale: 0.96,
+            y: 10,
+            clipPath: 'inset(0% 0% 6% 0% round 6px)',
+            duration: 0.2,
+            ease: 'power2.in',
+            onComplete: finalizeClose
+          });
+        } else {
+          modal.classList.remove('is-open');
+          setTimeout(finalizeClose, 180);
+        }
       }
 
       document.querySelectorAll('.lightbox-trigger').forEach(function (btn) {
@@ -2989,15 +3381,35 @@
         });
       });
 
+      var decodeTimer = null;
+
       function flashFormulaBar() {
         if (!formulaBarText) return;
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        formulaBarText.classList.add('is-updating');
-        requestAnimationFrame(function () {
-          setTimeout(function () {
-            formulaBarText.classList.remove('is-updating');
-          }, 120);
-        });
+        clearTimeout(decodeTimer);
+        formulaBarText.classList.add('is-updating', 'is-decoding');
+        if (typeof gsap !== 'undefined') {
+          gsap.fromTo(
+            formulaBarText,
+            { clipPath: 'inset(0 100% 0 0)', opacity: 0.65 },
+            {
+              clipPath: 'inset(0 0% 0 0)',
+              opacity: 1,
+              duration: 0.3,
+              ease: 'power2.out',
+              clearProps: 'clipPath,opacity',
+              onComplete: function () {
+                formulaBarText.classList.remove('is-updating', 'is-decoding');
+              }
+            }
+          );
+        } else {
+          requestAnimationFrame(function () {
+            decodeTimer = setTimeout(function () {
+              formulaBarText.classList.remove('is-updating', 'is-decoding');
+            }, 140);
+          });
+        }
       }
 
       function setEtlColumn(colKey) {
@@ -3013,6 +3425,16 @@
             cell.classList.toggle('text-amber-200', isMatch);
           }
         });
+        if (typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          var matchedCells = document.querySelectorAll('#panel-etl tbody [data-col="' + colKey + '"]');
+          if (matchedCells.length) {
+            gsap.fromTo(
+              matchedCells,
+              { opacity: 0.5 },
+              { opacity: 1, duration: 0.25, stagger: 0.025, ease: 'power2.out', clearProps: 'opacity' }
+            );
+          }
+        }
         if (activeSheet === 'etl' && formulaCellRef && formulaBarText) {
           formulaCellRef.textContent = etlFormulas[colKey].ref;
           formulaBarText.textContent = etlFormulas[colKey].formula;
@@ -3333,19 +3755,48 @@
 
       function switchSheet(sheetKey) {
         if (!tabMeta[sheetKey]) return;
+        var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var tabIndicator = document.getElementById('excel-tab-indicator');
+        var flipState = (tabIndicator && typeof Flip !== 'undefined' && !reducedMotion)
+          ? Flip.getState(tabIndicator)
+          : null;
+        var activeTabEl = null;
+
         activeSheet = sheetKey;
 
         excelTabs.forEach(function (tab) {
           var isActive = tab.getAttribute('data-tab') === sheetKey;
           tab.setAttribute('aria-selected', String(isActive));
           tab.className = isActive
-            ? 'excel-tab px-3.5 py-2 rounded-t font-mono text-xs whitespace-nowrap transition-colors bg-darkSurface text-copperBright border-t-2 border-x border-t-copperBright border-x-darkLine font-semibold'
-            : 'excel-tab px-3.5 py-2 rounded-t font-mono text-xs whitespace-nowrap transition-colors text-slate-400 hover:text-paper border-t-2 border-transparent';
+            ? 'excel-tab relative px-3.5 py-2 rounded-t font-mono text-xs whitespace-nowrap transition-colors bg-darkSurface text-copperBright border-t-2 border-x border-t-copperBright border-x-darkLine font-semibold'
+            : 'excel-tab relative px-3.5 py-2 rounded-t font-mono text-xs whitespace-nowrap transition-colors text-slate-400 hover:text-paper border-t-2 border-transparent';
+          if (isActive) activeTabEl = tab;
         });
+
+        if (tabIndicator && activeTabEl && tabIndicator.parentElement !== activeTabEl) {
+          activeTabEl.appendChild(tabIndicator);
+          if (flipState) {
+            Flip.from(flipState, { duration: 0.34, ease: 'power3.inOut', simple: true });
+          }
+        }
 
         sheetPanels.forEach(function (panel) {
           panel.classList.toggle('hidden', panel.id !== 'panel-' + sheetKey);
         });
+
+        if (typeof gsap !== 'undefined' && !reducedMotion) {
+          var activePanel = document.getElementById('panel-' + sheetKey);
+          if (activePanel) {
+            var animTargets = activePanel.querySelectorAll('tbody tr, .grid > div');
+            if (animTargets.length) {
+              gsap.fromTo(
+                animTargets,
+                { opacity: 0, y: 8 },
+                { opacity: 1, y: 0, duration: 0.28, stagger: 0.025, ease: 'power2.out', clearProps: 'opacity,transform' }
+              );
+            }
+          }
+        }
 
         storySteps.forEach(function (step) {
           step.classList.toggle('is-active', step.getAttribute('data-step') === sheetKey);
@@ -3514,50 +3965,80 @@
         return 1 - Math.pow(1 - x, 3);
       }
 
-      // Universal High-Precision 60fps Rolling Counter Engine (Respects prefers-reduced-motion)
-      function runHeroCounters() {
-        var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        var metricElements = document.querySelectorAll('.masked-metric');
-        metricElements.forEach(function (el, index) {
-          var target = parseFloat(el.getAttribute('data-count-target'));
-          var fmt = el.getAttribute('data-count-format');
-          if (isNaN(target)) return;
+      var counterAnimTimer = null;
+      var heroMetricsLeftViewport = false;
+      var lastHeroTriggerTs = 0;
 
+      function resetHeroCountersToZero() {
+        var metricElements = document.querySelectorAll('.masked-metric');
+        metricElements.forEach(function (el) {
+          var fmt = el.getAttribute('data-count-format');
+          var card = el.closest('.metric-card');
+          var bar = card ? card.querySelector('.metric-bar') : null;
           if (el._rafId) {
             cancelAnimationFrame(el._rafId);
             el._rafId = null;
           }
-
-          if (prefersReduced) {
-            el.textContent = formatMetricValue(target, fmt);
-            return;
+          if (typeof gsap !== 'undefined') {
+            gsap.killTweensOf(el);
+            if (bar) gsap.killTweensOf(bar);
           }
-
           el.textContent = formatMetricValue(0, fmt);
+          if (bar) bar.style.transform = 'scaleX(0)';
+        });
+      }
 
-          // Kalibrasi HRD 6-Second Cognitive Scan: durasi gesit 0.58s - 0.67s dengan easeOutCubic agar instan, estetik & nyaman dipindai
-          var duration = 580 + (index * 25); // 0.58s - 0.66s snappy telemetry
-          var delay = index * 15; // micro-stagger 15ms untuk ritme teratur
+      // Ultra-Visible 1.0s Rolling Telemetry Counter + GPU Progress Bar (Auto-Reactivating on Return)
+      function runHeroCounters(force) {
+        var nowTs = performance.now();
+        if (!force && nowTs - lastHeroTriggerTs < 300) return;
+        lastHeroTriggerTs = nowTs;
+
+        clearTimeout(counterAnimTimer);
+        var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var metricElements = document.querySelectorAll('.masked-metric');
+        if (!metricElements.length) return;
+
+        resetHeroCountersToZero();
+
+        metricElements.forEach(function (el, index) {
+          var target = parseFloat(el.getAttribute('data-count-target'));
+          var fmt = el.getAttribute('data-count-format');
+          var card = el.closest('.metric-card');
+          var bar = card ? card.querySelector('.metric-bar') : null;
+          if (isNaN(target)) return;
+
+          var durationMs = 1000;
+          var delayMs = index * 70;
           var startTimestamp = null;
 
           function step(now) {
             var currentTime = (typeof now === 'number' && now > 0) ? now : performance.now();
-            if (!startTimestamp) startTimestamp = currentTime + delay;
+            if (!startTimestamp) startTimestamp = currentTime + delayMs;
             if (currentTime < startTimestamp) {
               el._rafId = requestAnimationFrame(step);
               return;
             }
             var elapsed = currentTime - startTimestamp;
-            var progress = Math.min(elapsed / duration, 1);
-            var currentVal = target * easeOutCubic(progress);
+            var linear = Math.min(elapsed / durationMs, 1);
+            var eased = easeOutCubic(linear);
 
-            el.textContent = formatMetricValue(currentVal, fmt);
+            el.textContent = formatMetricValue(target * eased, fmt);
+            if (bar) bar.style.transform = 'scaleX(' + eased.toFixed(4) + ')';
 
-            if (progress < 1) {
+            if (linear < 1) {
               el._rafId = requestAnimationFrame(step);
             } else {
               el.textContent = formatMetricValue(target, fmt);
+              if (bar) bar.style.transform = 'scaleX(1)';
               el._rafId = null;
+              if (!prefersReduced && typeof gsap !== 'undefined') {
+                gsap.fromTo(
+                  el,
+                  { scale: 1 },
+                  { scale: 1.05, duration: 0.14, yoyo: true, repeat: 1, ease: 'power2.out', clearProps: 'transform' }
+                );
+              }
             }
           }
 
@@ -3568,48 +4049,71 @@
       // Expose globally for interactive and dev inspection
       window.runHeroCounters = runHeroCounters;
 
-      function initStoryMotion() {
-        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-          updateActiveChapter('01', 'light');
-          runHeroCounters();
-          return;
+      function setupHeroCounterAutoObserver() {
+        var stripEl = document.getElementById('hero-metrics-strip');
+        if (!stripEl) return;
+
+        if ('IntersectionObserver' in window) {
+          var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (!entry.isIntersecting) {
+                heroMetricsLeftViewport = true;
+                resetHeroCountersToZero();
+              } else if (entry.intersectionRatio >= 0.2 && heroMetricsLeftViewport) {
+                heroMetricsLeftViewport = false;
+                runHeroCounters(true);
+              }
+            });
+          }, { threshold: [0, 0.25] });
+          observer.observe(stripEl);
         }
 
-        gsap.registerPlugin(ScrollTrigger);
+        function triggerInitialCounter() {
+          clearTimeout(counterAnimTimer);
+          counterAnimTimer = setTimeout(function () {
+            heroMetricsLeftViewport = false;
+            runHeroCounters(true);
+          }, 180);
+        }
 
-        // Core Hero Metric Setup & Multi-Channel Interactive Triggers
-        var metricCards = document.querySelectorAll('.metric-card');
-        metricCards.forEach(function (card) {
-          card.addEventListener('click', function () {
-            gsap.fromTo(card, { scale: 0.98 }, { scale: 1, duration: 0.25, ease: 'back.out(2)' });
-            runHeroCounters();
-          });
-        });
+        if (document.readyState === 'complete') {
+          triggerInitialCounter();
+        } else {
+          window.addEventListener('load', triggerInitialCounter, { once: true });
+        }
 
         document.querySelectorAll('a[href="#profil"]').forEach(function (link) {
           link.addEventListener('click', function () {
-            setTimeout(runHeroCounters, 300);
+            setTimeout(function () {
+              heroMetricsLeftViewport = false;
+              runHeroCounters(true);
+            }, 260);
           });
         });
 
-        var stripTrigger = document.getElementById('hero-metrics-strip') || '#profil';
-        ScrollTrigger.create({
-          trigger: stripTrigger,
-          start: 'top 92%',
-          end: 'bottom 10%',
-          onEnter: runHeroCounters,
-          onEnterBack: runHeroCounters
+        document.querySelectorAll('.metric-card').forEach(function (card) {
+          card.addEventListener('click', function () {
+            if (typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+              gsap.fromTo(card, { scale: 0.98 }, { scale: 1, duration: 0.22, ease: 'back.out(2)', clearProps: 'transform' });
+            }
+            runHeroCounters(true);
+          });
         });
+      }
 
-        ScrollTrigger.create({
-          trigger: '#profil',
-          start: 'top 60%',
-          end: 'bottom 25%',
-          onEnterBack: runHeroCounters
-        });
+      setupHeroCounterAutoObserver();
 
-        // Jalankan langsung pada pemuatan halaman
-        runHeroCounters();
+      function initStoryMotion() {
+        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+          updateActiveChapter('01', 'light');
+          return;
+        }
+
+        if (typeof Flip !== 'undefined') {
+          gsap.registerPlugin(ScrollTrigger, Flip);
+        } else {
+          gsap.registerPlugin(ScrollTrigger);
+        }
 
         // Chapter rail & nav contrast tracking
         document.querySelectorAll('[data-chapter]').forEach(function (section) {
@@ -3685,20 +4189,7 @@
             }
           });
 
-          // 2. Initial Masked Slide-Up for Metric Numbers
-          gsap.utils.toArray('.masked-metric').forEach(function (el) {
-            gsap.from(el, {
-              yPercent: 105,
-              duration: 0.7,
-              ease: 'power3.out',
-              clearProps: 'transform',
-              scrollTrigger: {
-                trigger: el,
-                start: 'top 95%',
-                once: true
-              }
-            });
-          });
+          // 2. Metric Strip Hairline Reveal Only (keeps 0 -> target counter 100% visible from ms 0)
 
           // 3. Fast Body Opacity Reveal (0.35s, once: true)
           gsap.utils.toArray('.body-reveal').forEach(function (el) {
@@ -3749,7 +4240,7 @@
             );
           });
 
-          // 6. Chapter 02 Scrubbed Vertical Timeline Spine
+          // 6. Chapter 02 Scrubbed Vertical Timeline Spine + Active-Node Pulse
           var timelineEl = document.getElementById('career-timeline');
           var timelineLine = document.getElementById('timeline-progress-line');
           if (timelineEl && timelineLine) {
@@ -3764,6 +4255,46 @@
               }
             });
           }
+
+          gsap.utils.toArray('#career-timeline article').forEach(function (card) {
+            var dot = card.querySelector('span[aria-hidden="true"]');
+            if (dot) dot.classList.add('timeline-node');
+
+            ScrollTrigger.create({
+              trigger: card,
+              start: 'top 62%',
+              end: 'bottom 42%',
+              onEnter: function () {
+                card.classList.add('is-active-milestone');
+                if (dot) dot.classList.add('is-active');
+              },
+              onEnterBack: function () {
+                card.classList.add('is-active-milestone');
+                if (dot) dot.classList.add('is-active');
+              },
+              onLeave: function () {
+                card.classList.remove('is-active-milestone');
+                if (dot) dot.classList.remove('is-active');
+              },
+              onLeaveBack: function () {
+                card.classList.remove('is-active-milestone');
+                if (dot) dot.classList.remove('is-active');
+              }
+            });
+
+            gsap.from(card, {
+              opacity: 0,
+              y: 16,
+              duration: 0.45,
+              ease: 'power2.out',
+              clearProps: 'opacity,transform',
+              scrollTrigger: {
+                trigger: card,
+                start: 'top 86%',
+                once: true
+              }
+            });
+          });
 
           // 7. Tight Stagger (0.06s) on Competency Cards
           var compCards = gsap.utils.toArray('.competency-card');
@@ -3801,25 +4332,9 @@
               }
             });
           }
-
-          // 9. Career Timeline Cards Entrance (Compositor-Only)
-          gsap.utils.toArray('#career-timeline article').forEach(function (card) {
-            gsap.from(card, {
-              opacity: 0,
-              y: 16,
-              duration: 0.45,
-              ease: 'power2.out',
-              clearProps: 'opacity,transform',
-              scrollTrigger: {
-                trigger: card,
-                start: 'top 86%',
-                once: true
-              }
-            });
-          });
         });
 
-        // Desktop-Only Watermark Drift
+        // Desktop-Only Watermark Drift + Inner-Image Editorial Parallax
         mm.add('(min-width: 768px) and (prefers-reduced-motion: no-preference)', function () {
           gsap.utils.toArray('.bg-watermark').forEach(function (wm) {
             var parentSection = wm.closest('section');
@@ -3838,14 +4353,33 @@
               }
             );
           });
+
+          gsap.utils.toArray('.curtain-frame .parallax-media').forEach(function (media) {
+            var frame = media.closest('.curtain-frame');
+            gsap.fromTo(
+              media,
+              { scale: 1.09, yPercent: -5 },
+              {
+                scale: 1.09,
+                yPercent: 5,
+                ease: 'none',
+                scrollTrigger: {
+                  trigger: frame || media,
+                  start: 'top bottom',
+                  end: 'bottom top',
+                  scrub: 0.45
+                }
+              }
+            );
+          });
         });
 
         // Accessible fallback for users with prefers-reduced-motion
         mm.add('(prefers-reduced-motion: reduce)', function () {
-          // Bypasses heavy transforms while allowing smooth telemetry counting
+          // Bypasses heavy transforms while allowing final metric display
         });
 
-        // 8. Story Motion Parallax Recipes: Magnetic Buttons & Spotlight Cards
+        // 8. Story Motion Parallax Recipes: Magnetic Buttons & Spotlight 3D Tilt Cards
         initMagneticButtons();
         initSpotlightCards();
 
@@ -3871,19 +4405,47 @@
       function initSpotlightCards() {
         if (!window.matchMedia('(hover: hover)').matches) return;
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        var enableTilt = typeof gsap !== 'undefined' && window.innerWidth >= 1024;
+
         document.querySelectorAll('.spotlight-card').forEach(function (card) {
           var rafId = null;
+          var rotXTo = null;
+          var rotYTo = null;
+
+          if (enableTilt) {
+            gsap.set(card, { transformPerspective: 900 });
+            rotXTo = gsap.quickTo(card, 'rotationX', { duration: 0.35, ease: 'power3.out' });
+            rotYTo = gsap.quickTo(card, 'rotationY', { duration: 0.35, ease: 'power3.out' });
+          }
+
           card.addEventListener('mousemove', function (e) {
             if (rafId) return;
             var clientX = e.clientX;
             var clientY = e.clientY;
             rafId = requestAnimationFrame(function () {
               var rect = card.getBoundingClientRect();
-              card.style.setProperty('--mouse-x', (clientX - rect.left) + 'px');
-              card.style.setProperty('--mouse-y', (clientY - rect.top) + 'px');
+              var relX = clientX - rect.left;
+              var relY = clientY - rect.top;
+              card.style.setProperty('--mouse-x', relX + 'px');
+              card.style.setProperty('--mouse-y', relY + 'px');
+
+              if (rotXTo && rotYTo && rect.width > 0 && rect.height > 0) {
+                var nx = (relX / rect.width - 0.5) * 2;
+                var ny = (relY / rect.height - 0.5) * 2;
+                rotXTo(-ny * 3);
+                rotYTo(nx * 3);
+              }
               rafId = null;
             });
           }, { passive: true });
+
+          if (rotXTo && rotYTo) {
+            card.addEventListener('mouseleave', function () {
+              rotXTo(0);
+              rotYTo(0);
+            });
+          }
         });
       }
 

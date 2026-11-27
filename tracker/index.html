@@ -494,13 +494,83 @@
           .replace(/"/g, '&quot;');
       }
 
-      function setStorageMode(isServer) {
-        useServerApi = isServer;
+      function createPublicDemoData() {
+        return {
+          version: '1.0',
+          updated_at: '2026-11-27T00:00:00+07:00',
+          owner: 'Misbahudin, S.Tr.Kom. (Mode Demo Publik)',
+          portfolio_url: 'https://misbahudin98.github.io/',
+          applications: [
+            {
+              id: 'DEMO-001',
+              date: '2026-11-25',
+              company: 'PT Contoh Nusantara Digital (Demo)',
+              position: 'IT Operations & Data Support',
+              location: 'Malang / Hybrid',
+              work_type: 'Hybrid',
+              salary: 'Rp 5.500.000 - Rp 6.500.000 (Simulasi)',
+              benefits: ['BPJS Kesehatan & Ketenagakerjaan', 'Tunjangan Makan & Transport', 'Lingkungan Kerja Kolaboratif'],
+              source_platform: 'Email',
+              source_contact: 'Portal Karir Perusahaan (Data Contoh)',
+              target_email: 'hrd@contoh-perusahaan.id',
+              target_whatsapp: '+62 812-0000-0000',
+              status: 'Siap Kirim',
+              required_docs: ['CV ATS', 'Surat Lamaran Bertanda Tangan', 'Berkas Pendukung'],
+              filename_rule: 'Nama_Posisi_Perusahaan.pdf',
+              keywords: ['IT Support', 'Excel ETL', 'MySQL', 'MikroTik', 'Administrasi'],
+              pdf_path: '#',
+              notes: 'Ini adalah data contoh aman untuk demo publik di GitHub Pages. Data asli lokal dilindungi .gitignore.',
+              messages: {
+                email_subject: 'Lamaran Pekerjaan IT Operations & Data Support - Misbahudin',
+                email_body: 'Yth. Bapak/Ibu Tim Rekrutmen PT Contoh Nusantara Digital,\n\nPerkenalkan saya Misbahudin, lulusan D4 Teknik Informatika Politeknik Negeri Malang dengan pengalaman 3,5+ tahun di bidang IT Operations, pengolahan data Excel, dan pengelolaan sistem informasi.\n\nMelalui email ini saya melampirkan CV dan berkas pendukung sesuai ketentuan. Ringkasan proyek juga dapat dilihat di https://misbahudin98.github.io/.\n\nTerima kasih atas waktu dan kesempatannya.\n\nHormat saya,\nMisbahudin',
+                whatsapp: 'Selamat pagi Bapak/Ibu, perkenalkan saya Misbahudin. Izin konfirmasi, saya telah mengirimkan lamaran dan berkas PDF untuk posisi IT Operations & Data Support melalui email perusahaan. Terima kasih banyak atas waktunya.',
+                glints: 'Halo tim rekrutmen, saya tertarik bergabung sebagai IT Operations & Data Support. Berpengalaman lebih dari 3,5 tahun menangani operasional IT, migrasi 12.117 data tanpa data loss, serta Excel KPI dashboard.',
+                linkedin: 'Halo Bapak/Ibu Rekruter, saya Misbahudin. Saya baru saja mengajukan lamaran untuk posisi IT Operations & Data Support dan melampirkan CV serta portofolio kerja di https://misbahudin98.github.io/.',
+                other: 'Mengajukan lamaran untuk posisi IT Operations & Data Support dengan lampiran CV & berkas pendukung dalam 1 file PDF.'
+              }
+            },
+            {
+              id: 'DEMO-002',
+              date: '2026-11-26',
+              company: 'CV Karya Sistem Mandiri (Demo)',
+              position: 'Full Stack Web Developer (Laravel)',
+              location: 'Surabaya / Remote',
+              work_type: 'Remote',
+              salary: 'Rp 7.000.000 - Rp 9.000.000 (Simulasi)',
+              benefits: ['Remote Work Allowance', 'Bonus Kinerja Proyek', 'Flexible Hours'],
+              source_platform: 'LinkedIn',
+              source_contact: 'https://www.linkedin.com/jobs/',
+              target_email: 'talent@contoh-karya.id',
+              target_whatsapp: '+62 813-0000-0000',
+              status: 'Wawancara',
+              required_docs: ['CV ATS', 'Portofolio Web'],
+              filename_rule: 'CV_FullStack_Misbahudin.pdf',
+              keywords: ['Laravel', 'Svelte', 'MySQL 3NF', 'PHPUnit', 'REST API'],
+              pdf_path: '#',
+              notes: 'Contoh catatan lamaran tahap wawancara. Anda dapat mencoba Tambah, Edit, Hapus, Filter, maupun tombol Kirim WA/Outlook/Gmail.',
+              messages: {
+                email_subject: 'Lamaran Full Stack Web Developer - Misbahudin',
+                email_body: 'Yth. Tim Engineering & HR CV Karya Sistem Mandiri,\n\nSaya Misbahudin, pengembang web berbasis Laravel dan Svelte dengan pengalaman membangun sistem informasi notaris/escrow, portal PPDB multi-kampus, dan 250+ pengujian otomatis PHPUnit.\n\nDetail proyek dapat ditinjau di https://misbahudin98.github.io/.\n\nSalam hangat,\nMisbahudin',
+                whatsapp: 'Halo Bapak/Ibu HR, saya Misbahudin yang melamar posisi Full Stack Web Developer via LinkedIn. Terima kasih atas responsnya, saya siap mengikuti sesi wawancara sesuai jadwal.',
+                glints: 'Pengembang Laravel & Svelte berpengalaman membangun arsitektur database MySQL 3NF dan pengujian otomatis PHPUnit.',
+                linkedin: 'Terima kasih atas kesempatannya, Bapak/Ibu. Berikut tautan ringkas studi kasus web saya: https://misbahudin98.github.io/.',
+                other: 'Lamaran tahap wawancara posisi Full Stack Web Developer.'
+              }
+            }
+          ]
+        };
+      }
+
+      function setStorageMode(mode) {
+        useServerApi = (mode === 'server');
         var dot = document.getElementById('storage-dot');
         var lbl = document.getElementById('storage-label');
-        if (isServer) {
+        if (mode === 'server') {
           dot.className = 'w-2 h-2 rounded-full bg-emerald-600';
           lbl.textContent = 'Sinkron Server JSON (api.php)';
+        } else if (mode === 'demo') {
+          dot.className = 'w-2 h-2 rounded-full bg-navy';
+          lbl.textContent = 'Mode Demo Publik (Data Contoh · LocalStorage)';
         } else {
           dot.className = 'w-2 h-2 rounded-full bg-amber-500';
           lbl.textContent = 'Mode Lokal (LocalStorage + Export)';
@@ -517,27 +587,35 @@
             if (!data || !Array.isArray(data.applications)) throw new Error('Invalid API JSON');
             store = data;
             localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
-            setStorageMode(true);
+            setStorageMode('server');
           })
           .catch(function () {
-            setStorageMode(false);
+            setStorageMode('local');
             var cached = localStorage.getItem(STORAGE_KEY);
             if (cached) {
               try {
                 var parsed = JSON.parse(cached);
-                if (parsed && Array.isArray(parsed.applications)) {
+                if (parsed && Array.isArray(parsed.applications) && parsed.applications.length > 0) {
                   store = parsed;
                   return;
                 }
               } catch (e) {}
             }
             return fetch('./applications.json', { cache: 'no-store' })
-              .then(function (r) { return r.json(); })
+              .then(function (r) {
+                if (!r.ok) throw new Error('No static JSON');
+                return r.json();
+              })
               .then(function (jsonData) {
+                if (!jsonData || !Array.isArray(jsonData.applications)) throw new Error('Invalid JSON');
                 store = jsonData;
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
               })
-              .catch(function () {});
+              .catch(function () {
+                store = createPublicDemoData();
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+                setStorageMode('demo');
+              });
           })
           .finally(function () {
             renderAll();
